@@ -1,0 +1,50 @@
+
+<!-- ***** ng-repeat the food content into the home page! Populating images and info about food recipes. ***** -->
+
+<div id="content-wrapper" class="container-fluid" ng-init="search(' ')">
+    <div class="row">
+
+        <div  class="col-md-12">
+            <div class="food-content col-md-4" ng-repeat="recipe in recipes" >
+                <div class="col-md-10 col-md-offset-2 food-content text-left panel panel-default card ng-cloak" >
+                <h6 class="text-left">Source: <span style="color: #8a1617;">{{recipe.sourceDisplayName}}</span></h6>
+                    <div class="food-image text-center">
+                        <a href="{{ createRecipeUrl(recipe.recipeId) }}">
+                            <img ng-src="{{ recipe.largeImageURL }}">
+                        </a>
+                    </div>
+                    <h3 style="color: #8a1617;">{{recipe.recipeName}}</h3>
+                    <div> Ready In: {{recipe.prepTime }}</div>
+                    <div>Rating: <img ng-src="{{recipe.ratingStarsImg}}"></div>
+                    <h4 style="color: #8a1617;">Ingredients</h4>
+                    <div class="ing-list" ng-repeat="ingredient in recipe.ingredients">
+                        <li>{{ingredient}}</li>
+                    </div>
+                
+            </div>
+
+            </div>
+        </div>
+    </div>
+</div>   
+
+
+<!-- ***** Javascript function to change the height of panels based on the content filling the panels, the function will run and check what is the tallest height and change the current height. ***** -->   
+
+<script type="text/javascript">
+    
+    var currHeight = 0;
+    var tallestHeight = 0;
+
+    $('.food-content').each(function() {
+        currHeight = $(this).height();
+        if (currHeight > tallestHeight) {
+            tallestHeight = currHeight;
+        }
+    });
+    $('.food-content').height(tallestHeight);
+    
+</script>
+
+
+
