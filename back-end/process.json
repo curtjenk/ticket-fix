@@ -1,0 +1,17 @@
+{
+    "apps": [{
+        "name": "ticket-fix-backend",
+        "script": "bin/www",
+        "ignore_watch": ["node_modules"],
+        "watch": "../",
+        "log_date_format": "YYYY-MM-DD HH:mm Z"
+    }]
+}
+// Creating a process.json file for each project is a nice way
+// to control how your process/App will run on the server.
+// This snippet is watching the root folder of the project it
+// resides in.
+
+// Check out PM2 if you haven't already, a great alternative over Nodemon.
+
+//Usage: pm2 start process.json

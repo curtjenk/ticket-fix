@@ -1,0 +1,26 @@
+{
+  "name": "ticket-fix",
+  "version": "1.0.0",
+  "description": "Ticket Fix provides a convienient way for apartment dwellers to request maintenance for their apartment.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curtjenk/ticket-fix.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curtjenk/ticket-fix/issues"
+  },
+  "homepage": "https://github.com/curtjenk/ticket-fix#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "moment": "^2.13.0"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "ticket-fix",
+  "homepage": "https://github.com/curtjenk/ticket-fix",
+  "authors": [
+    "curtjenk <curtjenk@comcast.net>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-bootstrap-calendar": "^0.19.6"
+  }
+}
