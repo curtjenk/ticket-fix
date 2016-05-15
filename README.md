@@ -25,6 +25,7 @@ DC Roasters uses a number of open source projects to work properly:
 * [Mongo] - noSql data store
 * [Mongoose] - object modeling for node.js
 * [Stripe] - for credit card processing
+* [Bootstrap Validator] - offers automatic form validation.
 
 ### Installation
   - cd to the "front" directory
@@ -60,3 +61,4 @@ MIT
    [AngularJS]: <http://angularjs.org>
    [jQuery]: <http://jquery.com>
    [Stripe]: <http://stripe.com>
+   [Bootstrap Validator]: <https://github.com/1000hz/bootstrap-validator>

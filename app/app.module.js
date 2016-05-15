@@ -1,4 +1,4 @@
-var ticketFixApp = angular.module('ticketFixApp', ['ngRoute', 'mwl.calendar']);
+var ticketFixApp = angular.module('ticketFixApp', ['ngRoute', 'mwl.calendar', 'angularUtils.directives.dirPagination']);
 
 ticketFixApp.config(['$compileProvider', function ($compileProvider) {
   $compileProvider.debugInfoEnabled(false);
