@@ -17,15 +17,14 @@ The app has the following features
 
 DC Roasters uses a number of open source projects to work properly:
 
-* [AngularJS] - HTML enhanced for web apps!
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework
+* [AngularJS] - MVC framework
+* [Bootstrap] - layout, etc.
+* [Angular-UI-Bootstrap] - image carousel
+* [Angular Messages] - form validation
+* [Apache] - webserver
 * [jQuery] - duh
-* [Mongo] - noSql data store
-* [Mongoose] - object modeling for node.js
-* [Stripe] - for credit card processing
-* [Bootstrap Validator] - offers automatic form validation.
+* [MySQL] - relational database
+* [MeekroDB] - PHP MySQL library
 
 ### Installation
   - cd to the "front" directory
@@ -37,7 +36,7 @@ DC Roasters uses a number of open source projects to work properly:
 
 ### Demo
 
-http://curtisjenkins.net:8200
+http://curtisjenkins.net
 
 ### Todos
  - Write Tests
@@ -53,12 +52,12 @@ MIT
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
 
-   [Mongo]: <http://mongodb.com>
-   [Mongoose]: <http://mongoosejs.com>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [express]: <http://expressjs.com>
+   [PHP]: <http://www.php.net/>
+   [MySQL]: <http://mysql.com>
+   [Apache]: <http://apache.org>
+   [Bootstrap]: <http://twitter.github.com/bootstrap/>
    [AngularJS]: <http://angularjs.org>
    [jQuery]: <http://jquery.com>
-   [Stripe]: <http://stripe.com>
-   [Bootstrap Validator]: <https://github.com/1000hz/bootstrap-validator>
+   [Angular-UI-Bootstrap]: <https://angular-ui.github.io/bootstrap/>
+   [Angular-Messages]: <>
+

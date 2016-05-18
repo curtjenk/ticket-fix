@@ -19,9 +19,9 @@
   "homepage": "https://github.com/curtjenk/ticket-fix#readme",
   "dependencies": {
     "angular": "^1.5.5",
+    "angular-messages": "^1.5.5",
     "angular-route": "^1.5.5",
     "bootstrap": "^3.3.6",
-    "moment": "^2.13.0",
-    "bootstrap-validator": "^0.10.2"
+    "moment": "^2.13.0"
   }
 }
