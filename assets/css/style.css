@@ -1,0 +1,79 @@
+/* line 1, ../../tools/compass/sass/style.scss */
+.navbar-inverse {
+  background: white;
+  background-color: #0070b8;
+  box-shadow: 0 0 0.5rem rgba(83, 78, 76, 0.5);
+  border-radius: none;
+  border: none;
+}
+
+/* line 10, ../../tools/compass/sass/style.scss */
+.navbar {
+  min-height: 50px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+}
+
+/* line 17, ../../tools/compass/sass/style.scss */
+body {
+  background-color: #f2f2f2;
+}
+
+/* line 21, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-nav > li > a {
+  color: black;
+  color: #ffd700;
+}
+/* line 25, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #ed3031;
+  color: white;
+}
+/* line 30, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-nav > li > a:active {
+  background-color: transparent;
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+}
+/* line 4, ../compass/sass/_font.scss */
+/* line 39, ../../tools/compass/sass/style.scss */
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+/* line 44, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+  color: #ed3031;
+  color: #fff;
+  background-color: transparent;
+}
+
+/* line 50, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-brand {
+  color: black;
+  color: white;
+}
+/* line 53, ../../tools/compass/sass/style.scss */
+.navbar-inverse .navbar-brand:hover {
+  color: #ed3031;
+  color: #ffd700;
+}
+
+/* line 60, ../../tools/compass/sass/style.scss */
+.ticket-img {
+  width: 50px;
+  height: 50px;
+  float: left;
+  position: relative;
+  top: -15px;
+}
+
+/* line 68, ../../tools/compass/sass/style.scss */
+.my-brand {
+  position: relative;
+  left: -5px;
+  top: 11px;
+}
