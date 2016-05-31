@@ -1,21 +1,19 @@
 var express = require('express');
 var router = express.Router();
+var bcrypt = require('bcrypt');
+
 //get config objects
-var dbConfig = require('./config').dbConfig;
-var testconfig = require('./config').test;
-testconfig.sayHello();
+var Config = require('./config').Config;
 
-//setup connection pool
-var mysql      = require('mysql');
+//Custom utility library for MySql
+var mysqlUtil      = require('./mysqlUtil');
 
-var pool      =    mysql.createPool({
-    connectionLimit : dbConfig.mysql.pool.connectionLimit, //important
-    host     : dbConfig.mysql.host,
-    user     : dbConfig.mysql.username,
-    password : dbConfig.mysql.password,
-    database : dbConfig.mysql.database,
-    debug    : dbConfig.mysql.debug
-});
+//Passport middleware for JWT
+var JwtStrategy = require('passport-jwt').Strategy;
+var ExtractJwt = require('passport-jwt').ExtractJwt;
+var passportOpts = {};
+
+
 //setup for file uploads
 var fs = require('fs');
 var multer = require('multer'); //node middleware primarily used for uploading files
@@ -23,6 +21,12 @@ var upload = multer({
     dest: 'upload' //establish the upload directory
 });
 var type = upload.single('file');
+// ---- end multer setup
+
+// Home route. We'll end up changing this later.
+router.get('/', function(req, res) {
+  res.send('Relax. We will put the home page here later.');
+});
 
 router.post('/upload', type, function(req, res, next) {
 
@@ -50,11 +54,6 @@ router.post('/upload', type, function(req, res, next) {
         });
     });
 
-});
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
 });
 
 

@@ -9,13 +9,13 @@ Ticket Fix provides a convienient way for apartment dwellers to request maintena
 The app has the following features
 - Registration
 - Login
-- Order
-- Session management
+-
+-
 - Credit Card payment processing (sorta!)
 
 ### Tech
 
-DC Roasters uses a number of open source projects to work properly:
+ticketfix uses a number of open source projects to work properly:
 
 * [AngularJS] - MVC framework
 * [Bootstrap] - layout, etc.
@@ -30,6 +30,7 @@ DC Roasters uses a number of open source projects to work properly:
 * [Mongoose]
 * [Passport] - Passport is authentication middleware for Node.js.
 * [jwt] - JSON web tokens
+* [morgan] -
 
 ### Installation
   - cd to the "front" directory
