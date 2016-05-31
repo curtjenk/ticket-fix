@@ -22,9 +22,14 @@ DC Roasters uses a number of open source projects to work properly:
 * [Angular-UI-Bootstrap] - image carousel
 * [Angular Messages] - form validation
 * [Apache] - webserver
-* [jQuery] - duh
+* [Node.js] - Server side javascript
+* [jQuery] - javascript library
 * [MySQL] - relational database
 * [MeekroDB] - PHP MySQL library
+* [Mongo]
+* [Mongoose]
+* [Passport] - Passport is authentication middleware for Node.js.
+* [jwt] - JSON web tokens
 
 ### Installation
   - cd to the "front" directory
@@ -60,4 +65,4 @@ MIT
    [jQuery]: <http://jquery.com>
    [Angular-UI-Bootstrap]: <https://angular-ui.github.io/bootstrap/>
    [Angular-Messages]: <>
-
+   [Passport]: <http://passportjs.org/>
