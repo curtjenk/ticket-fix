@@ -1,4 +1,4 @@
-recipeApp.controller('registrationController', function($scope, utilLocalStore) {
+ticketFixApp.controller('registrationController', function($scope, $http) {
 
 
 });
