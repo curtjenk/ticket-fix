@@ -1,5 +1,5 @@
 <div class="register-wrapper">
-    <div class="container col-lg-6 col-lg-offset-3 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+    <div class="container col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
         <div class="row">
             <h1 class="text-center">Tenant Registration</h1>
             <p class="text-center">Fill out all needed info</p>
@@ -10,6 +10,14 @@
                     <label>Username:</label>
                     <input name="username" ng-model="username" placeholder="John Doe" type="text" minlength="5" class="form-control" />
                 </div>
+                <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
+                    <label>First Name:</label>
+                    <input name="firstname" ng-model="firstname" placeholder="John" type="text" class="form-control" />
+                </div>
+                <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
+                    <label>Last Name:</label>
+                    <input name="lastname" ng-model="lastname" placeholder="Doe" type="text" class="form-control" />
+                </div>
                 <div class="form-group">
                     <label>Password:</label>
                     <input name="password" ng-model="password" placeholder="6 Character Minimum" type="password" minlength="6" class="form-control" />
@@ -18,15 +26,15 @@
                     <!--            <label>Repeat Password:</label> -->
                     <input name="password2" ng-model="password2" placeholder="Confirm Password" type="password" class="form-control" />
                 </div>
-                <div class="form-group">
+<!--                 <div class="form-group">
                     <label>Unit Code:</label>
                     <input name="unitcode" ng-model="unitcode" placeholder="5-5-5-5" type="number" minlength="4" class="form-control" />
-                </div>
-                <div class="form-group">
+                </div> -->
+                <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
                     <label>Phone:</label>
                     <input name="telephone" ng-model="telephone" placeholder="555-555-5555" type="tel" class="form-control" />
                 </div>
-                <div class="form-group">
+                <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
                     <label>Cell: (Optional)</label>
                     <input name="cell" ng-model="cell" placeholder="555-555-5555" type="tel" class="form-control" />
                 </div>
