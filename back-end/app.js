@@ -4,18 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var morgan = require('morgan');
-var passport = require('passport');
-var jwt = require('jsonwebtoken');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
-//initialize passport
-app.use(passport.initialize());
+
 // Log requests to console
 app.use(morgan('dev'));
 

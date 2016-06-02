@@ -31,6 +31,7 @@ ticketfix uses a number of open source projects to work properly:
 * [Passport] - Passport is authentication middleware for Node.js.
 * [jwt] - JSON web tokens
 * [morgan] -
+* [q] - A library from promises
 
 ### Installation
   - cd to the "front" directory
