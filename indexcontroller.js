@@ -1,23 +1,38 @@
-ticketFixApp.controller('indexController', function($scope, $http) {
-    // console.log("****** index controller *********")
-    // console.log($cookies.get('token'));
-    // $rootScope.$on("userLoggedIn", function(args) {
-    //     $scope.loggedIn = true;
-    //     $scope.username = $cookies.get('username');
-    // });
-    // $rootScope.$on("userLoggedOut", function(args) {
-    //     // alert("logged out");
-    //     $scope.loggedIn = false;
-    // });
-    // $scope.$on("userLoggedIn", function(event, args) {
-    //   //  console.log("userLoggedIn event ");
-    //   //  console.log(event);
-    //   //  console.log(args);
-    //     $scope.loggedIn = true;
-    //     $scope.username = args.username;
-    // });
-    // $scope.$on("userLoggedOut", function(event, args) {
-    //     // alert("logged out");
-    //     $scope.loggedIn = false;
-    // });
+ticketFixApp.controller('indexController', function($scope, $http, $location, anchorSmoothScroll) {
+
+    $scope.showSearchBar = false;
+    $scope.arrowUp = false;
+    $scope.arrowDown = true;
+    $scope.showLeftNavBtns = true;
+
+    $scope.toggleSearch = function() {
+
+        // Another 
+        // if($scope.showSearchBar == false){
+        //     $scope.showSearchBar = true;
+        // } else if ($scope.showSearchBar == true){
+        //     $scope.showSearchBar = false;
+        // }
+        $scope.showSearchBar = !$scope.showSearchBar;
+    }
+
+    $scope.arrowChange = function() {
+        $scope.arrowDown = !$scope.arrowDown;
+        $scope.arrowUp = !$scope.arrowUp;
+    }
+
+    $scope.gotoElement = function(eID) {
+        // set the location.hash to the id of
+        // the element you wish to scroll to.
+        // $location.hash('contact');
+
+        // call $anchorScroll()
+        anchorSmoothScroll.scrollTo(eID);
+
+    };
+
+
+
 });
+
+
