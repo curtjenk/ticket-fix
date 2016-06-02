@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var bcrypt = require('bcrypt-nodejs');
+// var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
+var User = require('./models/user');
 var ufuncs = require('./userFuncs');
 
 //get config objects
@@ -36,7 +37,7 @@ router.post('/authenticate', function (req, res) {
 });
 
 router.post('/register', function (req, res) {
-	var user = ufuncs.mapUser(req.body);
+	var user = new User(req.body); //ufuncs.mapUser(req.body);
 	ufuncs.saveUser(user).then(
 		function(success){
 			res.send(success);

@@ -1,23 +1,23 @@
 var db = require('./mysqlUtil');
 var User = require('./models/user');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 var Q = require('q');
 
-var mapUser = function (row) {
-	var user = new User({});
-	user.email = row.email;
-	user.username = row.username;
-	user.password = row.password;
-	user.id = row.id;
-	user.type_user_id = row.type_user_id;
-	user.property_code = row.property_code;
-	user.first_name = row.first_name;
-	user.last_name = row.last_name;
-	user.home_phone = row.home_phone;
-	user.mobile_phone = row.mobile_phone;
-	return user;
-};
-exports.mapUser = mapUser;
+// var mapUser = function (row) {
+// 	var user = new User({});
+// 	user.email = row.email;
+// 	user.username = row.username;
+// 	user.password = row.password;
+// 	user.id = row.id;
+// 	user.type_user_id = row.type_user_id;
+// 	user.property_code = row.property_code;
+// 	user.first_name = row.first_name;
+// 	user.last_name = row.last_name;
+// 	user.home_phone = row.home_phone;
+// 	user.mobile_phone = row.mobile_phone;
+// 	return user;
+// };
+// exports.mapUser = mapUser;
 
 var getUser = function (email, authOrReg) {
 	// console.log(email);
@@ -51,8 +51,8 @@ var getUser = function (email, authOrReg) {
 
 exports.getUser = getUser;
 
-exports.saveUser = function (dataObj) {
-	var user = mapUser(dataObj);
+exports.saveUser = function (user) {
+	//var user = mapUser(dataObj);
 	console.log("*****after mapping ****");
 	console.log(user);
 	console.log("**** ****");
@@ -91,7 +91,7 @@ exports.authenticateUser = function (email, password) {
 		function (row) {
 			console.log(row);
 			if (row !== false) {
-				var user = mapUser(row);
+				var user = new User(row); //mapUser(row);
 				user.passwordMatch(password).then(function (res) {
 					if (res) {
 						console.log("passwords match");
