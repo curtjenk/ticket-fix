@@ -94,9 +94,13 @@ exports.saveUser = function (user) {
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
 				console.log(err);
 				console.log(result);
+				if (!err) {
+					deferred.resolve(true);
+				} else {
+					deferred.reject(err);
+				}
 			});
 			console.log(query.sql);
-			deferred.resolve(true);
 		})
 		.fail(function (err) {
 			console.log(err);

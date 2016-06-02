@@ -65,7 +65,7 @@ router.post('/login', function (req, res, next) {
 		},
 		function (err) {
 			console.log(error);
-			apiRes.success = true;
+			apiRes.success = false;
 			apiRes.message = "Authentication Failed.  Confirm Email and Password";
 			apiRes.data = err;
 			res.json(apiRes);
@@ -75,12 +75,25 @@ router.post('/login', function (req, res, next) {
 
 router.post('/register', function (req, res) {
 	var user = new User(req.body); //ufuncs.mapUser(req.body);
+	var apiRes = new ApiResponse({
+		api: 'register'
+	});
 	ufuncs.saveUser(user).then(
 		function (success) {
-			res.json(success);
+			apiRes.success = true;
+			apiRes.data = {
+				email: user.email,
+				type_user_id: user.type_user_id,
+				property_code: user.property_code
+			};
+			res.json(apiRes);
 		},
 		function (err) {
-			res.json(err);
+			apiRes.success = false;
+			apiRes.message = "Registration Failed.";
+			apiRes.data = err;
+
+			res.json(apiRes);
 		});
 
 });
