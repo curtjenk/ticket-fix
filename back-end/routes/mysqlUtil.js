@@ -1,15 +1,15 @@
 var Q = require('q');
 var mysql = require('mysql');
-var dbConfig = require('./config');
-// console.log(dbConfig.mysql.username);
-// console.log(dbConfig.mysql.database);
+var config = require('./config');
+// console.log(config.mysql.username);
+// console.log(config.mysql.database);
 var pool = mysql.createPool({
-	connectionLimit: dbConfig.mysql.pool.connectionLimit, //important
-	host: dbConfig.mysql.host,
-	user: dbConfig.mysql.username,
-	password: dbConfig.mysql.password,
-	database: dbConfig.mysql.database,
-	debug: dbConfig.mysql.debug
+	connectionLimit: config.mysql.pool.connectionLimit, //important
+	host: config.mysql.host,
+	user: config.mysql.username,
+	password: config.mysql.password,
+	database: config.mysql.database,
+	debug: config.mysql.debug
 });
 
 var con = function () {

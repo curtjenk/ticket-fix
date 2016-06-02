@@ -22,7 +22,28 @@ var Q = require('q');
 var getUser = function (email, authOrReg) {
 	// console.log(email);
 	var deferred = Q.defer();
-	var promise = Q.fcall(db.con)
+	// console.log(deferred);
+	// db.con().then(function (con) {
+	// 		return con.query("SELECT * FROM user WHERE email = ?", [email]);
+	// 	})
+	// 	.then(function (rows) {
+	// 		if (rows.length > 0) {
+	// 			// console.log(rows[0]);
+	// 			if (authOrReg === 'register') {
+	// 				deferred.reject("user-already-exists");
+	// 			} else {
+	// 				deferred.resolve(rows[0]);
+	// 			}
+	// 		} else {
+	// 			deferred.resolve(false);
+	// 		}
+	// 	})
+	// 	.fail(function (err) {
+	// 		console.log(err);
+	// 		deferred.reject(err);
+	// 	})
+	// 	.done();
+	Q.fcall(db.con)
 		.then(function (con) {
 			//deferred.resolve(userQuery(con, email));
 			con.query("SELECT * FROM user WHERE email = ?", [email], function (err, rows) {
@@ -41,11 +62,12 @@ var getUser = function (email, authOrReg) {
 			});
 		})
 		.catch(function (error) {
+			console.log('getUser error occurred');
 			console.log(error);
+			console.log(' ------------------------ ');
 			deferrred.reject(error);
 		})
 		.done();
-
 	return deferred.promise;
 };
 
@@ -89,15 +111,15 @@ exports.authenticateUser = function (email, password) {
 
 	var promise = getUser(email).then(
 		function (row) {
-			console.log(row);
+			// console.log(row);
 			if (row !== false) {
 				var user = new User(row); //mapUser(row);
 				user.passwordMatch(password).then(function (res) {
 					if (res) {
-						console.log("passwords match");
+						//console.log("passwords match");
 						deferred.resolve(user);
 					} else {
-						console.log("passwords DO NOT match");
+						//console.log("passwords DO NOT match");
 						deferred.reject("Invalid Email and Password combination");
 					}
 				}, function (err) {

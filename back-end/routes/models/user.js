@@ -4,7 +4,9 @@ var bcryptSaltRounds = 10;
 
 var User = function (data) {
 	data = data || {};
-	this.id = data.id;
+	if (data.id) {
+		this.id = data.id;
+	}
 	this.email = data.email;
 	this.username = data.username;
 	this.password = data.password;
@@ -19,7 +21,7 @@ var User = function (data) {
 	}
 };
 User.prototype.hashPassword = function () {
-	console.log('hashpassword');
+	// console.log('hashpassword');
 	var deferred = Q.defer();
 	var promise = bcrypt.hash(this.password, bcryptSaltRounds, function (err, hash) {
 		if (err) {
@@ -33,15 +35,15 @@ User.prototype.hashPassword = function () {
 	return deferred.promise;
 };
 User.prototype.passwordMatch = function (password) {
-	console.log("trying to authenticate the user");
-	console.log(this.password);
-	console.log(password);
+	// console.log("trying to authenticate the user");
+	// console.log(this.password);
+	// console.log(password);
 	var deferred = Q.defer();
 	var promise = bcrypt.compare(password, this.password, function (err, res) {
 		if (err) {
 			deferred.reject(err);
 		} else {
-			console.log("passwords match = " + res);
+			//console.log("passwords match = " + res);
 			deferred.resolve(res);
 		}
 	});

@@ -9,8 +9,10 @@ var morgan = require('morgan');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+var jwt = require('jsonwebtoken');
+var config = require('./routes/config');
 
+var app = express();
 
 // Log requests to console
 app.use(morgan('dev'));
@@ -23,18 +25,58 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+//app.use('/', routes);
 app.use('/users', users);
 
+// apply the routes to our application with the prefix /api
+// route middleware to verify a token
+var secureRoute = function (req, res, next) {
+	// check header or url parameters or post parameters for token
+	console.log(req.body);
+	var token = (req.body && req.body.token) ||
+		(req.query && req.query.token) ||
+		(req.headers && req.headers['x-access-token']);
+	// decode token
+	if (token) {
+		// verifies secret and checks exp
+		jwt.verify(token, config.secret, function (err, decoded) {
+			if (err) {
+				return res.json({
+					success: false,
+					message: 'Failed to authenticate token.'
+				});
+			} else {
+				// if everything is good, save to request for use in other routes
+				console.log("Token is verified");
+				req.decoded = decoded;
+				next();
+			}
+		});
+
+	} else {
+		// if there is no token
+		// return an error
+		return res.status(403).send({
+			success: false,
+			message: 'No token provided.'
+		});
+
+	}
+};
+app.use('/api', secureRoute);
+app.use('/', routes);
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
 });
 
 // error handlers
@@ -42,23 +84,23 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+	app.use(function (err, req, res, next) {
+		res.status(err.status || 500);
+		res.render('error', {
+			message: err.message,
+			error: err
+		});
+	});
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+app.use(function (err, req, res, next) {
+	res.status(err.status || 500);
+	res.render('error', {
+		message: err.message,
+		error: {}
+	});
 });
 
 

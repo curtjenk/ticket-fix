@@ -26,28 +26,25 @@ ticketfix uses a number of open source projects to work properly:
 * [jQuery] - javascript library
 * [MySQL] - relational database
 * [MeekroDB] - PHP MySQL library
-* [Mongo]
-* [Mongoose]
-* [Passport] - Passport is authentication middleware for Node.js.
+* [Mongo] ??
+* [Mongoose] ??
+* [Passport] - ?? Passport is authentication middleware for Node.js.
 * [jwt] - JSON web tokens
 * [morgan] -
-* [q] - A library from promises
+* [Q] - A library from promises
+* [BCrypt] -
 
 ### Installation
-  - cd to the "front" directory
-    * run npm install
-    * Note: uses port 8200
-  - cd to the "back" directory
+  - cd to the "back-end" directory
     * run npm install
     * Note: uses port 3200
 
 ### Demo
 
-http://curtisjenkins.net
+http://www.ticketfix.com
 
 ### Todos
- - Write Tests
- - help
+
 
 ### License
 
@@ -68,3 +65,4 @@ MIT
    [Angular-UI-Bootstrap]: <https://angular-ui.github.io/bootstrap/>
    [Angular-Messages]: <>
    [Passport]: <http://passportjs.org/>
+   [BCrypt]: <https://github.com/ncb000gt/node.bcrypt.js/>
