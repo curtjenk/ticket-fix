@@ -13,6 +13,12 @@ var jwt = require('jsonwebtoken');
 var config = require('./routes/config');
 
 var app = express();
+//allow cross origin requests
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // Log requests to console
 app.use(morgan('dev'));
