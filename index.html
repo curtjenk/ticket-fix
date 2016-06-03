@@ -13,16 +13,18 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600|Montserrat:400,700">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="node_modules/slick-carousel/slick/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
     <script type="text/javascript" src="app/app.module.js"></script>
     <script type="text/javascript" src="app/app.routes.js"></script>
     <script type="text/javascript" src="indexcontroller.js"></script>
+    <script type="text/javascript" src="app/components/home/homeController.js"></script>
     <script type="text/javascript" src="app/shared/factory.js"></script>
     <script type="text/javascript" src="app/shared/script.js"></script>
     <script type="text/javascript" src="app/components/registration/registrationController.js"></script>
     <script type="text/javascript" src="common/models/user.js"></script>
-    <script type="text/javascript" src="node_modules/slick-carousel/slick/slick.min.js"></script>
 </head>
 
 <body ng-controller="indexController">
@@ -30,15 +32,6 @@
         <div id="scroll-nav" class="my-nav-two text-center">
             <h3 class="arrow-style"><a ng-click="gotoElement('top')"><span class="fa fa-arrow-up"></span></a></h3>
         </div>
-        <!--         <div id="scroll-nav" class="my-nav-two text-center">
-            <nav class="navbar navbar-inverse">
-                <div class="col-sm-12 text-center">
-                    <ul class="nav navbar-nav">
-                      <h1><a ng-click="gotoElement('top')"><span class="fa fa-arrow-up"></span></a></h1>
-                    </ul>
-                </div>
-            </nav>
-        </div> -->
         <nav id="top" class="navbar navbar-default top-nav">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -95,12 +88,15 @@
                         <li><a ng-click="gotoElement('contact')">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#/login">Login</a></li>
                         <li class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+                            <a href="#/register" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="showLeftNavBtns = false;"><a href="#/login">Login</a></li>
+                                <li ng-click="showLeftNavBtns = false;"><a href="#/register">Tenant</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li ng-click="showLeftNavBtns = false;"><a href="#/register">Register</a></li>
+                                <li ng-click="showLeftNavBtns = false;"><a href="#/register">Management</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li ng-click="showLeftNavBtns = false;"><a href="#/register">Contractor</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -110,17 +106,6 @@
             <!-- /.container-fluid -->
         </nav>
         <div ng-view></div>
-        <!-- <div id="footer-wrapper" class="container-fluid">
-            <h5 class="text-center">Copyright stuff!</h5>
-        </div> -->
     </div>
 </body>
-<!-- <script type="text/javascript">
-$(document).ready(function() {
-    $('.slick-slider').slick({
-        setting - name: setting - value
-    });
-});
-</script> -->
-
 </html>

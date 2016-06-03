@@ -5,10 +5,19 @@
             <p class="text-center">Fill out all needed info</p>
         </div>
         <div class="row">
-            <form id="registration" ng-submit="registerForm()" name="Registration" role="form">
-                <div class="form-group">
+            <div class="error-text text-center">
+                {{errorMessage}}
+            </div>
+        </div>
+        <div class="row">
+            <form id="registration" ng-submit="registerFunc()" name="registerForm" role="form" novalidate>
+                <div class="form-group" ng-class="{ 'has-error': registerForm.propertycode.$touched && registerForm.propertycode.$invalid }">
                     <label>Property Code:</label>
-                    <input name="propertycode" ng-model="propertycode" placeholder="5-5-5-5" type="number" minlength="4" class="form-control" />
+                    <input ng-change="change()" name="propertycode" required ng-model="propertycode" placeholder="5555" type="text" class="form-control" />
+                    <div ng-messages="registerForm.propertycode.$error" ng-if="registerForm.propertycode.$touched" role="alert">
+                        <p ng-message="required">Property Code is required.</p>
+                        <p ng-message="minlength">Property Code is too short.</p>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Email:</label>
@@ -24,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
-                    <input name="password" ng-model="password" placeholder="6 Character Minimum" type="password" minlength="6" class="form-control" />
+                    <input name="password" ng-model="password" placeholder="6 Character Minimum" type="password" class="form-control" />
                 </div>
                 <div class="form-group">
                     <!--            <label>Repeat Password:</label> -->

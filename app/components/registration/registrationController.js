@@ -1,11 +1,12 @@
 ticketFixApp.controller('registrationController', function($scope, $http) {
 var apiUrl = "http://localhost:3000";
 
+$scope.errorMessage = "";
 
-$scope.registerForm = function() {
+$scope.registerFunc = function() {
     var url = apiUrl + "/register";
     var user = new User({
-      // type_user_id: 1,
+      type_user_id: 1,
       email: $scope.email,
       first_name: $scope.firstname,
       last_name: $scope.lastname,
@@ -21,7 +22,14 @@ $scope.registerForm = function() {
       }, function(err){
         console.log(err);
       });
+
+
   };
+
+
+  $scope.change = function(){
+    console.log($scope.propertycode);
+  }
 
 });
 

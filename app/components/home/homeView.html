@@ -1,50 +1,64 @@
-<!-- ng-controller="homeController" -->
-<!-- <div id="home-wrapper-two">
-    <div class="container">
-        <div class="col-sm-6 left-panel">
-            <div class="ten-content col-sm-12 content panel panel-default">
-                <h1>Management</h1>
-                <p>placeholder</p>
-            </div>
-        </div>
-        <div class="col-sm-6 right-panel">
-            <div class="management-content col-sm-12 content panel panel-default">
-                <h1>Repair</h1>
-                <p>placeholder</p>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- <div class="slick-slider">
-    <div>
-        <h1>Image1</h1><img src="" alt=""></div>
-    <div>
-        <h1>Image2</h1><img src="" alt=""></div>
-    <div>
-        <h1>Image3</h1><img src="" alt=""></div>
-</div> -->
-
-<div id="home-wrapper" class="container">
-    <div class="col-sm-4">
-        <div class="col-sm-12 main-content">
-            <h2>Management</h2>
-            <p>You own properties? Check out what we can do for you to keep organized with maintenace for your tenants.</p>
-            <a href="#/register" title="">Get Started</a>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="col-sm-12 main-content">
-            <h2>Contractors</h2>
-            <p>placeholder</p>
-        </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="col-sm-12 main-content">
-            <h2>Tenants</h2>
-            <p>Need to create a ticket?<a href="#/register" title=""> Sign up now!</a></p>
-            <p>Already have an account?<a href="#/login" title=""> Login!</a></p>
-        </div>
-    </div>
+<div id="home-wrapper" class="container" ng-controller="homeController">
+<!-- <div class="my-carousel">
+        <uib-carousel active="1" interval="5000" no-wrap="false">
+            <uib-slide index="0">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="1">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="2">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="3">
+               <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="4">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="5">
+               <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="6">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+            <uib-slide index="7">
+                <img src="property.jpg"> -->
+                <!-- <div class="carousel-caption">
+                <h4>Slide {{slide.id}}</h4>
+                <p>{{slide.text}}</p>
+            </div> -->
+<!--             </uib-slide>
+        </uib-carousel>
+    </div> -->
 </div>
 <div id="services" class="container-fluid">
     <h1 class="text-center">Our Services</h1>
@@ -53,26 +67,30 @@
 <div id="services-wrapper" class="container">
     <div class="row text-center">
         <div class="col-sm-4">
-            <div class="col-sm-12">
-                <!--          <div class="col-sm-8"> -->
+            <div class="col-sm-12 main-content">
                 <img src="property.jpg" alt="" style="width: 300px; height: 200px;">
-                <!--        </div> -->
-                <h2>Management</h2>
+                <h2>Property Owners</h2>
                 <p>Maintain the maintenance of your properties with easy.</p>
+                <h4>Management Service</h4>
+                <p>You own properties? Check out what we can do for you to keep organized with maintenace for your tenants.</p>
+                <a href="#/register" title="">Get Started Today!</a>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="col-sm-12">
+            <div class="col-sm-12 main-content">
                 <img src="tools.jpeg" alt="" style="width: 300px; height: 200px;">
                 <h2>Contractors</h2>
-                <p>placeholder</p>
+                <p>Fill jobs that are needed for property owners.</p>
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="col-sm-12">
+            <div class="col-sm-12 main-content">
                 <img src="family.jpg" alt="" style="width: 300px; height: 200px;">
                 <h2>Tenants</h2>
                 <p>Speed up the process to get something fix in your home, easy way to track and set appointments for maintenance.</p>
+                <h4>Need something fix?</h4>
+                <p>Need to create a ticket?<a href="#/register" title=""> Sign up now!</a></p>
+                <p>Already have an account?<a href="#/login" title=""> Login!</a></p>
             </div>
         </div>
     </div>
