@@ -3,7 +3,9 @@ ticketFixApp.controller('homeController', function ($rootScope, $scope, $http, $
 
 	$scope.register = function (type) {
 		console.log("here " + type);
-		 $rootScope.$broadcast('signup', {userType: type} );
+    $rootScope.userType = type;
+		// $rootScope.$broadcast('signup', {userType: type} );
+    // $scope.$emit('signup', {userType: type} );
 		$location.path('/register');
 	};
 
