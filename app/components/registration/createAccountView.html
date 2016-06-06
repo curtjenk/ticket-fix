@@ -1,4 +1,4 @@
-<div class="register-wrapper" ng-controller="registerController">
+<div class="register-wrapper" ng-controller="registrationController">
   <div class="container">
     <div class="row">
       <div id="step-options" class="col-sm-offset-2 col-sm-3 active">
@@ -19,7 +19,7 @@
     </div>
     <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
       <form id="registerForm" ng-submit="registerFunc()" name="registerForm" role="form" novalidate>
-        <div class="form-section company-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+        <div class="form-section account-section" ng-show="showAccount" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
           <p style="font-size: 18px; max-width:317px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
             Company and Contact Information
           </p>
@@ -40,11 +40,11 @@
             </div>
             <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
               <label>Email</label>
-              <input name="email" ng-model="email" placeholder="Doe@ticketfix.com" type="email" class="form-control"/>
+              <input name="acctemail" ng-model="acctemail" placeholder="Doe@ticketfix.com" type="email" class="form-control"/>
             </div>
             <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
               <label>Phone</label>
-              <input name="telephone" ng-model="phone" placeholder="555-555-5555" type="tel" class="form-control"/>
+              <input name="acctphone" ng-model="acctphone" placeholder="555-555-5555" type="tel" class="form-control"/>
             </div>
           </div>
           <div style="clear:both;"></div>

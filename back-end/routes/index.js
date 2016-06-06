@@ -91,8 +91,7 @@ router.post('/register', function (req, res) {
 			apiRes.data = {
 				id: success.id,
 				email: user.email,
-				type_user_id: user.type_user_id,
-				property_code: user.property_code
+				type_user_id: user.type_user_id
 			};
 			res.json(apiRes);
 		},
@@ -106,12 +105,12 @@ router.post('/register', function (req, res) {
 
 });
 
-router.post('/api/testtoken', function (req, res) {
-	//console.log(req.body.token );
-	res.json(req.body.token + " " + req.decoded);
-});
+// router.post('/api/testtoken', function (req, res) {
+// 	//console.log(req.body.token );
+// 	res.json(req.body.token + " " + req.decoded);
+// });
 
-router.post('/api/saveaccount', function (req, res) {
+router.post('/saveaccount', function (req, res) {
 	var account = new Account(req.body.account);
 	var apiRes = new ApiResponse({
 		api: 'saveaccount'
@@ -133,7 +132,7 @@ router.post('/api/saveaccount', function (req, res) {
 	});
 });
 
-router.post('/api/savemanager', function (req, res) {
+router.post('/savemanager', function (req, res) {
 	var account = new Manager(req.body.manager);
 	var apiRes = new ApiResponse({
 		api: 'savemanager'
@@ -154,7 +153,7 @@ router.post('/api/savemanager', function (req, res) {
 	});
 });
 
-router.post('/api/savecontractor', function (req, res) {
+router.post('/savecontractor', function (req, res) {
 	var account = new Contractor(req.body.contractor);
 	var apiRes = new ApiResponse({
 		api: 'savecontractor'
