@@ -1,4 +1,4 @@
-ticketFixApp.controller('registrationController', function ($scope, $http, $q, apiAjax) {
+ticketFixApp.controller('registrationController', function ($rootScope, $scope, $http, $q, apiAjax) {
 	var apiUrl = "http://localhost:3000";
 	var userType;
 	var userTypeManager = 4;
@@ -7,10 +7,16 @@ ticketFixApp.controller('registrationController', function ($scope, $http, $q, a
 	var userTypeStaff = 5;
 	$scope.showAccount = false;
 
-	$scope.$on("signup", function (event, args) {
+	$rootScope.$on("signup", function (event, args) {
+    console.log("got it");
+    console.log(args);
 		userType = args.userType;
+
 		if (userType === userTypeManager || userType === userTypeContractor) {
+
 			$scope.showAccount = true;
+  
+        console.log($scope.showAccount);
 		}
 	});
 
@@ -18,6 +24,9 @@ ticketFixApp.controller('registrationController', function ($scope, $http, $q, a
 
 	$scope.registerFunc = function () {
 		// var url = apiUrl + "/register";
+    console.log("registerfunc");
+    return;
+
 		var user = new User({
 			type_user_id: userType,
 			email: $scope.email,
