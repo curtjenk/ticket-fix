@@ -44,7 +44,7 @@ app.use('/users', users);
 // route middleware to verify a token
 var secureRoute = function (req, res, next) {
 	// check header or url parameters or post parameters for token
-	console.log(req.body);
+	//console.log(req.body);
 	var token = (req.body && req.body.token) ||
 		(req.query && req.query.token) ||
 		(req.headers && req.headers['x-access-token']);

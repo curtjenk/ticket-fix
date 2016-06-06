@@ -3,46 +3,8 @@ var User = require('./models/user');
 var bcrypt = require('bcrypt');
 var Q = require('q');
 
-// var mapUser = function (row) {
-// 	var user = new User({});
-// 	user.email = row.email;
-// 	user.username = row.username;
-// 	user.password = row.password;
-// 	user.id = row.id;
-// 	user.type_user_id = row.type_user_id;
-// 	user.property_code = row.property_code;
-// 	user.first_name = row.first_name;
-// 	user.last_name = row.last_name;
-// 	user.home_phone = row.home_phone;
-// 	user.mobile_phone = row.mobile_phone;
-// 	return user;
-// };
-// exports.mapUser = mapUser;
-
 var getUser = function (email, authOrReg) {
-	// console.log(email);
 	var deferred = Q.defer();
-	// console.log(deferred);
-	// db.con().then(function (con) {
-	// 		return con.query("SELECT * FROM user WHERE email = ?", [email]);
-	// 	})
-	// 	.then(function (rows) {
-	// 		if (rows.length > 0) {
-	// 			// console.log(rows[0]);
-	// 			if (authOrReg === 'register') {
-	// 				deferred.reject("user-already-exists");
-	// 			} else {
-	// 				deferred.resolve(rows[0]);
-	// 			}
-	// 		} else {
-	// 			deferred.resolve(false);
-	// 		}
-	// 	})
-	// 	.fail(function (err) {
-	// 		console.log(err);
-	// 		deferred.reject(err);
-	// 	})
-	// 	.done();
 	Q.fcall(db.con)
 		.then(function (con) {
 			//deferred.resolve(userQuery(con, email));
@@ -75,9 +37,9 @@ exports.getUser = getUser;
 
 exports.saveUser = function (user) {
 	//var user = mapUser(dataObj);
-	console.log("*****after mapping ****");
-	console.log(user);
-	console.log("**** ****");
+	// console.log("*****after mapping ****");
+	// console.log(user);
+	// console.log("**** ****");
 	var deferred = Q.defer();
 	getUser(user.email, 'register')
 		.then(function (blah) {
@@ -90,20 +52,20 @@ exports.saveUser = function (user) {
 			return db.con();
 		})
 		.then(function (con) {
-			console.log(user);
+			// console.log(user);
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
-				console.log(err);
-				console.log(result);
+				// console.log(err);
+				// console.log(result);
 				if (!err) {
 					deferred.resolve(true);
 				} else {
 					deferred.reject(err);
 				}
 			});
-			console.log(query.sql);
+			// console.log(query.sql);
 		})
 		.fail(function (err) {
-			console.log(err);
+			// console.log(err);
 			deferred.reject(err);
 		})
 		.done();

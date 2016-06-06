@@ -4,10 +4,11 @@ var User = function (data) {
 		this.id = data.id;
 	}
 	this.email = data.email;
-	this.username = data.username;
+	if (data.username) {
+		this.username = data.username;
+	}
 	this.password = data.password;
 	this.type_user_id = data.type_user_id;
-	this.property_code = data.property_code;
 	this.first_name = data.first_name;
 	this.last_name = data.last_name;
 	this.home_phone = data.home_phone;

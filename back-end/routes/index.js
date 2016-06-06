@@ -4,13 +4,20 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 
 var User = require('./models/user');
+var Account = require('./models/account');
+var Manager = require('./models/manager').Manager;
+var ManagerHasProperty = require('./models/manager').ManagerHasProperty;
+var Contractor = require('./models/contractor');
+var Property = require('./models/property');
+
 var ufuncs = require('./userFuncs');
+var admin = require('./adminFuncs');
 
 //get config objects
 var config = require('./config');
 var passport = require('./passport');
 
-var db = require('./mysqlUtil');
+//var db = require('./mysqlUtil');
 
 //setup for file uploads
 var fs = require('fs');
@@ -49,9 +56,9 @@ router.post('/login', function (req, res, next) {
 				type_user_id: user.type_user_id,
 				property_code: user.property_code
 			};
-      //Add IP Address to signature
+			//Add IP Address to signature
 			var token = jwt.sign({
-				  ip: req.ip,
+					ip: req.ip,
 					email: user.email,
 					property_code: user.property_code
 				},
@@ -59,7 +66,7 @@ router.post('/login', function (req, res, next) {
 					expiresIn: '24h'
 				}
 			);
-		  apiRes.token = token;
+			apiRes.token = token;
 			console.log(apiRes);
 			res.json(apiRes);
 		},
@@ -74,7 +81,7 @@ router.post('/login', function (req, res, next) {
 });
 
 router.post('/register', function (req, res) {
-	var user = new User(req.body); //ufuncs.mapUser(req.body);
+	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
 	var apiRes = new ApiResponse({
 		api: 'register'
 	});
@@ -98,10 +105,28 @@ router.post('/register', function (req, res) {
 
 });
 
-
 router.post('/api/testtoken', function (req, res) {
-		//console.log(req.body.token );
-		res.json(req.body.token + " " + req.decoded);
+	//console.log(req.body.token );
+	res.json(req.body.token + " " + req.decoded);
+});
+
+router.post('/api/saveaccount', function (req, res) {
+	var account = new Account(req.body.account);
+	var apiRes = new ApiResponse({
+		api: 'saveaccount'
+	});
+	admin.saveaccount(account).then(function(success){
+		apiRes.success = true;
+		apiRes.data = {
+			account_code: account.account_code,
+		};
+		res.json(apiRes);
+	}, function(err){
+		apiRes.success = false;
+		apiRes.message = "Save Account Failed.";
+		apiRes.data = err;
+		res.json(apiRes);
+	});
 });
 
 router.post('/upload', type, function (req, res, next) {
@@ -131,7 +156,5 @@ router.post('/upload', type, function (req, res, next) {
 	});
 
 });
-
-
 
 module.exports = router;
