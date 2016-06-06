@@ -60,9 +60,9 @@ exports.saveaccount = function (account) {
 		.then(function (con) {
 			account.genCode();
 			//console.log(account);
-			con.query("INSERT INTO account SET ?", account, function (err, rows) {
+			con.query("INSERT INTO account SET ?", account, function (err, result) {
 				if (!err) {
-					deferred.resolve(true);
+					deferred.resolve({id: result.insertId});
 				} else {
 					deferred.reject(err);
 				}
@@ -83,9 +83,9 @@ exports.savemanager = function (manager) {
 	Q.fcall(db.con)
 		.then(function (con) {
 			//console.log(account);
-			con.query("INSERT INTO manager SET ?", manager, function (err, rows) {
+			con.query("INSERT INTO manager SET ?", manager, function (err, result) {
 				if (!err) {
-					deferred.resolve(true);
+					deferred.resolve({id: result.insertId});
 				} else {
 					deferred.reject(err);
 				}
@@ -106,9 +106,9 @@ exports.savetenant = function (tenant) {
 	Q.fcall(db.con)
 		.then(function (con) {
 			//console.log(account);
-			con.query("INSERT INTO tenant SET ?", tenant, function (err, rows) {
+			con.query("INSERT INTO tenant SET ?", tenant, function (err, result) {
 				if (!err) {
-					deferred.resolve(true);
+					deferred.resolve({id: result.insertId});
 				} else {
 					deferred.reject(err);
 				}
@@ -116,6 +116,75 @@ exports.savetenant = function (tenant) {
 		})
 		.catch(function (error) {
 			console.log('savetenant error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject(error);
+		})
+		.done();
+	return deferred.promise;
+};
+
+exports.saveproperty = function (property) {
+	var deferred = Q.defer();
+	Q.fcall(db.con)
+		.then(function (con) {
+			//console.log(account);
+			con.query("INSERT INTO property SET ?", property, function (err, result) {
+				if (!err) {
+					deferred.resolve({id: result.insertId});
+				} else {
+					deferred.reject(err);
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('saveproperty error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject(error);
+		})
+		.done();
+	return deferred.promise;
+};
+
+exports.savecontractor = function (contractor) {
+	var deferred = Q.defer();
+	Q.fcall(db.con)
+		.then(function (con) {
+			//console.log(account);
+			con.query("INSERT INTO contractor SET ?", contractor, function (err, result) {
+				if (!err) {
+					deferred.resolve({id: result.insertId});
+				} else {
+					deferred.reject(err);
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('savecontractor error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject(error);
+		})
+		.done();
+	return deferred.promise;
+};
+
+exports.saveticket = function (ticket) {
+	var deferred = Q.defer();
+	Q.fcall(db.con)
+		.then(function (con) {
+			//console.log(account);
+			con.query("INSERT INTO ticket SET ?", ticket, function (err, result) {
+				if (!err) {
+					deferred.resolve({id: result.insertId});
+				} else {
+					deferred.reject(err);
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('saveticket error occurred');
 			console.log(error);
 			console.log(' ------------------------ ');
 			deferrred.reject(error);

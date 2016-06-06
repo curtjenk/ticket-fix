@@ -57,7 +57,7 @@ exports.saveUser = function (user) {
 				// console.log(err);
 				// console.log(result);
 				if (!err) {
-					deferred.resolve(true);
+					deferred.resolve({id: result.insertId});
 				} else {
 					deferred.reject(err);
 				}

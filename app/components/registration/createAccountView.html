@@ -1,0 +1,126 @@
+<div class="register-wrapper" ng-controller="registerController">
+  <div class="container">
+    <div class="row">
+      <div id="step-options" class="col-sm-offset-2 col-sm-3 active">
+        <i class="fa fa-check-square-o" aria-hidden="true"></i> 1) Account Setup
+      </div>
+      <div id="step-delivery" class="col-sm-3" >
+        <i class="fa fa-home" aria-hidden="true"></i> 2) Register units
+      </div>
+      <div id="step-checkout" class="col-sm-4">
+        <i class="fa fa-users" aria-hidden="true"></i> 3) Invite Staff to Signup
+      </div>
+    </div>
+    <div class="row" style="margin-top:15px;">
+        <h4 class="text-center">Create a
+        {{account_type}}
+        account for TicketFix</h4>
+      <p class="text-center">All fields are required</p>
+    </div>
+    <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+      <form id="registerForm" ng-submit="registerFunc()" name="registerForm" role="form" novalidate>
+        <div class="form-section company-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+          <p style="font-size: 18px; max-width:317px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
+            Company and Contact Information
+          </p>
+          <div class="inner" style="margin-left: 10px; margin-right:10px;">
+            <div class="form-group" ng-class="{ 'has-error': registerForm.company.$touched && registerForm.company.$invalid }">
+              <label>Company Name</label>
+              <input name="company" required ng-model="company" type="text" class="form-control"/>
+              <div ng-messages="registerForm.company.$error" ng-if="registerForm.company.$touched" role="alert">
+                <p ng-message="required">Company Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': registerForm.contactName.$touched && registerForm.contactName.$invalid }">
+              <label>Contact Name</label>
+              <input name="contactName" required ng-model="contactName" type="text" class="form-control"/>
+              <div ng-messages="registerForm.contactName.$error" ng-if="registerForm.contactName.$touched" role="alert">
+                <p ng-message="required">Contact Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
+              <label>Email</label>
+              <input name="email" ng-model="email" placeholder="Doe@ticketfix.com" type="email" class="form-control"/>
+            </div>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
+              <label>Phone</label>
+              <input name="telephone" ng-model="phone" placeholder="555-555-5555" type="tel" class="form-control"/>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+
+        <div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+          <p style="font-size: 18px; max-width:154px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
+            Your Information
+          </p>
+          <div class="inner" style="margin-left: 10px; margin-right:10px;">
+            <div class="form-group" ng-class="{ 'has-error': registerForm.regEmail.$touched && registerForm.regEmail.$invalid }">
+              <label>Email</label>
+              <input name="email" ng-model="email" required multiple placeholder="example@example.com" type="email" class="form-control">
+              <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched" role="alert">
+                <p ng-message="required">Email is required.</p>
+                <p ng-message="email">Enter a valid email</p>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.firstname.$touched && registerForm.firstname.$invalid }">
+              <label>First Name</label>
+              <input name="firstname" ng-model="firstname" required placeholder="John" type="text" class="form-control"/>
+              <div ng-messages="registerForm.firstname.$error" ng-if="registerForm.firstname.$touched" role="alert">
+                <p ng-message="required">First Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.lastname.$touched && registerForm.lastname.$invalid }">
+              <label>Last Name</label>
+              <input name="lastname" ng-model="lastname" required placeholder="Doe" type="text" class="form-control"/>
+              <div ng-messages="registerForm.lastname.$error" ng-if="registerForm.lastname.$touched" role="alert">
+                <p ng-message="required">Last Name is required.</p>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': registerForm.password.$touched && registerForm.password.$invalid }">
+              <label>Password</label>
+              <input name="password" ng-model="password" required placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control"/>
+              <div ng-messages="registerForm.password.$error" ng-if="registerForm.password.$touched" role="alert">
+                <p ng-message="required">Password is required.</p>
+                <p ng-message="minlength">Password is too short.</p>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': registerForm.password2.$touched && registerForm.password2.$invalid }">
+              <!--            <label>Repeat Password:</label> -->
+              <input compare-to="password" name="password2" ng-model="password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control"/>
+              <div ng-messages="registerForm.password2.$error" ng-if="registerForm.password2.$touched" role="alert">
+                <p ng-message="required">Password Confirmation is required.</p>
+                <p ng-message="compareTo">Password Confirmation must match Password</p>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.phone.$touched && registerForm.phone.$invalid }">
+              <label>Phone</label>
+              <input name="phone" ng-model="phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+              <div ng-messages="registerForm.phone.$error" ng-if="registerForm.phone.$touched" role="alert">
+                <p ng-message="required">Phone is required.</p>
+                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+              </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.mobile.$touched && registerForm.mobile.$invalid }">
+              <label>Cell: (Optional)</label>
+              <input name="mobile" ng-model="mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+              <div ng-messages="registerForm.mobile.$error" ng-if="registerForm.mobile.$touched" role="alert">
+                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+
+        <div class="form-group">
+          <div class="button-holder text-center" style="margin-top: 20px;">
+            <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
+            <a href="#/">
+              <button type="button" class="btn btn-default">Cancel</button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

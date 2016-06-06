@@ -8,7 +8,8 @@ ticketFixApp.config(function($routeProvider) {
     $routeProvider.when('/register', {
         templateUrl: function($routeParams) {
             // console.log("routing to register");
-            return 'app/components/registration/registrationView.html';
+            // return 'app/components/registration/registrationView.html';
+            return 'app/components/registration/createAccountView.html';
         }
     });
     $routeProvider.when('/login', {
