@@ -13,7 +13,7 @@
             <form id="registration" ng-submit="registerFunc()" name="registerForm" role="form" novalidate>
                 <div class="form-group" ng-class="{ 'has-error': registerForm.propertycode.$touched && registerForm.propertycode.$invalid }">
                     <label>Property Code:</label>
-                    <input ng-change="change()" name="propertycode" required ng-model="propertycode" placeholder="5555" type="text" class="form-control" />
+                    <input ng-change="change()" name="propertycode" required ng-model="propertycode" placeholder="5555" type="text" class="form-control" ng-minlength="4" />
                     <div ng-messages="registerForm.propertycode.$error" ng-if="registerForm.propertycode.$touched" role="alert">
                         <p ng-message="required">Property Code is required.</p>
                         <p ng-message="minlength">Property Code is too short.</p>
@@ -22,10 +22,15 @@
                 <div class="form-group">
                     <label>Email:</label>
                     <input name="email" ng-model="email" placeholder="Doe@ticketfix.com" type="email" class="form-control" />
+                    <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched" role="alert">
+                        <p ng-message="required">Email is required.</p>
+                        <p ng-message="minlength">Email is too short.</p>
+                    </div>
                 </div>
                 <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
                     <label>First Name:</label>
                     <input name="firstname" ng-model="firstname" placeholder="John" type="text" class="form-control" />
+                    
                 </div>
                 <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
                     <label>Last Name:</label>
