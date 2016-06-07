@@ -12,6 +12,13 @@ ticketFixApp.config(function($routeProvider) {
             return 'app/components/registration/createAccountView.html';
         }
     });
+    $routeProvider.when('/registertwo', {
+        templateUrl: function($routeParams) {
+            // console.log("routing to register");
+            // return 'app/components/registration/registrationView.html';
+            return 'app/components/registration-step-two/createAccountViewStepTwo.html';
+        }
+    });
     $routeProvider.when('/login', {
         templateUrl: function($routeParams) {
             // console.log("routing to login");
