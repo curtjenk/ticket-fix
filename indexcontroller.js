@@ -6,13 +6,6 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
     $scope.showLeftNavBtns = true;
 
     $scope.toggleSearch = function() {
-
-        // Another 
-        // if($scope.showSearchBar == false){
-        //     $scope.showSearchBar = true;
-        // } else if ($scope.showSearchBar == true){
-        //     $scope.showSearchBar = false;
-        // }
         $scope.showSearchBar = !$scope.showSearchBar;
     }
 
