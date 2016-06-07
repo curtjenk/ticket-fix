@@ -17,7 +17,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	if ($rootScope.userType === userTypeContractor){
 			$scope.showContractor = true;
 	}
-	
+
 	// console.log(userArray);
 
 	$scope.account_type = userTypeArray[$rootScope.userType];
@@ -29,7 +29,7 @@ $scope.registerFunc = function () {
 	// console.log("registerfunc");
 	// return;
 
-	var user = new User({
+	var user = {
 		type_user_id: userType,
 		email: $scope.email,
 		first_name: $scope.firstname,
@@ -41,7 +41,7 @@ $scope.registerFunc = function () {
 		city: $scope.city,
 		state: $scope.state,
 		zip: $scope.zip
-	});
+	};
 
 	var account = {
 		account_name: $scope.acctname,
@@ -53,6 +53,7 @@ $scope.registerFunc = function () {
 		account_state: $scope.acctstate,
 		account_zip: $scope.acctzip
 	};
+
 
 	apiAjax.register(user).then(
 		function (succ) {
