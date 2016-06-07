@@ -46,12 +46,13 @@ ticketFixApp.factory('zipLookup', function($http) {
     };
 });
 
-//baseUrl + <api_key>/distance.json/<zip_code1>/<zip_code2>/mile
+// baseUrl + &origins=Washington,DC&destinations=New+York+City,NY&key=YOUR_API_KEY
 ticketFixApp.factory('zip', function($http) {
     zip = {};
 
-    zip.getDistance = function(zip1, zip2) {
-        var zipApiUrl = encodeURI(Config.zipApiBaseUrl + Config.zipApiKey + '/distance.json/' + zip1 + '/' + zip2 + '/mile');
+    zip.getDistance = function(orginCityState, destinationCityState) {
+        var zipApiUrl = encodeURI(Config.zipApiBaseUrl + '&origins=' + originCityState +
+                                    '&destinations=' + destinationCityState + '&key=' + Config.zipApiKey);
         return $http.get(zipApiUrl);
     };
 
