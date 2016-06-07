@@ -1,13 +1,19 @@
 <div class="register-wrapper" ng-controller="registrationController">
     <div class="container">
         <div class="row">
-            <div id="step-options" class="col-sm-offset-2 col-sm-3 active">
+            <div ng-show="showMananger"  class="col-sm-offset-2 col-sm-3 active">
                 <i class="fa fa-check-square-o" aria-hidden="true"></i> 1) Account Setup
             </div>
-            <div id="step-delivery" class="col-sm-3">
+            <div ng-show="showContractor"  class="col-sm-offset-2 col-sm-3 active">
+                <i class="fa fa-check-square-o" aria-hidden="true"></i> 1) Account Setup
+            </div>
+            <div ng-show="showMananger"  class="col-sm-3">
                 <i class="fa fa-home" aria-hidden="true"></i> 2) Register units
             </div>
-            <div id="step-checkout" class="col-sm-4">
+            <div ng-show="showContractor"  class="col-sm-3">
+                <i class="fa fa-wrench" aria-hidden="true"></i> 2) Service Areas
+            </div>
+            <div ng-show="showMananger"  class="col-sm-4">
                 <i class="fa fa-users" aria-hidden="true"></i> 3) Invite Staff to Signup
             </div>
         </div>
@@ -190,7 +196,7 @@
                             <label>Address: 3)</label>
                             <input name="contAddress3" ng-model="contAddress3" placeholder="113 Doug Street" type="text" class="form-control">
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <label>City:</label>
                             <input name="contCity3" ng-model="contCity3" placeholder="Atlanta" type="text" class="form-control" />
                         </div>

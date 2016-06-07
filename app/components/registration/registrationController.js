@@ -8,14 +8,19 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	var userTypeArray = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 	$scope.showAccount = false;
 	$scope.showContractor = false;
+	$scope.showMananger = false;
 
 	// console.log("first");
 	if ($rootScope.userType === userTypeManager || $rootScope.userType === userTypeContractor) {
 			$scope.showAccount = true;
 	}
-
+	// Checking if the user is a contractor
 	if ($rootScope.userType === userTypeContractor){
 			$scope.showContractor = true;
+	}
+	// Checking if the user is a Manager
+	if ($rootScope.userType === userTypeManager){
+			$scope.showMananger = true;
 	}
 
 	// console.log(userArray);
