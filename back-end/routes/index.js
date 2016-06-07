@@ -34,7 +34,7 @@ var ApiResponse = function (res) {
 	this.success = res.success;
 	this.message = res.message;
 	this.token = res.token;
-	this.data = res.data;
+	this.info = res.info;
 };
 
 // Home route. We'll end up changing this later.
@@ -51,7 +51,7 @@ router.post('/login', function (req, res, next) {
 		function (user) {
 			console.log(user);
 			apiRes.success = true;
-			apiRes.data = {
+			apiRes.info = {
 				email: user.email,
 				type_user_id: user.type_user_id,
 				property_code: user.property_code
@@ -74,21 +74,22 @@ router.post('/login', function (req, res, next) {
 			console.log(error);
 			apiRes.success = false;
 			apiRes.message = "Authentication Failed.  Confirm Email and Password";
-			apiRes.data = err;
+			apiRes.info = err;
 			res.json(apiRes);
 		});
 
 });
 
 router.post('/register', function (req, res) {
-	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
+	var user = new User(req.body); //ufuncs.mapUser(req.body);
+	console.log(req.body);
 	var apiRes = new ApiResponse({
 		api: 'register'
 	});
 	ufuncs.saveUser(user).then(
 		function (success) {
 			apiRes.success = true;
-			apiRes.data = {
+			apiRes.info = {
 				id: success.id,
 				email: user.email,
 				type_user_id: user.type_user_id
@@ -96,9 +97,11 @@ router.post('/register', function (req, res) {
 			res.json(apiRes);
 		},
 		function (err) {
+			// console.log(err);
+			// console.log(typeof err);
 			apiRes.success = false;
 			apiRes.message = "Registration Failed.";
-			apiRes.data = err;
+			apiRes.info = err;
 
 			res.json(apiRes);
 		});
@@ -111,7 +114,7 @@ router.post('/register', function (req, res) {
 // });
 
 router.post('/saveaccount', function (req, res) {
-	var account = new Account(req.body.account);
+	var account = new Account(req.body);
 	var apiRes = new ApiResponse({
 		api: 'saveaccount'
 	});
@@ -119,7 +122,7 @@ router.post('/saveaccount', function (req, res) {
 		//returns the insertId
 		console.log(success);
 		apiRes.success = true;
-		apiRes.data = {
+		apiRes.info = {
 			id: success.id,
 			account_code: account.account_code
 		};
@@ -127,34 +130,34 @@ router.post('/saveaccount', function (req, res) {
 	}, function(err){
 		apiRes.success = false;
 		apiRes.message = "Save Account Failed.";
-		apiRes.data = err;
+		apiRes.info = err;
 		res.json(apiRes);
 	});
 });
 
 router.post('/savemanager', function (req, res) {
-	var account = new Manager(req.body.manager);
+	var manager = new Manager(req.body);
 	var apiRes = new ApiResponse({
 		api: 'savemanager'
 	});
-	admin.saveamanager(manager).then(function(success){
+	admin.savemanager(manager).then(function(success){
 		//returns the insertId
 		console.log(success);
 		apiRes.success = true;
-		apiRes.data = {
+		apiRes.info = {
 			id: success.id
 		};
 		res.json(apiRes);
 	}, function(err){
 		apiRes.success = false;
 		apiRes.message = "Save Manager Failed.";
-		apiRes.data = err;
+		apiRes.info = err;
 		res.json(apiRes);
 	});
 });
 
 router.post('/savecontractor', function (req, res) {
-	var account = new Contractor(req.body.contractor);
+	var account = new Contractor(req.body);
 	var apiRes = new ApiResponse({
 		api: 'savecontractor'
 	});
@@ -162,14 +165,14 @@ router.post('/savecontractor', function (req, res) {
 		//returns the insertId
 		console.log(success);
 		apiRes.success = true;
-		apiRes.data = {
+		apiRes.info = {
 			id: success.id
 		};
 		res.json(apiRes);
 	}, function(err){
 		apiRes.success = false;
 		apiRes.message = "Save contractor Failed.";
-		apiRes.data = err;
+		apiRes.info = err;
 		res.json(apiRes);
 	});
 });

@@ -9,7 +9,6 @@ exports.getAccountById = function (id) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
-
 			con.query("SELECT * FROM account WHERE id = ?", [id], function (err, rows) {
 				if (err) {
 					deferred.reject(err);

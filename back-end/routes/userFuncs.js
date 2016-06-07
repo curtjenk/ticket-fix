@@ -36,23 +36,19 @@ var getUser = function (email, authOrReg) {
 exports.getUser = getUser;
 
 exports.saveUser = function (user) {
-	//var user = mapUser(dataObj);
-	// console.log("*****after mapping ****");
-	// console.log(user);
-	// console.log("**** ****");
 	var deferred = Q.defer();
 	getUser(user.email, 'register')
 		.then(function (blah) {
 			var x = user.hashPassword().then(function (hash) {
 				user.password = hash;
 			});
-			return x;
+			return x; //return the promise to be evaluated later down the chain
 		})
 		.then(function () {
 			return db.con();
 		})
 		.then(function (con) {
-			// console.log(user);
+			console.log(user);
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
 				// console.log(err);
 				// console.log(result);
@@ -65,6 +61,7 @@ exports.saveUser = function (user) {
 			// console.log(query.sql);
 		})
 		.fail(function (err) {
+			// console.log('--- save user REJECT ----');
 			// console.log(err);
 			deferred.reject(err);
 		})

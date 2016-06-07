@@ -1,6 +1,6 @@
 var Q = require('q');
 var bcrypt = require('bcrypt');
-var bcryptSaltRounds = 10;
+var bcryptSaltRounds = 8;
 
 var User = function (data) {
 	data = data || {};
@@ -24,7 +24,7 @@ User.prototype.hashPassword = function () {
 	var deferred = Q.defer();
 	var promise = bcrypt.hash(this.password, bcryptSaltRounds, function (err, hash) {
 		if (err) {
-			deferred.reject(err);
+			deferred.reject({lowermsg: 'Cant create password hash', error: JSON.stringify(err)});
 		} else {
 			this.password = hash;
 			// console.log(this.password);
