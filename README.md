@@ -25,10 +25,7 @@ ticketfix uses a number of open source projects to work properly:
 * [Node.js] - Server side javascript
 * [jQuery] - javascript library
 * [MySQL] - relational database
-* [MeekroDB] - PHP MySQL library
-* [Mongo] ??
-* [Mongoose] ??
-* [Passport] - ?? Passport is authentication middleware for Node.js.
+* [zippopotam.us] - Get city & state using zip code
 * [jwt] - JSON web tokens
 * [morgan] -
 * [Q] - A library from promises
@@ -66,3 +63,5 @@ MIT
    [Angular-Messages]: <>
    [Passport]: <http://passportjs.org/>
    [BCrypt]: <https://github.com/ncb000gt/node.bcrypt.js/>
+   [zippopotam.us]: <http://www.zippopotam.us/>
+   [ZipCodeAPI.com]: <https://www.zipcodeapi.com/>

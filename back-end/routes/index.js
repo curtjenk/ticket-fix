@@ -81,7 +81,7 @@ router.post('/login', function (req, res, next) {
 });
 
 router.post('/register', function (req, res) {
-	var user = new User(req.body); //ufuncs.mapUser(req.body);
+	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
 	console.log(req.body);
 	var apiRes = new ApiResponse({
 		api: 'register'
@@ -114,7 +114,7 @@ router.post('/register', function (req, res) {
 // });
 
 router.post('/saveaccount', function (req, res) {
-	var account = new Account(req.body);
+	var account = new Account(req.body.account);
 	var apiRes = new ApiResponse({
 		api: 'saveaccount'
 	});
@@ -136,7 +136,7 @@ router.post('/saveaccount', function (req, res) {
 });
 
 router.post('/savemanager', function (req, res) {
-	var manager = new Manager(req.body);
+	var manager = new Manager(req.body.manager);
 	var apiRes = new ApiResponse({
 		api: 'savemanager'
 	});
@@ -157,7 +157,7 @@ router.post('/savemanager', function (req, res) {
 });
 
 router.post('/savecontractor', function (req, res) {
-	var account = new Contractor(req.body);
+	var account = new Contractor(req.body.contractor);
 	var apiRes = new ApiResponse({
 		api: 'savecontractor'
 	});

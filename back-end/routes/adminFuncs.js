@@ -83,6 +83,7 @@ exports.savemanager = function (manager) {
 		.then(function (con) {
 			//console.log(account);
 			con.query("INSERT INTO manager SET ?", manager, function (err, result) {
+				con.release();
 				if (!err) {
 					deferred.resolve({id: result.insertId});
 				} else {
@@ -106,6 +107,7 @@ exports.savetenant = function (tenant) {
 		.then(function (con) {
 			//console.log(account);
 			con.query("INSERT INTO tenant SET ?", tenant, function (err, result) {
+				con.release();
 				if (!err) {
 					deferred.resolve({id: result.insertId});
 				} else {
@@ -129,6 +131,7 @@ exports.saveproperty = function (property) {
 		.then(function (con) {
 			//console.log(account);
 			con.query("INSERT INTO property SET ?", property, function (err, result) {
+				con.release();
 				if (!err) {
 					deferred.resolve({id: result.insertId});
 				} else {
@@ -152,6 +155,7 @@ exports.savecontractor = function (contractor) {
 		.then(function (con) {
 			//console.log(account);
 			con.query("INSERT INTO contractor SET ?", contractor, function (err, result) {
+				con.release();
 				if (!err) {
 					deferred.resolve({id: result.insertId});
 				} else {
@@ -175,6 +179,7 @@ exports.saveticket = function (ticket) {
 		.then(function (con) {
 			//console.log(account);
 			con.query("INSERT INTO ticket SET ?", ticket, function (err, result) {
+				con.release();
 				if (!err) {
 					deferred.resolve({id: result.insertId});
 				} else {
