@@ -12,25 +12,51 @@ var userProfilePrefs = function(data) {
     this.inventory = data.inventory || []; //array of objects [type inventoryItem]
 };
 
-ticketFixApp.factory('userStore', function($window) {
+ticketFixApp.factory('localStore', function($window) {
     return {
-        setUser: function(userProfilePrefs) {
+        set: function(key, value) {
             //use the email address as key
-            $window.localStorage.setItem(userProfilePrefs.email, JSON.stringify(userProfilePrefs));
+            $window.localStorage.setItem(key, JSON.stringify(value));
             return this;
         },
-        getUser: function(emailKey) {
-            return JSON.parse($window.localStorage.getItem(emailKey));
+        get: function(key) {
+            return JSON.parse($window.localStorage.getItem(key));
         },
     };
 });
 
+ticketFixApp.factory('zipLookup', function($http) {
+    return {
+        get: function(zip, successFunc, errorFunc) {
+            var zipApiUrl = encodeURI("http://api.zippopotam.us/us/" + zip);
+            $http.get(zipApiUrl).then(
+                function(resp) {
+                    console.log(resp);
+                    var city = resp.data.places[0]["place name"];
+                    var state = resp.data.places[0].state;
+                    successFunc({
+                        city: city,
+                        state: state
+                    });
+                },
+                function(err) {
+                    errorFunc(err);
+                });
+        }
+    };
+});
 
+//baseUrl + <api_key>/distance.json/<zip_code1>/<zip_code2>/mile
+ticketFixApp.factory('zip', function($http) {
+    zip = {};
 
+    zip.getDistance = function(zip1, zip2) {
+        var zipApiUrl = encodeURI(Config.zipApiBaseUrl + Config.zipApiKey + '/distance.json/' + zip1 + '/' + zip2 + '/mile');
+        return $http.get(zipApiUrl);
+    };
 
-
-
-
+    return zip;
+});
 
 function upFirstChar(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -40,7 +66,7 @@ ticketFixApp.service('anchorSmoothScroll', function() {
 
     this.scrollTo = function(eID) {
 
-        // This scrolling function 
+        // This scrolling function
         // is from http://www.itnewb.com/tutorial/Creating-the-Smooth-Scroll-Effect-with-JavaScript
 
         var startY = currentYPosition();

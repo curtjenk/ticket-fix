@@ -18,9 +18,9 @@ ticketFixApp.factory('apiAjax', function ($http) {
 		});
 	};
 
-	apiAjax.login = function (data) {
+	apiAjax.login = function (email, password) {
 		console.log("apiAjax login");
-		return makeTheCall(login, data);
+		return makeTheCall(login, {email: email, password: password});
 		// return $http({
 		// 	method: "post",
 		// 	url: login,
@@ -31,7 +31,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 
 	apiAjax.register = function (data) {
 		console.log("apiAjax register ");
-		return makeTheCall(register, data);
+		return makeTheCall(register, {user: data});
 		// console.log(data);
 		//
 		// return $http({
@@ -44,7 +44,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 
 	apiAjax.saveaccount = function (data) {
 		console.log("apiAjax saveaccount");
-		return makeTheCall(saveAccount, data);
+		return makeTheCall(saveAccount,  {account: data});
 		// return $http({
 		// 	method: "post",
 		// 	url: saveAccount,
@@ -55,7 +55,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 
 	apiAjax.savemanager = function (data) {
 		console.log("apiAjax manager");
-		return makeTheCall(saveManager, data);
+		return makeTheCall(saveManager,  {manager: data});
 		// return $http({
 		// 	method: "post",
 		// 	url: saveManager,
@@ -66,7 +66,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 
 	apiAjax.saveproperty = function (data) {
 		console.log("apiAjax property");
-		return makeTheCall(saveProperty, data);
+		return makeTheCall(saveProperty,  {property: data});
 		// return $http({
 		// 	method: "post",
 		// 	url: saveProperty,
@@ -77,7 +77,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 
 	apiAjax.savecontractor = function (data) {
 		console.log("apiAjax contractor");
-		return makeTheCall(saveContractor, data);
+		return makeTheCall(saveContractor,  {contractor: data});
 		// return $http({
 		// 	method: "post",
 		// 	url: saveContractor,

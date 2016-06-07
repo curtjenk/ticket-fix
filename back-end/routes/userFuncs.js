@@ -9,6 +9,7 @@ var getUser = function (email, authOrReg) {
 		.then(function (con) {
 			//deferred.resolve(userQuery(con, email));
 			con.query("SELECT * FROM user WHERE email = ?", [email], function (err, rows) {
+				con.release();
 				if (err) {
 					deferred.reject(err);
 				} else if (rows.length > 0) {
@@ -50,6 +51,7 @@ exports.saveUser = function (user) {
 		.then(function (con) {
 			console.log(user);
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
+				con.release();
 				// console.log(err);
 				// console.log(result);
 				if (!err) {
