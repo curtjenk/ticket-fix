@@ -28,14 +28,13 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 
 	$scope.account_type = userTypeArray[$rootScope.userType];
 
-$scope.errorMessage = "";
-
 $scope.registerFunc = function () {
 	// var url = apiUrl + "/register";
 	// console.log("registerfunc");
 	// return;
 	if (!$scope.registerForm.$valid) {
 		$scope.errorMessage = "Please enter all required fields";
+		console.log('form invalid');
 		return;
 	}
 	var user = {
