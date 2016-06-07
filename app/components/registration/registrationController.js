@@ -7,11 +7,17 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	var userTypeStaff = 5;
 	var userTypeArray = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 	$scope.showAccount = false;
+	$scope.showContractor = false;
 
 	// console.log("first");
 	if ($rootScope.userType === userTypeManager || $rootScope.userType === userTypeContractor) {
 			$scope.showAccount = true;
 	}
+
+	if ($rootScope.userType === userTypeContractor){
+			$scope.showContractor = true;
+	}
+	
 	// console.log(userArray);
 
 	$scope.account_type = userTypeArray[$rootScope.userType];
@@ -103,12 +109,21 @@ function getTypeData(userType, unique_user_id, acctId) {
 
 	} else if (userType === userTypeContractor) {
 		personObj = {
-			account_id: acctId,
-			user_id: unique_user_id,
-			service_region_1_zip: $scope.region1,
-			service_region_2_zip: $scope.region2,
-			service_region_3_zip: $scope.region3
-		};
+            account_id: acctId,
+            user_id: unique_user_id,
+            region_1_address : $scope.region_1_address,
+            region_1_city : data.region_1_city,
+            region_1_state : data.region_1_state,
+            region_1_zip : data.region_1_zip,
+            region_2_address : data.region_2_address,
+            region_2_city : data.region_2_city,
+            region_2_state : data.region_2_state,
+            region_2_zip : data.region_2_zip,
+            region_3_address : data.region_3_address,
+            region_3_city : data.region_3_city,
+            region_3_state : data.region_3_state,
+            region_3_zip : data.region_3_zip
+        };
 
 	}
 	return personObj;

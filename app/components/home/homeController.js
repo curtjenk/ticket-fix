@@ -1,12 +1,10 @@
-ticketFixApp.controller('homeController', function ($rootScope, $scope, $http, $location) {
+ticketFixApp.controller('homeController', function($rootScope, $scope, $http, $location) {
 
 
-	$scope.register = function (type) {
-		console.log("here " + type);
-    $rootScope.userType = type;
-		// $rootScope.$broadcast('signup', {userType: type} );
-    // $scope.$emit('signup', {userType: type} );
+    $scope.register = function(type) {
+
+        $rootScope.userType = type;
 		$location.path('/register');
-	};
+    };
 
 });
