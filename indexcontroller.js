@@ -1,4 +1,4 @@
-ticketFixApp.controller('indexController', function($scope, $http, $location, anchorSmoothScroll) {
+ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $location, anchorSmoothScroll) {
 
     $scope.showSearchBar = false;
     $scope.arrowUp = false;
@@ -29,6 +29,12 @@ ticketFixApp.controller('indexController', function($scope, $http, $location, an
         // call $anchorScroll()
         anchorSmoothScroll.scrollTo(eID);
 
+    };
+
+    $scope.register = function(type) {
+
+        $rootScope.userType = type;
+        $location.path('/register');
     };
 
 
