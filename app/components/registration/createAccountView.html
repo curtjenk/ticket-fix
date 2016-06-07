@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.acctstate.$touched && registerForm.acctstate.$invalid }">
                             <label>State</label>
-                            <input name="acctstate" required ng-model="acctstate" required placeholder="Georgia" type="text" class="form-control" />
+                            <input name="acctstate" required ng-model="acctstate" placeholder="Georgia" type="text" class="form-control" />
                             <div ng-messages="registerForm.acctstate.$error" ng-if="registerForm.acctstate.$touched" role="alert">
                                 <p ng-message="required">State is required.</p>
                             </div>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.acctphone.$touched && registerForm.acctphone.$invalid }">
                             <label>Phone</label>
-                            <input name="acctphone" required ng-model="acctphone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                            <input name="acctphone" required ng-model="acctphone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
                             <div ng-messages="registerForm.acctphone.$error" ng-if="registerForm.acctphone.$touched" role="alert">
                                 <p ng-message="required">Phone is required.</p>
                                 <p ng-message="pattern">Must be a valid 10 digit phone number</p>
@@ -129,7 +129,7 @@
                         </div>
                         <div class="form-group" ng-class="{ 'has-error': registerForm.password.$touched && registerForm.password.$invalid }">
                             <label>Password</label>
-                            <input name="password" ng-model="password" required placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control" />
+                            <input name="password" ng-model="password" required multiple placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control" />
                             <div ng-messages="registerForm.password.$error" ng-if="registerForm.password.$touched" role="alert">
                                 <p ng-message="required">Password is required.</p>
                                 <p ng-message="minlength">Password is too short.</p>

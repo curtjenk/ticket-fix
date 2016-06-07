@@ -3,24 +3,26 @@ var User = require('./models/user');
 var bcrypt = require('bcrypt');
 var Q = require('q');
 
-var getUser = function (email, authOrReg) {
+var getUser = function (email) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
-			//deferred.resolve(userQuery(con, email));
 			con.query("SELECT * FROM user WHERE email = ?", [email], function (err, rows) {
 				con.release();
 				if (err) {
-					deferred.reject(err);
+					deferred.reject({
+						status: 'error',
+						error: err
+					});
 				} else if (rows.length > 0) {
-					// console.log(rows[0]);
-					if (authOrReg === 'register') {
-						deferred.reject("user-already-exists");
-					} else {
-						deferred.resolve(rows[0]);
-					}
+					deferred.resolve({
+						status: 'found',
+						data: rows[0]
+					});
 				} else {
-					deferred.resolve(false);
+					deferred.resolve({
+						status: 'notfound'
+					});
 				}
 			});
 		})
@@ -28,7 +30,10 @@ var getUser = function (email, authOrReg) {
 			console.log('getUser error occurred');
 			console.log(error);
 			console.log(' ------------------------ ');
-			deferrred.reject(error);
+			deferrred.reject({
+				status: 'error',
+				error: error
+			});
 		})
 		.done();
 	return deferred.promise;
@@ -38,12 +43,30 @@ exports.getUser = getUser;
 
 exports.saveUser = function (user) {
 	var deferred = Q.defer();
-	getUser(user.email, 'register')
-		.then(function (blah) {
-			var x = user.hashPassword().then(function (hash) {
-				user.password = hash;
-			});
-			return x; //return the promise to be evaluated later down the chain
+	getUser(user.email)
+		.then(function (rtn) {
+			if (rtn.status == 'notfound') {
+				var x = user.hashPassword().then(function (hash) {
+					user.password = hash;
+				});
+				return x; //return the promise to be evaluated later down the chain
+			} else {
+				if (rtn.status == 'found') {
+					deferred.resolve({
+						status: 'found',
+						data: {},
+						message: "User already exists"
+					});
+				} else {
+					//rtn.status == 'error'
+					deferred.reject({
+						status: 'error',
+						data: {},
+						message: "sql error",
+						error: rtn.error
+					});
+				}
+			}
 		})
 		.then(function () {
 			return db.con();
@@ -52,12 +75,21 @@ exports.saveUser = function (user) {
 			console.log(user);
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
 				con.release();
-				// console.log(err);
-				// console.log(result);
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						status: 'complete',
+						data: {
+							id: result.insertId
+						},
+						message: ''
+					});
 				} else {
-					deferred.reject(err);
+					deferred.reject({
+						status: 'error',
+						data: {},
+						message: "sql error",
+						error: err
+					});
 				}
 			});
 			// console.log(query.sql);
@@ -75,29 +107,91 @@ exports.authenticateUser = function (email, password) {
 	var deferred = Q.defer();
 
 	var promise = getUser(email).then(
-		function (row) {
-			// console.log(row);
-			if (row !== false) {
-				var user = new User(row); //mapUser(row);
+		function (rtn) {
+			if (rtn.status == 'found') {
+				var user = new User(rtn.data); //mapUser(row);
 				user.passwordMatch(password).then(function (res) {
 					if (res) {
-						//console.log("passwords match");
-						deferred.resolve(user);
+						// console.log("passwords match");
+						deferred.resolve({
+							status: 'ok',
+							data: user,
+							message: ''
+						});
 					} else {
-						//console.log("passwords DO NOT match");
-						deferred.reject("Invalid Email and Password combination");
+						// console.log("passwords DO NOT match");
+						deferred.resolve({
+							status: 'nomatch',
+							data: {},
+							message: "passwords dont match"
+						});
 					}
 				}, function (err) {
-					deferred.reject(err);
+					deferred.reject({
+						status: 'error',
+						data: {},
+						message: "BCrypt error",
+						error: err
+					});
 				});
 			} else {
-				deferred.reject("User unknown");
+				if (rtn.status == 'notfound') {
+					deferred.resolve({
+						status: 'notfound',
+						data: {},
+						message: "User Doesnt exist"
+					});
+				} else {
+					//rtn.status == 'error'
+					deferred.reject({
+						status: 'error',
+						data: {},
+						message: "sql error",
+						error: rtn.error
+					});
+				}
+
 			}
 		},
 		function (err) {
 			console.log(err);
-			deferred.reject(err);
+			deferred.reject({
+				status: 'error',
+				data: {},
+				message: "system error",
+				error: err
+			});
 		});
 
 	return deferred.promise;
 };
+
+// exports.authenticateUser = function (email, password) {
+// 	var deferred = Q.defer();
+//
+// 	var promise = getUser(email).then(
+// 		function (row) {
+// 			if (row !== false) {
+// 				var user = new User(row); //mapUser(row);
+// 				user.passwordMatch(password).then(function (res) {
+// 					if (res) {
+// 						console.log("passwords match");
+// 						deferred.resolve({status: 'ok', data: user, info: ''});
+// 					} else {
+// 						console.log("passwords DO NOT match");
+// 						deferred.resolve({status: 'nomatch', data: {}, info: "passwords dont match"});
+// 					}
+// 				}, function (err) {
+// 					deferred.reject({status: 'error', data: {}, info: "BCrypt error", error: err});
+// 				});
+// 			} else {
+// 				deferred.resolve({status: 'nouser', data: {}, info: "User Doesnt exist"});
+// 			}
+// 		},
+// 		function (err) {
+// 			console.log(err);
+// 			deferred.reject({status: 'error', data: {}, info: "system error", error: err});
+// 		});
+//
+// 	return deferred.promise;
+// };
