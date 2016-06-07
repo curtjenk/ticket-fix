@@ -1,26 +1,35 @@
-<!--  ng-controller="loginController" -->
-<div class="content">
-    <div class="login-wrapper">
-        <div class="container col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-12">
-            <h1 class="text-center">Login</h1>
-            <p class="text-center">Please enter your username and password below.</p>
-            <br/>
-            <form role="form" ng-submit="loginForm()">
-                <div class="form-group">
-                    <label>Username:</label>
-                    <input type="text" name="username" ng-model="username" placeholder="Enter Your Username" class="form-control" />
-                </div>
-                <div class="form-group">
-                    <label>Password:</label>
-                    <input type="password" name="password" ng-model="password" placeholder="Enter Your Password" class="form-control" />
-                </div>
-                <div class="button-holder text-center">
-                    <button type="submit" class="btn btn-default">Login</button>
-                    <a href="#/">
-                        <button type="button" class="btn btn-default">Cancel</button>
-                    </a>
-                </div>
-            </form>
+<div class="login-wrapper" ng-controller="loginController">
+  <div class="container col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-12">
+    <h1 class="text-center">Login</h1>
+    <p class="text-center">Please enter your Email and Password below.</p>
+    <br/>
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
         </div>
     </div>
+    <form role="form" name="loginForm" ng-submit="loginFunc()" novalidate>
+      <div class="form-group" ng-class="{ 'has-error': loginForm.email.$touched && loginForm.email.$invalid }">
+        <label>Email</label>
+        <input type="email" name="email" ng-model="email" placeholder="example@abc.com" required multiple class="form-control">
+        <div ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched" role="alert">
+          <p ng-message="required">Email is required.</p>
+          <p ng-message="email">Enter a valid email</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': loginForm.password.$touched && loginForm.password.$invalid }">
+        <label>Password</label>
+        <input type="password" name="password" ng-model="password" placeholder="6 character min" required class="form-control">
+        <div ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched" role="alert">
+          <p ng-message="required">Your Password is required.</p>
+        </div>
+      </div>
+      <div class="button-holder text-center">
+        <button type="submit" class="btn btn-default">Login</button>
+        <a href="#/">
+          <button type="button" class="btn btn-default">Cancel</button>
+        </a>
+      </div>
+    </form>
+  </div>
 </div>

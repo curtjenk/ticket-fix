@@ -10,6 +10,8 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	var saveContractor = baseUrl + "/savecontractor";
 
 	var makeTheCall = function(whereTo, data) {
+		console.log(" -- api call using ---");
+		console.log(data);
 		return $http({
 			method: "post",
 			url: whereTo,

@@ -6,6 +6,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	var userTypeTenant = 3;
 	var userTypeStaff = 5;
 	var userTypeArray = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
+	$scope.errorMessage = '';
 	$scope.showAccount = false;
 	$scope.showContractor = false;
 	$scope.showMananger = false;
@@ -33,7 +34,10 @@ $scope.registerFunc = function () {
 	// var url = apiUrl + "/register";
 	// console.log("registerfunc");
 	// return;
-
+	if (!$scope.registerForm.$valid) {
+		$scope.errorMessage = "Please enter all required fields";
+		return;
+	}
 	var user = {
 		type_user_id: userType,
 		email: $scope.email,

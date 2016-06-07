@@ -1,4 +1,4 @@
-var ticketFixApp = angular.module('ticketFixApp', ['ngRoute', 'ngMessages']);
+var ticketFixApp = angular.module('ticketFixApp', ['ngRoute', 'ngMessages', 'LocalStorageModule']);
 
 ticketFixApp.config(['$compileProvider', function ($compileProvider) {
   $compileProvider.debugInfoEnabled(false);
