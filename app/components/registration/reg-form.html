@@ -5,7 +5,7 @@
                 <div ng-show="showMananger" class="col-sm-3 active-step">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i> 1) Account Setup
                 </div>
-                <div ng-show="showContractor" class="col-sm-3 active-step">
+                <div ng-show="showContractor" class="col-sm-offset-2 col-sm-3 active-step">
                     <i class="fa fa-check-square-o" aria-hidden="true"></i> 1) Account Setup
                 </div>
                 <div ng-show="showAccount" class="col-sm-3 non-active">
@@ -230,7 +230,7 @@
                     </a>
                 </div>
             </div>
-            <a href="#/registertwo">Step 2 </a>
+            <a ng-show="showAccount" href="#/registertwo">Step 2 </a>
         </form>
     </div>
 </div>
