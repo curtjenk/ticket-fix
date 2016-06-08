@@ -15,8 +15,9 @@ $scope.errorMessage = '';
                     var email = succ.data.info.email;
                     var userType = succ.data.info.type_user_id;
                     var token = succ.data.token;
-                    $rootScope.email = email;
-                    //save succ.data.token to localStore
+					$rootScope.user = succ.data.info;
+
+					//save succ.data.token to localStore
                     localStore.set(succ.data.info.email, {userType: userType, token: token});
 
 					$scope.$emit("userLoggedIn", {

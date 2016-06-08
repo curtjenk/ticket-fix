@@ -55,7 +55,11 @@ router.post('/login', function (req, res, next) {
 				apiRes.success = true;
 				apiRes.info = {
 					email: succ.data.email,
-					type_user_id: succ.data.type_user_id
+					type_user_id: succ.data.type_user_id,
+					first_name: succ.data.first_name,
+					last_name: succ.data.last_name,
+					home_phone: succ.data.home_phone,
+					mobile_phone: succ.data.mobile_phone
 				};
 				//Add IP Address to signature
 				var token = jwt.sign({
