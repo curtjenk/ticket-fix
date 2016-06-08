@@ -1,0 +1,77 @@
+<div id="tenant-wrapper" ng-controller="tenantController">
+    <div class="row" style="margin-top:15px;">
+        <h4 class="text-center">Create a Ticket</h4>
+<!--         <p class="text-center">All fields are required</p> -->
+    </div>
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
+        </div>
+    </div>
+    <!-- Ticket Creation Process -->
+    <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+        <form id="ticketForm" ng-submit="ticketFunc()" name="ticketForm" role="form" novalidate>
+            <div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+                <p style="font-size: 18px; max-width:154px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
+                    Ticket Info
+                </p>
+                <div class="inner" style="margin-left: 10px; margin-right:10px;">
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.email.$touched && ticketForm.email.$invalid }">
+                        <label>Email</label>
+                        <input name="email" ng-model="email" required multiple placeholder="example@example.com" type="email" class="form-control">
+                        <div ng-messages="ticketForm.email.$error" ng-if="ticketForm.email.$touched" role="alert">
+                            <p ng-message="required">Email is required.</p>
+                            <p ng-message="email">Enter a valid email</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.firstname.$touched && ticketForm.firstname.$invalid }">
+                        <label>First Name</label>
+                        <input name="firstname" ng-model="firstname" required placeholder="John" type="text" class="form-control" />
+                        <div ng-messages="ticketForm.firstname.$error" ng-if="ticketForm.firstname.$touched" role="alert">
+                            <p ng-message="required">First Name is required.</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.lastname.$touched && ticketForm.lastname.$invalid }">
+                        <label>Last Name</label>
+                        <input name="lastname" ng-model="lastname" required placeholder="Doe" type="text" class="form-control" />
+                        <div ng-messages="ticketForm.lastname.$error" ng-if="ticketForm.lastname.$touched" role="alert">
+                            <p ng-message="required">Last Name is required.</p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.password.$touched && ticketForm.password.$invalid }">
+                        <label>Password</label>
+                        <input name="password" ng-model="password" required multiple placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control" />
+                        <div ng-messages="ticketForm.password.$error" ng-if="ticketForm.password.$touched" role="alert">
+                            <p ng-message="required">Password is required.</p>
+                            <p ng-message="minlength">Password is too short.</p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.password2.$touched && ticketForm.password2.$invalid }">
+                        <input compare-to="password" name="password2" ng-model="password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control" />
+                        <div ng-messages="ticketForm.password2.$error" ng-if="ticketForm.password2.$touched" role="alert">
+                            <p ng-message="required">Password Confirmation is required.</p>
+                            <p ng-message="compareTo">Password Confirmation must match Password</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.phone.$touched && ticketForm.phone.$invalid }">
+                        <label>Phone</label>
+                        <input name="phone" ng-model="phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                        <div ng-messages="ticketForm.phone.$error" ng-if="ticketForm.phone.$touched" role="alert">
+                            <p ng-message="required">Phone is required.</p>
+                            <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.mobile.$touched && ticketForm.mobile.$invalid }">
+                        <label>Cell: (Optional)</label>
+                        <input name="mobile" ng-model="mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                        <div ng-messages="ticketForm.mobile.$error" ng-if="ticketForm.mobile.$touched" role="alert">
+                            <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </form>
+    </div>
+
+</div>
