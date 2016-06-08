@@ -65,10 +65,9 @@ $scope.registerFunc = function () {
 
 	apiAjax.register(user).then(
 		function (succ) {
-			// console.log(succ.data);
+			console.log(succ.data);
 			if (succ.data.success !== true)
 			{
-				console.log(succ.data);
 				return;
 			}
 			// console.log("saved user now check for manager / contractor ");

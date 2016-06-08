@@ -27,9 +27,9 @@ var getUser = function (email) {
 			});
 		})
 		.catch(function (error) {
-			console.log('getUser error occurred');
-			console.log(error);
-			console.log(' ------------------------ ');
+			// console.log('getUser error occurred');
+			// console.log(error);
+			// console.log(' ------------------------ ');
 			deferrred.reject({
 				status: 'error',
 				error: error
@@ -42,6 +42,7 @@ var getUser = function (email) {
 exports.getUser = getUser;
 
 exports.saveUser = function (user) {
+	console.log('in saveUser');
 	var deferred = Q.defer();
 	getUser(user.email)
 		.then(function (rtn) {
@@ -51,28 +52,30 @@ exports.saveUser = function (user) {
 				});
 				return x; //return the promise to be evaluated later down the chain
 			} else {
-				if (rtn.status == 'found') {
-					deferred.resolve({
-						status: 'found',
-						data: {},
-						message: "User already exists"
-					});
-				} else {
-					//rtn.status == 'error'
-					deferred.reject({
-						status: 'error',
-						data: {},
-						message: "sql error",
-						error: rtn.error
-					});
-				}
+				return new Promise(function (resolve, reject){
+					if (rtn.status == 'found') {
+						reject({
+							status: 'found',
+							data: {},
+							message: "User already exists"
+						});
+					} else {
+						//rtn.status == 'error'
+						reject({
+							status: 'error',
+							data: {},
+							message: "sql error",
+							error: rtn.error
+						});
+					}
+				});
 			}
 		})
 		.then(function () {
 			return db.con();
 		})
 		.then(function (con) {
-			console.log(user);
+			// console.log(user);
 			var query = con.query("INSERT INTO user SET ?", user, function (err, result) {
 				con.release();
 				if (!err) {
@@ -95,8 +98,8 @@ exports.saveUser = function (user) {
 			// console.log(query.sql);
 		})
 		.fail(function (err) {
-			// console.log('--- save user REJECT ----');
-			// console.log(err);
+			console.log('--- save user REJECT ----');
+			console.log(err);
 			deferred.reject(err);
 		})
 		.done();

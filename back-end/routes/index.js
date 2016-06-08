@@ -87,16 +87,18 @@ router.post('/login', function (req, res, next) {
 
 router.post('/register', function (req, res) {
 	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
-	console.log(req.body);
+	// console.log(req.body);
 	var apiRes = new ApiResponse({
 		api: 'register'
 	});
 	ufuncs.saveUser(user).then(
 		function (rtn) {
-			if (rtn.status === 'complete') {
+			// console.log('returned from save user');
+			// console.log(rtn);
+			if (rtn.status == 'complete') {
 				apiRes.success = true;
 				apiRes.info = {
-					id: success.id,
+					id: rtn.data.id,
 					email: user.email,
 					type_user_id: user.type_user_id
 				};
@@ -105,6 +107,7 @@ router.post('/register', function (req, res) {
 				apiRes.success = false;
 				apiRes.message = rtn.message;
 			}
+			// console.log(apiRes);
 			res.json(apiRes);
 		},
 		function (err) {
@@ -113,10 +116,10 @@ router.post('/register', function (req, res) {
 			apiRes.success = false;
 			apiRes.message = "Registration Failed.";
 			apiRes.info = err;
-
+			console.log(apiRes);
 			res.json(apiRes);
-		});
-
+		}
+	);
 });
 
 // router.post('/api/testtoken', function (req, res) {
