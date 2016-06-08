@@ -10,4 +10,4 @@ var Tenant = function (data) {
 	this.user_id = data.user_id;
 };
 
-exports.Tenant = Tenant;
+module.exports = Tenant;

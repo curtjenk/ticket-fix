@@ -1,4 +1,4 @@
-ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $location, anchorSmoothScroll) {
+ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $location, localStore, anchorSmoothScroll) {
 
     $scope.showSearchBar = false;
     $scope.arrowUp = false;
@@ -29,6 +29,17 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
         $rootScope.userType = type;
         $location.path('/register');
     };
+
+    $scope.$on("userLoggedIn", function(event, args) {
+       $scope.loggedIn = true;
+       $scope.email = args.email;
+   });
+
+   $scope.$on("userLoggedOut", function(event, args) {
+       // alert("logged out");
+       $scope.loggedIn = false;
+       localStore.remove($scope.email);
+   });
 
 
 
