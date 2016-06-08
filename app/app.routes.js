@@ -49,13 +49,13 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('ticket.create', {
             parent: 'ticket',
-            url: '/create',
-            templateUrl: 'app/components/registration/partials/ticket-form-create.html'
+            url: '',
+            templateUrl: 'app/components/ticket/partials/ticket-form-create.html'
         })
         .state('ticket.approval', {
             parent: 'ticket',
             url: '/approval',
-            templateUrl: 'app/components/registration/partials/ticket-form-approval.html'
+            templateUrl: 'app/components/ticket/partials/ticket-form-approval.html'
         });
         // nested states
         // each of these sections will have their own view
