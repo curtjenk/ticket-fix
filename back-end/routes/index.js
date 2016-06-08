@@ -9,6 +9,7 @@ var Manager = require('./models/manager').Manager;
 var ManagerHasProperty = require('./models/manager').ManagerHasProperty;
 var Contractor = require('./models/contractor');
 var Property = require('./models/property');
+var Tenant = require('./models/tenant');
 
 var ufuncs = require('./userFuncs');
 var admin = require('./adminFuncs');
@@ -186,6 +187,48 @@ router.post('/savecontractor', function (req, res) {
 	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = "Save contractor Failed.";
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+});
+
+router.post('/saveproperty', function (req, res) {
+	var property = new Property(req.body.property);
+	var apiRes = new ApiResponse({
+		api: 'saveproperty'
+	});
+	admin.saveproperty(property).then(function (success) {
+		//returns the insertId
+		console.log(success);
+		apiRes.success = true;
+		apiRes.info = {
+			id: success.id
+		};
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = "Save property Failed.";
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+});
+
+router.post('/savetenant', function (req, res) {
+	var tenant = new Tenant(req.body.tenant);
+	var apiRes = new ApiResponse({
+		api: 'savetenant'
+	});
+	admin.savetenant(tenant).then(function (success) {
+		//returns the insertId
+		console.log(success);
+		apiRes.success = true;
+		apiRes.info = {
+			id: success.id
+		};
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = "Save tenant Failed.";
 		apiRes.info = err;
 		res.json(apiRes);
 	});

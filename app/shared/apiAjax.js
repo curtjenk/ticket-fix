@@ -7,11 +7,12 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	var saveAccount = baseUrl + "/saveaccount";
 	var saveManager = baseUrl + "/savemanager";
 	var saveProperty = baseUrl + "/saveproperty";
+	var saveTenant= baseUrl + "/savetenant";
 	var saveContractor = baseUrl + "/savecontractor";
 
 	var makeTheCall = function(whereTo, data) {
-		console.log(" -- api call using ---");
-		console.log(data);
+		//console.log(" -- api call using ---");
+		//console.log(data);
 		return $http({
 			method: "post",
 			url: whereTo,
@@ -23,69 +24,30 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	apiAjax.login = function (email, password) {
 		console.log("apiAjax login");
 		return makeTheCall(login, {email: email, password: password});
-		// return $http({
-		// 	method: "post",
-		// 	url: login,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
-
 	apiAjax.register = function (data) {
 		console.log("apiAjax register ");
 		return makeTheCall(register, {user: data});
-		// console.log(data);
-		//
-		// return $http({
-		// 	method: "post",
-		// 	url: register,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
-
 	apiAjax.saveaccount = function (data) {
 		console.log("apiAjax saveaccount");
 		return makeTheCall(saveAccount,  {account: data});
-		// return $http({
-		// 	method: "post",
-		// 	url: saveAccount,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
-
 	apiAjax.savemanager = function (data) {
 		console.log("apiAjax manager");
 		return makeTheCall(saveManager,  {manager: data});
-		// return $http({
-		// 	method: "post",
-		// 	url: saveManager,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
-
 	apiAjax.saveproperty = function (data) {
 		console.log("apiAjax property");
 		return makeTheCall(saveProperty,  {property: data});
-		// return $http({
-		// 	method: "post",
-		// 	url: saveProperty,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
-
+	apiAjax.savetenant = function (data) {
+		console.log("apiAjax tenant");
+		return makeTheCall(saveTenant,  {tenant: data});
+	};
 	apiAjax.savecontractor = function (data) {
 		console.log("apiAjax contractor");
 		return makeTheCall(saveContractor,  {contractor: data});
-		// return $http({
-		// 	method: "post",
-		// 	url: saveContractor,
-		// 	data: data,
-		// 	headers: {'Content-Type': 'application/json'}
-		// });
 	};
 
 	return apiAjax;

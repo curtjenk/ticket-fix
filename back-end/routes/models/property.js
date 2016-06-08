@@ -7,10 +7,12 @@ var Property = function (data) {
 		this.id = data.id;
 	}
 	this.code = data.code;
-	this.address = data.address;
+	this.address1 = data.address1;
+	this.address2 = data.address2;
 	this.city = data.city;
 	this.state = data.state;
 	this.zip = data.zip;
+	this.isManaged = data.isManaged;
 };
 Property.prototype.genCode = function () {
 	this.code = util.generateCode('P', 9);

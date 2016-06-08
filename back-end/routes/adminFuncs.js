@@ -130,6 +130,7 @@ exports.saveproperty = function (property) {
 	Q.fcall(db.con)
 		.then(function (con) {
 			//console.log(account);
+			property.genCode();
 			con.query("INSERT INTO property SET ?", property, function (err, result) {
 				con.release();
 				if (!err) {
