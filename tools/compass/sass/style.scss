@@ -50,6 +50,21 @@ body {
     background-color: #DDD;
 }
 
+#site-wrapper {
+    background-color: #DDD;
+}
+
+.btn-reg {
+    width: 130px;
+    margin-top: 10px;
+    color: #ffd700;
+    background-color: #007ecc;
+    border-color: #006eb3;
+    &:hover {
+        background-color: #008ee6;
+    }
+}
+
 .navbar-inverse .navbar-nav > li > a {
     font-size: 16px;
     color: black;
@@ -69,15 +84,19 @@ body {
 }
 
 @font-face {
-    font-family: "Montserrat", sans-serif;
+    font-family: "Montserrat", sans-serif !important;
 }
 
 
 /* line 4, ../compass/sass/_font.scss */
 
 body {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.container-fluid.carousel-fluid {
+    padding: 0px;
 }
 
 .navbar-inverse .navbar-nav > .open > a,
@@ -86,6 +105,16 @@ body {
     color: #ed3031;
     color: #fff;
     background-color: transparent;
+}
+
+body, html {
+    /* -webkit-tap-highlight-color: transparent; */
+    -webkit-touch-callout: none;
+    /* min-height: 100%; */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: initial;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .navbar-inverse .navbar-brand {
@@ -428,8 +457,62 @@ form.navbar-form {
     }
 }
 
+md-tabs-canvas {
+    background-color: #007ecc;
+    background-color: #DDD;
+}
+
+md-tabs.md-default-theme md-ink-bar,
+md-tabs md-ink-bar {
+    color: #ffd700;
+    background-color: #ffd700;
+}
+
+md-tabs.md-default-theme .md-tab.md-active,
+md-tabs .md-tab.md-active,
+md-tabs.md-default-theme .md-tab.md-active md-icon,
+md-tabs .md-tab.md-active md-icon,
+md-tabs.md-default-theme .md-tab.md-focused,
+md-tabs .md-tab.md-focused,
+md-tabs.md-default-theme .md-tab.md-focused md-icon,
+md-tabs .md-tab.md-focused md-icon {
+    color: #ffd700;
+    // text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+    background-color: #007ecc;
+    border: 1px solid #006eb3;
+}
+
+md-tabs.md-default-theme .md-tab,
+md-tabs .md-tab {
+    color: white;
+    border: 1px solid #007ecc;
+    border-radius: 5px 5px 0 0;
+    background-color: #008ee6;
+}
+
 .carousel-inner .item {
     height: 500px;
+}
+
+md-checkbox.md-default-theme.md-checked .md-ink-ripple, md-checkbox.md-checked .md-ink-ripple {
+    color: #ffd700;
+}
+
+.ticket-list {
+    float: left;
+    list-style-type: none;
+    li {
+        padding-bottom: 16px;
+    }
+}
+
+.ticket-checkbox {
+    list-style-type: none;
+    float: left;
+}
+
+md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon {
+    background-color: #007ecc;
 }
 
 .carousel-inner > .item > a > img,
@@ -440,4 +523,8 @@ form.navbar-form {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.nav-tabs > li > a {
+    background-color: #f00;
 }

@@ -1,7 +1,7 @@
 <div id="tenant-wrapper" ng-controller="ticketController">
     <div class="row" style="margin-top:15px;">
-        <h4 class="text-center">Create a Ticket</h4>
-<!--         <p class="text-center">All fields are required</p> -->
+        <h2 class="text-center">Create a Ticket</h2>
+        <!--         <p class="text-center">All fields are required</p> -->
     </div>
     <div class="row">
         <div class="error-text text-center">
@@ -9,69 +9,177 @@
         </div>
     </div>
     <!-- Ticket Creation Process -->
-    <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+    <div class="container">
         <form id="ticketForm" ng-submit="ticketFunc()" name="ticketForm" role="form" novalidate>
-            <div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+            <div class="form-section ticket-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
                 <p style="font-size: 18px; max-width:154px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
                     Ticket Info
                 </p>
-                <div class="inner" style="margin-left: 10px; margin-right:10px;">
-                    <div class="form-group" ng-class="{ 'has-error': ticketForm.email.$touched && ticketForm.email.$invalid }">
-                        <label>Email</label>
-                        <input name="email" ng-model="email" required multiple placeholder="example@example.com" type="email" class="form-control">
-                        <div ng-messages="ticketForm.email.$error" ng-if="ticketForm.email.$touched" role="alert">
-                            <p ng-message="required">Email is required.</p>
-                            <p ng-message="email">Enter a valid email</p>
-                        </div>
+                <div class="inner col-sm-6">
+                    <div class="user-info">
+                        <label>Date</label>
+                        <br>
+                        <div style="padding-left: 0px;" class="col-sm-12">{{date}}</div>
+                        <label style="padding-left: 0px;" class="col-sm-6">Firstname:</label>
+                        <label class="col-sm-6">Lastname:</label>
+                        <br>
+                        <div class="col-sm-6" style="padding-left: 0px;">{{firstname}}</div>
+                        <div class="col-sm-6">{{lastname}}</div>
+                        <label style="padding-left: 0px;" class="col-sm-6">Phone:</label>
+                        <label class="col-sm-6">Email:</label>
+                        <br>
+                        <div class="col-sm-6" style="padding-left: 0px;">{{phone}}</div>
+                        <div class="col-sm-6">{{email}}</div>
                     </div>
-                    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.firstname.$touched && ticketForm.firstname.$invalid }">
-                        <label>First Name</label>
-                        <input name="firstname" ng-model="firstname" required placeholder="John" type="text" class="form-control" />
-                        <div ng-messages="ticketForm.firstname.$error" ng-if="ticketForm.firstname.$touched" role="alert">
-                            <p ng-message="required">First Name is required.</p>
-                        </div>
-                    </div>
-                    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.lastname.$touched && ticketForm.lastname.$invalid }">
-                        <label>Last Name</label>
-                        <input name="lastname" ng-model="lastname" required placeholder="Doe" type="text" class="form-control" />
-                        <div ng-messages="ticketForm.lastname.$error" ng-if="ticketForm.lastname.$touched" role="alert">
-                            <p ng-message="required">Last Name is required.</p>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{ 'has-error': ticketForm.password.$touched && ticketForm.password.$invalid }">
-                        <label>Password</label>
-                        <input name="password" ng-model="password" required multiple placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control" />
-                        <div ng-messages="ticketForm.password.$error" ng-if="ticketForm.password.$touched" role="alert">
-                            <p ng-message="required">Password is required.</p>
-                            <p ng-message="minlength">Password is too short.</p>
-                        </div>
-                    </div>
-                    <div class="form-group" ng-class="{ 'has-error': ticketForm.password2.$touched && ticketForm.password2.$invalid }">
-                        <input compare-to="password" name="password2" ng-model="password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control" />
-                        <div ng-messages="ticketForm.password2.$error" ng-if="ticketForm.password2.$touched" role="alert">
-                            <p ng-message="required">Password Confirmation is required.</p>
-                            <p ng-message="compareTo">Password Confirmation must match Password</p>
-                        </div>
-                    </div>
-                    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.phone.$touched && ticketForm.phone.$invalid }">
-                        <label>Phone</label>
-                        <input name="phone" ng-model="phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
-                        <div ng-messages="ticketForm.phone.$error" ng-if="ticketForm.phone.$touched" role="alert">
-                            <p ng-message="required">Phone is required.</p>
-                            <p ng-message="pattern">Must be a valid 10 digit phone number</p>
-                        </div>
-                    </div>
-                    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.mobile.$touched && ticketForm.mobile.$invalid }">
-                        <label>Cell: (Optional)</label>
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.mobile.$touched && ticketForm.mobile.$invalid }">
+                        <label>Alternate Phone:</label>
                         <input name="mobile" ng-model="mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
                         <div ng-messages="ticketForm.mobile.$error" ng-if="ticketForm.mobile.$touched" role="alert">
                             <p ng-message="pattern">Must be a valid 10 digit phone number</p>
                         </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.email.$touched && ticketForm.email.$invalid }">
+                        <label>Alternate Email</label>
+                        <input name="email" ng-model="email" placeholder="example@example.com" type="email" class="form-control">
+                        <div ng-messages="ticketForm.email.$error" ng-if="ticketForm.email.$touched" role="alert">
+                            <p ng-message="email">Enter a valid email</p>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error': ticketForm.desc.$touched && ticketForm.desc.$invalid }">
+                        <label>Description</label>
+                        <textarea name="desc" ng-model="desc" required placeholder="My problem is ..." type="text" class="form-control"></textarea>
+                        <div ng-messages="ticketForm.desc.$error" ng-if="ticketForm.desc.$touched" role="alert">
+                            <p ng-message="required">Enter a description for the ticket</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-wrapper" class="col-sm-6">
+                    <div ng-cloak>
+                        <md-content>
+                            <md-tabs md-dynamic-height md-border-bottom>
+                                <md-tab label="Kitchen">
+                                    <md-content class="md-padding">
+                                        <h4>Kitchen</h4>
+                                        <ul class="ticket-checkbox">
+                                            <li>
+                                                <md-checkbox ng-model="data.sink" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.dishwasher" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.stove" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.oven" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.fridge" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.garbagedisposalre" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                        </ul>
+                                        <ul class="ticket-list">
+                                            <li>Sink</li>
+                                            <li>Dishwasher</li>
+                                            <li>Stove</li>
+                                            <li>Oven</li>
+                                            <li>Refrigerator</li>
+                                            <li>Garbage Disposal</li>
+                                        </ul>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="Bathroom">
+                                    <md-content class="md-padding">
+                                        <h4>Bathroom</h4>
+                                        <ul class="ticket-checkbox">
+                                            <li>
+                                                <md-checkbox ng-model="data.sink" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.toilet" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.tub" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.shower" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.mirror" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.fan" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                        </ul>
+                                        <ul class="ticket-list">
+                                            <li>Sink</li>
+                                            <li>Toilet</li>
+                                            <li>Tub</li>
+                                            <li>Shower</li>
+                                            <li>Mirror</li>
+                                            <li>Fan</li>
+                                        </ul>
+                                    </md-content>
+                                </md-tab>
+                                <md-tab label="Bedroom">
+                                    <md-content class="md-padding">
+                                        <h4>Bedroom</h4>
+                                        <ul class="ticket-checkbox">
+                                            <li>
+                                                <md-checkbox ng-model="data.ceilingfan" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.outlet" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.closest" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.door" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.acvent" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                            <li>
+                                                <md-checkbox ng-model="data.carpet" aria-label="">
+                                                </md-checkbox>
+                                            </li>
+                                        </ul>
+                                        <ul class="ticket-list">
+                                            <li>Ceiling Fan</li>
+                                            <li>Outlet</li>
+                                            <li>Closest</li>
+                                            <li>Door</li>
+                                            <li>AC Vent</li>
+                                            <li>Carpet</li>
+                                        </ul>
+                                    </md-content>
+                                </md-tab>
+                            </md-tabs>
+                        </md-content>
                     </div>
                 </div>
                 <div style="clear:both;"></div>
             </div>
         </form>
     </div>
-
 </div>
