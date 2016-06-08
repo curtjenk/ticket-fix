@@ -7,15 +7,15 @@
             <i class="fa fa-check-square-o" aria-hidden="true"></i>
             User Profile</a>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3" ng-if="userType == 1 || userType == 4">
           <a ui-sref-active="active-step" ui-sref=".account">
             <i class="fa fa-building" aria-hidden="true"></i>
             Account Setup</a>
         </div>
-        <div class="col-sm-3">
-          <a ui-sref-active="active-step" ui-sref=".units">
+        <div class="col-sm-3" ng-if="userType == userTypeTenant">
+          <a ui-sref-active="active-step" ui-sref=".unit">
             <i class="fa fa-home" aria-hidden="true"></i>
-            Register Units</a>
+            Register Unit</a>
         </div>
 
       </div>

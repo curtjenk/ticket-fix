@@ -7,12 +7,12 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
 
     $scope.toggleSearch = function() {
         $scope.showSearchBar = !$scope.showSearchBar;
-    }
+    };
 
     $scope.arrowChange = function() {
         $scope.arrowDown = !$scope.arrowDown;
         $scope.arrowUp = !$scope.arrowUp;
-    }
+    };
 
     $scope.gotoElement = function(eID) {
         // set the location.hash to the id of
@@ -27,7 +27,7 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
     $scope.register = function(type) {
 
         $rootScope.userType = type;
-        $location.path('/register/profile');
+        $location.path('/register');
     };
 
 
