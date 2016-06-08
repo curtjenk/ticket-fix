@@ -27,11 +27,9 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
     $scope.register = function(type) {
 
         $rootScope.userType = type;
-        $location.path('/register');
+        $location.path('/register/profile');
     };
 
 
 
 });
-
-
