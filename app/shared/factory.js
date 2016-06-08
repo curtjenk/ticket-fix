@@ -17,10 +17,13 @@ ticketFixApp.factory('localStore', function($window) {
         set: function(key, value) {
             //use the email address as key
             $window.localStorage.setItem(key, JSON.stringify(value));
-            return this;
+            //return this;
         },
         get: function(key) {
             return JSON.parse($window.localStorage.getItem(key));
+        },
+        remove: function(key) {
+            $window.localStorage.removeItem(key);
         },
     };
 });
