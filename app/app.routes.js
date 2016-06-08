@@ -9,21 +9,21 @@ ticketFixApp.config(function($routeProvider) {
         templateUrl: function($routeParams) {
             // console.log("routing to register");
             // return 'app/components/registration/registrationView.html';
-            return 'app/components/registration/createAccountView.html';
+            return 'app/components/registration/reg-form.html';
         }
     });
     $routeProvider.when('/registertwo', {
         templateUrl: function($routeParams) {
             // console.log("routing to register");
             // return 'app/components/registration/registrationView.html';
-            return 'app/components/registration/createAccountViewStepTwo.html';
+            return 'app/components/registration/reg-form-companyinfo.html';
         }
     });
     $routeProvider.when('/registerthree', {
         templateUrl: function($routeParams) {
             // console.log("routing to register");
             // return 'app/components/registration/registrationView.html';
-            return 'app/components/registration/createAccountViewStepThree.html';
+            return 'app/components/registration/reg-form-stepthree.html';
         }
     });
     $routeProvider.when('/login', {
