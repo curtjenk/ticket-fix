@@ -107,9 +107,9 @@
                         <!--                       ***********  All users see when logged in *********** -->
                         <ul ng-show="loggedIn">
                             <li><a href="#/profile">User Profile</a></li>
-                            <li><a href="#/">Logout</a></li>
+                            <li><a href="#/" ng-click="loggedIn = false;">Logout</a></li>
                         </ul>
-                        <li class="dropdown">
+                        <li ng-if="!loggedIn" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(3)">Tenant</a></li>
