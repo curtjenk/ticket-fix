@@ -109,3 +109,48 @@ exports.getManagerInfo = function (email) {
 		.done();
 	return deferred.promise;
 };
+
+exports.getAllTenants = function () {
+	var deferred = Q.defer();
+	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " + 
+	  	" code, address1, address2, city, state, zip " +
+		 " from tenant " +
+		" left join user on user.id = tenant.user_id " +
+		" left join property on tenant.property_id = property.id ";
+	Q.fcall(db.con)
+		.then(function (con) {
+			con.query(queryString, function (err, rows) {
+				if (err) {
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
+				} else if (rows.length > 0) {
+					deferred.resolve({
+						status: 'found',
+						data: rows,
+						error: ''
+					});
+				} else {
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('getAllTenants error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
+		})
+		.done();
+	return deferred.promise;
+};
