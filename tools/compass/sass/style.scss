@@ -57,6 +57,17 @@ a:visited {
     color: #ffd700;
 }
 
+.inner {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-section {
+    border: 1px solid black;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
 p.form-header {
     padding-left: 8px;
 }
@@ -101,7 +112,15 @@ body {
     margin-bottom: 100px;
     &:hover {
         background-color: #007ecc;
+        color: white;
     }
+    .btn-cal {
+        margin-right: 5px;
+    }
+}
+
+.reg-btns {
+    width: 300px;
 }
 
 .wrapper {

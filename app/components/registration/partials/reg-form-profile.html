@@ -1,9 +1,9 @@
 <!-- All users profile information -->
-<div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+<div class="form-section user-section">
     <p class="form-header">
         Your Information
     </p>
-    <div class="inner" style="margin-left: 10px; margin-right:10px;">
+    <div class="inner">
         <div class="form-group" ng-class="{ 'has-error': registerForm.regEmail.$touched && registerForm.regEmail.$invalid }">
             <label>Email</label>
             <input name="email" ng-model="formData.email" required multiple placeholder="example@example.com" type="email" class="form-control">
@@ -60,21 +60,21 @@
     </div>
     <div style="clear:both;"></div>
     <div class="col-xs-6 col-xs-offset-3">
-        <div ng-if="userType == 4 || userType == 1">
-      <a ui-sref="register.unit" class="btn btn-block btn-info btn-reg">
+        <div class="reg-btns" ng-if="userType == 4 || userType == 1">
+<!--       <a ui-sref="register.unit" class="btn btn-block btn-info btn-reg">
         <span class="glyphicon glyphicon-circle-arrow-left"></span>
         Back
-      </a>
+      </a> -->
       <a ui-sref="register.unit" class="btn btn-block btn-info btn-reg">
         Next
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
         </div>
-        <div style="width: 300px" ng-if="userType == 3">
-      <a href="#/" class="btn btn-reg">
+        <div class="reg-btns" ng-if="userType == 3">
+<!--       <a href="#/" class="btn btn-reg">
         Cancel
         <span class="glyphicon glyphicon-remove-sign"></span>
-      </a>
+      </a> -->
       <a ui-sref="register.unit" class="btn btn-reg">
         Next
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
