@@ -1,8 +1,8 @@
-<div class="form-section account-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
-  <p style="font-size: 18px; max-width:317px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
-    Company and Contact Information
+<div class="form-section account-section">
+  <p class="form-header custom-header-two">
+    Contact Information
   </p>
-  <div class="inner" style="margin-left: 10px; margin-right:10px;">
+  <div class="inner">
     <div class="form-group" ng-class="{ 'has-error': registerForm.company.$touched && registerForm.company.$invalid }">
       <label>Company Name</label>
       <input name="company" required ng-model="formData.company" placeholder="Ticket Fix Inc" type="text" class="form-control"/>
@@ -62,15 +62,15 @@
     </div>
   </div>
   <div style="clear:both;"></div>
-  <div class="col-xs-6 col-xs-offset-3">
+  <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
     <div ng-if="userType == 1">
-      <a ui-sref="register.regions" class="btn btn-block btn-info">
-        Next Section
+      <a ui-sref="register.regions" class="btn btn-reg">
+        Next
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
     </div>
     <div ng-if="userType != 1">
-      <div class="button-holder text-center" style="margin-top: 20px;">
+      <div class="button-holder text-center">
         <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
         <a href="#/">
           <button type="button" class="btn btn-default">Cancel</button>

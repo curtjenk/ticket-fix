@@ -17,6 +17,11 @@ a:visited {
     .fa {
         padding-top: 13px;
     }
+    .glyphicon{
+        padding-top: 13px;
+        padding-right: 5px;
+    }
+
     .active-step {
         color: #ffd700;
     }
@@ -43,12 +48,13 @@ a:visited {
         .non-active {
             display: none;
         }
+
     }
 }
 
 .form-header {
     font-size: 16px;
-    max-width: 154px;
+    max-width: 180px;
     margin-top: -10px;
     margin-left: 10px;
     background: #0070b8;
@@ -62,14 +68,50 @@ a:visited {
     margin-right: 10px;
 }
 
+#register-wrapper {
+    min-height: 600px;
+}
+
 .form-section {
     border: 1px solid black;
     margin-top: 15px;
     border-radius: 5px;
 }
 
-p.form-header {
+p.form-header.custom-header {
+    padding-left: 20px;
+}
+
+p.form-header.custom-header-three {
+    padding-left: 10px;
+}
+
+p.form-header.custom-header-two {
     padding-left: 8px;
+}
+
+p.form-header.custom-header-four {
+    padding-left: 45px;
+}
+
+.region-inner {
+    border: 1px solid black;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.profile-row {
+    margin-top: 15px;
+}
+
+.address-line-two {
+    max-width: 200px;
+}
+
+.button-holder {
+    margin-top: 20px;
+    margin-bottom: 100px;
 }
 
 .navbar-inverse {

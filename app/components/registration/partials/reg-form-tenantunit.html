@@ -1,9 +1,9 @@
 <!-- All users profile information -->
-<div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
-  <p style="font-size: 18px; max-width:185px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
+<div class="form-section user-section">
+  <p class="form-header custom-header-three">
     Your Home Location
   </p>
-  <div class="inner" style="margin-left: 10px; margin-right:10px;">
+  <div class="inner">
     <div class="form-group" ng-class="{ 'has-error': registerForm.address1.$touched && registerForm.address1.$invalid }">
       <label>Address Line 1</label>
       <input name="address1" ng-model="formData.address1" required placeholder="111 East Main St" type="text" class="form-control">
@@ -13,7 +13,7 @@
     </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Address Line 2</label>
-      <input name="address2" style="max-width:200px;" ng-model="address2" placeholder="Apt 345" type="text" class="form-control">
+      <input name="address2" style="max-width:200px;" ng-model="address2" placeholder="Apt 345" type="text" class="form-control address-line-two">
     </div>
 
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.zip.$touched && registerForm.zip.$invalid }">
@@ -42,9 +42,9 @@
     </div>
   </div>
   <div style="clear:both;"></div>
-  <div class="col-xs-6 col-xs-offset-3">
+  <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
       <div class="form-group">
-          <div class="button-holder text-center" style="margin-top: 20px;">
+          <div class="button-holder text-center">
               <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
               <a href="#/">
                   <button type="button" class="btn btn-default">Cancel</button>
