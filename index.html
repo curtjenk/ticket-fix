@@ -59,10 +59,12 @@
                         <li><a href=""><span class="fa fa-clock-o"></span>Mon-Fri: 9am-6pm</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li ng-if="loggedIn"><a href="#/profile"><span class="fa fa-user"></span>Profile</a></li>
+                        <li ng-if="loggedIn"><a href="">Welcome, {{email}}</a></li>
+                        <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         <!-- <li><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
-                        <li ng-click="toggleSearch()"><a href="" title=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                        <li ng-if="!loggedIn" ng-click="toggleSearch()"><a href="" title=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
                     </ul>
                     <div class="search-bar" ng-show="showSearchBar">
                         <form class="navbar-form navbar-right" role="search">
@@ -97,18 +99,25 @@
                         <li><a ng-click="gotoElement('contact')">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <!--                       ***********  Tenants Only See *********** -->
-                        <ul ng-if="userType == 3 && loggedIn">
-                            <li><a href="#/ticket">Create Ticket</a></li>
-                            <li><a href="#/ticketmanage">Manage Ticket</a></li>
-                        </ul>
                         <!--                       ***********  Only shows when not logged in *********** -->
                         <li ng-if="!loggedIn"><a href="#/login">Login</a></li>
-                        <!--                       ***********  All users see when logged in *********** -->
-                        <ul ng-show="loggedIn">
-                            <li><a href="#/profile">User Profile</a></li>
-                            <li><a href="#/" ng-click="loggedIn = false;">Logout</a></li>
-                        </ul>
+                        <!--                       ***********  Tenants Only See *********** -->
+                        <li ng-if="loggedIn && userType == 3" class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tenant <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Create Ticket</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">Manage Ticket</a></li>
+                            </ul>
+                        </li>
+                        <li ng-if="loggedIn && userType == 1" class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Create Ticket</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">Manage Ticket</a></li>
+                            </ul>
+                        </li>
                         <li ng-if="!loggedIn" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -119,6 +128,8 @@
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(1)">Contractor</a></li>
                             </ul>
                         </li>
+                        <!--                       ***********  All users see when logged in *********** -->
+                        <li ng-if="loggedIn"><a href="#/" ng-click="loggedIn = false;">Logout</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
