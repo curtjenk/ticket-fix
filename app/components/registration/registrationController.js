@@ -19,8 +19,8 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 				$scope.formData.state = resp.state;
 			};
 			var error = function (err) {
-				$scope.dlvrCity = "";
-				$scope.dlvrState = "";
+				$scope.formData.city = "";
+				$scope.formData.state = "";
 			};
 			zipLookup.get($scope.formData.zip, ok, error);
 		}

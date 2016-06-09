@@ -97,13 +97,14 @@
                         <li><a ng-click="gotoElement('contact')">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-<!--                       ***********  Tenants Only See *********** -->
-                        <ul ng-if="userType == 3">
+                        <!--                       ***********  Tenants Only See *********** -->
+                        <ul ng-if="userType == 3 && loggedIn">
                             <li><a href="#/ticket">Create Ticket</a></li>
                             <li><a href="#/ticketmanage">Manage Ticket</a></li>
                         </ul>
-                        <li><a href="#/login">Login</a></li>
-<!--                       ***********  All users see when logged in *********** -->
+                        <!--                       ***********  Only shows when not logged in *********** -->
+                        <li ng-if="!loggedIn"><a href="#/login">Login</a></li>
+                        <!--                       ***********  All users see when logged in *********** -->
                         <ul ng-show="loggedIn">
                             <li><a href="#/profile">User Profile</a></li>
                             <li><a href="#/">Logout</a></li>
