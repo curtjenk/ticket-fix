@@ -9,6 +9,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	var saveProperty = baseUrl + "/saveproperty";
 	var saveTenant= baseUrl + "/savetenant";
 	var saveContractor = baseUrl + "/savecontractor";
+	var saveContRegions = baseUrl + "/savecontregions";
 
 	var makeTheCall = function(whereTo, data) {
 		//console.log(" -- api call using ---");
@@ -49,6 +50,9 @@ ticketFixApp.factory('apiAjax', function ($http) {
 		console.log("apiAjax contractor");
 		return makeTheCall(saveContractor,  {contractor: data});
 	};
-
+	apiAjax.savecontregions = function (data) {
+		console.log("apiAjax savecontregions");
+		return makeTheCall(saveContRegions,  {contregions: data});
+	};
 	return apiAjax;
 });

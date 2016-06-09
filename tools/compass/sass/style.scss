@@ -1,3 +1,10 @@
+a,
+a:hover,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+
 #steps-nav {
     background-color: #66c4ff;
     height: 40px;
@@ -13,6 +20,22 @@
     .active-step {
         color: #ffd700;
     }
+    a {
+        color: white;
+        text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        &:hover {
+            text-decoration: none;
+        }
+        .active-step {
+            color: #ffd700;
+        }
+    }
+    a,
+    a:hover,
+    a:active,
+    a:visited {
+        text-decoration: none;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -21,6 +44,21 @@
             display: none;
         }
     }
+}
+
+.form-header {
+    font-size: 16px;
+    max-width: 154px;
+    margin-top: -10px;
+    margin-left: 10px;
+    background: #0070b8;
+    padding: 5px 0px;
+    border-radius: 15px;
+    color: #ffd700;
+}
+
+p.form-header {
+    padding-left: 8px;
 }
 
 .navbar-inverse {
@@ -55,14 +93,29 @@ body {
 }
 
 .btn-reg {
-    width: 130px;
+    width: 100px;
     margin-top: 10px;
     color: #ffd700;
-    background-color: #007ecc;
+    background-color: #0070b8;
     border-color: #006eb3;
+    margin-bottom: 100px;
     &:hover {
-        background-color: #008ee6;
+        background-color: #007ecc;
     }
+}
+
+.wrapper {
+    background-color: #DDD;
+}
+
+.account-section,
+.user-section {
+    background-color: white;
+}
+
+html {
+    height: 100vh;
+    background-color: #DDD;
 }
 
 .navbar-inverse .navbar-nav > li > a {
@@ -107,7 +160,8 @@ body {
     background-color: transparent;
 }
 
-body, html {
+body,
+html {
     /* -webkit-tap-highlight-color: transparent; */
     -webkit-touch-callout: none;
     /* min-height: 100%; */
@@ -494,7 +548,8 @@ md-tabs .md-tab {
     height: 500px;
 }
 
-md-checkbox.md-default-theme.md-checked .md-ink-ripple, md-checkbox.md-checked .md-ink-ripple {
+md-checkbox.md-default-theme.md-checked .md-ink-ripple,
+md-checkbox.md-checked .md-ink-ripple {
     color: #ffd700;
 }
 
@@ -511,7 +566,8 @@ md-checkbox.md-default-theme.md-checked .md-ink-ripple, md-checkbox.md-checked .
     float: left;
 }
 
-md-checkbox.md-default-theme.md-checked ._md-icon, md-checkbox.md-checked ._md-icon {
+md-checkbox.md-default-theme.md-checked ._md-icon,
+md-checkbox.md-checked ._md-icon {
     background-color: #007ecc;
 }
 
