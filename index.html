@@ -102,20 +102,42 @@
                         <!--                       ***********  Only shows when not logged in *********** -->
                         <li ng-if="!loggedIn"><a href="#/login">Login</a></li>
                         <!--                       ***********  Tenants Only See *********** -->
+                        <li ng-if="loggedIn && userType == 1" class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Accept Ticket</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">Jobs in Service Region</a></li>
+                            </ul>
+                        </li>
+                        <li ng-if="loggedIn && userType == 2" class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">View/Update Tickets</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">View Managers</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">View Contractors</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="">View Tenants</a></li>
+                            </ul>
+                        </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tenant <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Create Ticket</a></li>
+                                <li><a href="#/ticket">Create Ticket</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="">Manage Ticket</a></li>
                             </ul>
                         </li>
-                        <li ng-if="loggedIn && userType == 1" class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
+                        <li ng-if="loggedIn && userType == 4" class="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Create Ticket</a></li>
+                                <li><a href="#/ticket">Create Ticket</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="">Manage Ticket</a></li>
+                                <li><a href="">Modify/View Ticket</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href=""><span class="fa fa-home"></span> Add / Remove Properties</a></li>
                             </ul>
                         </li>
                         <li ng-if="!loggedIn" class="dropdown">
