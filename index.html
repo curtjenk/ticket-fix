@@ -115,11 +115,11 @@
                             <ul class="dropdown-menu">
                                 <li><a href="">View/Update Tickets</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="">View Managers</a></li>
+                                <li><a href="#/viewmanagers">View Managers</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="">View Contractors</a></li>
+                                <li><a href="#/viewcontractors">View Contractors</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="">View Tenants</a></li>
+                                <li><a href="#/viewtenants">View Tenants</a></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
@@ -151,7 +151,7 @@
                             </ul>
                         </li>
                         <!--                       ***********  All users see when logged in *********** -->
-                        <li ng-if="loggedIn"><a href="#/" ng-click="loggedIn = false;">Logout</a></li>
+                        <li ng-if="loggedIn"><a href="" ng-click="logout()">Logout</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

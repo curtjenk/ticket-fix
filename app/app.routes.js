@@ -4,16 +4,21 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
 
-        // route to show our basic form (/form)
+    // route to show our basic form (/form)
         .state('home', {
             url: '/',
             templateUrl: 'app/components/home/homeView.html'
-            // controller: 'registrationController'
+                // controller: 'registrationController'
         })
         .state('login', {
             url: '/login',
             templateUrl: 'app/components/login/loginView.html'
-            // controller: 'registrationController'
+                // controller: 'registrationController'
+        })
+        .state('tenant', {
+            url: '/viewtenants',
+            templateUrl: 'app/components/admin/view-tenant.html',
+            controller: 'tenantController'
         })
         .state('register', {
             url: '/register',
@@ -57,25 +62,25 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/approval',
             templateUrl: 'app/components/ticket/partials/ticket-form-approval.html'
         });
-        // nested states
-        // each of these sections will have their own view
-        // url will be nested (/form/profile)
-        // .state('form.profile', {
-        //     url: '/profile',
-        //     templateUrl: 'form-profile.html'
-        // })
+    // nested states
+    // each of these sections will have their own view
+    // url will be nested (/form/profile)
+    // .state('form.profile', {
+    //     url: '/profile',
+    //     templateUrl: 'form-profile.html'
+    // })
 
-        // url will be /form/interests
-        // .state('form.interests', {
-        //     url: '/interests',
-        //     templateUrl: 'form-interests.html'
-        // })
+    // url will be /form/interests
+    // .state('form.interests', {
+    //     url: '/interests',
+    //     templateUrl: 'form-interests.html'
+    // })
 
-        // url will be /form/payment
-        // .state('form.payment', {
-        //     url: '/payment',
-        //     templateUrl: 'form-payment.html'
-        // });
+    // url will be /form/payment
+    // .state('form.payment', {
+    //     url: '/payment',
+    //     templateUrl: 'form-payment.html'
+    // });
 
     // catch all route
     // send users to the form page

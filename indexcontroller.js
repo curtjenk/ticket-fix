@@ -43,6 +43,12 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
        localStore.remove($scope.email);
    });
 
+   $scope.logout = function() {
+      $scope.loggedIn = false;
+      localStore.remove($scope.email);
+      $location.path('/');
+   }
+
 
 
 });
