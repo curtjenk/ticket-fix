@@ -4,6 +4,7 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
     $scope.arrowUp = false;
     $scope.arrowDown = true;
     $scope.showLeftNavBtns = true;
+    $scope.loggedIn = false;
 
     $scope.toggleSearch = function() {
         $scope.showSearchBar = !$scope.showSearchBar;
@@ -32,6 +33,7 @@ ticketFixApp.controller('indexController', function($rootScope, $scope, $http, $
 
     $scope.$on("userLoggedIn", function(event, args) {
        $scope.loggedIn = true;
+       $scope.userType = args.userType;
        $scope.email = args.email;
    });
 

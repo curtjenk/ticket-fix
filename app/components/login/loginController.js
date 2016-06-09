@@ -21,7 +21,8 @@ $scope.errorMessage = '';
                     localStore.set(succ.data.info.email, {userType: userType, token: token});
 
 					$scope.$emit("userLoggedIn", {
-				       email: email
+				       email: email,
+					   userType: userType
 				     });
 					 $location.path('/');
 

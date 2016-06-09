@@ -10,6 +10,7 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	var saveTenant= baseUrl + "/savetenant";
 	var saveContractor = baseUrl + "/savecontractor";
 	var saveContRegions = baseUrl + "/savecontregions";
+	var gettenantinfo = baseUrl + "/api/gettenantinfo";
 
 	var makeTheCall = function(whereTo, data) {
 		//console.log(" -- api call using ---");
@@ -20,6 +21,17 @@ ticketFixApp.factory('apiAjax', function ($http) {
 			data: data,
 			headers: {'Content-Type': 'application/json'}
 		});
+	};
+	var makeTheGetCall = function(completeQueryString) {
+		return $http({
+			method: "get",
+			url: encodeURI(completeQueryString)
+		});
+	};
+	apiAjax.gettenantinfo = function (email) {
+		var completeQueryString = gettenantinfo + '/?email=' + email;
+		console.log('apiAjax gettenantinfo');
+		return makeTheGetCall(completeQueryString);
 	};
 
 	apiAjax.login = function (email, password) {

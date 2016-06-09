@@ -244,11 +244,11 @@ router.post('/savetenant', function (req, res) {
 router.get('/api/tenantinfo', function (req, res) {
 	//req.query.id  should contain the user id
 	//query User, Tenant & Property and return all info except password
-	var userId = req.query.userid;
+	var email = req.query.email;
 	var apiRes = new ApiResponse({
 		api: 'api/tenantinfo'
 	});
-	query.getTenantInfo(userId).then(function (succ){
+	query.getTenantInfo(email).then(function (succ){
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;

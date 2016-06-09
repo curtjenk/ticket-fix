@@ -8,21 +8,19 @@ from user
 left join tenant on user.id = tenant.user_id
 left join property on tenant.property_id = property.id
 where user.id = 95
-
-
 */
-//Given a user's id query User, Tenant & Property and return all info except password
-exports.getTenantInfo = function (id) {
+//Given a user's email query User, Tenant & Property and return all info except password
+exports.getTenantInfo = function (email) {
 	var deferred = Q.defer();
 	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
 	  	" code, address1, address2, city, state, zip " +
 		" from user " +
 		" left join tenant on user.id = tenant.user_id " +
 		" left join property on tenant.property_id = property.id " +
-		" where user.id = ?";
+		" where user.email = ?";
 	Q.fcall(db.con)
 		.then(function (con) {
-			con.query(queryString, [id], function (err, rows) {
+			con.query(queryString, [email], function (err, rows) {
 				if (err) {
 					deferred.reject({status: 'error', data: '', error: err});
 				} else if (rows.length > 0) {
