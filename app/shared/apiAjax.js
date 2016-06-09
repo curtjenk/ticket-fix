@@ -1,6 +1,6 @@
 var baseUrl = 'http://localhost:3000';
 
-ticketFixApp.factory('apiAjax', function ($http) {
+ticketFixApp.factory('apiAjax', function ($http, $q, localStore) {
 	var apiAjax = {};
 	var login = baseUrl + "/login";
 	var register = baseUrl + "/register";
@@ -10,8 +10,16 @@ ticketFixApp.factory('apiAjax', function ($http) {
 	var saveTenant= baseUrl + "/savetenant";
 	var saveContractor = baseUrl + "/savecontractor";
 	var saveContRegions = baseUrl + "/savecontregions";
-	var gettenantinfo = baseUrl + "/api/gettenantinfo";
+	var tenantinfo = baseUrl + "/api/tenantinfo";
 
+	var ApiResponse = function (res) {
+		res = res || {};
+		this.api = res.api;
+		this.success = res.success;
+		this.message = res.message;
+		this.token = res.token;
+		this.info = res.info;
+	};
 	var makeTheCall = function(whereTo, data) {
 		//console.log(" -- api call using ---");
 		//console.log(data);
@@ -22,16 +30,29 @@ ticketFixApp.factory('apiAjax', function ($http) {
 			headers: {'Content-Type': 'application/json'}
 		});
 	};
-	var makeTheGetCall = function(completeQueryString) {
+	var makeTheGetApiCall = function(api, email, whereTo, queryParms) {
+		var token = localStore.get(email).token;
+		if (!token) {
+			apiRes = new ApiResponse();
+			apiRes.api = api;
+			apiRes.success = false;
+			apiRes.message = "This api requires a token";
+			return $q.reject(apiRes);
+		}
+		if (queryParms && queryParms.length === 0) {
+			qa = '/?token=' + token;
+		} else {
+			qa = '/?' + queryParms + '&token=' + token;
+		}
 		return $http({
 			method: "get",
-			url: encodeURI(completeQueryString)
+			url: encodeURI(whereTo + qa)
 		});
 	};
 	apiAjax.gettenantinfo = function (email) {
-		var completeQueryString = gettenantinfo + '/?email=' + email;
+		var queryParms = 'email=' + email;
 		console.log('apiAjax gettenantinfo');
-		return makeTheGetCall(completeQueryString);
+		return makeTheGetApiCall('gettenantinfo', email, tenantinfo, queryParms);
 	};
 
 	apiAjax.login = function (email, password) {

@@ -1,0 +1,153 @@
+<form id="ticketForm" ng-submit="ticketFunc()" name="ticketForm" role="form" novalidate>
+  <div class="form-section ticket-section">
+    <p class="form-header">
+      Ticket Info
+    </p>
+    <div class="col-sm-6">
+      <div class="user-info">
+        <label>Date</label>
+        <br>
+        <div style="padding-left: 0px;" class="col-sm-12">{{formData.date}}</div>
+        <label style="padding-left: 0px;" class="col-sm-6">Firstname:</label>
+        <label class="col-sm-6">Lastname:</label>
+        <br>
+        <div class="col-sm-6" style="padding-left: 0px;">{{formData.firstname}}</div>
+        <div class="col-sm-6">{{formData.lastname}}</div>
+        <label style="padding-left: 0px;" class="col-sm-6">Phone:</label>
+        <label class="col-sm-6">Email:</label>
+        <br>
+        <div class="col-sm-6" style="padding-left: 0px;">{{formData.phone}}</div>
+        <div class="col-sm-6">{{formData.email}}</div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.phone.$touched && ticketForm.formData.phone.$invalid }">
+        <label>Alternate Phone:</label>
+        <input name="phone" ng-model="formData.phone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+        <div ng-messages="ticketForm.formData.phone.$error" ng-if="ticketForm.formData.phone.$touched" role="alert">
+          <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.email.$touched && ticketForm.formData.email.$invalid }">
+        <label>Alternate Email</label>
+        <input name="email" ng-model="formData.email" placeholder="example@example.com" type="email" class="form-control">
+        <div ng-messages="ticketForm.formData.email.$error" ng-if="ticketForm.formData.email.$touched" role="alert">
+          <p ng-message="email">Enter a valid email</p>
+        </div>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.desc.$touched && ticketForm.formData.desc.$invalid }">
+        <label>Description</label>
+        <textarea name="desc" ng-model="formData.desc" required placeholder="My problem is ..." type="text" class="form-control"></textarea>
+        <div ng-messages="ticketForm.formData.desc.$error" ng-if="ticketForm.formData.desc.$touched" role="alert">
+          <p ng-message="required">Enter a description for the ticket</p>
+        </div>
+      </div>
+    </div>
+    <div id="tab-wrapper" class="col-sm-6">
+      <div ng-cloak>
+        <md-content>
+          <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Kitchen">
+              <md-content class="md-padding">
+                <h4>Kitchen</h4>
+                <ul class="ticket-checkbox">
+                  <li>
+                    <md-checkbox ng-model="formData.sink" aria-label="formData.sink"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.stove" aria-label="formData.stove"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.oven" aria-label="formData.oven"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.fridge" aria-label="formData.fridge"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
+                  </li>
+                </ul>
+                <ul class="ticket-list">
+                  <li>Sink</li>
+                  <li>Dishwasher</li>
+                  <li>Stove</li>
+                  <li>Oven</li>
+                  <li>Refrigerator</li>
+                  <li>Garbage Disposal</li>
+                </ul>
+              </md-content>
+            </md-tab>
+            <md-tab label="Bathroom">
+              <md-content class="md-padding">
+                <h4>Bathroom</h4>
+                <ul class="ticket-checkbox">
+                  <li>
+                    <md-checkbox ng-model="formData.bathsink" aria-label="formData.bathsink"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.toilet" aria-label="formData.toilet"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.tub" aria-label="formData.tub"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.shower" aria-label="formData.shower"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.mirror" aria-label="formData.mirror"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.fan" aria-label="formData.fan"></md-checkbox>
+                  </li>
+                </ul>
+                <ul class="ticket-list">
+                  <li>Sink</li>
+                  <li>Toilet</li>
+                  <li>Tub</li>
+                  <li>Shower</li>
+                  <li>Mirror</li>
+                  <li>Fan</li>
+                </ul>
+              </md-content>
+            </md-tab>
+            <md-tab label="Bedroom">
+              <md-content class="md-padding">
+                <h4>Bedroom</h4>
+                <ul class="ticket-checkbox">
+                  <li>
+                    <md-checkbox ng-model="formData.ceilingfan" aria-label="formData.ceilingfan"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.outlet" aria-label="formData.outlet"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.closet" aria-label="formData.closet"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.door" aria-label="formData.door"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.acvent" aria-label="formData.acvent"></md-checkbox>
+                  </li>
+                  <li>
+                    <md-checkbox ng-model="formData.carpet" aria-label="formData.carpet"></md-checkbox>
+                  </li>
+                </ul>
+                <ul class="ticket-list">
+                  <li>Ceiling Fan</li>
+                  <li>Outlet</li>
+                  <li>Closet</li>
+                  <li>Door</li>
+                  <li>AC Vent</li>
+                  <li>Carpet</li>
+                </ul>
+              </md-content>
+            </md-tab>
+          </md-tabs>
+        </md-content>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+  </div>
+</form>

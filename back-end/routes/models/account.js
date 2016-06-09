@@ -13,6 +13,10 @@ var Account = function (data) {
 	this.contact_name = data.contact_name;
 	this.contact_email = data.contact_email;
 	this.contact_phone = data.contact_phone;
+	this.account_address = data.account_address;
+	this.account_city = data.account_city;
+	this.account_state = data.account_state;
+	this.account_zip = data.account_zip;
 	if (data.contracted_num_units) {
 		this.contracted_num_units = data.contracted_num_units;
 	}

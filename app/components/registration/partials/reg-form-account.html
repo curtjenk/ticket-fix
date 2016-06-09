@@ -6,56 +6,56 @@
     <div class="form-group" ng-class="{ 'has-error': registerForm.company.$touched && registerForm.company.$invalid }">
       <label>Company Name</label>
       <input name="company" required ng-model="formData.company" placeholder="Ticket Fix Inc" type="text" class="form-control"/>
-      <div ng-messages="registerForm.company.$error" ng-if="registerForm.company.$touched" role="alert">
+      <div ng-messages="registerForm.formData.company.$error" ng-if="registerForm.formData.company.$touched" role="alert">
         <p ng-message="required">Company Name is required.</p>
       </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': registerForm.contactName.$touched && registerForm.contactName.$invalid }">
+    <div class="form-group" ng-class="{ 'has-error': registerForm.formData.contactName.$touched && registerForm.formData.contactName.$invalid }">
       <label>Contact Name</label>
-      <input name="contactName" required ng-model="formData.contactName" placeholder="John Doe" type="text" class="form-control"/>
-      <div ng-messages="registerForm.contactName.$error" ng-if="registerForm.contactName.$touched" role="alert">
+      <input name="contactName" required ng-model="formData.formData.contactName" placeholder="John Doe" type="text" class="form-control"/>
+      <div ng-messages="registerForm.formData.contactName.$error" ng-if="registerForm.formData.contactName.$touched" role="alert">
         <p ng-message="required">Contact Name is required.</p>
       </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': registerForm.acctaddress.$touched && registerForm.acctaddress.$invalid }">
+    <div class="form-group" ng-class="{ 'has-error': registerForm.formData.acctAddress.$touched && registerForm.formData.acctAddress.$invalid }">
       <label>Address</label>
-      <input name="acctaddress" required ng-model="formData.acctaddress" placeholder="111 Ticketland Rd" type="text" class="form-control"/>
-      <div ng-messages="registerForm.acctaddress.$error" ng-if="registerForm.acctaddress.$touched" role="alert">
+      <input name="acctAddress" required ng-model="formData.acctAddress" placeholder="111 Ticketland Rd" type="text" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctAddress.$error" ng-if="registerForm.formData.acctAddress.$touched" role="alert">
         <p ng-message="required">Address is required.</p>
       </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': registerForm.acctcity.$touched && registerForm.acctcity.$invalid }">
+    <div class="form-group" ng-class="{ 'has-error': registerForm.formData.acctCity.$touched && registerForm.formData.acctCity.$invalid }">
       <label>City</label>
-      <input name="acctcity" required ng-model="formData.acctcity" placeholder="Atlanta" type="text" class="form-control"/>
-      <div ng-messages="registerForm.acctcity.$error" ng-if="registerForm.acctcity.$touched" role="alert">
+      <input name="acctCity" required ng-model="formData.acctCity" placeholder="Atlanta" type="text" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctCity.$error" ng-if="registerForm.formData.acctCity.$touched" role="alert">
         <p ng-message="required">City is required.</p>
       </div>
     </div>
-    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.acctzip.$touched && registerForm.acctzip.$invalid }">
+    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.formData.acctZip.$touched && registerForm.formData.acctZip.$invalid }">
       <label>Zip</label>
-      <input name="acctzip" required ng-model="formData.acctzip" placeholder="30114" type="text" class="form-control"/>
-      <div ng-messages="registerForm.acctzip.$error" ng-if="registerForm.acctzip.$touched" role="alert">
+      <input name="acctZip" required ng-model="formData.acctZip" placeholder="30114" type="text" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctZip.$error" ng-if="registerForm.formData.acctZip.$touched" role="alert">
         <p ng-message="required">Zip is required.</p>
       </div>
     </div>
-    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.acctstate.$touched && registerForm.acctstate.$invalid }">
+    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.formData.acctState.$touched && registerForm.formData.acctState.$invalid }">
       <label>State</label>
-      <input name="acctstate" required ng-model="formData.acctstate" placeholder="Georgia" type="text" class="form-control"/>
-      <div ng-messages="registerForm.acctstate.$error" ng-if="registerForm.acctstate.$touched" role="alert">
+      <input name="acctState" required ng-model="formData.acctState" placeholder="Georgia" type="text" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctState.$error" ng-if="registerForm.formData.acctState.$touched" role="alert">
         <p ng-message="required">State is required.</p>
       </div>
     </div>
-    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.acctemail.$touched && registerForm.acctemail.$invalid }">
+    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.formData.acctEmail.$touched && registerForm.formData.acctEmail.$invalid }">
       <label>Email</label>
-      <input name="acctemail" required ng-model="formData.acctemail" placeholder="Doe@ticketfix.com" type="email" class="form-control"/>
-      <div ng-messages="registerForm.acctemail.$error" ng-if="registerForm.acctemail.$touched" role="alert">
+      <input name="acctEmail" required ng-model="formData.acctEmail" placeholder="Doe@ticketfix.com" type="email" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctEmail.$error" ng-if="registerForm.formData.acctEmail.$touched" role="alert">
         <p ng-message="required">Email is required.</p>
       </div>
     </div>
-    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.acctphone.$touched && registerForm.acctphone.$invalid }">
+    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.acctPhone.$touched && registerForm.acctPhone.$invalid }">
       <label>Phone</label>
-      <input name="acctphone" required ng-model="formData.acctphone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
-      <div ng-messages="registerForm.acctphone.$error" ng-if="registerForm.acctphone.$touched" role="alert">
+      <input name="acctPhone" required ng-model="formData.acctPhone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+      <div ng-messages="registerForm.formData.acctPhone.$error" ng-if="registerForm.formData.acctPhone.$touched" role="alert">
         <p ng-message="required">Phone is required.</p>
         <p ng-message="pattern">Must be a valid 10 digit phone number</p>
       </div>

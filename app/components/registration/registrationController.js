@@ -92,14 +92,14 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 		};
 
 		var account = {
-			account_name: $scope.formData.acctname,
-			contact_name: $scope.formData.contactname,
-			contact_email: $scope.formData.acctemail,
-			contact_phone: $scope.formData.acctphone,
-			account_address: $scope.formData.acctaddress,
-			account_city: $scope.formData.acctcity,
-			account_state: $scope.formData.acctstate,
-			account_zip: $scope.formData.acctzip
+			account_name: $scope.formData.company,
+			contact_name: $scope.formData.contactName,
+			contact_email: $scope.formData.acctEmail,
+			contact_phone: $scope.formData.acctPhone,
+			account_address: $scope.formData.acctAddress,
+			account_city: $scope.formData.acctCity,
+			account_state: $scope.formData.acctState,
+			account_zip: $scope.formData.acctZip
 		};
 
 		var property = {
