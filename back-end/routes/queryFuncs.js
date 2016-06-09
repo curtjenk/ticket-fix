@@ -13,7 +13,7 @@ where user.id = 95
 exports.getTenantInfo = function (email) {
 	var deferred = Q.defer();
 	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
-	  	" code, address1, address2, city, state, zip " +
+		" code, address1, address2, city, state, zip " +
 		" from user " +
 		" left join tenant on user.id = tenant.user_id " +
 		" left join property on tenant.property_id = property.id " +
@@ -22,11 +22,23 @@ exports.getTenantInfo = function (email) {
 		.then(function (con) {
 			con.query(queryString, [email], function (err, rows) {
 				if (err) {
-					deferred.reject({status: 'error', data: '', error: err});
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
 				} else if (rows.length > 0) {
-						deferred.resolve({status: 'found', data: rows[0], error: ''});
+					deferred.resolve({
+						status: 'found',
+						data: rows[0],
+						error: ''
+					});
 				} else {
-					deferred.resolve({status: 'notfound', data: '', error: ''});
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
 				}
 			});
 		})
@@ -34,7 +46,65 @@ exports.getTenantInfo = function (email) {
 			console.log('getTenantInfo error occurred');
 			console.log(error);
 			console.log(' ------------------------ ');
-			deferrred.reject({status: 'criticalerror', data: '', error: error});
+			deferrred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
+		})
+		.done();
+	return deferred.promise;
+};
+
+/*
+select email, first_name, last_name, home_phone, mobile_phone,
+  account_address, account_city, account_state, account_zip
+from user
+left join manager on user.id = manager.user_id
+left join account on manager.account_id = account.id
+where user.email = 'curtis-manager2@me.com'
+*/
+exports.getManagerInfo = function (email) {
+	var deferred = Q.defer();
+	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
+		" account_address, account_city, account_state, account_zip " +
+		" from user " +
+		" left join manager on user.id = manager.user_id " +
+		" left join account on manager.account_id = account.id " +
+		" where user.email = 'curtis-manager2@me.com' ";
+	Q.fcall(db.con)
+		.then(function (con) {
+			con.query(queryString, [email], function (err, rows) {
+				if (err) {
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
+				} else if (rows.length > 0) {
+					deferred.resolve({
+						status: 'found',
+						data: rows[0],
+						error: ''
+					});
+				} else {
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('getManagerInfo error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
 		})
 		.done();
 	return deferred.promise;

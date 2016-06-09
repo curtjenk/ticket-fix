@@ -36,7 +36,19 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 
 		});
 	} else if (localData.userType == 4) { //manager
-        
+        apiAjax.getmanagerinfo(user.email).then(function (res) {
+            console.log(res);
+
+			if (res.data.success === true) {
+				$scope.formData.firstname = res.data.info.first_name;
+				$scope.formData.lastname = res.data.info.last_name;
+				$scope.formData.email = res.data.info.email;
+				$scope.formData.phone = res.data.info.phone;
+
+			}
+		}, function (err) {
+
+		});
     }
 
 
