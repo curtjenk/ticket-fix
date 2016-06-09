@@ -1,4 +1,4 @@
-ticketFixApp.controller('registrationController', function ($rootScope, $scope, $http, $q, $location, apiAjax) {
+ticketFixApp.controller('registrationController', function ($rootScope, $scope, $http, $q, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
 
 	var apiUrl = "http://localhost:3000";
@@ -10,6 +10,67 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	var userTypeArray = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 
 	$scope.account_type = userTypeArray[$rootScope.userType];
+
+	$scope.zipLookupTenant = function () {
+		console.log($scope.formData.zip);
+		if ($scope.formData.zip && $scope.formData.zip.length === 5 && is_int($scope.formData.zip.length)) {
+			var ok = function (resp) {
+				$scope.formData.city = resp.city;
+				$scope.formData.state = resp.state;
+			};
+			var error = function (err) {
+				$scope.dlvrCity = "";
+				$scope.dlvrState = "";
+			};
+			zipLookup.get($scope.formData.zip, ok, error);
+		}
+	};
+
+	$scope.zipLookupRegion1 = function () {
+		var zip = $scope.formData.contZip1;
+		console.log(zip);
+		if (zip && zip.length === 5 && is_int(zip.length)) {
+			var ok = function (resp) {
+				$scope.formData.contCity1 = resp.city;
+				$scope.formData.contState1 = resp.state;
+			};
+			var error = function (err) {
+				$scope.formData.contCity1  = "";
+				$scope.formData.contState1  = "";
+			};
+			zipLookup.get(zip, ok, error);
+		}
+	};
+	$scope.zipLookupRegion2 = function () {
+		var zip = $scope.formData.contZip2;
+		console.log(zip);
+		if (zip && zip.length === 5 && is_int(zip.length)) {
+			var ok = function (resp) {
+				$scope.formData.contCity2 = resp.city;
+				$scope.formData.contState2 = resp.state;
+			};
+			var error = function (err) {
+				$scope.formData.contCity2  = "";
+				$scope.formData.contState2  = "";
+			};
+			zipLookup.get(zip, ok, error);
+		}
+	};
+	$scope.zipLookupRegion3 = function () {
+		var zip = $scope.formData.contZip3;
+		console.log(zip);
+		if (zip && zip.length === 5 && is_int(zip.length)) {
+			var ok = function (resp) {
+				$scope.formData.contCity3 = resp.city;
+				$scope.formData.contState3 = resp.state;
+			};
+			var error = function (err) {
+				$scope.formData.contCity3  = "";
+				$scope.formData.contState3  = "";
+			};
+			zipLookup.get(zip, ok, error);
+		}
+	};
 
 	$scope.registerFunc = function () {
 		// var url = apiUrl + "/register";
@@ -50,12 +111,9 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			isManaged: 0
 		};
 
-		var regions = {
-
-		}
-		var unique_user_id;
 		apiAjax.register(user).then(
 			function (res) {
+				// console.log(res);
 				if (res.data.success !== true) {
 					$scope.errorMessage = "User Profile Already Exists";
 				} else {
@@ -64,7 +122,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 					} else if (userType == userTypeManager) {
 						runManagerFlow(account, res.data);
 					} else {
-						runContractorFlow(account, res.data, regions);
+						runContractorFlow(account, res.data);
 					}
 				}
 			},
@@ -73,53 +131,25 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			});
 
 
-		// saveUserProfile(user)
-		// 	.then(function (res) {
-		// 		if (res.data.success !== true) {
-		// 			throw res.data;
-		// 		} else {
-		// 			unique_user_id = res.data.info.id;
-		// 			return saveAccount(userType, account);
-		// 		}
-		// 	}).then(function (res) {
-		// 		console.log('return from saveAccount');
-		// 		console.log(res);
-		//
-		// 		if (res.acctId > 0) {
-		// 			var personObject = getTypeData(userType, unique_user_id, res.acctId);
-		// 			if (userType == userTypeManager) {
-		// 				return saveManager(personObject);
-		// 			} else {
-		// 				return saveContractor(personObject);
-		// 			}
-		// 		} else {
-		// 			return new Promise(function (resolve, reject) {
-		// 				resolve({
-		// 					success: false,
-		// 					message: 'no manager or contractor to save'
-		// 				});
-		// 			});
-		// 		}
-		// 	}).then(function (res) {
-		// 		return saveProperty(userType, property);
-		// 	}).then(function (res) {
-		// 		// console.log('saveing the tenant...last step');
-		// 		// console.log(res);
-		// 		return saveTenant(unique_user_id, res.data);
-		// 	}).then(function (res) {
-		// 		console.log(res);
-		// 		if (res.data.success === true) {
-		// 			$location.path('/login');
-		// 		}
-		// 	}).catch(function (error) {
-		// 		console.log(error);
-		// 	});
 	};
 
 	function runTenantFlow(property, data) {
 		apiAjax.saveproperty(property)
 			.then(function (res) {
-				return apiAjax.savetenant(data.info.id, res.info.property_id);
+				console.log(res);
+				//apiAjax.savetenant = function (data) {
+				return apiAjax.savetenant({
+					user_id: data.info.id,
+					property_id: res.data.info.id
+				});
+			})
+			.then(function (res) {
+				if (res.data.success === true) {
+					$location.path('/login');
+				} else {
+					console.log(res);
+					$scope.errorMessage = "Unable to save tenant information.";
+				}
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -129,8 +159,16 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	function runManagerFlow(account, data) {
 		apiAjax.saveaccount(account)
 			.then(function (res) {
-				var personObject = getTypeData(userTypeManager, data.info.id, res.info.id);
+				var personObject = getTypeData(userTypeManager, data.info.id, res.data.info.id);
 				return apiAjax.savemanager(personObject);
+			})
+			.then(function (res) {
+				if (res.data.success === true) {
+					$location.path('/login');
+				} else {
+					console.log(res);
+					$scope.errorMessage = "Unable to save account information.";
+				}
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -140,114 +178,22 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	function runContractorFlow(account, data) {
 		apiAjax.saveaccount(account)
 			.then(function (res) {
-				var personObject = getTypeData(userTypeContractor, data.info.id, res.info.id);
+				var personObject = getTypeData(userTypeContractor, data.info.id, res.data.info.id);
 				return apiAjax.savecontractor(personObject);
+			})
+			.then(function (res) {
+				if (res.data.success === true) {
+					$location.path('/login');
+				} else {
+					console.log(res);
+					$scope.errorMessage = "Unable to save contractor information.";
+				}
 			})
 			.catch(function (error) {
 				console.log(error);
 			});
 	}
 
-
-
-
-	//
-	// function saveManager(personObject) {
-	// 	var deferred = $q.defer();
-	// 	if (userType === userTypeManager) {
-	// 		promise = apiAjax.savemanager(personObject).then(
-	// 			function (succ) {
-	// 				console.log(succ);
-	// 				deferred.resolve({
-	// 					success: true,
-	// 					data: succ.data.info
-	// 				});
-	// 			},
-	// 			function (err) {
-	// 				console.log(err);
-	// 				deferred.reject({
-	// 					success: false,
-	// 					data: {
-	// 						msg: err
-	// 					}
-	// 				});
-	// 			});
-	// 	} else {
-	// 		promise = new Promise(function (resolve, reject) {
-	// 			resolve({
-	// 				success: true,
-	// 				data: {
-	// 					id: -1
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// 	return deferred.promise;
-	// }
-	//
-	// function saveContractor(personObject) {
-	// 	var deferred = $q.defer();
-	// 	if (userType === userTypeContractor) {
-	// 		promise = apiAjax.savecontractor(personObject).then(
-	// 			function (succ) {
-	// 				console.log(succ);
-	// 				deferred.resolve({
-	// 					success: true,
-	// 					data: succ.data.info
-	// 				});
-	// 			},
-	// 			function (err) {
-	// 				console.log(err);
-	// 				deferred.reject({
-	// 					success: false,
-	// 					data: {
-	// 						msg: err
-	// 					}
-	// 				});
-	// 			});
-	// 	} else {
-	// 		promise = new Promise(function (resolve, reject) {
-	// 			resolve({
-	// 				success: true,
-	// 				data: {
-	// 					id: -1
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// 	return deferred.promise;
-	// }
-	//
-	// function saveAccount(userType, account) {
-	// 	var deferred = $q.defer();
-	// 	if (userType === userTypeManager || userType === userTypeContractor) {
-	// 		promise = apiAjax.saveaccount(account).then(
-	// 			function (succ) {
-	// 				deferred.resolve({
-	// 					success: true,
-	// 					data: succ.data.info
-	// 				});
-	// 			},
-	// 			function (err) {
-	// 				deferred.reject({
-	// 					success: false,
-	// 					data: {
-	// 						msg: err
-	// 					}
-	// 				});
-	// 			});
-	// 	} else {
-	// 		promise = new Promise(function (resolve, reject) {
-	// 			resolve({
-	// 				success: true,
-	// 				data: {
-	// 					id: -1
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// 	return deferred.promise;
-	// }
 
 	function getTypeData(userType, unique_user_id, acctId) {
 		if (userType === userTypeManager) {
@@ -263,23 +209,21 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 				account_id: acctId,
 				user_id: unique_user_id,
 				region_1_radius: $scope.formData.contMile1,
-				region_1_address: $scope.formData.contAddress1,
-				region_1_city: data.formData.contCity1,
-				region_1_state: data.formData.contState1,
-				region_1_zip: data.formData.contZip1,
+				region_1_city: $scope.formData.contCity1,
+				region_1_state: $scope.formData.contState1,
+				region_1_zip: $scope.formData.contZip1,
+
 				region_2_radius: $scope.formData.contMile2,
-				region_2_address: $scope.formData.contAddress2,
-				region_2_city: data.formData.contCity2,
-				region_2_state: data.formData.contState2,
-				region_2_zip: data.formData.contZip2,
+				region_2_city: $scope.formData.contCity2,
+				region_2_state: $scope.formData.contState2,
+				region_2_zip: $scope.formData.contZip2,
+
 				region_3_radius: $scope.formData.contMile3,
-				region_3_address: $scope.formData.contAddress3,
-				region_3_city: data.formData.contCity3,
-				region_3_state: data.formData.contState3,
-				region_3_zip: data.formData.contZip3
+				region_3_city: $scope.formData.contCity3,
+				region_3_state: $scope.formData.contState3,
+				region_3_zip: $scope.formData.contZip3
 
 			};
-
 		}
 		return personObj;
 	}

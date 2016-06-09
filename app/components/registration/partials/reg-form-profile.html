@@ -1,84 +1,77 @@
 <!-- All users profile information -->
-<div class="form-section user-section">
-    <p class="form-header">
-        Your Information
-    </p>
-    <div class="inner">
-        <div class="form-group" ng-class="{ 'has-error': registerForm.regEmail.$touched && registerForm.regEmail.$invalid }">
-            <label>Email</label>
-            <input name="email" ng-model="formData.email" required multiple placeholder="example@example.com" type="email" class="form-control">
-            <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched" role="alert">
-                <p ng-message="required">Email is required.</p>
-                <p ng-message="email">Enter a valid email</p>
-            </div>
-        </div>
-        <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.firstname.$touched && registerForm.firstname.$invalid }">
-            <label>First Name</label>
-            <input name="firstname" ng-model="formData.firstname" required placeholder="John" type="text" class="form-control" />
-            <div ng-messages="registerForm.firstname.$error" ng-if="registerForm.firstname.$touched" role="alert">
-                <p ng-message="required">First Name is required.</p>
-            </div>
-        </div>
-        <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.lastname.$touched && registerForm.lastname.$invalid }">
-            <label>Last Name</label>
-            <input name="lastname" ng-model="formData.lastname" required placeholder="Doe" type="text" class="form-control" />
-            <div ng-messages="registerForm.lastname.$error" ng-if="registerForm.lastname.$touched" role="alert">
-                <p ng-message="required">Last Name is required.</p>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.password.$touched && registerForm.password.$invalid }">
-            <label>Password</label>
-            <input name="password" ng-model="formData.password" required multiple placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control" />
-            <div ng-messages="registerForm.password.$error" ng-if="registerForm.password.$touched" role="alert">
-                <p ng-message="required">Password is required.</p>
-                <p ng-message="minlength">Password is too short.</p>
-            </div>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error': registerForm.password2.$touched && registerForm.password2.$invalid }">
-            <!--            <label>Repeat Password:</label> -->
-            <input compare-to="password" name="password2" ng-model="formData.password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control" />
-            <div ng-messages="registerForm.password2.$error" ng-if="registerForm.password2.$touched" role="alert">
-                <p ng-message="required">Password Confirmation is required.</p>
-                <p ng-message="compareTo">Password Confirmation must match Password</p>
-            </div>
-        </div>
-        <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.phone.$touched && registerForm.phone.$invalid }">
-            <label>Phone</label>
-            <input name="phone" ng-model="formData.phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
-            <div ng-messages="registerForm.phone.$error" ng-if="registerForm.phone.$touched" role="alert">
-                <p ng-message="required">Phone is required.</p>
-                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
-            </div>
-        </div>
-        <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.mobile.$touched && registerForm.mobile.$invalid }">
-            <label>Cell: (Optional)</label>
-            <input name="mobile" ng-model="formData.mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
-            <div ng-messages="registerForm.mobile.$error" ng-if="registerForm.mobile.$touched" role="alert">
-                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
-            </div>
-        </div>
+<div class="form-section user-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
+  <p class="form-header">
+    Your Information
+  </p>
+  <div class="inner" style="margin-left: 10px; margin-right:10px;">
+    <div class="form-group" ng-class="{ 'has-error': registerForm.regEmail.$touched && registerForm.regEmail.$invalid }">
+      <label>Email</label>
+      <input name="email" ng-model="formData.email" required multiple placeholder="example@example.com" type="email" class="form-control">
+      <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched" role="alert">
+        <p ng-message="required">Email is required.</p>
+        <p ng-message="email">Enter a valid email</p>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.firstname.$touched && registerForm.firstname.$invalid }">
+      <label>First Name</label>
+      <input name="firstname" ng-model="formData.firstname" required placeholder="John" type="text" class="form-control"/>
+      <div ng-messages="registerForm.firstname.$error" ng-if="registerForm.firstname.$touched" role="alert">
+        <p ng-message="required">First Name is required.</p>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.lastname.$touched && registerForm.lastname.$invalid }">
+      <label>Last Name</label>
+      <input name="lastname" ng-model="formData.lastname" required placeholder="Doe" type="text" class="form-control"/>
+      <div ng-messages="registerForm.lastname.$error" ng-if="registerForm.lastname.$touched" role="alert">
+        <p ng-message="required">Last Name is required.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': registerForm.password.$touched && registerForm.password.$invalid }">
+      <label>Password</label>
+      <input name="password" ng-model="formData.password" required multiple placeholder="6 Character Minimum" ng-minlength="6" type="password" class="form-control"/>
+      <div ng-messages="registerForm.password.$error" ng-if="registerForm.password.$touched" role="alert">
+        <p ng-message="required">Password is required.</p>
+        <p ng-message="minlength">Password is too short.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': registerForm.password2.$touched && registerForm.password2.$invalid }">
+      <input compare-to="password" name="password2" ng-model="formData.password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control"/>
+      <div ng-messages="registerForm.password2.$error" ng-if="registerForm.password2.$touched" role="alert">
+        <p ng-message="required">Password Confirmation is required.</p>
+        <p ng-message="compareTo">Password Confirmation must match Password</p>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.phone.$touched && registerForm.phone.$invalid }">
+      <label>Phone</label>
+      <input name="phone" ng-model="formData.phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+      <div ng-messages="registerForm.phone.$error" ng-if="registerForm.phone.$touched" role="alert">
+        <p ng-message="required">Phone is required.</p>
+        <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+      </div>
+    </div>
+    <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': registerForm.mobile.$touched && registerForm.mobile.$invalid }">
+      <label>Cell: (Optional)</label>
+      <input name="mobile" ng-model="formData.mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control"/>
+      <div ng-messages="registerForm.mobile.$error" ng-if="registerForm.mobile.$touched" role="alert">
+        <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+      </div>
     </div>
     <div style="clear:both;"></div>
-    <div class="col-xs-6 col-xs-offset-3">
-        <div class="reg-btns" ng-if="userType == 4 || userType == 1">
-<!--       <a ui-sref="register.unit" class="btn btn-block btn-info btn-reg">
-        <span class="glyphicon glyphicon-circle-arrow-left"></span>
-        Back
-      </a> -->
-      <a ui-sref="register.unit" class="btn btn-block btn-info btn-reg">
-        Next
-        <span class="glyphicon glyphicon-circle-arrow-right"></span>
-      </a>
-        </div>
-        <div class="reg-btns" ng-if="userType == 3">
-<!--       <a href="#/" class="btn btn-reg">
-        Cancel
-        <span class="glyphicon glyphicon-remove-sign"></span>
-      </a> -->
-      <a ui-sref="register.unit" class="btn btn-reg">
-        Next
-        <span class="glyphicon glyphicon-circle-arrow-right"></span>
-      </a>
-        </div>
-    </div>
+  </div>
+
+  <div class="col-xs-6">
+    <a href="#/" class="btn btn-info">Cancel
+      <span class="glyphicon glyphicon-remove-sign"></span>
+    </a>
+
+    <a ui-sref="register.unit" class="btn btn-info" ng-if="userType == 3">
+      Next
+      <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+
+    <a ui-sref="register.account" class="btn btn-info" ng-if="userType != 3">
+      Next
+      <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+  </div>
 </div>
