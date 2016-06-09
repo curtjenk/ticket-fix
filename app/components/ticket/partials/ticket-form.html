@@ -1,4 +1,4 @@
-<div class="wrapper" id="tenant-wrapper" ng-controller="ticketController">
+<div class="wrapper" id="tenant-wrapper">
     <div class="row" style="margin-top:15px;">
         <h2 class="text-center">Create a Ticket</h2>
         <!--         <p class="text-center">All fields are required</p> -->
@@ -11,11 +11,11 @@
     <!-- Ticket Creation Process -->
     <div class="container">
         <form id="ticketForm" ng-submit="ticketFunc()" name="ticketForm" role="form" novalidate>
-            <div class="form-section ticket-section" style="border: 1px solid black; margin-top: 15px; border-radius:5px;">
-                <p style="font-size: 18px; max-width:154px; margin-top:-10px; margin-left:5px; background:#DDD; padding:0 0 0 1px;">
+            <div class="form-section ticket-section">
+                <p class="form-header">
                     Ticket Info
                 </p>
-                <div class="inner col-sm-6">
+                <div class="col-sm-6">
                     <div class="user-info">
                         <label>Date</label>
                         <br>
@@ -62,27 +62,27 @@
                                         <h4>Kitchen</h4>
                                         <ul class="ticket-checkbox">
                                             <li>
-                                                <md-checkbox ng-model="data.sink" aria-label="">
+                                                <md-checkbox ng-model="data.sink" aria-label="data.sink">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.dishwasher" aria-label="">
+                                                <md-checkbox ng-model="data.dishwasher" aria-label="data.dishwasher">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.stove" aria-label="">
+                                                <md-checkbox ng-model="data.stove" aria-label="data.stove">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.oven" aria-label="">
+                                                <md-checkbox ng-model="data.oven" aria-label="data.oven">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.fridge" aria-label="">
+                                                <md-checkbox ng-model="data.fridge" aria-label="data.fridge">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.garbagedisposalre" aria-label="">
+                                                <md-checkbox ng-model="data.garbagedisposal" aria-label="data.garbagedisposal">
                                                 </md-checkbox>
                                             </li>
                                         </ul>
@@ -101,27 +101,27 @@
                                         <h4>Bathroom</h4>
                                         <ul class="ticket-checkbox">
                                             <li>
-                                                <md-checkbox ng-model="data.bathsink" aria-label="">
+                                                <md-checkbox ng-model="data.bathsink" aria-label="data.bathsink">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.toilet" aria-label="">
+                                                <md-checkbox ng-model="data.toilet" aria-label="data.toilet">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.tub" aria-label="">
+                                                <md-checkbox ng-model="data.tub" aria-label="data.tub">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.shower" aria-label="">
+                                                <md-checkbox ng-model="data.shower" aria-label="data.shower">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.mirror" aria-label="">
+                                                <md-checkbox ng-model="data.mirror" aria-label="data.mirror">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.fan" aria-label="">
+                                                <md-checkbox ng-model="data.fan" aria-label="data.fan">
                                                 </md-checkbox>
                                             </li>
                                         </ul>
@@ -140,34 +140,34 @@
                                         <h4>Bedroom</h4>
                                         <ul class="ticket-checkbox">
                                             <li>
-                                                <md-checkbox ng-model="data.ceilingfan" aria-label="">
+                                                <md-checkbox ng-model="data.ceilingfan" aria-label="data.ceilingfan">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.outlet" aria-label="">
+                                                <md-checkbox ng-model="data.outlet" aria-label="data.outlet">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.closest" aria-label="">
+                                                <md-checkbox ng-model="data.closet" aria-label="data.closet">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.door" aria-label="">
+                                                <md-checkbox ng-model="data.door" aria-label="data.door">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.acvent" aria-label="">
+                                                <md-checkbox ng-model="data.acvent" aria-label="data.acvent">
                                                 </md-checkbox>
                                             </li>
                                             <li>
-                                                <md-checkbox ng-model="data.carpet" aria-label="">
+                                                <md-checkbox ng-model="data.carpet" aria-label="data.carpet">
                                                 </md-checkbox>
                                             </li>
                                         </ul>
                                         <ul class="ticket-list">
                                             <li>Ceiling Fan</li>
                                             <li>Outlet</li>
-                                            <li>Closest</li>
+                                            <li>Closet</li>
                                             <li>Door</li>
                                             <li>AC Vent</li>
                                             <li>Carpet</li>
