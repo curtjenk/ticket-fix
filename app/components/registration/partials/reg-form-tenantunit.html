@@ -18,7 +18,7 @@
 
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.zip.$touched && registerForm.zip.$invalid }">
         <label>Zip</label>
-        <input name="zip"  required ng-model="formData.zip" placeholder="30114" type="text" ng-minlength="5" class="form-control" />
+        <input name="zip" ng-change="zipLookupTenant();" required ng-model="formData.zip" placeholder="30114" type="text" ng-minlength="5" class="form-control" />
         <div ng-messages="registerForm.zip.$error" ng-if="registerForm.zip.$touched" role="alert">
             <p ng-message="required">Zip is required.</p>
             <p ng-message="minlength">Please enter 5 digits</p>

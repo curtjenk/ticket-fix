@@ -176,7 +176,8 @@ router.post('/savemanager', function (req, res) {
 });
 
 router.post('/savecontractor', function (req, res) {
-	var account = new Contractor(req.body.contractor);
+	var contractor = new Contractor(req.body.contractor);
+	console.log(contractor);
 	var apiRes = new ApiResponse({
 		api: 'savecontractor'
 	});
@@ -189,6 +190,7 @@ router.post('/savecontractor', function (req, res) {
 		};
 		res.json(apiRes);
 	}, function (err) {
+		console.log(err);
 		apiRes.success = false;
 		apiRes.message = "Save contractor Failed.";
 		apiRes.info = err;

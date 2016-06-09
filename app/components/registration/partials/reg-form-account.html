@@ -63,13 +63,13 @@
   </div>
   <div style="clear:both;"></div>
   <div class="col-xs-6 col-xs-offset-3">
-    <div ng-if="formData.userType == 1">
+    <div ng-if="userType == 1">
       <a ui-sref="register.regions" class="btn btn-block btn-info">
         Next Section
         <span class="glyphicon glyphicon-circle-arrow-right"></span>
       </a>
     </div>
-    <div ng-if="formData.userType != 1">
+    <div ng-if="userType != 1">
       <div class="button-holder text-center" style="margin-top: 20px;">
         <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
         <a href="#/">

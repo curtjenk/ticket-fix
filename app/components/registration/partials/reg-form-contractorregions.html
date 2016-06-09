@@ -9,23 +9,23 @@
   <div class="inner" style="margin-left: 10px; margin-right:10px;">
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Radius (mi.)</label>
-      <input name="contMile1" ng-model="contMile1" placeholder="30" type="number" class="form-control"/>
+      <input name="contMile1" ng-model="formData.contMile1" placeholder="30" type="number" class="form-control"/>
     </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Zip:</label>
-      <input name="contZip1" ng-model="contZip1" placeholder="30310" type="text" class="form-control"/>
+      <input name="contZip1" ng-change="zipLookupRegion1()" ng-model="formData.contZip1" placeholder="30310" type="text" class="form-control"/>
     </div>
-        <div class="form-group address-one">
+    <!-- <div class="form-group address-one">
       <label>Address</label>
-      <input name="contAddress1" ng-model="contAddress1" placeholder="111 Doug Street" type="text" class="form-control">
-    </div>
+      <input name="contAddress1" ng-model="formData.contAddress1" placeholder="111 Doug Street" type="text" class="form-control">
+    </div> -->
     <div class="form-group  col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>City:</label>
-      <input name="contCity1" ng-model="contCity1" placeholder="Atlanta" type="text" class="form-control"/>
+      <input name="contCity1" ng-model="formData.contCity1" placeholder="Atlanta" type="text" class="form-control"/>
     </div>
     <div class="form-group col-sm-4 left-bar right-bar col-xs-12">
       <label>State:</label>
-      <input name="contState1" ng-model="contState1" placeholder="Georgia" type="text" class="form-control"/>
+      <input name="contState1" ng-model="formData.contState1" placeholder="Georgia" type="text" class="form-control"/>
     </div>
     <div style="clear:both;"></div>
   </div>
@@ -37,23 +37,23 @@
   <div class="inner" style="margin-left: 10px; margin-right:10px;">
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Radius (mi.)</label>
-      <input name="contMile2" ng-model="contMile2" placeholder="30" type="number" class="form-control"/>
+      <input name="contMile2" ng-model="formData.contMile2" placeholder="30" type="number" class="form-control"/>
     </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
-      <label>Zip:</label>
-      <input name="contZip2" ng-model="contZip2" placeholder="30310" type="text" class="form-control"/>
+      <label>Zip</label>
+      <input name="contZip2" ng-change="zipLookupRegion2()" ng-model="formData.contZip2" placeholder="30310" type="text" class="form-control"/>
     </div>
-        <div class="form-group address-one">
+    <!-- <div class="form-group address-one">
       <label>Address</label>
-      <input name="contAddress2" ng-model="contAddress2" placeholder="111 Doug Street" type="text" class="form-control">
-    </div>
+      <input name="contAddress2" ng-model="formData.contAddress2" placeholder="111 Doug Street" type="text" class="form-control">
+    </div> -->
     <div class="form-group  col-sm-6 left-bar col-xs-12 left-bar-two">
-      <label>City:</label>
-      <input name="contCity2" ng-model="contCity2" placeholder="Atlanta" type="text" class="form-control"/>
+      <label>City</label>
+      <input name="contCity2" ng-model="formData.contCity2" placeholder="Atlanta" type="text" class="form-control"/>
     </div>
     <div class="form-group col-sm-4 left-bar right-bar col-xs-12">
-      <label>State:</label>
-      <input name="contState2" ng-model="contState2" placeholder="Georgia" type="text" class="form-control"/>
+      <label>State</label>
+      <input name="contState2" ng-model="formData.contState2" placeholder="Georgia" type="text" class="form-control"/>
     </div>
     <div style="clear:both;"></div>
   </div>
@@ -65,23 +65,23 @@
   <div class="inner" style="margin-left: 10px; margin-right:10px;">
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Radius (mi.)</label>
-      <input name="contMile3" ng-model="contMile3" placeholder="30" type="number" class="form-control"/>
+      <input name="contMile3" ng-model="formData.contMile3" placeholder="30" type="number" class="form-control"/>
     </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
       <label>Zip</label>
-      <input name="contZip3" ng-model="contZip3" placeholder="30310" type="text" class="form-control"/>
+      <input name="contZip3" ng-change="zipLookupRegion3()" ng-model="formData.contZip3" placeholder="30310" type="text" class="form-control"/>
     </div>
-        <div class="form-group address-one">
+    <!-- <div class="form-group address-one">
       <label>Address</label>
       <input name="contAddress3" ng-model="contAddress3" placeholder="111 Doug Street" type="text" class="form-control">
-    </div>
+    </div> -->
     <div class="form-group  col-sm-6 left-bar col-xs-12 left-bar-two">
-      <label>City:</label>
-      <input name="contCity3" ng-model="contCity3" placeholder="Atlanta" type="text" class="form-control"/>
+      <label>City</label>
+      <input name="contCity3" ng-model="formData.contCity3" placeholder="Atlanta" type="text" class="form-control"/>
     </div>
     <div class="form-group col-sm-4 left-bar right-bar col-xs-12">
-      <label>State:</label>
-      <input name="contState3" ng-model="contState3" placeholder="Georgia" type="text" class="form-control"/>
+      <label>State</label>
+      <input name="contState3" ng-model="formData.contState3" placeholder="Georgia" type="text" class="form-control"/>
     </div>
     <div style="clear:both;"></div>
   </div>
