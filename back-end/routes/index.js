@@ -13,6 +13,7 @@ var Tenant = require('./models/tenant');
 
 var ufuncs = require('./userFuncs');
 var admin = require('./adminFuncs');
+var query = require('./queryFuncs');
 
 //get config objects
 var config = require('./config');
@@ -238,6 +239,33 @@ router.post('/savetenant', function (req, res) {
 		apiRes.info = err;
 		res.json(apiRes);
 	});
+});
+
+router.get('/api/tenantinfo', function (req, res) {
+	//req.query.id  should contain the user id
+	//query User, Tenant & Property and return all info except password
+	var userId = req.query.userid;
+	var apiRes = new ApiResponse({
+		api: 'api/tenantinfo'
+	});
+	query.getTenantInfo(userId).then(function (succ){
+		console.log(succ);
+		if (succ.status == 'found') {
+			apiRes.success = true;
+			apiRes.info = succ.data;
+		} else {
+			apiRes.success = false;
+			apiRes.message = succ.status;
+			apiRes.info = succ.error;
+		}
+		res.json(apiRes);
+	}, function (err){
+		apiRes.success = false;
+		apiRes.message = 'Get tenant info failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	} );
+
 });
 
 router.post('/upload', type, function (req, res, next) {

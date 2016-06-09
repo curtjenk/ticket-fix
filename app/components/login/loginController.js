@@ -23,6 +23,8 @@ $scope.errorMessage = '';
 					$scope.$emit("userLoggedIn", {
 				       email: email
 				     });
+					 $location.path('/');
+
                 } else {
                     $scope.errorMessage = "Invalid Email and/or Password";
                 }
