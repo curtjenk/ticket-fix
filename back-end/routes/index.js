@@ -19,6 +19,12 @@ var query = require('./queryFuncs');
 var config = require('./config');
 var passport = require('./passport');
 var mailer = require('./mailer');
+//--- constants
+const USER_TYPE_MANAGER = 4;
+const USER_TYPE_CONTRACTOR = 1;
+const USER_TYPE_TENANT= 3;
+const USER_TYPE_STAFF = 5;
+const USER_TYPE_NAMES = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 //var db = require('./mysqlUtil');
 
 //setup for file uploads
@@ -194,11 +200,38 @@ router.post('/savecontractor', function (req, res) {
 	});
 });
 
+router.get('/propertyexists', function(req, res){
+	var property = new Property(JSON.parse(req.query.property));
+	property.genKey();
+	console.log(property.key);
+	var apiRes = new ApiResponse({
+		api: 'propertyexists'
+	});
+	admin.getproperty(property.key).then(
+		function (succ){
+			console.log(succ);
+			apiRes.succ = true;
+			apiRes.info = {
+				id: succ.data.id
+			};
+
+			res.json(apiRes);
+		}, function(err){
+			console.log(err);
+			apiRes.succ = false;
+			apiRes.message = "Get Property Failed.";
+			apiRes.info = err;
+			res.json(apiRes);
+		});
+});
+
 router.post('/saveproperty', function (req, res) {
 	var property = new Property(req.body.property);
+	property.genKey();
 	var apiRes = new ApiResponse({
 		api: 'saveproperty'
 	});
+
 	admin.saveproperty(property).then(function (success) {
 		//returns the insertId
 		console.log(success);

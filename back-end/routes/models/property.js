@@ -18,4 +18,9 @@ Property.prototype.genCode = function () {
 	this.code = util.generateCode('P', 9);
 	//console.log(this.account_code);
 };
+Property.prototype.genKey = function () {
+	this.key = this.zip.replace(/\s+/g, '') +
+				this.address1.replace(/\s+/g, '') +
+				this.address2.replace(/\s+/g, '');
+};
 module.exports = Property;

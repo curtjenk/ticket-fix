@@ -46,6 +46,11 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/regions',
             templateUrl: 'app/components/registration/partials/reg-form-contractorregions.html'
         })
+        .state('register.floorplan', {
+            parent: 'register',
+            url: '/floorplan',
+            templateUrl: 'app/components/registration/partials/reg-form-floorplan.html'
+        })
         .state('ticket', {
             url: '/ticket',
             abstract: true,

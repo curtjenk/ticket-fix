@@ -112,7 +112,7 @@ exports.getManagerInfo = function (email) {
 
 exports.getAllTenants = function () {
 	var deferred = Q.defer();
-	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " + 
+	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
 	  	" code, address1, address2, city, state, zip " +
 		 " from tenant " +
 		" left join user on user.id = tenant.user_id " +
@@ -120,6 +120,7 @@ exports.getAllTenants = function () {
 	Q.fcall(db.con)
 		.then(function (con) {
 			con.query(queryString, function (err, rows) {
+					con.release();
 				if (err) {
 					deferred.reject({
 						status: 'error',

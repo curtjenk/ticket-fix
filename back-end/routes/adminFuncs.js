@@ -5,15 +5,59 @@ var Manager = require('./models/manager');
 var Property = require('./models/property');
 var Q = require('q');
 
+exports.getproperty = function (key) {
+	var deferred = Q.defer();
+	Q.fcall(db.con)
+		.then(function (con) {
+			con.query("SELECT * FROM property WHERE prop_key = ?", [key], function (err, rows) {
+				con.release();
+				console.log(rows);
+				if (err) {
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
+				} else if (rows.length > 0) {
+					console.log('found');
+					deferred.resolve({
+						status: 'found',
+						data: rows[0],
+						error: ''
+					});
+				} else {
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('getproperty error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
+		})
+		.done();
+	return deferred.promise;
+};
+
 exports.getAccountById = function (id) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
 			con.query("SELECT * FROM account WHERE id = ?", [id], function (err, rows) {
+				con.release();
 				if (err) {
 					deferred.reject(err);
 				} else if (rows.length > 0) {
-						deferred.resolve(rows[0]);
+					deferred.resolve(rows[0]);
 				} else {
 					deferred.resolve(false);
 				}
@@ -30,14 +74,16 @@ exports.getAccountById = function (id) {
 };
 
 exports.getAccounts = function () {
+	con.release();
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
 			con.query("SELECT * FROM account", function (err, rows) {
+				con.release();
 				if (err) {
 					deferred.reject(err);
 				} else if (rows.length > 0) {
-						deferred.resolve(rows);
+					deferred.resolve(rows);
 				} else {
 					deferred.resolve(false);
 				}
@@ -60,8 +106,11 @@ exports.saveaccount = function (account) {
 			account.genCode();
 			//console.log(account);
 			con.query("INSERT INTO account SET ?", account, function (err, result) {
+				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
@@ -85,7 +134,9 @@ exports.savemanager = function (manager) {
 			con.query("INSERT INTO manager SET ?", manager, function (err, result) {
 				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
@@ -109,7 +160,9 @@ exports.savetenant = function (tenant) {
 			con.query("INSERT INTO tenant SET ?", tenant, function (err, result) {
 				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
@@ -134,7 +187,9 @@ exports.saveproperty = function (property) {
 			con.query("INSERT INTO property SET ?", property, function (err, result) {
 				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
@@ -158,7 +213,9 @@ exports.savecontractor = function (contractor) {
 			con.query("INSERT INTO contractor SET ?", contractor, function (err, result) {
 				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
@@ -182,7 +239,9 @@ exports.saveticket = function (ticket) {
 			con.query("INSERT INTO ticket SET ?", ticket, function (err, result) {
 				con.release();
 				if (!err) {
-					deferred.resolve({id: result.insertId});
+					deferred.resolve({
+						id: result.insertId
+					});
 				} else {
 					deferred.reject(err);
 				}
