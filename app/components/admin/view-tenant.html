@@ -1,7 +1,22 @@
 
-<div class="container">
-	<h1>TENANTS</h1>
-    <ul>
-        <li ng-repeat="tenant in tenants">{{tenant.email}}</li>
-    </ul>
+
+
+<div class="container">          
+  <h1>TENANTS</h1>
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tenant in tenants">
+        <td>{{tenant.first_name}}</td>
+        <td>{{tenant.last_name}}</td>
+        <td>{{tenant.email}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

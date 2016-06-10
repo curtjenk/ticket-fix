@@ -665,3 +665,18 @@ md-checkbox.md-checked ._md-icon {
 .nav-tabs > li > a {
     background-color: #f00;
 }
+
+.marker {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #007ecc;
+    color: white;
+}
+
+#marker-area {
+    width: 560px;
+    height: 400px;
+    padding: 0px;
+    margin-top: 50px;
+}
