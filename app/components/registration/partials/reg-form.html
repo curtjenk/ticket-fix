@@ -15,7 +15,12 @@
         <div class="col-sm-3" ng-if="userType == 3">
           <a ui-sref-active="active-step" ui-sref=".unit">
             <i class="fa fa-home" aria-hidden="true"></i>
-            Register Unit</a>
+            Address</a>
+        </div>
+        <div class="col-sm-3" ng-if="userType == 3">
+          <a ui-sref-active="active-step" ui-sref=".floorplan">
+            <i class="fa fa-bed" aria-hidden="true"></i>
+            Select Floor Plan</a>
         </div>
         <div class="col-sm-3" ng-if="userType == 1">
           <a ui-sref-active="active-step" ui-sref=".regions">

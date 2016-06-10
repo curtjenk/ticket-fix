@@ -4,42 +4,37 @@
     Select A Floor Plan
   </p>
   <div class="inner">
-      <p>
-          Check a plan that best matches your floor plan with regards to number of bedrooms and bath rooms
-      </p>
-      <ul class="ticket-checkbox" style="li {margin-bottom:15px;}">
-        <li>
-          <md-checkbox ng-model="formData.sink" aria-label="formData.sink"></md-checkbox>
-          <img src="assets/img/floor-plans/1bed1bath.jpg" />
-        </li>
-        <li>
-          <md-checkbox ng-model="formData.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
-           <img src="assets/img/floor-plans/2bed1bath.jpg" />
-        </li>
-        <li>
-          <md-checkbox ng-model="formData.stove" aria-label="formData.stove"></md-checkbox>
-        </li>
-        <li>
-          <md-checkbox ng-model="formData.oven" aria-label="formData.oven"></md-checkbox>
-        </li>
-        <li>
-          <md-checkbox ng-model="formData.fridge" aria-label="formData.fridge"></md-checkbox>
-        </li>
-        <li>
-          <md-checkbox ng-model="formData.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
-        </li>
-      </ul>
+    <p>
+      Select a plan that best matches your floor plan
+    </p>
+    <md-radio-group ng-model="formData.floorplanGroup">
+      <md-radio-button value="1bed1bath" aria-label="">
+        <img src="assets/img/floor-plans/1bed1bath.jpg"/>
+      </md-radio-button>
+      <md-radio-button value="2bed1bath" aria-label="">
+        <img src="assets/img/floor-plans/2bed1bath.jpg"/>
+      </md-radio-button>
+      <md-radio-button value="2bed2bath" aria-label="">
+        <img style="width:335px" src="assets/img/floor-plans/2bed2bath.gif"/>
+      </md-radio-button>
+      <md-radio-button value="3bed2bath" aria-label="">
+        <img style="width:335px" src="assets/img/floor-plans/3bed2bath.gif"/>
+      </md-radio-button>
+      <md-radio-button value="3bed2_5bath" aria-label="">
+        <img src="assets/img/floor-plans/3bed2_5bath.jpg"/>
+      </md-radio-button>
+    </md-radio-group>
+
     <div style="clear:both;"></div>
   </div>
   <div class="col-sm-6 col-xs-10 col-xs-offset-1">
-    <a ui-sref="register.unit" class="btn btn-reg" ng-if="userType == 3">
-      Next
-      <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
-
-    <a ui-sref="register.account" class="btn btn-reg" ng-if="userType != 3">
-      Next
-      <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+      <div class="form-group">
+          <div class="button-holder text-center">
+              <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
+              <a href="#/">
+                  <button type="button" class="btn btn-default">Cancel</button>
+              </a>
+          </div>
+      </div>
   </div>
 </div>

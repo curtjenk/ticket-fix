@@ -1,5 +1,6 @@
 ticketFixApp.controller('registrationController', function ($rootScope, $scope, $http, $q, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
+	$scope.formData.floorplanGroup = "1bed1bath";
 
 	var apiUrl = "http://localhost:3000";
 	var userType = $rootScope.userType;
@@ -108,7 +109,8 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			city: $scope.formData.city,
 			state: $scope.formData.state,
 			zip: $scope.formData.zip,
-			isManaged: 0
+			isManaged: 0,
+			floor_plan_code:formData.floorplanGroup
 		};
 
 		apiAjax.register(user).then(
