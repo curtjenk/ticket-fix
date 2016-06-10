@@ -105,12 +105,12 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 
 		var property = {
 			address1: $scope.formData.address1,
-			address2: $scope.formData.address2,
+			address2: $scope.formData.address2 || "",
 			city: $scope.formData.city,
 			state: $scope.formData.state,
 			zip: $scope.formData.zip,
 			isManaged: 0,
-			floor_plan_code:formData.floorplanGroup
+			floor_plan_code:$scope.formData.floorplanGroup
 		};
 
 		apiAjax.register(user).then(
