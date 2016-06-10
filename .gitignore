@@ -1,3 +1,4 @@
 node_modules/*
 bower_components/*
 assets/js/front-config.js
+.htmlhintrc

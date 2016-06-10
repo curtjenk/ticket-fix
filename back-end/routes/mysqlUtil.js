@@ -24,29 +24,6 @@ var con = function () {
 	});
 	return deferred.promise;
 };
-// var getUser = function (email) {
-//   // console.log(email);
-//   var deferred = Q.defer();
-// 	Q.fcall(con)
-// 		.then(function (con) {
-// 			//deferred.resolve(userQuery(con, email));
-//       con.query("SELECT * FROM user WHERE email = ?", [email], function (err, rows) {
-//     		if (err) {
-//     			deferred.reject(err);
-//     		} else {
-//     			deferred.resolve(rows);
-//     		}
-//     	});
-// 		})
-// 		.catch(function (error) {
-//       console.log(error);
-//       deferrred.reject(error);
-//     })
-// 		.done();
-//
-// 	return deferred.promise;
-// };
 
 exports.pool = pool;
 exports.con = con;
-//exports.getUser = getUser;

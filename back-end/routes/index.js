@@ -10,6 +10,7 @@ var ManagerHasProperty = require('./models/manager').ManagerHasProperty;
 var Contractor = require('./models/contractor');
 var Property = require('./models/property');
 var Tenant = require('./models/tenant');
+var Ticket = require('./models/ticket');
 
 var ufuncs = require('./userFuncs');
 var admin = require('./adminFuncs');
@@ -83,7 +84,7 @@ router.post('/login', function (req, res, next) {
 				apiRes.message = succ.message;
 				apiRes.info = succ.error;
 			}
-			console.log(apiRes);
+			//console.log(apiRes);
 			res.json(apiRes);
 		},
 		//{status: 'error', data: {}, info: "BCrypt error", error: err})
@@ -265,6 +266,29 @@ router.post('/savetenant', function (req, res) {
 	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = "Save tenant Failed.";
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+});
+
+router.post('/api/saveticket', function(req, res){
+	console.log(req.body);
+	var ticket = new Ticket(req.body.ticket);
+	console.log(ticket);
+	var apiRes = new ApiResponse({
+		api: 'api/saveticket'
+	});
+	admin.saveticket(ticket).then(function (succ) {
+		//returns the insertId
+		console.log(succ);
+		apiRes.success = true;
+		apiRes.info = {
+			id: succ.id
+		};
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = "Save Ticket Failed.";
 		apiRes.info = err;
 		res.json(apiRes);
 	});

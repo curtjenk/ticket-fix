@@ -13,12 +13,14 @@ var Ticket = function (data) {
 	this.property_id = data.property_id;
 	this.status_id = data.status_id;
 	this.issue_description = data.issue_description;
+	this.alt_phone = data.alt_phone;
+	this.alt_first_name = data.alt_first_name;
+	this.alt_last_name = data.alt_email;
+	this.details_json = data.details_json;
+	this.markers_json = data.markers_json;
 	if (data.date_resolved) {
 		this.date_resolved = data.date_resolved;
 	}
 };
-Property.prototype.genCode = function () {
-	this.code = util.generateCode('P', 9);
-	//console.log(this.account_code);
-};
-module.exports = Property;
+
+module.exports = Ticket;
