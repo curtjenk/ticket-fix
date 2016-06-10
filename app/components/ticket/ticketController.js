@@ -1,5 +1,15 @@
 ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http, $location, apiAjax, localStore) {
 	$scope.formData = {};
+
+	$scope.addMarker = function(event){
+		console.log('iasdhfkajsdhjfhdkajshkfdhksjhsadk')
+		console.log(event);
+		// var xClick = event.offsetX;
+		// var yClick = event.offsetY;
+		// $scope.newMarker = '<div class="marker" style="position: absolute; top: '+xClick+'; left: '+yClick+';">1</div>';
+	}
+
+
     var d = new Date();
     $scope.formData.date = d.toDateString();
 	// $scope.formData.firstname = "Josh";
@@ -50,6 +60,19 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 
 		});
     }
+
+ //    $('#plana').click(function(e){
+ //   console.log(e);
+ //   var xClick = e.offsetX;
+ //   var yClick = e.offsetY;
+ //   $(this).append('<div class="marker" style="position: absolute; top: '+xClick+'; left: '+yClick+';"></div>');
+	// });
+
+
+
+
+
+
 
 
 });
