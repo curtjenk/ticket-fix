@@ -44,10 +44,10 @@
   <div style="clear:both;"></div>
   <div class="col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
       <div class="form-group">
-          <a ui-sref="register.floorplan" class="btn btn-reg">
+          <button ui-sref="register.floorplan" class="btn btn-reg" ng-disabled="registerForm.$invalid" ng-click="registerForm.$valid && !registerForm.$pristine">
             Next
             <span class="glyphicon glyphicon-circle-arrow-right"></span>
-          </a>
+        </button>
 
       </div>
   </div>
