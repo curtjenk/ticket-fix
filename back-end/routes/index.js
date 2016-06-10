@@ -18,7 +18,7 @@ var query = require('./queryFuncs');
 //get config objects
 var config = require('./config');
 var passport = require('./passport');
-
+var mailer = require('./mailer');
 //var db = require('./mysqlUtil');
 
 //setup for file uploads
@@ -127,11 +127,6 @@ router.post('/register', function (req, res) {
 		}
 	);
 });
-
-// router.post('/api/testtoken', function (req, res) {
-// 	//console.log(req.body.token );
-// 	res.json(req.body.token + " " + req.decoded);
-// });
 
 router.post('/saveaccount', function (req, res) {
 	var account = new Account(req.body.account);
@@ -248,7 +243,7 @@ router.get('/api/tenantinfo', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/tenantinfo'
 	});
-	query.getTenantInfo(email).then(function (succ){
+	query.getTenantInfo(email).then(function (succ) {
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
@@ -259,12 +254,12 @@ router.get('/api/tenantinfo', function (req, res) {
 			apiRes.info = succ.error;
 		}
 		res.json(apiRes);
-	}, function (err){
+	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = 'Get tenant info failed';
 		apiRes.info = err;
 		res.json(apiRes);
-	} );
+	});
 
 });
 
@@ -272,7 +267,7 @@ router.get('/api/alltenantsinfo', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/alltenantsinfo'
 	});
-	query.getAllTenants().then(function (succ){
+	query.getAllTenants().then(function (succ) {
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
@@ -283,12 +278,12 @@ router.get('/api/alltenantsinfo', function (req, res) {
 			apiRes.info = succ.error;
 		}
 		res.json(apiRes);
-	}, function (err){
+	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = 'Getting all tenants info failed';
 		apiRes.info = err;
 		res.json(apiRes);
-	} );
+	});
 
 });
 
@@ -299,7 +294,7 @@ router.get('/api/managerinfo', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/managerinfo'
 	});
-	query.getManagerInfo(email).then(function (succ){
+	query.getManagerInfo(email).then(function (succ) {
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
@@ -310,12 +305,12 @@ router.get('/api/managerinfo', function (req, res) {
 			apiRes.info = succ.error;
 		}
 		res.json(apiRes);
-	}, function (err){
+	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = 'Get manager info failed';
 		apiRes.info = err;
 		res.json(apiRes);
-	} );
+	});
 
 });
 
@@ -345,6 +340,33 @@ router.post('/upload', type, function (req, res, next) {
 		});
 	});
 
+});
+// router.post('/api/testtoken', function (req, res) {
+// 	//console.log(req.body.token );
+// 	res.json(req.body.token + " " + req.decoded);
+// });
+router.post('/api/sendmail', function (req, res) {
+	var apiRes = new ApiResponse({
+		api: 'api/sendmail'
+	});
+	console.log(req.body);
+	mailer.sendMail(req.body.from,
+			req.body.to,
+			req.body.subject,
+			req.body.text,
+			req.body.html)
+		.then(function (succ) {
+			console.log(succ);
+			apiRes.success = true;
+			apiRes.message = succ;
+			res.json(apiRes);
+		}, function (err) {
+			console.log(err);
+			apiRes.success = false;
+			apiRes.message = err.message;
+			apiRes.info = err.error;
+			res.json(apiRes);
+		});
 });
 
 module.exports = router;
