@@ -757,7 +757,7 @@ md-checkbox.md-checked ._md-icon {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #007ecc;
+  background-color: red;
   color: white;
 }
 
@@ -767,4 +767,15 @@ md-checkbox.md-checked ._md-icon {
   height: 400px;
   padding: 0px;
   margin-top: 50px;
+  position: relative;
+}
+
+/* line 685, ../../tools/compass/sass/style.scss */
+.marker-container {
+  width: 560px;
+  height: 400px;
+  background-color: green;
+  background-image: url("../img/floor-plans/1bed1bath.jpg");
+  background-size: 100%;
+  position: relative;
 }
