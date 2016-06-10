@@ -56,6 +56,7 @@ ng-show="userRegistrationForm.conf.$touched">
   <p ng-message="compareTo">Password not matching!</p>
 </div>
 
+ see components/registration/partials/reg-form-profile.html for live example.
 */
 ticketFixApp.directive('compareTo', function() {
   return {
@@ -66,9 +67,11 @@ ticketFixApp.directive('compareTo', function() {
     link: function(scope, element, attributes, ngModel) {
 
       ngModel.$validators.compareTo = function(modelValue) {
+          console.log("model value");
+          console.log(modelValue);
           console.log("other model value");
           console.log(scope.otherModelValue);
-        return modelValue == scope.otherModelValue;
+        return modelValue === scope.otherModelValue.$modelValue;
       };
 
       scope.$watch("otherModelValue", function() {
