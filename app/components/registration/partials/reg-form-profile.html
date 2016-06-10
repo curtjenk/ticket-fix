@@ -4,7 +4,7 @@
     User Information
   </p>
   <div class="inner">
-    <div class="form-group" ng-class="{ 'has-error': registerForm.regEmail.$touched && registerForm.regEmail.$invalid }">
+    <div class="form-group" ng-class="{ 'has-error': registerForm.email.$touched && registerForm.email.$invalid }">
       <label>Email</label>
       <input name="email" ng-model="formData.email" required multiple placeholder="example@example.com" type="email" class="form-control">
       <div ng-messages="registerForm.email.$error" ng-if="registerForm.email.$touched" role="alert">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="form-group" ng-class="{ 'has-error': registerForm.password2.$touched && registerForm.password2.$invalid }">
-      <input compare-to="password" name="password2" ng-model="formData.password2" required placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control"/>
+      <input compare-to="registerForm.password" name="password2" ng-model="formData.password2" required multiple placeholder="Confirm Password" ng-minlength="6" type="password" class="form-control"/>
       <div ng-messages="registerForm.password2.$error" ng-if="registerForm.password2.$touched" role="alert">
         <p ng-message="required">Password Confirmation is required.</p>
         <p ng-message="compareTo">Password Confirmation must match Password</p>
@@ -59,14 +59,14 @@
     <div style="clear:both;"></div>
   </div>
   <div class="col-sm-6 col-xs-10 col-xs-offset-1">
-    <a ui-sref="register.unit" class="btn btn-reg" ng-if="userType == 3">
+    <button ui-sref="register.unit" class="btn btn-reg" ng-if="userType == 3" ng-disabled="registerForm.$invalid" ng-click="registerForm.$valid && !registerForm.$pristine">
       Next
       <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+  </button>
 
-    <a ui-sref="register.account" class="btn btn-reg" ng-if="userType != 3">
+    <button ui-sref="register.account" class="btn btn-reg" ng-if="userType != 3"  ng-disabled="registerForm.$invalid" ng-click="registerForm.$valid && !registerForm.$pristine">
       Next
       <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+  </button>
   </div>
 </div>

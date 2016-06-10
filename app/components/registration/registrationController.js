@@ -1,6 +1,12 @@
 ticketFixApp.controller('registrationController', function ($rootScope, $scope, $http, $q, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
 	$scope.formData.floorplanGroup = "1bed1bath";
+	$scope.errorMessage = "";
+
+	// console.log($scope.registerForm.$valid);
+	// console.log($scope.registerForm.$pristine);
+	// console.log($scope.registerForm.$invalid);
+	// console.log($scope.registerForm.$dirty);
 
 	var apiUrl = "http://localhost:3000";
 	var userType = $rootScope.userType;
@@ -74,12 +80,13 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	};
 
 	$scope.registerFunc = function () {
-		// var url = apiUrl + "/register";
-		// console.log("registerfunc");
-		// return;
-		if (!$scope.registerForm.$valid) {
-			$scope.errorMessage = "Please enter all required fields";
+		$scope.errorMessage = "";
+
+		if (!$scope.registerForm.$valid || $scope.registerForm.$pristine) {
+			$scope.errorMessage = "Please enter all required fields.  You may have to go back to previous sections";
 			console.log('form invalid');
+			$scope.registerForm.$setPristine();
+	 		$scope.registerForm.$setUntouched();
 			return;
 		}
 		var user = {
@@ -105,12 +112,12 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 
 		var property = {
 			address1: $scope.formData.address1,
-			address2: $scope.formData.address2,
+			address2: $scope.formData.address2 || "",
 			city: $scope.formData.city,
 			state: $scope.formData.state,
 			zip: $scope.formData.zip,
 			isManaged: 0,
-			floor_plan_code:formData.floorplanGroup
+			floor_plan_code:$scope.formData.floorplanGroup
 		};
 
 		apiAjax.register(user).then(

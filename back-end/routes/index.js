@@ -227,6 +227,7 @@ router.get('/propertyexists', function(req, res){
 
 router.post('/saveproperty', function (req, res) {
 	var property = new Property(req.body.property);
+	console.log(property);
 	property.genKey();
 	var apiRes = new ApiResponse({
 		api: 'saveproperty'
