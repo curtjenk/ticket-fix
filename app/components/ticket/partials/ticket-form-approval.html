@@ -7,7 +7,7 @@
             <div class="user-info">
                 <label>Date: <span class="date-created">{{formData.date}}</span></label>
                 <br>
-                <label>Tenant information</label>
+                <label class="col-sm-12 left-bar">Tenant information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="tenant-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
@@ -18,29 +18,46 @@
                     <p>Phone: {{formData.phone}}</p>
                     <p>Mobile: {{formData.mobile}}</p>
                 </div>
-                <label>Contact information</label>
+                <label class="col-sm-12 left-bar">Contact information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
                     <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
                     <p>Email: {{formData.email}}</p>
+                    <p>Alt Email: {{formData.altemail}}</p>
                 </div>
                 <div class="contact-info-two col-sm-6 left-bar right-bar col-xs-12">
                     <p>Phone: {{formData.phone}}</p>
                     <p>Mobile: {{formData.mobile}}</p>
+                    <p>Alt Phone: {{formData.altphone}}</p>
                 </div>
-                <label>Maintenance information</label>
+                <label class="col-sm-12 left-bar">Maintenance information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-three col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Description: {{formData.desc}}</p>
-                </div>
-                <div class="contact-info-four col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Do you have a pet?:</p>
-                    <p>{{formData.pet}}</p>
+                    <p class="text-info-area">Description: {{formData.desc}}</p>
                 </div>
                 <div class="contact-info-five col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Entry Point: {{formData.entry}}</p>
+                    <p class="text-info-area">Entry Point: {{formData.entryPoint}}</p>
+                </div>
+                <div class="contact-info-four col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Pet: {{formData.pet}}</p>
+                </div>
+                <div class="contact-info-six col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Notification preference: {{formData.notifyPreference}}</p>
+                </div>
+                <div class="contact-info-seven col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Permission: {{formData.enterIfAbsent}}</p>
+                </div>
+                <div class="contact-info-eight col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Agreement: {{formData.agree}}</p>
+                </div>
+                <div class="col-sm-6 left-bar">
+                    <small>Marked locations</small>
+                    <div id="marker-area">
+                        <div class="marker-container" ng-bind-html="newMarker">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
