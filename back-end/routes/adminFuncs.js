@@ -1,20 +1,18 @@
 var db = require('./mysqlUtil');
 var util = require('./util');
-var User = require('./models/account');
-var Manager = require('./models/manager');
+var User = require('./models/user');
+var Account = require('./models/account');
+var Manager = require('./models/manager').Manager;
+var ManagerHasProperty = require('./models/manager').ManagerHasProperty;
+var Contractor = require('./models/contractor');
 var Property = require('./models/property');
+var Tenant = require('./models/tenant');
+var Ticket = require('./models/ticket');
+
 var ufuncs = require('./userFuncs');
 var query = require('./queryFuncs');
 
 var Q = require('q');
-
-var registertenant = function(user, property) {
-
-};
-
-exports.registertenant = registertenant;
-// exports.registermanager = registermanager;
-// exports.registercontractor = registertenant;
 
 exports.getproperty = function (key) {
 	var deferred = Q.defer();
@@ -110,7 +108,7 @@ exports.getAccounts = function () {
 	return deferred.promise;
 };
 
-var saveaccount  = function (account) {
+var saveaccount = function (account) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {

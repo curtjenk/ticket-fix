@@ -1,5 +1,6 @@
 var Q = require('q');
 var mysql = require('mysql');
+var mysql = require('promise-mysql');
 var config = require('./config');
 // console.log(config.mysql.username);
 // console.log(config.mysql.database);
@@ -17,6 +18,7 @@ var con = function () {
 	var promise = pool.getConnection(function (err, connection) {
 		//console.log('called');
 		if (err) {
+			console.log(err);
 			deferred.reject(undefined);
 		} else {
 			deferred.resolve(connection);
@@ -27,3 +29,4 @@ var con = function () {
 
 exports.pool = pool;
 exports.con = con;
+exports.mysql = mysql;

@@ -119,25 +119,31 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			isManaged: 0,
 			floor_plan_code:$scope.formData.floorplanGroup
 		};
-
-		apiAjax.register(user).then(
+		apiAjax.registerNew(user, property).then(
 			function (res) {
-				// console.log(res);
-				if (res.data.success !== true) {
-					$scope.errorMessage = "User Profile Already Exists";
-				} else {
-					if (userType == userTypeTenant) {
-						runTenantFlow(property, res.data);
-					} else if (userType == userTypeManager) {
-						runManagerFlow(account, res.data);
-					} else {
-						runContractorFlow(account, res.data);
-					}
-				}
+				console.log(res);
 			},
 			function (err) {
 				console.log(err);
 			});
+		// apiAjax.register(user).then(
+		// 	function (res) {
+		// 		// console.log(res);
+		// 		if (res.data.success !== true) {
+		// 			$scope.errorMessage = "User Profile Already Exists";
+		// 		} else {
+		// 			if (userType == userTypeTenant) {
+		// 				runTenantFlow(property, res.data);
+		// 			} else if (userType == userTypeManager) {
+		// 				runManagerFlow(account, res.data);
+		// 			} else {
+		// 				runContractorFlow(account, res.data);
+		// 			}
+		// 		}
+		// 	},
+		// 	function (err) {
+		// 		console.log(err);
+		// 	});
 	};
 
 	function runTenantFlow(property, data) {

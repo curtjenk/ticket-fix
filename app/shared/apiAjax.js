@@ -4,6 +4,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var apiAjax = {};
     var login = baseUrl + "/login";
     var register = baseUrl + "/register";
+    var registerNew = baseUrl + "/register-new";
     var saveAccount = baseUrl + "/saveaccount";
     var saveManager = baseUrl + "/savemanager";
     var saveProperty = baseUrl + "/saveproperty";
@@ -69,6 +70,10 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     apiAjax.login = function(email, password) {
         console.log("apiAjax login");
         return makeTheCall(login, { email: email, password: password });
+    };
+    apiAjax.registerNew = function(user, property) {
+        console.log("apiAjax register new ");
+        return makeTheCall(registerNew, { user: user, property: property });
     };
     apiAjax.register = function(data) {
         console.log("apiAjax register ");

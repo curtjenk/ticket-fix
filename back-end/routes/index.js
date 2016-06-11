@@ -15,6 +15,7 @@ var Ticket = require('./models/ticket');
 var ufuncs = require('./userFuncs');
 var admin = require('./adminFuncs');
 var query = require('./queryFuncs');
+var register = require('./register');
 
 //get config objects
 var config = require('./config');
@@ -149,16 +150,18 @@ router.post('/register-new', function (req, res) {
 	});
 	switch (user.type_user_id) {
 	case USER_TYPE_TENANT:
-		ufuncs.registertenant(user, property).then(
+		register.registertenant(user, property).then(
 			function (suc) {
+				console.log(suc);
 				res.json(suc);
 			},
 			function (err) {
+				console.log(err);
 				res.json(err);
 			});
 		break;
 	case USER_TYPE_MANAGER:
-		ufuncs.registermanager(user, property).then(
+		register.registermanager(user, account).then(
 			function (suc) {
 				res.json(suc);
 			},
@@ -167,7 +170,7 @@ router.post('/register-new', function (req, res) {
 			});
 		break;
 	case USER_TYPE_CONTRACTOR:
-		ufuncs.registecontractor(user, property).then(
+		register.registecontractor(user, account, contractor).then(
 			function (suc) {
 				res.json(suc);
 			},
@@ -178,35 +181,6 @@ router.post('/register-new', function (req, res) {
 	default:
 
 	}
-	// ufuncs.saveUser(user).then(
-	// 	function (rtn) {
-	// 		// console.log('returned from save user');
-	// 		// console.log(rtn);
-	// 		if (rtn.status == 'complete') {
-	// 			apiRes.success = true;
-	// 			apiRes.info = {
-	// 				id: rtn.data.id,
-	// 				email: user.email,
-	// 				type_user_id: user.type_user_id
-	// 			};
-	// 		} else {
-	// 			//rtn.status === 'found'
-	// 			apiRes.success = false;
-	// 			apiRes.message = rtn.message;
-	// 		}
-	// 		// console.log(apiRes);
-	// 		res.json(apiRes);
-	// 	},
-	// 	function (err) {
-	// 		// console.log(err);
-	// 		// console.log(typeof err);
-	// 		apiRes.success = false;
-	// 		apiRes.message = "Registration Failed.";
-	// 		apiRes.info = err;
-	// 		console.log(apiRes);
-	// 		res.json(apiRes);
-	// 	}
-	// );
 });
 
 router.post('/saveaccount', function (req, res) {
