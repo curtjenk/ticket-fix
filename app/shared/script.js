@@ -6,6 +6,14 @@ function is_int(value) {
 	}
 }
 
+var Marker = function (data) {
+	data = data || {};
+	this.x = data.x;
+	this.y = data.y;
+	this.num = data.num;
+};
+
+
 var KeyValue = function(key, value) {
 	this.key = key;
 	this.value = value;
@@ -46,6 +54,8 @@ var ticketDetails = new TicketDetails({
 	bedroom: bedroomCheckboxes,
 	bathroom: bathroomCheckboxes
 });
+
+
 
 console.log(ticketDetails);
 

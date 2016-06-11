@@ -2,25 +2,31 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
 
     var counter = 0;
     $scope.totalMarkers = "";
-    $scope.markerArray = [];
+    var markerArray = [];
 
     $scope.addMarker = function($event) {
         counter++;
-        console.log(counter);
-        console.log('WOW YOU CLICKED IT!');
-        console.log($event);
+        // console.log(counter);
+        // console.log('WOW YOU CLICKED IT!');
+        // console.log($event);
         var xClick = $event.offsetX - 10;
         var yClick = $event.offsetY - 10;
         var newHtml = '<div class="marker text-center" style="position: absolute; top: ' + yClick + 'px; left: ' + xClick + 'px;">' + counter + '</div>';
         $scope.totalMarkers += newHtml;
         $scope.newMarker = $sce.trustAsHtml($scope.totalMarkers);
-        $scope.markerArray.push($scope.totalMarkers);
+        //$scope.markerArray.push($scope.totalMarkers);
+        markerArray.push(new Marker({x: xClick, y: yClick, num: counter}));
         console.log($scope.markerArray);
 
     };
 
     $scope.removeMarkers = function(){
+        // console.log(markerArray);
+        markerArray = [];
+        $scope.markerArray = [];
+        $scope.totalMarkers = "";
         $scope.newMarker = "";
+        counter = 0;
     };
 
     var descMax = 1000;
@@ -32,9 +38,9 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
     };
 
     $scope.textFuncTwo = function(){
-        $scope.countTwo = entryMax - $scope.formData.entry.length; 
+        $scope.countTwo = entryMax - $scope.formData.entry.length;
     };
-    
+
 
     $scope.formData = {};
     var d = new Date();
