@@ -6,7 +6,7 @@
   <div class="inner">
     <div class="form-group" ng-class="{ 'has-error': registerForm.formData.address1.$touched && registerForm.formData.address1.$invalid }">
       <label>Address Line 1</label>
-      <input name="address1" ng-model="formData.formData.address1" required placeholder="111 East Main St" type="text" class="form-control">
+      <input name="address1" ng-model="formData.address1" required placeholder="111 East Main St" type="text" class="form-control">
       <div ng-messages="registerForm.formData.address1.$error" ng-if="registerForm.formData.address1.$touched" role="alert">
         <p ng-message="require">Address Line 1 is required</p>
       </div>
