@@ -97,8 +97,48 @@ router.post('/login', function (req, res, next) {
 		});
 
 });
-
 router.post('/register', function (req, res) {
+	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
+	var contractor = new Contractor(req.body.contractor);
+	var manager = new Manager(req.body.manager);
+	var property = new Property(req.body.property);
+	var account = new Account(req.body.account);
+	// console.log(req.body);
+	var apiRes = new ApiResponse({
+		api: 'register'
+	});
+	ufuncs.saveUser(user).then(
+		function (rtn) {
+			// console.log('returned from save user');
+			// console.log(rtn);
+			if (rtn.status == 'complete') {
+				apiRes.success = true;
+				apiRes.info = {
+					id: rtn.data.id,
+					email: user.email,
+					type_user_id: user.type_user_id
+				};
+			} else {
+				//rtn.status === 'found'
+				apiRes.success = false;
+				apiRes.message = rtn.message;
+			}
+			// console.log(apiRes);
+			res.json(apiRes);
+		},
+		function (err) {
+			// console.log(err);
+			// console.log(typeof err);
+			apiRes.success = false;
+			apiRes.message = "Registration Failed.";
+			apiRes.info = err;
+			console.log(apiRes);
+			res.json(apiRes);
+		}
+	);
+});
+
+router.post('/register-old', function (req, res) {
 	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
 	// console.log(req.body);
 	var apiRes = new ApiResponse({
@@ -228,8 +268,7 @@ router.get('/propertyexists', function(req, res){
 
 router.post('/saveproperty', function (req, res) {
 	var property = new Property(req.body.property);
-	console.log(property);
-	property.genKey();
+	//console.log(property);
 	var apiRes = new ApiResponse({
 		api: 'saveproperty'
 	});

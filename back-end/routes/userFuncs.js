@@ -87,6 +87,7 @@ exports.saveUser = function (user) {
 						message: ''
 					});
 				} else {
+					console.log(err);
 					deferred.reject({
 						status: 'error',
 						data: {},

@@ -138,8 +138,6 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			function (err) {
 				console.log(err);
 			});
-
-
 	};
 
 	function runTenantFlow(property, data) {

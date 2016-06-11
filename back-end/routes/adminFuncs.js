@@ -183,15 +183,28 @@ exports.saveproperty = function (property) {
 	Q.fcall(db.con)
 		.then(function (con) {
 			//console.log(account);
+			property.genKey();
 			property.genCode();
-			con.query("INSERT INTO property SET ?", property, function (err, result) {
+			con.query("INSERT INTO property SET ?", [property], function (err, result) {
 				con.release();
 				if (!err) {
 					deferred.resolve({
-						id: result.insertId
+						status: 'complete',
+						data: {
+							id: result.insertId
+						},
+						message: ''
 					});
+
 				} else {
-					deferred.reject(err);
+					console.log(property);
+					console.log(err);
+					deferred.reject({
+						status: 'error',
+						data: {},
+						message: "sql error",
+						error: err
+					});
 				}
 			});
 		})

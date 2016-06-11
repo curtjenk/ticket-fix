@@ -19,7 +19,7 @@ Property.prototype.genCode = function () {
 	//console.log(this.account_code);
 };
 Property.prototype.genKey = function () {
-	this.key = this.zip.replace(/\s+/g, '') +
+	this.prop_key = this.zip.replace(/\s+/g, '') +
 				this.address1.replace(/\s+/g, '') +
 				this.address2.replace(/\s+/g, '');
 };
