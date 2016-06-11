@@ -140,6 +140,7 @@ router.post('/register', function (req, res) {
 });
 
 router.post('/register-new', function (req, res) {
+	console.log(req.body);
 	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
 	var contractor = new Contractor(req.body.contractor);
 	var manager = new Manager(req.body.manager);
@@ -148,38 +149,91 @@ router.post('/register-new', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'register'
 	});
+
 	switch (user.type_user_id) {
 	case USER_TYPE_TENANT:
 		register.registertenant(user, property).then(
 			function (suc) {
 				console.log(suc);
-				res.json(suc);
+				if (suc.status == 'complete') {
+					apiRes.success = true;
+					apiRes.info = {
+						id: suc.data.id,
+						email: user.email,
+						type_user_id: user.type_user_id
+					};
+				} else {
+					apiRes.success = false;
+					apiRes.error = suc.status;
+					apiRes.message = suc.message;
+				}
+				res.json(apiRes);
 			},
 			function (err) {
 				console.log(err);
-				res.json(err);
+				apiRes.success = false;
+				apiRes.error = err.status;
+				apiRes.message = err.message;
+				res.json(apiRes);
 			});
 		break;
 	case USER_TYPE_MANAGER:
 		register.registermanager(user, account).then(
 			function (suc) {
-				res.json(suc);
+				console.log(suc);
+				if (suc.status == 'complete') {
+					apiRes.success = true;
+					apiRes.info = {
+						id: suc.data.id,
+						email: user.email,
+						type_user_id: user.type_user_id
+					};
+				} else {
+					apiRes.success = false;
+					apiRes.error = suc.status;
+					apiRes.message = suc.message;
+				}
+				res.json(apiRes);
 			},
 			function (err) {
-				res.json(err);
+				console.log(err);
+				apiRes.success = false;
+				apiRes.error = err.status;
+				apiRes.message = err.message;
+				res.json(apiRes);
 			});
 		break;
 	case USER_TYPE_CONTRACTOR:
-		register.registecontractor(user, account, contractor).then(
+		register.registercontractor(user, account, contractor).then(
 			function (suc) {
-				res.json(suc);
+				console.log(suc);
+				if (suc.status == 'complete') {
+					apiRes.success = true;
+					apiRes.info = {
+						id: suc.data.id,
+						email: user.email,
+						type_user_id: user.type_user_id
+					};
+				} else {
+					apiRes.success = false;
+					apiRes.error = suc.status;
+					apiRes.message = suc.message;
+				}
+				res.json(apiRes);
 			},
 			function (err) {
-				res.json(err);
+				console.log(err);
+				apiRes.success = false;
+				apiRes.error = err.status;
+				apiRes.message = err.message;
+				res.json(apiRes);
 			});
 		break;
 	default:
-
+		apiRes.success = false;
+		apiRes.error = 'input';
+		apiRes.message = 'User Type Missing In Request';
+		res.json(apiRes);
 	}
 });
 

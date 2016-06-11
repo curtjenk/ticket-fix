@@ -24,16 +24,9 @@
         <p ng-message="required">Address is required.</p>
       </div>
     </div>
-    <div class="form-group" ng-class="{ 'has-error': registerForm.acctCity.$touched && registerForm.acctCity.$invalid }">
-      <label>City</label>
-      <input name="acctCity" required ng-model="formData.acctCity" placeholder="Atlanta" type="text" class="form-control"/>
-      <div ng-messages="registerForm.acctCity.$error" ng-if="registerForm.acctCity.$touched" role="alert">
-        <p ng-message="required">City is required.</p>
-      </div>
-    </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.acctZip.$touched && registerForm.acctZip.$invalid }">
       <label>Zip</label>
-      <input name="acctZip" required ng-model="formData.acctZip" placeholder="30114" type="text" class="form-control"/>
+      <input ng-change="zipLookupAccount()" name="acctZip" required ng-model="formData.acctZip" placeholder="30114" type="text" class="form-control"/>
       <div ng-messages="registerForm.formData.acctZip.$error" ng-if="registerForm.formData.acctZip.$touched" role="alert">
         <p ng-message="required">Zip is required.</p>
       </div>
@@ -43,6 +36,13 @@
       <input name="acctState" required ng-model="formData.acctState" placeholder="Georgia" type="text" class="form-control"/>
       <div ng-messages="registerForm.acctState.$error" ng-if="registerForm.acctState.$touched" role="alert">
         <p ng-message="required">State is required.</p>
+      </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error': registerForm.acctCity.$touched && registerForm.acctCity.$invalid }">
+      <label>City</label>
+      <input name="acctCity" required ng-model="formData.acctCity" placeholder="Atlanta" type="text" class="form-control"/>
+      <div ng-messages="registerForm.acctCity.$error" ng-if="registerForm.acctCity.$touched" role="alert">
+        <p ng-message="required">City is required.</p>
       </div>
     </div>
     <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': registerForm.acctEmail.$touched && registerForm.acctEmail.$invalid }">
