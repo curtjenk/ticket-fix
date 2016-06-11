@@ -55,9 +55,7 @@ var ticketDetails = new TicketDetails({
 	bathroom: bathroomCheckboxes
 });
 
-
-
-console.log(ticketDetails);
+// console.log(ticketDetails);
 
 var Ticket = function (data) {
 	data = data || {};

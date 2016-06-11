@@ -3,7 +3,6 @@
 ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-
     // route to show our basic form (/form)
         .state('home', {
             url: '/',

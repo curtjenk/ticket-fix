@@ -1,31 +1,53 @@
-var ticketFixApp = angular.module('ticketFixApp', ['ui.router', 'ui.bootstrap', 'ngMessages', 'LocalStorageModule', 'ngMaterial','ngSanitize']);
+var ticketFixApp = angular.module('ticketFixApp', ['ui.router', 'ui.bootstrap', 'ngMessages', 'LocalStorageModule', 'ngMaterial', 'ngSanitize']);
 
 // ticketFixApp.config(['$compileProvider', function ($compileProvider) {
 //   $compileProvider.debugInfoEnabled(false);
 // }]);//"run" executes once all modules have been loaded.
-ticketFixApp.run(function ($rootScope, $location) {
+ticketFixApp.run(function ($rootScope, $location, $urlRouter) {
 
-	$rootScope.$watch(
-		//This is the watch value function. It should return the value which is being watched.
-		//In this case, we're watching the path.
-		function () {
-			return $location.path();
-		},
-		//This is the watch listener function.  It will should "do" something when the
-		//watched value has changed.  In this case, if the path changed to something
-		//other than the home page and the user is not logged in pushed them to the home page.
-		function (a) {
+	$rootScope.$on('$locationChangeSuccess', function (e, newUrl, oldUrl) {
+		// Prevent $urlRouter's default handler from firing
+		e.preventDefault();
 
-			if (a !== '/') {
-				console.log('url has changed : ' + a);
-				//Put some code in here to check if they are logged in!
-				//If not... send them home.
-				// if (!sharedData.isLoggedIn()) {
-				//     console.log(' ... but the user is not logged in');
-				//      $location.path('/');
-				// }
+		if (isThisTransitionValid(newUrl, oldUrl)) {
+			// Ok, let's go
+			$urlRouter.sync();
+		}
+	});
+	function isThisTransitionValid(newUrl, oldUrl) {
+			if (!$rootScope.user && $location.path() != '/') {
+				console.log(" new = " + newUrl + " old = " + oldUrl);
+				console.log("url changed + not trying to go home and not logged in");
+
+				return true;
+			} else {
+				return true;
 			}
-		});
+	}
+
+	// $rootScope.$watch(
+	// 	//This is the watch value function. It should return the value which is being watched.
+	// 	//In this case, we're watching the path.
+	// 	function () {
+	// 		return $location.path();
+	// 	},
+	// 	//This is the watch listener function.  It will should "do" something when the
+	// 	//watched value has changed.  In this case, if the path changed to something
+	// 	//other than the home page and the user is not logged in pushed them to the home page.
+	// 	function (a) {
+	//
+	// 		if (a !== '/') {
+	// 			console.log('url has changed : ' + a);
+	// 			//Put some code in here to check if they are logged in!
+	// 			//If not... send them home.
+	// 			if (!$rootScope.user) {
+	// 				console.log(' ... but the user is not logged in');
+	// 				$state.go('/');
+	// 				//  $location.path('/');
+	//
+	// 			}
+	// 		}
+	// 	});
 });
 
 //disable submit button if form is invalid
@@ -58,27 +80,27 @@ ng-show="userRegistrationForm.conf.$touched">
 
  see components/registration/partials/reg-form-profile.html for live example.
 */
-ticketFixApp.directive('compareTo', function() {
-  return {
-    require: "ngModel",
-    scope: {
-      otherModelValue: "=compareTo"
-    },
-    link: function(scope, element, attributes, ngModel) {
+ticketFixApp.directive('compareTo', function () {
+	return {
+		require: "ngModel",
+		scope: {
+			otherModelValue: "=compareTo"
+		},
+		link: function (scope, element, attributes, ngModel) {
 
-      ngModel.$validators.compareTo = function(modelValue) {
-        //   console.log("model value");
-        //   console.log(modelValue);
-        //   console.log("other model value");
-        //   console.log(scope.otherModelValue);
-        return modelValue === scope.otherModelValue.$modelValue;
-      };
+			ngModel.$validators.compareTo = function (modelValue) {
+				//   console.log("model value");
+				//   console.log(modelValue);
+				//   console.log("other model value");
+				//   console.log(scope.otherModelValue);
+				return modelValue === scope.otherModelValue.$modelValue;
+			};
 
-      scope.$watch("otherModelValue", function() {
-        ngModel.$validate();
-      });
-    }
-  };
+			scope.$watch("otherModelValue", function () {
+				ngModel.$validate();
+			});
+		}
+	};
 
 });
 
