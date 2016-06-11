@@ -2,6 +2,7 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
 
     var counter = 0;
     $scope.totalMarkers = "";
+    $scope.markerArray = [];
 
     $scope.addMarker = function($event) {
         counter++;
@@ -13,6 +14,8 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
         var newHtml = '<div class="marker text-center" style="position: absolute; top: ' + yClick + 'px; left: ' + xClick + 'px;">' + counter + '</div>';
         $scope.totalMarkers += newHtml;
         $scope.newMarker = $sce.trustAsHtml($scope.totalMarkers);
+        $scope.markerArray.push($scope.totalMarkers);
+        console.log($scope.markerArray);
 
     };
 

@@ -197,8 +197,16 @@
         <div style="clear:both;"></div>
     </div>
 </form>
-<div id="marker-area" class="container" ng-click="addMarker($event)">
-    <div class="marker-container" ng-bind-html="newMarker">
-        <img src="assets/img/tools.jpg" alt="">
+<div class="form-section ticket-section">
+    <p class="form-header custom-header-five">
+        Floor Plan
+    </p>
+    <div class="col-sm-6">
+        <div id="marker-area" ng-click="addMarker($event)">
+            <div class="marker-container" ng-bind-html="newMarker">
+                <img src="assets/img/floor-plans/1bed1bath.jpg">
+            </div>
+        </div>
     </div>
+    <div style="clear:both;"></div>
 </div>

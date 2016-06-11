@@ -96,6 +96,10 @@ p.form-header.custom-header-four {
     padding-left: 45px;
 }
 
+p.form-header.custom-header-five {
+    padding-left: 50px;
+}
+
 .region-inner {
     border: 1px solid black;
     margin-top: 15px;
@@ -629,11 +633,13 @@ md-tabs .md-tab {
     height: 500px;
 }
 
-md-radio-button.md-default-theme ._md-on, md-radio-button ._md-on {
+md-radio-button.md-default-theme ._md-on,
+md-radio-button ._md-on {
     background-color: #007ecc;
 }
 
-md-radio-button.md-default-theme.md-checked ._md-off, md-radio-button.md-checked ._md-off {
+md-radio-button.md-default-theme.md-checked ._md-off,
+md-radio-button.md-checked ._md-off {
     border-color: #007ecc;
 }
 
@@ -688,18 +694,27 @@ md-checkbox.md-checked ._md-icon {
 }
 
 #marker-area {
-    width: 560px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     padding: 0px;
-    margin-top: 50px;
     position: relative;
+    margin-bottom: 50px;
 }
 
 .marker-container {
-    width: 560px;
-    height: 400px;
-    background-color: green;
-    background-image: url("../img/floor-plans/1bed1bath.jpg");
-    background-size: 100%;
     position: relative;
+    width: 300px;
+    height: 300px;
+    background-image: url("../img/floor-plans/1bed1bath.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+
 }
+
+.desc-area {
+    min-height: 100px;
+}
+
+
