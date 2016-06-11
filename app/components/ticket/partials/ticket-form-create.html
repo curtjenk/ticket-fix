@@ -7,6 +7,13 @@
             <div class="user-info">
                 <label>Date: <span class="date-created">{{formData.date}}</span></label>
                 <br>
+                <h4>Tenant Info</h4>
+                <p><label>Name: </label>{{formData.firstname}} {{formData.lastname}}</p>
+                <p><label>Email: </label>{{formData.email}}</p>
+                <p><label>Phone: </label>{{formData.phone}}</p>
+                <p><label>Mobile: </label>{{formData.mobile}}</p>
+                <h4>Contact Info</h4>
+
                 <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.firstname.$touched && ticketForm.firstname.$invalid }">
                     <label>First Name</label>
                     <input name="firstname" ng-model="formData.firstname" required placeholder="John" type="text" class="form-control" />
@@ -45,25 +52,25 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.formData.altphone.$touched && ticketForm.formData.altphone.$invalid }">
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.altphone.$touched && ticketForm.altphone.$invalid }">
                 <label>Alternate Phone</label>
                 <input name="altphone" ng-model="formData.altphone" placeholder="555-555-1234" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
-                <div ng-messages="ticketForm.formData.altphone.$error" ng-if="ticketForm.formData.altphone.$touched" role="alert">
+                <div ng-messages="ticketForm.altphone.$error" ng-if="ticketForm.altphone.$touched" role="alert">
                     <p ng-message="pattern">Must be a valid 10 digit phone number</p>
                 </div>
             </div>
-            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.formData.altemail.$touched && ticketForm.formData.altemail.$invalid }">
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.altemail.$touched && ticketForm.altemail.$invalid }">
                 <label>Alternate email</label>
                 <input name="altemail" ng-model="formData.altemail" placeholder="altexample@example.com" type="altemail" class="form-control">
-                <div ng-messages="ticketForm.formData.altemail.$error" ng-if="ticketForm.formData.altemail.$touched" role="alert">
+                <div ng-messages="ticketForm.altemail.$error" ng-if="ticketForm.altemail.$touched" role="alert">
                     <p ng-message="altemail">Enter a valid email</p>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.desc.$touched && ticketForm.formData.desc.$invalid }">
+            <div class="form-group" ng-class="{ 'has-error': ticketForm.desc.$touched && ticketForm.desc.$invalid }">
                 <label>Description</label>
                 <textarea name="desc" ng-model="formData.desc" ng-change="textFunc()" required placeholder="Describe your problem..." type="text" class="form-control desc-area" maxlength="1000"></textarea>
                 <small>{{count}} characters left</small>
-                <div ng-messages="ticketForm.formData.desc.$error" ng-if="ticketForm.formData.desc.$touched" role="alert">
+                <div ng-messages="ticketForm.desc.$error" ng-if="ticketForm.desc.$touched" role="alert">
                     <p ng-message="required">Enter a description for the ticket</p>
                 </div>
             </div>
@@ -78,11 +85,11 @@
                     </md-radio-button>
                 </md-radio-group>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.entry.$touched && ticketForm.formData.entry.$invalid }">
+            <div class="form-group" ng-class="{ 'has-error': ticketForm.entry.$touched && ticketForm.entry.$invalid }">
                 <label>Entry Point</label>
                 <textarea name="entry" ng-model="formData.entry" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
                 <small>{{countTwo}} characters left</small>
-                <div ng-messages="ticketForm.formData.entry.$error" ng-if="ticketForm.formData.entry.$touched" role="alert">
+                <div ng-messages="ticketForm.entry.$error" ng-if="ticketForm.entry.$touched" role="alert">
                     <p ng-message="required">Entry point description required</p>
                 </div>
             </div>
@@ -192,6 +199,25 @@
                         </md-tab>
                     </md-tabs>
                 </md-content>
+                <label class="control-label">Select File</label>
+                <small>Upload images of your problem</small>
+                <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+                <label>Repair Process: </label>
+                <small>How would you like to be updated on the progress of your ticket?</small>
+                <md-radio-group ng-model="formData.contact">
+                    <md-radio-button value="email" aria-label="email">
+                        <p>Email</p>
+                    </md-radio-button>
+                    <md-radio-button value="text" aria-label="text">
+                        <p>Text Message</p>
+                    </md-radio-button>
+                    <md-radio-button value="phone" aria-label="phone">
+                        <p>Phone</p>
+                    </md-radio-button>
+                    <md-radio-button value="no-contact" aria-label="no-contact">
+                        <p>Don't contact me</p>
+                    </md-radio-button>
+                </md-radio-group>
             </div>
         </div>
         <div style="clear:both;"></div>
@@ -202,13 +228,28 @@
         Floor Plan
     </p>
     <div class="col-sm-6">
+        <small>Click on the problem area</small>
         <div id="marker-area" ng-click="addMarker($event)">
             <div class="marker-container" ng-bind-html="newMarker">
                 <img src="assets/img/floor-plans/1bed1bath.jpg">
             </div>
         </div>
-        <button ng-click="enableAddMarker()" type="button" class="btn btn-reg">Add Marker</button>
-        <button ng-click="removeMarkers()" type="button" class="btn btn-reg">Remove Markers</button>
+        <button ng-click="removeMarkers()" type="button" class="btn btn-default remove-btn">Remove Markers</button>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="col-sm-12 permission-form">
+                <label>Permission to enter:</label>
+                <md-checkbox ng-model="formData.permission" aria-label="formData.permission"></md-checkbox>
+                <small>I agree to let the property staff enter my unit to work on this maintenance issue</small>
+            </div>
+        </div>
     </div>
     <div style="clear:both;"></div>
+</div>
+<div class="button-holder text-center">
+    <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp;
+    <a href="#/">
+        <button type="button" class="btn btn-default">Cancel</button>
+    </a>
 </div>

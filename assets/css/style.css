@@ -790,7 +790,7 @@ md-checkbox.md-checked ._md-icon {
   height: 300px;
   padding: 0px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 /* line 704, ../../tools/compass/sass/style.scss */
@@ -808,4 +808,9 @@ md-checkbox.md-checked ._md-icon {
 /* line 716, ../../tools/compass/sass/style.scss */
 .desc-area {
   min-height: 100px;
+}
+
+/* line 720, ../../tools/compass/sass/style.scss */
+.remove-btn {
+  margin-bottom: 10px;
 }

@@ -698,7 +698,7 @@ md-checkbox.md-checked ._md-icon {
     height: 300px;
     padding: 0px;
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .marker-container {
@@ -715,6 +715,10 @@ md-checkbox.md-checked ._md-icon {
 
 .desc-area {
     min-height: 100px;
+}
+
+.remove-btn {
+    margin-bottom: 10px;
 }
 
 
