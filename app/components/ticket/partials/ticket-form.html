@@ -10,6 +10,8 @@
     </div>
     <!-- Ticket Creation Process -->
     <div class="container">
-        <div ui-view></div>
+        <form id="ticketForm" ng-submit="ticketFunc()" name="ticketForm" role="form" novalidate>
+            <div ui-view></div>
+        </form>
     </div>
 </div>

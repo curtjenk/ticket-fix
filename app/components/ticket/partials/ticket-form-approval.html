@@ -1,0 +1,54 @@
+<div id="ticket-approval" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 ticket-approval-form">
+    <div class="form-section ticket-section">
+        <p class="form-header custom-header">
+            Your Ticket Info
+        </p>
+        <div class="col-sm-6">
+            <div class="user-info">
+                <label>Date: <span class="date-created">{{formData.date}}</span></label>
+                <br>
+                <div id="ticket-info-wrapper" class="col-sm-12">
+                <div class="row title-move-right">
+                    <label>Tenant information</label>
+                </div>
+                <div class="tenant-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
+                    <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
+                    <p>Email: {{formData.email}}</p>
+                </div>
+                <div class="tenant-info-two col-sm-6  left-bar right-bar col-xs-12">
+                    <p>Phone: {{formData.phone}}</p>
+                    <p>Mobile: {{formData.mobile}}</p>
+                </div>
+                <div class="row title-move-right">
+                    <label>Contact information</label>
+                </div>
+                <div class="contact-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
+                    <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
+                    <p>Email: {{formData.email}}</p>
+                </div>
+                <div class="contact-info-two col-sm-6 left-bar right-bar col-xs-12">
+                    <p>Phone: {{formData.phone}}</p>
+                    <p>Mobile: {{formData.mobile}}</p>
+                </div>
+                <div class="row title-move-right">
+                    <label>Maintenance information</label>
+                </div>
+                <div class="contact-info-three col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Description: {{formData.desc}}</p>
+                </div>
+                <div class="contact-info-four col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Do you have a pet?:</p>
+                    <p>{{formData.pet}}</p>
+                </div>
+                <div class="contact-info-five col-sm-12 left-bar right-bar col-xs-12">
+                    <p>Entry Point: {{formData.entry}}</p>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="button-holder text-center">
+        <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Confirm Ticket</button>&nbsp;
+        <button ui-sref="ticket.create" class="btn btn-default">Update Info</button>
+    </div>
+</div>
