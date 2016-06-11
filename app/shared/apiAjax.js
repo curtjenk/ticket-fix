@@ -71,9 +71,9 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         console.log("apiAjax login");
         return makeTheCall(login, { email: email, password: password });
     };
-    apiAjax.registerNew = function(user, property) {
+    apiAjax.registerNew = function(user, property, account) {
         console.log("apiAjax register new ");
-        return makeTheCall(registerNew, { user: user, property: property });
+        return makeTheCall(registerNew, { user: user, property: property, account: account });
     };
     apiAjax.register = function(data) {
         console.log("apiAjax register ");

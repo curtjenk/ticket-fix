@@ -17,6 +17,22 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	var userTypeArray = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 
 	$scope.account_type = userTypeArray[$rootScope.userType];
+	console.log($rootScope.userType);
+
+	$scope.zipLookupAccount = function () {
+		console.log($scope.formData.zip);
+		if ($scope.formData.acctZip && $scope.formData.acctZip.length === 5 && is_int($scope.formData.acctZip.length)) {
+			var ok = function (resp) {
+				$scope.formData.acctCity = resp.city;
+				$scope.formData.acctState = resp.state;
+			};
+			var error = function (err) {
+				$scope.formData.acctCity = "";
+				$scope.formData.acctState = "";
+			};
+			zipLookup.get($scope.formData.acctZip, ok, error);
+		}
+	};
 
 	$scope.zipLookupTenant = function () {
 		console.log($scope.formData.zip);
@@ -119,9 +135,20 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			isManaged: 0,
 			floor_plan_code:$scope.formData.floorplanGroup
 		};
-		apiAjax.registerNew(user, property).then(
+		apiAjax.registerNew(user, property, account).then(
 			function (res) {
 				console.log(res);
+				if (res.data.success === true) {
+					$location.path('/login');
+				} else if (res.data.success === false) {
+					if (res.data.error == 'found') {
+						$scope.errorMessage = "User Profile Already Exists";
+					} else {
+						$scope.errorMessage = "blah";
+					}
+				} else {
+					$scope.errorMessage = "Error encountered.  Please contact ticketfixme";
+				}
 			},
 			function (err) {
 				console.log(err);
@@ -146,99 +173,99 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 		// 	});
 	};
 
-	function runTenantFlow(property, data) {
-		apiAjax.saveproperty(property)
-			.then(function (res) {
-				console.log(res);
-				//apiAjax.savetenant = function (data) {
-				return apiAjax.savetenant({
-					user_id: data.info.id,
-					property_id: res.data.info.id
-				});
-			})
-			.then(function (res) {
-				if (res.data.success === true) {
-					$location.path('/login');
-				} else {
-					console.log(res);
-					$scope.errorMessage = "Unable to save tenant information.";
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	}
-
-	function runManagerFlow(account, data) {
-		apiAjax.saveaccount(account)
-			.then(function (res) {
-				var personObject = getTypeData(userTypeManager, data.info.id, res.data.info.id);
-				return apiAjax.savemanager(personObject);
-			})
-			.then(function (res) {
-				if (res.data.success === true) {
-					$location.path('/login');
-				} else {
-					console.log(res);
-					$scope.errorMessage = "Unable to save account information.";
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	}
-
-	function runContractorFlow(account, data) {
-		apiAjax.saveaccount(account)
-			.then(function (res) {
-				var personObject = getTypeData(userTypeContractor, data.info.id, res.data.info.id);
-				return apiAjax.savecontractor(personObject);
-			})
-			.then(function (res) {
-				if (res.data.success === true) {
-					$location.path('/login');
-				} else {
-					console.log(res);
-					$scope.errorMessage = "Unable to save contractor information.";
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-	}
-
-
-	function getTypeData(userType, unique_user_id, acctId) {
-		if (userType === userTypeManager) {
-			personObj = {
-				userType: userType,
-				account_id: acctId,
-				user_id: unique_user_id
-			};
-
-		} else if (userType === userTypeContractor) {
-			personObj = {
-				userType: userType,
-				account_id: acctId,
-				user_id: unique_user_id,
-				region_1_radius: $scope.formData.contMile1,
-				region_1_city: $scope.formData.contCity1,
-				region_1_state: $scope.formData.contState1,
-				region_1_zip: $scope.formData.contZip1,
-
-				region_2_radius: $scope.formData.contMile2,
-				region_2_city: $scope.formData.contCity2,
-				region_2_state: $scope.formData.contState2,
-				region_2_zip: $scope.formData.contZip2,
-
-				region_3_radius: $scope.formData.contMile3,
-				region_3_city: $scope.formData.contCity3,
-				region_3_state: $scope.formData.contState3,
-				region_3_zip: $scope.formData.contZip3
-
-			};
-		}
-		return personObj;
-	}
+	// function runTenantFlow(property, data) {
+	// 	apiAjax.saveproperty(property)
+	// 		.then(function (res) {
+	// 			console.log(res);
+	// 			//apiAjax.savetenant = function (data) {
+	// 			return apiAjax.savetenant({
+	// 				user_id: data.info.id,
+	// 				property_id: res.data.info.id
+	// 			});
+	// 		})
+	// 		.then(function (res) {
+	// 			if (res.data.success === true) {
+	// 				$location.path('/login');
+	// 			} else {
+	// 				console.log(res);
+	// 				$scope.errorMessage = "Unable to save tenant information.";
+	// 			}
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.log(error);
+	// 		});
+	// }
+	//
+	// function runManagerFlow(account, data) {
+	// 	apiAjax.saveaccount(account)
+	// 		.then(function (res) {
+	// 			var personObject = getTypeData(userTypeManager, data.info.id, res.data.info.id);
+	// 			return apiAjax.savemanager(personObject);
+	// 		})
+	// 		.then(function (res) {
+	// 			if (res.data.success === true) {
+	// 				$location.path('/login');
+	// 			} else {
+	// 				console.log(res);
+	// 				$scope.errorMessage = "Unable to save account information.";
+	// 			}
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.log(error);
+	// 		});
+	// }
+	//
+	// function runContractorFlow(account, data) {
+	// 	apiAjax.saveaccount(account)
+	// 		.then(function (res) {
+	// 			var personObject = getTypeData(userTypeContractor, data.info.id, res.data.info.id);
+	// 			return apiAjax.savecontractor(personObject);
+	// 		})
+	// 		.then(function (res) {
+	// 			if (res.data.success === true) {
+	// 				$location.path('/login');
+	// 			} else {
+	// 				console.log(res);
+	// 				$scope.errorMessage = "Unable to save contractor information.";
+	// 			}
+	// 		})
+	// 		.catch(function (error) {
+	// 			console.log(error);
+	// 		});
+	// }
+	//
+	//
+	// function getTypeData(userType, unique_user_id, acctId) {
+	// 	if (userType === userTypeManager) {
+	// 		personObj = {
+	// 			userType: userType,
+	// 			account_id: acctId,
+	// 			user_id: unique_user_id
+	// 		};
+	//
+	// 	} else if (userType === userTypeContractor) {
+	// 		personObj = {
+	// 			userType: userType,
+	// 			account_id: acctId,
+	// 			user_id: unique_user_id,
+	// 			region_1_radius: $scope.formData.contMile1,
+	// 			region_1_city: $scope.formData.contCity1,
+	// 			region_1_state: $scope.formData.contState1,
+	// 			region_1_zip: $scope.formData.contZip1,
+	//
+	// 			region_2_radius: $scope.formData.contMile2,
+	// 			region_2_city: $scope.formData.contCity2,
+	// 			region_2_state: $scope.formData.contState2,
+	// 			region_2_zip: $scope.formData.contZip2,
+	//
+	// 			region_3_radius: $scope.formData.contMile3,
+	// 			region_3_city: $scope.formData.contCity3,
+	// 			region_3_state: $scope.formData.contState3,
+	// 			region_3_zip: $scope.formData.contZip3
+	//
+	// 		};
+	// 	}
+	// 	return personObj;
+	// }
 
 });
