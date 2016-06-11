@@ -79,9 +79,9 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.entry.$touched && ticketForm.formData.entry.$invalid }">
                 <label>Entry Point</label>
-                <textarea name="entry" ng-model="formData.entry" required placeholder="My problem is ..." type="text" class="form-control"></textarea>
+                <textarea name="entry" ng-model="formData.entry" required placeholder="Something we need to know about entry?" type="text" class="form-control"></textarea>
                 <div ng-messages="ticketForm.formData.entry.$error" ng-if="ticketForm.formData.entry.$touched" role="alert">
-                    <p ng-message="required">Something we need to know about entry?</p>
+                    <p ng-message="required">Entry point description required</p>
                 </div>
             </div>
         </div>
