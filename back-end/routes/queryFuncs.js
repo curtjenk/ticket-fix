@@ -12,8 +12,8 @@ where user.id = 95
 //Given a user's email query User, Tenant & Property and return all info except password
 exports.getTenantInfo = function (email) {
 	var deferred = Q.defer();
-	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
-		" code, address1, address2, city, state, zip " +
+	var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
+		" tenant.property_id as property_id, code, address1, address2, city, state, zip " +
 		" from user " +
 		" left join tenant on user.id = tenant.user_id " +
 		" left join property on tenant.property_id = property.id " +
@@ -66,12 +66,12 @@ where user.email = 'curtis-manager2@me.com'
 */
 exports.getManagerInfo = function (email) {
 	var deferred = Q.defer();
-	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
+	var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
 		" account_address, account_city, account_state, account_zip " +
 		" from user " +
 		" left join manager on user.id = manager.user_id " +
 		" left join account on manager.account_id = account.id " +
-		" where user.email = 'curtis-manager2@me.com' ";
+		" where user.email = ?";
 	Q.fcall(db.con)
 		.then(function (con) {
 			con.query(queryString, [email], function (err, rows) {

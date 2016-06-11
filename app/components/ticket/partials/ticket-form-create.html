@@ -81,7 +81,7 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': ticketForm.entry.$touched && ticketForm.entry.$invalid }">
             <label>Entry Point</label>
-            <textarea name="entry" ng-model="formData.entry" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
+            <textarea name="entry" ng-model="formData.entryPoint" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
             <small>{{countTwo}} characters left</small>
             <div ng-messages="ticketForm.entry.$error" ng-if="ticketForm.entry.$touched" role="alert">
                 <p ng-message="required">Entry point description required</p>
@@ -97,22 +97,22 @@
                             <h4>Kitchen</h4>
                             <ul class="ticket-checkbox">
                                 <li>
-                                    <md-checkbox ng-model="formData.sink" aria-label="formData.sink"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.sink" aria-label="formData.sink"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.stove" aria-label="formData.stove"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.stove" aria-label="formData.stove"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.oven" aria-label="formData.oven"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.oven" aria-label="formData.oven"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.fridge" aria-label="formData.fridge"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.fridge" aria-label="formData.fridge"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
+                                    <md-checkbox ng-model="formData.kitchen.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
                                 </li>
                             </ul>
                             <ul class="ticket-list">
@@ -130,22 +130,22 @@
                             <h4>Bathroom</h4>
                             <ul class="ticket-checkbox">
                                 <li>
-                                    <md-checkbox ng-model="formData.bathsink" aria-label="formData.bathsink"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.sink" aria-label="formData.bathsink"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.toilet" aria-label="formData.toilet"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.toilet" aria-label="formData.toilet"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.tub" aria-label="formData.tub"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.tub" aria-label="formData.tub"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.shower" aria-label="formData.shower"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.shower" aria-label="formData.shower"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.mirror" aria-label="formData.mirror"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.mirror" aria-label="formData.mirror"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.fan" aria-label="formData.fan"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bathroom.fan" aria-label="formData.fan"></md-checkbox>
                                 </li>
                             </ul>
                             <ul class="ticket-list">
@@ -163,22 +163,22 @@
                             <h4>Bedroom</h4>
                             <ul class="ticket-checkbox">
                                 <li>
-                                    <md-checkbox ng-model="formData.ceilingfan" aria-label="formData.ceilingfan"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.ceilingfan" aria-label="formData.ceilingfan"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.outlet" aria-label="formData.outlet"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.outlet" aria-label="formData.outlet"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.closet" aria-label="formData.closet"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.closet" aria-label="formData.closet"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.door" aria-label="formData.door"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.door" aria-label="formData.door"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.acvent" aria-label="formData.acvent"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.acvent" aria-label="formData.acvent"></md-checkbox>
                                 </li>
                                 <li>
-                                    <md-checkbox ng-model="formData.carpet" aria-label="formData.carpet"></md-checkbox>
+                                    <md-checkbox ng-model="formData.bedroom.carpet" aria-label="formData.carpet"></md-checkbox>
                                 </li>
                             </ul>
                             <ul class="ticket-list">
@@ -198,7 +198,7 @@
             <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
             <label style="margin-top: 30px;">Notification preference: </label>
             <small>How would you like to be updated on the progress of your ticket?</small>
-            <md-radio-group ng-model="formData.contact">
+            <md-radio-group ng-model="formData.notifyPreference">
                 <md-radio-button value="email" aria-label="email">
                     <p>Email</p>
                 </md-radio-button>
@@ -208,13 +208,13 @@
                 <md-radio-button value="phone" aria-label="phone">
                     <p>Phone</p>
                 </md-radio-button>
-                <md-radio-button value="no-contact" aria-label="no-contact">
+                <md-radio-button value="nocontact" aria-label="nocontact">
                     <p>Don't contact me</p>
                 </md-radio-button>
             </md-radio-group>
             <label>Permission:</label>
             <small>Do you need to be present for the maintenance to be repair?</small>
-            <md-radio-group ng-model="formData.attendance">
+            <md-radio-group ng-model="formData.enterIfAbsent">
                 <md-radio-button value="yes" aria-label="yes">
                     <p>Yes <small>(Don't fix the issue if I'm not present)</small></p>
                 </md-radio-button>
@@ -241,13 +241,13 @@
         <button ng-click="removeMarkers()" type="button" class="btn btn-danger remove-btn">Remove Markers</button>
     </div>
     <div class="col-sm-6">
-        <h4>Set Appointment Time & Date</h4>
+        <h4>Set Appointment Time &amp; Date</h4>
         <small>Required if Tenant need's to be present for the repairs</small>
     </div>
     <div class="row">
         <div class="col-sm-12 permission-form">
             <label>Permission to enter:</label>
-            <md-checkbox ng-model="formData.permission" aria-label="formData.permission"></md-checkbox>
+            <md-checkbox ng-model="formData.agree" aria-label="formData.agree"></md-checkbox>
             <small>I agree to let the property staff enter my unit to work on this maintenance issue</small>
         </div>
     </div>
@@ -259,4 +259,3 @@
         <button type="button" class="btn btn-default">Cancel</button>
     </a>
 </div>
-

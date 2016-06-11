@@ -1,7 +1,7 @@
 ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http, $location, $sce, apiAjax, localStore) {
 
 	var counter = 0;
-	$scope.totalMarkers = "";
+	var totalMarkers = "";
 	var markerArray = [];
 
 	$scope.addMarker = function ($event) {
@@ -12,23 +12,22 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		var xClick = $event.offsetX - 10;
 		var yClick = $event.offsetY - 10;
 		var newHtml = '<div class="marker text-center" style="position: absolute; top: ' + yClick + 'px; left: ' + xClick + 'px;">' + counter + '</div>';
-		$scope.totalMarkers += newHtml;
-		$scope.newMarker = $sce.trustAsHtml($scope.totalMarkers);
+		totalMarkers += newHtml;
+		$scope.newMarker = $sce.trustAsHtml(totalMarkers);
 		//$scope.markerArray.push($scope.totalMarkers);
 		markerArray.push(new Marker({
 			x: xClick,
 			y: yClick,
 			num: counter
 		}));
-		console.log($scope.markerArray);
+		console.log(markerArray);
 
 	};
 
 	$scope.removeMarkers = function () {
 		// console.log(markerArray);
 		markerArray = [];
-		$scope.markerArray = [];
-		$scope.totalMarkers = "";
+		totalMarkers = "";
 		$scope.newMarker = "";
 		counter = 0;
 	};
@@ -60,9 +59,93 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 	var user = $rootScope.user;
 	var localData;
 
+	//go get the user's info [manager or tenant]
 	onload();
 
+	$scope.ticketFunc = function () {
+		console.log($scope.formData.kitchen);
+		console.log("here");
+		var d = new Date();
+		var ticket = new Ticket();
+		ticket.user_id = $scope.user_id;
+		ticket.property_id = $scope.property_id;
+		ticket.client_datetime_string = d.yyyymmdd() + '-' + d.hhmmss();
+
+		ticket.contact_first_name = $scope.formData.firstname;
+		ticket.contact_last_name = $scope.formData.lastname;
+		ticket.contact_email =  $scope.formData.email;
+		ticket.contact_phone = $scope.formData.phone;
+		ticket.contact_mobile = $scope.formData.mobile;
+		ticket.pet = $scope.formData.pet;
+		ticket.entry_point = $scope.formData.entryPoint;
+
+		ticket.alt_phone = $scope.formData.altphone;
+		ticket.alt_first_name = $scope.formData.firstname;
+		ticket.alt_last_name = $scope.formData.lastname;
+		ticket.alt_email = $scope.formData.altemail;
+		ticket.issue_description = $scope.formData.desc;
+		ticket.notify_preference = $scope.notifyPreference;
+		ticket.enter_if_absent = $scope.enterIfAbsent;
+		ticket.agree = $scope.agree;
+
+		var details = new TicketDetails();
+
+		for (var prop in $scope.formData.kitchen) {
+			details.kitchen.push({
+				key: prop,
+				value: $scope.formData.kitchen[prop]
+			});
+			// details.kitchen.push(new KeyValue(prop, $scope.formData.kitchen[prop]));
+		}
+		for (var bd in $scope.formData.bedroom) {
+			details.bedroom.push({
+				key: bd,
+				value: $scope.formData.bedroom[bd]
+			});
+			// details.bedroom.push(new KeyValue(bd, $scope.formData.bedroom[bd]));
+		}
+		for (var item in $scope.formData.bathroom) {
+			details.bathroom.push({
+				key: item,
+				value: $scope.formData.bathroom[item]
+			});
+			// details.bathroom.push(new KeyValue(item, $scope.formData.bathroom[item]));
+		}
+
+		ticket.details_json = details;
+
+		ticket.markers_json = [];
+		for (var i = 0; i < markerArray.length; i++) {
+			ticket.markers_json.push(markerArray[i]);
+		}
+		//use the logged-in user !
+		apiAjax.createticket(ticket, user.email).then(
+			function (suc) {
+				console.log(suc);
+			},
+			function (err) {
+				console.log(err);
+			});
+	};
+
 	// ---- helper functions below ----
+	Date.prototype.yyyymmdd = function () {
+		var yyyy = this.getFullYear().toString();
+		var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+		var dd = this.getDate().toString();
+		var hh = this.getHours().toString();
+		var mi = this.getMinutes().toString();
+		var ss = this.getSeconds().toString();
+		return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
+	};
+
+	Date.prototype.hhmmss = function () {
+		var hh = this.getHours().toString();
+		var mi = this.getMinutes().toString();
+		var ss = this.getSeconds().toString();
+		return (hh[1] ? hh : "0" + hh[0]) + (mi[1] ? mi : "0" + mi[0]) + (ss[1] ? ss : "0" + ss[0]); // padding
+	};
+
 	function onload() {
 		if (user && user.email) {
 			localData = localStore.get(user.email);
@@ -71,7 +154,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 			return;
 		}
 		console.log(' -----------------------------------------------');
-		console.log(localData);
+		//console.log(localData);
 		if (localData.userType == 3) {
 			/* returns
 			email, first_name, last_name, home_phone, mobile_phone,
@@ -81,12 +164,13 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 				console.log(res);
 
 				if (res.data.success === true) {
+					$scope.user_id = res.data.info.user_id;
+					$scope.property_id = res.data.info.property_id;
 					$scope.formData.firstname = res.data.info.first_name;
 					$scope.formData.lastname = res.data.info.last_name;
 					$scope.formData.email = res.data.info.email;
 					$scope.formData.phone = res.data.info.home_phone;
 					$scope.formData.mobile = res.data.info.mobile_phone;
-
 				}
 			}, function (err) {
 
@@ -94,8 +178,8 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		} else if (localData.userType == 4) { //manager
 			apiAjax.getmanagerinfo(user.email).then(function (res) {
 				console.log(res);
-
 				if (res.data.success === true) {
+					$scope.user_id = res.data.info.user_id;
 					$scope.formData.firstname = res.data.info.first_name;
 					$scope.formData.lastname = res.data.info.last_name;
 					$scope.formData.email = res.data.info.email;

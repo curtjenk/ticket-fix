@@ -374,12 +374,12 @@ router.post('/savetenant', function (req, res) {
 	});
 });
 
-router.post('/api/saveticket', function (req, res) {
+router.post('/api/createticket', function (req, res) {
 	console.log(req.body);
 	var ticket = new Ticket(req.body.ticket);
 	console.log(ticket);
 	var apiRes = new ApiResponse({
-		api: 'api/saveticket'
+		api: 'api/createticket'
 	});
 	admin.saveticket(ticket).then(function (succ) {
 		//returns the insertId
