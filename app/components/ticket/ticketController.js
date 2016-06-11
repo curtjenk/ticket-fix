@@ -19,6 +19,10 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
 
     };
 
+    $scope.removeMarkers = function(){
+        $scope.newMarker = "";
+    };
+
     var descMax = 1000;
     var entryMax = 240;
     $scope.count = descMax;

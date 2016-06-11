@@ -80,7 +80,7 @@
             </div>
             <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.entry.$touched && ticketForm.formData.entry.$invalid }">
                 <label>Entry Point</label>
-                <textarea name="entry" ng-model="formData.entry" ng-change="textFuncTwo()" required placeholder="Something we need to know about entry?" type="text" class="form-control" maxlength="240"></textarea>
+                <textarea name="entry" ng-model="formData.entry" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
                 <small>{{countTwo}} characters left</small>
                 <div ng-messages="ticketForm.formData.entry.$error" ng-if="ticketForm.formData.entry.$touched" role="alert">
                     <p ng-message="required">Entry point description required</p>
@@ -207,6 +207,8 @@
                 <img src="assets/img/floor-plans/1bed1bath.jpg">
             </div>
         </div>
+        <button ng-click="enableAddMarker()" type="button" class="btn btn-reg">Add Marker</button>
+        <button ng-click="removeMarkers()" type="button" class="btn btn-reg">Remove Markers</button>
     </div>
     <div style="clear:both;"></div>
 </div>
