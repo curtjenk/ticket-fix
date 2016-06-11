@@ -814,3 +814,9 @@ md-checkbox.md-checked ._md-icon {
 .remove-btn {
   margin-bottom: 10px;
 }
+
+/* line 724, ../../tools/compass/sass/style.scss */
+.permission-form {
+  margin-top: 20px;
+  margin-left: 20px;
+}
