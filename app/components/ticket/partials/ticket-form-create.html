@@ -5,33 +5,58 @@
         </p>
         <div class="col-sm-6">
             <div class="user-info">
-                <label>Date</label>
+                <label>Date: <span class="date-created">{{formData.date}}</span></label>
                 <br>
-                <div style="padding-left: 0px;" class="col-sm-12">{{formData.date}}</div>
-                <label style="padding-left: 0px;" class="col-sm-6">Firstname:</label>
-                <label class="col-sm-6">Lastname:</label>
-                <br>
-                <div class="col-sm-6" style="padding-left: 0px;">{{formData.firstname}}</div>
-                <div class="col-sm-6">{{formData.lastname}}</div>
-                <label style="padding-left: 0px;" class="col-sm-6">Phone:</label>
-                <label class="col-sm-6">Email:</label>
-                <br>
-                <input type="text" name="" value="{{formData.firstname}}">
-                <div class="col-sm-6" style="padding-left: 0px;">{{formData.phone}}</div>
-                <div class="col-sm-6">{{formData.email}}</div>
+                <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.firstname.$touched && ticketForm.firstname.$invalid }">
+                    <label>First Name</label>
+                    <input name="firstname" ng-model="formData.firstname" required placeholder="John" type="text" class="form-control" />
+                    <div ng-messages="ticketForm.firstname.$error" ng-if="ticketForm.firstname.$touched" role="alert">
+                        <p ng-message="required">First Name is required.</p>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.lastname.$touched && ticketForm.lastname.$invalid }">
+                    <label>Last Name</label>
+                    <input name="lastname" ng-model="formData.lastname" required placeholder="Doe" type="text" class="form-control" />
+                    <div ng-messages="ticketForm.lastname.$error" ng-if="ticketForm.lastname.$touched" role="alert">
+                        <p ng-message="required">Last Name is required.</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error': ticketForm.email.$touched && ticketForm.email.$invalid }">
+                    <label>Email</label>
+                    <input name="email" ng-model="formData.email" required multiple placeholder="example@example.com" type="email" class="form-control">
+                    <div ng-messages="ticketForm.email.$error" ng-if="ticketForm.email.$touched" role="alert">
+                        <p ng-message="required">Email is required.</p>
+                        <p ng-message="email">Enter a valid email</p>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.phone.$touched && ticketForm.phone.$invalid }">
+                    <label>Phone</label>
+                    <input name="phone" ng-model="formData.phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                    <div ng-messages="ticketForm.phone.$error" ng-if="ticketForm.phone.$touched" role="alert">
+                        <p ng-message="required">Phone is required.</p>
+                        <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.mobile.$touched && ticketForm.mobile.$invalid }">
+                    <label>Mobile</label>
+                    <input name="mobile" ng-model="formData.mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                    <div ng-messages="ticketForm.mobile.$error" ng-if="ticketForm.mobile.$touched" role="alert">
+                        <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                    </div>
+                </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.phone.$touched && ticketForm.formData.phone.$invalid }">
-                <label>Alternate Phone:</label>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.formData.phone.$touched && ticketForm.formData.phone.$invalid }">
+                <label>Alternate Phone</label>
                 <input name="phone" ng-model="formData.phone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
                 <div ng-messages="ticketForm.formData.phone.$error" ng-if="ticketForm.formData.phone.$touched" role="alert">
                     <p ng-message="pattern">Must be a valid 10 digit phone number</p>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.email.$touched && ticketForm.formData.email.$invalid }">
-                <label>Alternate Email</label>
-                <input name="email" ng-model="formData.email" placeholder="example@example.com" type="email" class="form-control">
-                <div ng-messages="ticketForm.formData.email.$error" ng-if="ticketForm.formData.email.$touched" role="alert">
-                    <p ng-message="email">Enter a valid email</p>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.formData.altemail.$touched && ticketForm.formData.altemail.$invalid }">
+                <label>Alternate email</label>
+                <input name="altemail" ng-model="formData.altemail" placeholder="example@example.com" type="altemail" class="form-control">
+                <div ng-messages="ticketForm.formData.altemail.$error" ng-if="ticketForm.formData.altemail.$touched" role="alert">
+                    <p ng-message="altemail">Enter a valid email</p>
                 </div>
             </div>
             <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.desc.$touched && ticketForm.formData.desc.$invalid }">
@@ -39,6 +64,24 @@
                 <textarea name="desc" ng-model="formData.desc" required placeholder="My problem is ..." type="text" class="form-control"></textarea>
                 <div ng-messages="ticketForm.formData.desc.$error" ng-if="ticketForm.formData.desc.$touched" role="alert">
                     <p ng-message="required">Enter a description for the ticket</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Do you have a pet?</label>
+                <md-radio-group ng-model="formData.pet">
+                    <md-radio-button value="yes" aria-label="yes">
+                        <p>Yes</p>
+                    </md-radio-button>
+                    <md-radio-button value="no" aria-label="no">
+                        <p>No</p>
+                    </md-radio-button>
+                </md-radio-group>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': ticketForm.formData.entry.$touched && ticketForm.formData.entry.$invalid }">
+                <label>Entry Point</label>
+                <textarea name="entry" ng-model="formData.entry" required placeholder="My problem is ..." type="text" class="form-control"></textarea>
+                <div ng-messages="ticketForm.formData.entry.$error" ng-if="ticketForm.formData.entry.$touched" role="alert">
+                    <p ng-message="required">Something we need to know about entry?</p>
                 </div>
             </div>
         </div>

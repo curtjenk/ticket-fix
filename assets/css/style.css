@@ -762,6 +762,12 @@ md-checkbox.md-checked ._md-icon {
 }
 
 /* line 677, ../../tools/compass/sass/style.scss */
+.date-created {
+  color: #269900;
+  font-weight: 100;
+}
+
+/* line 682, ../../tools/compass/sass/style.scss */
 #marker-area {
   width: 560px;
   height: 400px;
@@ -770,7 +776,7 @@ md-checkbox.md-checked ._md-icon {
   position: relative;
 }
 
-/* line 685, ../../tools/compass/sass/style.scss */
+/* line 690, ../../tools/compass/sass/style.scss */
 .marker-container {
   width: 560px;
   height: 400px;
