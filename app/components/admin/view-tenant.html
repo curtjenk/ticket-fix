@@ -9,6 +9,8 @@
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Email</th>
+        <th>Phone</th>
+        <th>Mobile</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +18,41 @@
         <td>{{tenant.first_name}}</td>
         <td>{{tenant.last_name}}</td>
         <td>{{tenant.email}}</td>
+        <td>{{tenant.home_phone}}</td>
+        <td>{{tenant.mobile_phone}}</td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<!--                     <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">Book Mark 
+                                    <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                                </td>
+                                <td>
+                                    <a href="#" ng-click="sortType = 'clicks'; sortReverse = !sortReverse">Click Count
+                                    <span ng-show="sortType == 'clicks' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'clicks' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                                </td>
+                                <td>Remove? </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- <tr ng-repeat="bm in data | orderBy:orderByFunction:sortReverse | filter:paginate | filter:searchBM"> -->
+        <!--                     <tr dir-paginate="bm in data | orderBy:orderByFunction(sortType):sortReverse | filter:searchBM |itemsPerPage:5">
+                                <td><a ng-click="clickCount(bm)">{{ bm.url }}</a></td>
+                                <td>{{ bm.click_count }}</td>
+                                <td>
+                                    <button ng-click="remove(bm)" class="btn btn-danger">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true">
+                    </dir-pagination-controls> --> 

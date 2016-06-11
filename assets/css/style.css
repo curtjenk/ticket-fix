@@ -670,7 +670,7 @@ form.navbar-form {
 /* line 595, ../../tools/compass/sass/style.scss */
 md-tabs-canvas {
   background-color: #007ecc;
-  background-color: #DDD;
+  background-color: white;
 }
 
 /* line 600, ../../tools/compass/sass/style.scss */
@@ -709,34 +709,44 @@ md-tabs .md-tab {
 }
 
 /* line 632, ../../tools/compass/sass/style.scss */
+md-radio-button.md-default-theme ._md-on, md-radio-button ._md-on {
+  background-color: #007ecc;
+}
+
+/* line 636, ../../tools/compass/sass/style.scss */
+md-radio-button.md-default-theme.md-checked ._md-off, md-radio-button.md-checked ._md-off {
+  border-color: #007ecc;
+}
+
+/* line 640, ../../tools/compass/sass/style.scss */
 md-checkbox.md-default-theme.md-checked .md-ink-ripple,
 md-checkbox.md-checked .md-ink-ripple {
   color: #ffd700;
 }
 
-/* line 637, ../../tools/compass/sass/style.scss */
+/* line 645, ../../tools/compass/sass/style.scss */
 .ticket-list {
   float: left;
   list-style-type: none;
 }
-/* line 640, ../../tools/compass/sass/style.scss */
+/* line 648, ../../tools/compass/sass/style.scss */
 .ticket-list li {
   padding-bottom: 16px;
 }
 
-/* line 645, ../../tools/compass/sass/style.scss */
+/* line 653, ../../tools/compass/sass/style.scss */
 .ticket-checkbox {
   list-style-type: none;
   float: left;
 }
 
-/* line 650, ../../tools/compass/sass/style.scss */
+/* line 658, ../../tools/compass/sass/style.scss */
 md-checkbox.md-default-theme.md-checked ._md-icon,
 md-checkbox.md-checked ._md-icon {
   background-color: #007ecc;
 }
 
-/* line 655, ../../tools/compass/sass/style.scss */
+/* line 663, ../../tools/compass/sass/style.scss */
 .carousel-inner > .item > a > img,
 .carousel-inner > .item > img,
 .img-responsive,
@@ -747,12 +757,12 @@ md-checkbox.md-checked ._md-icon {
   height: 100%;
 }
 
-/* line 665, ../../tools/compass/sass/style.scss */
+/* line 673, ../../tools/compass/sass/style.scss */
 .nav-tabs > li > a {
   background-color: #f00;
 }
 
-/* line 669, ../../tools/compass/sass/style.scss */
+/* line 677, ../../tools/compass/sass/style.scss */
 .marker {
   width: 20px;
   height: 20px;
@@ -761,13 +771,13 @@ md-checkbox.md-checked ._md-icon {
   color: white;
 }
 
-/* line 677, ../../tools/compass/sass/style.scss */
+/* line 685, ../../tools/compass/sass/style.scss */
 .date-created {
   color: #269900;
   font-weight: 100;
 }
 
-/* line 682, ../../tools/compass/sass/style.scss */
+/* line 690, ../../tools/compass/sass/style.scss */
 #marker-area {
   width: 560px;
   height: 400px;
@@ -776,7 +786,7 @@ md-checkbox.md-checked ._md-icon {
   position: relative;
 }
 
-/* line 690, ../../tools/compass/sass/style.scss */
+/* line 698, ../../tools/compass/sass/style.scss */
 .marker-container {
   width: 560px;
   height: 400px;

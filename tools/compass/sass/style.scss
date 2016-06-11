@@ -594,7 +594,7 @@ form.navbar-form {
 
 md-tabs-canvas {
     background-color: #007ecc;
-    background-color: #DDD;
+    background-color: white;
 }
 
 md-tabs.md-default-theme md-ink-bar,
@@ -627,6 +627,14 @@ md-tabs .md-tab {
 
 .carousel-inner .item {
     height: 500px;
+}
+
+md-radio-button.md-default-theme ._md-on, md-radio-button ._md-on {
+    background-color: #007ecc;
+}
+
+md-radio-button.md-default-theme.md-checked ._md-off, md-radio-button.md-checked ._md-off {
+    border-color: #007ecc;
 }
 
 md-checkbox.md-default-theme.md-checked .md-ink-ripple,

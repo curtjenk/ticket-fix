@@ -1,29 +1,33 @@
 ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, $location, $sce, apiAjax, localStore) {
 
-	var counter = 0;
-	$scope.totalMarkers = "";
+    var counter = 0;
+    $scope.totalMarkers = "";
 
     $scope.addMarker = function($event) {
         counter++;
         console.log(counter);
-        console.log('WOW YOU CLICKED IT!')
+        console.log('WOW YOU CLICKED IT!');
         console.log($event);
-        var xClick = $event.offsetX;
-        var yClick = $event.offsetY;
-        // $scope.myMarker = {
-        //     "position": "absolute",
-        //     "top": xClick,
-        //     "left": yClick
-        // }
-
-        var newHtml = '<div class="marker text-center" style="position: absolute; top: '+yClick+'px; left: '+xClick+'px;">'+counter+'</div>';
+        var xClick = $event.offsetX - 10;
+        var yClick = $event.offsetY - 10;
+        var newHtml = '<div class="marker text-center" style="position: absolute; top: ' + yClick + 'px; left: ' + xClick + 'px;">' + counter + '</div>';
         $scope.totalMarkers += newHtml;
         $scope.newMarker = $sce.trustAsHtml($scope.totalMarkers);
 
-    }
+    };
 
-    // position: absolute; top: '+xClick+'px; left: '+yClick+'px;
+    var descMax = 1000;
+    var entryMax = 240;
+    $scope.count = descMax;
+    $scope.countTwo = entryMax;
+    $scope.textFunc = function(){
+        $scope.count = descMax - $scope.formData.desc.length;
+    };
 
+    $scope.textFuncTwo = function(){
+        $scope.countTwo = entryMax - $scope.formData.entry.length; 
+    };
+    
 
     $scope.formData = {};
     var d = new Date();
@@ -56,7 +60,7 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
                     $scope.formData.lastname = res.data.info.last_name;
                     $scope.formData.email = res.data.info.email;
                     $scope.formData.phone = res.data.info.home_phone;
-					$scope.formData.mobile = res.data.info.mobile_phone;
+                    $scope.formData.mobile = res.data.info.mobile_phone;
 
                 }
             }, function(err) {
@@ -71,7 +75,7 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
                     $scope.formData.lastname = res.data.info.last_name;
                     $scope.formData.email = res.data.info.email;
                     $scope.formData.phone = res.data.info.home_phone;
-					$scope.formData.mobile = res.data.info.mobile_phone;
+                    $scope.formData.mobile = res.data.info.mobile_phone;
 
                 }
             }, function(err) {
