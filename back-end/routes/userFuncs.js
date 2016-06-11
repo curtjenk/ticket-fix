@@ -39,9 +39,7 @@ var getUser = function (email) {
 	return deferred.promise;
 };
 
-exports.getUser = getUser;
-
-exports.saveUser = function (user) {
+var saveUser = function (user) {
 	console.log('in saveUser');
 	var deferred = Q.defer();
 	getUser(user.email)
@@ -107,7 +105,7 @@ exports.saveUser = function (user) {
 	return deferred.promise;
 };
 
-exports.authenticateUser = function (email, password) {
+var authenticateUser = function (email, password) {
 	var deferred = Q.defer();
 
 	var promise = getUser(email).then(
@@ -169,6 +167,10 @@ exports.authenticateUser = function (email, password) {
 
 	return deferred.promise;
 };
+
+exports.getUser = getUser;
+exports.saveUser = saveUser;
+exports.authenticateUser = authenticateUser;
 
 // exports.authenticateUser = function (email, password) {
 // 	var deferred = Q.defer();

@@ -3,7 +3,18 @@ var util = require('./util');
 var User = require('./models/account');
 var Manager = require('./models/manager');
 var Property = require('./models/property');
+var ufuncs = require('./userFuncs');
+var query = require('./queryFuncs');
+
 var Q = require('q');
+
+var registertenant = function(user, property) {
+
+};
+
+exports.registertenant = registertenant;
+// exports.registermanager = registermanager;
+// exports.registercontractor = registertenant;
 
 exports.getproperty = function (key) {
 	var deferred = Q.defer();
@@ -98,8 +109,8 @@ exports.getAccounts = function () {
 		.done();
 	return deferred.promise;
 };
-//	var query = con.query("INSERT INTO user SET ?", user, function (err, result)
-exports.saveaccount = function (account) {
+
+var saveaccount  = function (account) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
@@ -126,7 +137,7 @@ exports.saveaccount = function (account) {
 	return deferred.promise;
 };
 
-exports.savemanager = function (manager) {
+var savemanager = function (manager) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
@@ -152,7 +163,7 @@ exports.savemanager = function (manager) {
 	return deferred.promise;
 };
 
-exports.savetenant = function (tenant) {
+var savetenant = function (tenant) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
@@ -178,7 +189,7 @@ exports.savetenant = function (tenant) {
 	return deferred.promise;
 };
 
-exports.saveproperty = function (property) {
+var saveproperty = function (property) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {
@@ -218,7 +229,7 @@ exports.saveproperty = function (property) {
 	return deferred.promise;
 };
 
-exports.savecontractor = function (contractor) {
+var savecontractor = function (contractor) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)
 		.then(function (con) {

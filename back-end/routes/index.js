@@ -23,7 +23,7 @@ var mailer = require('./mailer');
 //--- constants
 const USER_TYPE_MANAGER = 4;
 const USER_TYPE_CONTRACTOR = 1;
-const USER_TYPE_TENANT= 3;
+const USER_TYPE_TENANT = 3;
 const USER_TYPE_STAFF = 5;
 const USER_TYPE_NAMES = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
 //var db = require('./mysqlUtil');
@@ -138,41 +138,75 @@ router.post('/register', function (req, res) {
 	);
 });
 
-router.post('/register-old', function (req, res) {
+router.post('/register-new', function (req, res) {
 	var user = new User(req.body.user); //ufuncs.mapUser(req.body);
-	// console.log(req.body);
+	var contractor = new Contractor(req.body.contractor);
+	var manager = new Manager(req.body.manager);
+	var property = new Property(req.body.property);
+	var account = new Account(req.body.account);
 	var apiRes = new ApiResponse({
 		api: 'register'
 	});
-	ufuncs.saveUser(user).then(
-		function (rtn) {
-			// console.log('returned from save user');
-			// console.log(rtn);
-			if (rtn.status == 'complete') {
-				apiRes.success = true;
-				apiRes.info = {
-					id: rtn.data.id,
-					email: user.email,
-					type_user_id: user.type_user_id
-				};
-			} else {
-				//rtn.status === 'found'
-				apiRes.success = false;
-				apiRes.message = rtn.message;
-			}
-			// console.log(apiRes);
-			res.json(apiRes);
-		},
-		function (err) {
-			// console.log(err);
-			// console.log(typeof err);
-			apiRes.success = false;
-			apiRes.message = "Registration Failed.";
-			apiRes.info = err;
-			console.log(apiRes);
-			res.json(apiRes);
-		}
-	);
+	switch (user.type_user_id) {
+	case USER_TYPE_TENANT:
+		ufuncs.registertenant(user, property).then(
+			function (suc) {
+				res.json(suc);
+			},
+			function (err) {
+				res.json(err);
+			});
+		break;
+	case USER_TYPE_MANAGER:
+		ufuncs.registermanager(user, property).then(
+			function (suc) {
+				res.json(suc);
+			},
+			function (err) {
+				res.json(err);
+			});
+		break;
+	case USER_TYPE_CONTRACTOR:
+		ufuncs.registecontractor(user, property).then(
+			function (suc) {
+				res.json(suc);
+			},
+			function (err) {
+				res.json(err);
+			});
+		break;
+	default:
+
+	}
+	// ufuncs.saveUser(user).then(
+	// 	function (rtn) {
+	// 		// console.log('returned from save user');
+	// 		// console.log(rtn);
+	// 		if (rtn.status == 'complete') {
+	// 			apiRes.success = true;
+	// 			apiRes.info = {
+	// 				id: rtn.data.id,
+	// 				email: user.email,
+	// 				type_user_id: user.type_user_id
+	// 			};
+	// 		} else {
+	// 			//rtn.status === 'found'
+	// 			apiRes.success = false;
+	// 			apiRes.message = rtn.message;
+	// 		}
+	// 		// console.log(apiRes);
+	// 		res.json(apiRes);
+	// 	},
+	// 	function (err) {
+	// 		// console.log(err);
+	// 		// console.log(typeof err);
+	// 		apiRes.success = false;
+	// 		apiRes.message = "Registration Failed.";
+	// 		apiRes.info = err;
+	// 		console.log(apiRes);
+	// 		res.json(apiRes);
+	// 	}
+	// );
 });
 
 router.post('/saveaccount', function (req, res) {
@@ -241,7 +275,7 @@ router.post('/savecontractor', function (req, res) {
 	});
 });
 
-router.get('/propertyexists', function(req, res){
+router.get('/propertyexists', function (req, res) {
 	var property = new Property(JSON.parse(req.query.property));
 	property.genKey();
 	console.log(property.key);
@@ -249,15 +283,17 @@ router.get('/propertyexists', function(req, res){
 		api: 'propertyexists'
 	});
 	admin.getproperty(property.key).then(
-		function (succ){
+		function (succ) {
 			console.log(succ);
 			apiRes.succ = true;
 			apiRes.info = {
-				id: succ.data.id
+				id: succ.data.id,
+				isManaged: succ.data.isManaged
 			};
 
 			res.json(apiRes);
-		}, function(err){
+		},
+		function (err) {
 			console.log(err);
 			apiRes.succ = false;
 			apiRes.message = "Get Property Failed.";
@@ -310,7 +346,7 @@ router.post('/savetenant', function (req, res) {
 	});
 });
 
-router.post('/api/saveticket', function(req, res){
+router.post('/api/saveticket', function (req, res) {
 	console.log(req.body);
 	var ticket = new Ticket(req.body.ticket);
 	console.log(ticket);

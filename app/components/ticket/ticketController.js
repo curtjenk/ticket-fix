@@ -69,7 +69,8 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
                     $scope.formData.firstname = res.data.info.first_name;
                     $scope.formData.lastname = res.data.info.last_name;
                     $scope.formData.email = res.data.info.email;
-                    $scope.formData.phone = res.data.info.phone;
+                    $scope.formData.phone = res.data.info.home_phone;
+					$scope.formData.mobile = res.data.info.mobile_phone;
 
                 }
             }, function(err) {
