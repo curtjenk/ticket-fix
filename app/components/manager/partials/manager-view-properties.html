@@ -16,13 +16,13 @@
       </div>
       <div class="form-group col-sm-1 col-xs-12" ng-class="{ 'has-error': propertyForm.zip.$touched && propertyForm.zip.$invalid }">
         <!-- <label>Zip</label> -->
-        <input name="zip" ng-change="zipLookupTenant();" required ng-model="formData.zip" placeholder="Zip" type="text" ng-minlength="5" class="form-control"/>
+        <input name="zip" ng-change="zipLookup();" required ng-model="formData.zip" placeholder="Zip" type="text" ng-minlength="5" class="form-control"/>
         <div ng-messages="propertyForm.zip.$error" ng-if="propertyForm.zip.$touched" role="alert">
           <p ng-message="required">Zip is required.</p>
           <p ng-message="minlength">Please enter 5 digits</p>
         </div>
       </div>
-      <div class="form-group col-sm-3 col-xs-12" ng-class="{ 'has-error': propertyForm.city.$touched && propertyForm.city.$invalid }">
+      <div class="form-group col-sm-2 col-xs-12" ng-class="{ 'has-error': propertyForm.city.$touched && propertyForm.city.$invalid }">
         <!-- <label>City</label> -->
         <input name="city" required ng-model="formData.city" placeholder="City" type="text" class="form-control"/>
         <div ng-messages="propertyForm.city.$error" ng-if="propertyForm.city.$touched" role="alert">
@@ -36,7 +36,11 @@
           <p ng-message="required">State is required.</p>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group col-sm-2 left-bar right-bar col-xs-12" ng-class="{ 'has-error': propertyForm.floorplan.$touched && propertyForm.floorplan.$invalid }">
+        <!-- <label>State</label> -->
+        <input name="floorplan" required ng-model="formData.floorplan" placeholder="Plan" type="text" class="form-control"/>
+      </div>
+      <div class="form-group col-xs-1">
         <button type="submit" class="btn btn-primary">Add</button>&nbsp;
       </div>
     </div>
@@ -82,7 +86,7 @@
         <td>p.city</td>
         <td>p.state</td>
         <td>
-          <i class="fa fa-ticket"></i>
+          <a ui-sref="manager.tickets"><i class="fa fa-ticket"></i> </a>
           <i class="fa fa-trash"></i>
         </td>
       </tr>

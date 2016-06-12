@@ -138,11 +138,9 @@
                         <li ng-if="loggedIn && userType == 4" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/ticket">Create Ticket</a></li>
+                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span>Tickets</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/manager/tickets">Manage Tickets</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href=""><span class="fa fa-home"></span> Add / Remove Properties</a></li>
+                                <li><a href="#/manager"><span class="fa fa-home"></span>Properties</a></li>
                             </ul>
                         </li>
                         <li ng-if="!loggedIn" class="dropdown">
