@@ -224,7 +224,7 @@ exports.getAllManagerTickets = function(email) {
                 } else if (rows.length > 0) {
                     deferred.resolve({
                         status: 'found',
-                        data: rows[0],
+                        data: rows,
                         error: ''
                     });
                 } else {
