@@ -122,6 +122,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		apiAjax.createticket(ticket, user.email).then(
 			function (suc) {
 				console.log(suc);
+				$location.path('/');
 			},
 			function (err) {
 				console.log(err);

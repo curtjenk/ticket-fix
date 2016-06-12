@@ -255,7 +255,8 @@
     <div style="clear:both;"></div>
 </div>
 <div class="form-group button-holder text-center">
-    <button ui-sref="ticket.approval" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp;
+<!--     <button ui-sref="ticket.approval" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp; -->
+        <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp;
     <a href="#/">
         <button type="button" class="btn btn-default">Cancel</button>
     </a>
