@@ -10,7 +10,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 			$scope.tickets = succ.data.info;
 			for(i = 0; i < $scope.tickets.length; i++){
 				$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
-				var html = "<ul><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
+				var html = "<ul class='ticket-popover-contact'><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
 							"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
 							"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
 							"<li><strong>Alternate Info</strong></li>" +

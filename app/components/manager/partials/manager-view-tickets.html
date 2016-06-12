@@ -15,9 +15,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="ticket in tickets">
+            <tr ng-repeat="ticket in tickets" class="text-center">
                 <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
-                <td><a uib-popover-html="ticket.popoverContact" popover-title="Contact" popover-trigger="mouseenter" type="button"><span class="fa fa-user"></span></a></td>
+                <td class="text-center"><a uib-popover-html="ticket.popoverContact" popover-title="Contact" type="button"><span class="fa fa-user"></span></a></td>
                 <td>{{ticket.address1}}</td>
                 <td>{{ticket.address2}}</td>
                 <td>{{ticket.city}}</td>
@@ -30,4 +30,5 @@
     </table>
 </div>
 
+<!-- popover-trigger="mouseenter" -->
 
