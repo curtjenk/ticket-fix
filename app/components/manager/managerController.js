@@ -1,4 +1,4 @@
-ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $q, $location, apiAjax, zipLookup) {
+ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
 	var user = $rootScope.user;
 	console.log($rootScope.user);
@@ -8,10 +8,15 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		function (succ) {
 			console.log(succ);
 			$scope.tickets = succ.data.info;
+			for(i = 0; i < $scope.tickets.length; i++){
+				$scope.tickets[i].popoverContact = "Phone:" + $scope.tickets[i].alt_phone;
+			}
 		},
 		function (err) {
 			console.log(err);
 		});
+
+
 
 	/*
 	apiAjax.getallmanagerproperties(email).then(
