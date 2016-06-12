@@ -82,7 +82,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="p in properties.slice(((page.currentPage-1)*page.itemsPerPage), ((page.currentPage)*page.itemsPerPage))">
+      <tr class="text-center popover-btn" ng-repeat="p in properties.slice(((page.currentPage-1)*page.itemsPerPage), ((page.currentPage)*page.itemsPerPage))">
         {{p}}
         <td>{{p.address1}}</td>
         <td>{{p.address2}}</td>
@@ -90,7 +90,7 @@
         <td>{{p.city}}</td>
         <td>{{p.state}}</td>
         <td>
-          <button class="btn btn-default btn-ticket" ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Description" popover-trigger="mouseenter">
+          <button class="btn btn-default ticket-btn" ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Description" popover-trigger="mouseenter">
             <span class="fa fa-ticket"></span>
           </button>
           <i class="fa fa-trash"></i>

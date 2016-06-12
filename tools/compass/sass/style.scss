@@ -5,6 +5,24 @@ a:visited {
     text-decoration: none;
 }
 
+.ticket-btn {
+    border-color: transparent;
+    background-color: transparent;
+    .fa {
+        padding: 0px;
+    }
+    &:hover {
+        background-color: transparent;
+        border-color: transparent;
+    }
+}
+
+.popover-btn {
+    .popover-content {
+        padding: 9px 5px;
+    }
+}
+
 .text-info-area {
     white-space: normal !important;
     word-wrap: break-word;
