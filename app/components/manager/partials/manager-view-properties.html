@@ -86,7 +86,9 @@
         <td>p.city</td>
         <td>p.state</td>
         <td>
-          <a ui-sref="manager.tickets"><i class="fa fa-ticket"></i> </a>
+          <a ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Description" popover-trigger="mouseenter">
+              <span class="fa fa-ticket"></span>
+          </a>
           <i class="fa fa-trash"></i>
         </td>
       </tr>

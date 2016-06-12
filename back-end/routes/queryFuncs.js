@@ -155,14 +155,22 @@ exports.getManagerInfo = function(email) {
         .done();
     return deferred.promise;
 };
+/*
+select property.*
+from user
+  left join manager on user.id = manager.user_id
+  left join manager_has_property on manager.id = manager_has_property.manager_id
+  left join property on property.id = manager_has_property.property_id
+where user.email =  'test2@ticketfixme.com'
 
+*/
 exports.getManagerProperties = function(email) {
     var deferred = Q.defer();
-    var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
-        " account_address, account_city, account_state, account_zip " +
+    var queryString = "select  property.* " +
         " from user " +
         " left join manager on user.id = manager.user_id " +
-        " left join account on manager.account_id = account.id " +
+        " left join manager_has_property on manager.id = manager_has_property.manager_id  " +
+		" left join property on property.id = manager_has_property.property_id " +
         " where user.email = ?";
     Q.fcall(db.con)
         .then(function(con) {
