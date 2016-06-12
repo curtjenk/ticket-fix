@@ -13,6 +13,7 @@ var Property = function (data) {
 	this.state = data.state || "";
 	this.zip = data.zip || "";
 	this.isManaged = data.isManaged;
+	this.floor_plan_code = data.floor_plan_code || "";
 };
 Property.prototype.genCode = function () {
 	this.code = util.generateCode('P', 9);

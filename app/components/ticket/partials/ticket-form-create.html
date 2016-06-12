@@ -233,9 +233,10 @@
     </p>
     <div class="col-sm-6">
         <small>Click on the problem area</small>
-        <div id="marker-area" ng-click="addMarker($event)">
+        <div id="marker-area" ng-click="addMarker($event)"  ng-style="{'background-image':'url(' + formData.planUrl + ')'}">
             <div class="marker-container" ng-bind-html="newMarker">
-                <img src="assets/img/floor-plans/1bed1bath.jpg">
+
+                <!-- <img src="assets/img/floor-plans/1bed1bath.jpg"> -->
             </div>
         </div>
         <button ng-click="removeMarkers()" type="button" class="btn btn-danger remove-btn">Remove Markers</button>

@@ -133,8 +133,9 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			state: $scope.formData.state,
 			zip: $scope.formData.zip,
 			isManaged: 0,
-			floor_plan_code:$scope.formData.floorplanGroup
+			floor_plan_code: $scope.formData.floorplanGroup
 		};
+		console.log(property);
 		apiAjax.registerNew(user, property, account).then(
 			function (res) {
 				console.log(res);

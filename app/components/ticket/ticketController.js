@@ -84,9 +84,9 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		ticket.alt_last_name = $scope.formData.lastname;
 		ticket.alt_email = $scope.formData.altemail;
 		ticket.issue_description = $scope.formData.desc;
-		ticket.notify_preference = $scope.notifyPreference;
-		ticket.enter_if_absent = $scope.enterIfAbsent;
-		ticket.agree = $scope.agree;
+		ticket.notify_preference = $scope.formData.notifyPreference;
+		ticket.enter_if_absent = $scope.formData.enterIfAbsent;
+		ticket.agree = $scope.formData.agree;
 
 		var details = new TicketDetails();
 
@@ -171,6 +171,10 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 					$scope.formData.email = res.data.info.email;
 					$scope.formData.phone = res.data.info.home_phone;
 					$scope.formData.mobile = res.data.info.mobile_phone;
+
+					$scope.formData.planUrl = "../assets/img/floor-plans/" + res.data.info.image;
+					console.log($scope.formData.planUrl);
+
 				}
 			}, function (err) {
 

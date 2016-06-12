@@ -13,10 +13,11 @@ where user.id = 95
 exports.getTenantInfo = function (email) {
 	var deferred = Q.defer();
 	var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
-		" tenant.property_id as property_id, code, address1, address2, city, state, zip " +
+		" tenant.property_id as property_id, property.code, address1, address2, city, state, zip, floor_plan_code, image " +
 		" from user " +
 		" left join tenant on user.id = tenant.user_id " +
 		" left join property on tenant.property_id = property.id " +
+		" left join type_floorplan on property.floor_plan_code = type_floorplan.code " +
 		" where user.email = ?";
 	Q.fcall(db.con)
 		.then(function (con) {
