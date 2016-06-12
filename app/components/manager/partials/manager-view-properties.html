@@ -79,12 +79,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr dir-paginate="p in properties | orderBy:orderByFunction(sortType):sortReverse | filter:searchBM |itemsPerPage:5">
-        <td>p.address1</td>
-        <td>p.address2</td>
-        <td>p.zip</td>
-        <td>p.city</td>
-        <td>p.state</td>
+      <tr ng-repeat="p in properties.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | orderBy:orderByFunction(sortType):sortReverse | filter:searchBM |itemsPerPage:5">
+        <td>{{p.address1}}</td>
+        <td>{{p.address2}}</td>
+        <td>{{p.zip}}</td>
+        <td>{{p.city}}</td>
+        <td>{{p.state}}</td>
         <td>
           <a ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Description" popover-trigger="mouseenter">
               <span class="fa fa-ticket"></span>
@@ -94,7 +94,8 @@
       </tr>
     </tbody>
   </table>
-  <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+  View <select ng-model="page.viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
+  <pagination total-items="page.totalItems" ng-model="page.currentPage" ng-change="page.pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
 </div>
 
 <!--                     <table class="table table-bordered table-striped">

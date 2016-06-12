@@ -3,19 +3,37 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
+    $scope.page = {};
+	$scope.page.viewby = 10;
+	$scope.page.currentPage = 4;
+	$scope.page.itemsPerPage = $scope.viewby;
+	$scope.page.maxSize = 5; //Number of pager buttons to show
+
+	$scope.page.setPage = function (pageNo) {
+		$scope.page.currentPage = pageNo;
+	};
+
+	$scope.page.pageChanged = function () {
+		console.log('Page changed to: ' + $scope.page.currentPage);
+	};
+
+	$scope.setItemsPerPage = function (num) {
+		$scope.page.itemsPerPage = num;
+		$scope.page.currentPage = 1; //reset to first paghe
+	};
 
 	apiAjax.getallmanagertickets(email).then(
 		function (succ) {
 			console.log(succ);
 			$scope.tickets = succ.data.info;
-			for(i = 0; i < $scope.tickets.length; i++){
+			for (i = 0; i < $scope.tickets.length; i++) {
 				$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
 				var html = "<ul><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
-							"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
-							"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
-							"<li><strong>Alternate Info</strong></li>" +
-							"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
-							"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
+					"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
+					"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
+					"<li><strong>Alternate Info</strong></li>" +
+					"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
+					"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
 				console.log(html);
 				$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
 
@@ -25,18 +43,16 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 			console.log(err);
 		});
 
-
-
-	/*
 	apiAjax.getallmanagerproperties(email).then(
-	    function(succ) {
-	        console.log(succ);
-	        $scope.managerProperties = succ.data.info;
-	    },
-	    function(err) {
-	        console.log(err);
-	    });
-	*/
+		function (succ) {
+			$scope.properties = succ.data.info;
+            $scope.page.totalItems = $scope.properties.length;
+			console.log($scope.properties);
+		},
+		function (err) {
+			console.log(err);
+		});
+
 	$scope.zipLookup = function () {
 		if ($scope.formData.zip && $scope.formData.zip.length === 5 && is_int($scope.formData.zip.length)) {
 			var ok = function (resp) {
