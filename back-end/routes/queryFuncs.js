@@ -56,7 +56,52 @@ exports.getTenantInfo = function (email) {
 		.done();
 	return deferred.promise;
 };
-
+exports.getAllTenants = function () {
+	var deferred = Q.defer();
+	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
+	  	" code, address1, address2, city, state, zip " +
+		 " from tenant " +
+		" left join user on user.id = tenant.user_id " +
+		" left join property on tenant.property_id = property.id ";
+	Q.fcall(db.con)
+		.then(function (con) {
+			con.query(queryString, function (err, rows) {
+					con.release();
+				if (err) {
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
+				} else if (rows.length > 0) {
+					deferred.resolve({
+						status: 'found',
+						data: rows,
+						error: ''
+					});
+				} else {
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
+				}
+			});
+		})
+		.catch(function (error) {
+			console.log('getAllTenants error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferrred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
+		})
+		.done();
+	return deferred.promise;
+};
+// ----------- Manager focused queries below
 /*
 select email, first_name, last_name, home_phone, mobile_phone,
   account_address, account_city, account_state, account_zip
@@ -111,17 +156,17 @@ exports.getManagerInfo = function (email) {
 	return deferred.promise;
 };
 
-exports.getAllTenants = function () {
+exports.getManagerProperties = function (email) {
 	var deferred = Q.defer();
-	var queryString = "select email, first_name, last_name, home_phone, mobile_phone, " +
-	  	" code, address1, address2, city, state, zip " +
-		 " from tenant " +
-		" left join user on user.id = tenant.user_id " +
-		" left join property on tenant.property_id = property.id ";
+	var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
+		" account_address, account_city, account_state, account_zip " +
+		" from user " +
+		" left join manager on user.id = manager.user_id " +
+		" left join account on manager.account_id = account.id " +
+		" where user.email = ?";
 	Q.fcall(db.con)
 		.then(function (con) {
-			con.query(queryString, function (err, rows) {
-					con.release();
+			con.query(queryString, [email], function (err, rows) {
 				if (err) {
 					deferred.reject({
 						status: 'error',
@@ -131,7 +176,7 @@ exports.getAllTenants = function () {
 				} else if (rows.length > 0) {
 					deferred.resolve({
 						status: 'found',
-						data: rows,
+						data: rows[0],
 						error: ''
 					});
 				} else {
@@ -144,7 +189,7 @@ exports.getAllTenants = function () {
 			});
 		})
 		.catch(function (error) {
-			console.log('getAllTenants error occurred');
+			console.log('getManagerInfo error occurred');
 			console.log(error);
 			console.log(' ------------------------ ');
 			deferrred.reject({
