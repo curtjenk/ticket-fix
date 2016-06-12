@@ -3,6 +3,8 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
+    $scope.floorPlanOptions = ['1bed1bath', '2bed1bath', '2bed2bath', '3bed2bath', '3bed2.5bath'];
+
     $scope.page = {};
 	$scope.page.viewby = 10;
 	$scope.page.currentPage = 1;

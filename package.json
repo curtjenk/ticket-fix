@@ -31,6 +31,7 @@
     "bootstrap-fileinput": "^4.2.8",
     "font-awesome": "^4.6.3",
     "jquery": "^2.2.4",
-    "moment": "^2.13.0"
+    "moment": "^2.13.0",
+    "ui-select": "^0.18.0"
   }
 }

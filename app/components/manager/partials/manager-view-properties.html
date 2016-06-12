@@ -39,12 +39,8 @@
       <div class="form-group col-sm-2 left-bar right-bar col-xs-12" ng-class="{ 'has-error': propertyForm.floorplan.$touched && propertyForm.floorplan.$invalid }">
         <!-- <label>State</label> -->
         <!-- <input name="floorplan" required ng-model="formData.floorplan" placeholder="Plan" type="text" class="form-control"/> -->
-        <select name="floorplan" required ng-model="formData.floorplan" placeholder="Plan" type="text" class="form-control">
-          <option>1bed1bath</option>
-          <option>2bed1bath</option>
-          <option>2bed2bath</option>
-          <option>3bed2bath</option>
-          <option>3bed2.5bath</option>
+        <select name="floorplan" id="floorplanSelect" ng-model="formData.floorplan" class="form-control">
+          <option ng-repeat="option in floorPlanOptions" value="{{option}}">{{option}}</option>
         </select>
       </div>
       <div class="form-group col-xs-1">
@@ -96,7 +92,7 @@
         <td>
           <button class="btn btn-default btn-ticket" ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Description" popover-trigger="mouseenter">
             <span class="fa fa-ticket"></span>
-        </button>
+          </button>
           <i class="fa fa-trash"></i>
         </td>
       </tr>
