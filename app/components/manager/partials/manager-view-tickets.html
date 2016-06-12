@@ -16,10 +16,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="ticket in tickets" bs-popover>
+            <tr ng-repeat="ticket in tickets">
                 <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
                 <td>{{ticket.alt_first_name}} {{ticket.alt_last_name}}</td>
-                <td><a href="" rel="popover" class="btn btn-primary" title="Contact Info" data-content="{{ticket.contact_phone}}"><span class="fa fa-user"></span></a></td>
+                <td><a href="" id="pop{{ticket.ticket_id}}" title="Contact Info" data-content="{{ticket.contact_phone}}"><span class="fa fa-user"></span></a></td>
                 <td>{{ticket.address1}}</td>
                 <td>{{ticket.address2}}</td>
                 <td>{{ticket.city}}</td>

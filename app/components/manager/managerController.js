@@ -1,5 +1,5 @@
 ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $q, $location, apiAjax, zipLookup) {
-    $scope.formData = {};
+	$scope.formData = {};
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
@@ -7,7 +7,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	apiAjax.getallmanagertickets(email).then(
 		function (succ) {
 			console.log(succ);
-			$scope.managerTickets = succ.data.info;
+			$scope.tickets = succ.data.info;
 		},
 		function (err) {
 			console.log(err);

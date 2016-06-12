@@ -204,7 +204,7 @@ exports.getManagerProperties = function(email) {
 
 exports.getAllManagerTickets = function(email) {
     var deferred = Q.defer();
-    var queryString = "select property.*, ticket.* " +
+    var queryString = "select ticket.id as ticket_id, property.*, ticket.* " +
         " from user " +
         " left join manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id " +
