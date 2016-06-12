@@ -45,8 +45,8 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 	};
 
 	$scope.textFuncTwo = function () {
-		if ($scope.formData.entry) {
-			$scope.countTwo = entryMax - $scope.formData.entry.length;
+		if ($scope.formData.entryPoint) {
+			$scope.countTwo = entryMax - $scope.formData.entryPoint.length;
 		} else {
 			$scope.countTwo = entryMax;
 		}
