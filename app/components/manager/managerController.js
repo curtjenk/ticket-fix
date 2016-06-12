@@ -9,7 +9,16 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 			console.log(succ);
 			$scope.tickets = succ.data.info;
 			for(i = 0; i < $scope.tickets.length; i++){
-				$scope.tickets[i].popoverContact = "Phone:" + $scope.tickets[i].alt_phone;
+				$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
+				var html = "<ul><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
+							"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
+							"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
+							"<li><strong>Alternate Info</strong></li>" +
+							"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
+							"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
+				console.log(html);
+				$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
+
 			}
 		},
 		function (err) {

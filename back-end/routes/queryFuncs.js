@@ -212,12 +212,13 @@ exports.getManagerProperties = function(email) {
 
 exports.getAllManagerTickets = function(email) {
     var deferred = Q.defer();
-    var queryString = "select ticket.id as ticket_id, property.*, ticket.* " +
+    var queryString = "select ticket.id as ticket_id, property.*, ticket.*, type_status.code as ticket_status" +
         " from user " +
         " left join manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id " +
         " left join property on property.id = manager_has_property.property_id " +
         " left join ticket on ticket.property_id = property.id " +
+        " left join type_status on type_status.id = ticket.status_id " +
         " where user.email = ?";
 
     Q.fcall(db.con)

@@ -96,6 +96,17 @@ var Ticket = function (data) {
 	}
 };
 
+
+function formatDateTime(string){
+	var yyyy = string.substring(0, 4);
+	var mm = string.substring(4, 6);
+	var dd = string.substring(6, 8);
+	var hh = string.substring(9, 11);
+	var min = string.substring(11, 13);
+	var ss = string.substring(13, 15);
+	return mm+ "-" + dd + "-" + yyyy + " " + hh + ":" + mm + ":" + ss;
+}
+
 $(document).ready(function () {
 
 	(function ($) {
@@ -110,3 +121,5 @@ $(document).ready(function () {
 		});
 	})(jQuery);
 });
+
+
