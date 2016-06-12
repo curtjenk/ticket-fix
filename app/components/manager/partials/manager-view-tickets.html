@@ -1,0 +1,36 @@
+<div class="container">
+    <h1>TENANTS</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Tenant Name</th>
+                <th>Name for Submitted Ticket</th>
+                <th>Contact Info</th>
+                <th>Address</th>
+                <th>Unit #</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+                <th>Date Created</th>
+                <th>Ticket Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ticket in tickets" bs-popover>
+                <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
+                <td>{{ticket.alt_first_name}} {{ticket.alt_last_name}}</td>
+                <td><a href="" rel="popover" class="btn btn-primary" title="Contact Info" data-content="{{ticket.contact_phone}}"><span class="fa fa-user"></span></a></td>
+                <td>{{ticket.address1}}</td>
+                <td>{{ticket.address2}}</td>
+                <td>{{ticket.city}}</td>
+                <td>{{ticket.state}}</td>
+                <td>{{ticket.zip}}</td>
+                <td>{{ticket.date_create}}</td>
+                <td>{{ticket.status_id}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- <a href="#" id="pop{{country.id}}" class="btn btn-primary" rel="popover" data-content="This is the <b>body</b> of Popover" data-original-title="Creativity Tuts">pop</a> -->

@@ -7,7 +7,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
     apiAjax.getallmanagertickets(email).then(
         function(succ) {
             console.log(succ);
-            $scope.managerTickets = succ.data.info;
+            $scope.tickets = succ.data.info;
         },
         function(err) {
             console.log(err);

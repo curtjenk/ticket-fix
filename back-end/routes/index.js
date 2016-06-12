@@ -482,7 +482,7 @@ router.get('/api/allmanagertickets', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/allmanagertickets'
 	});
-	query.getManagerInfo(email).then(function (succ) {
+	query.getAllManagerTickets(email).then(function (succ) {
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
