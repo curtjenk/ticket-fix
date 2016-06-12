@@ -499,7 +499,7 @@ router.get('/api/allmanagerproperties', function (req, res) {
 	});
 
 });
-
+//getAllManagerTickets
 router.get('/api/allmanagertickets', function (req, res) {
 	//req.query.id  should contain the user id
 	//query User, Tenant & Property and return all info except password
