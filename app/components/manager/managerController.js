@@ -5,8 +5,8 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	var email = user.email;
     $scope.page = {};
 	$scope.page.viewby = 10;
-	$scope.page.currentPage = 4;
-	$scope.page.itemsPerPage = $scope.viewby;
+	$scope.page.currentPage = 1;
+	$scope.page.itemsPerPage = $scope.page.viewby;
 	$scope.page.maxSize = 5; //Number of pager buttons to show
 
 	$scope.page.setPage = function (pageNo) {
@@ -17,7 +17,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		console.log('Page changed to: ' + $scope.page.currentPage);
 	};
 
-	$scope.setItemsPerPage = function (num) {
+	$scope.page.setItemsPerPage = function (num) {
 		$scope.page.itemsPerPage = num;
 		$scope.page.currentPage = 1; //reset to first paghe
 	};

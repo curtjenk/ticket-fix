@@ -120,12 +120,3 @@ ticketFixApp.directive('checkImage', function ($http) {
 		}
 	};
 });
-
-// http://jsfiddle.net/5ww8e/1/
-
-ticketFixApp.directive('popover', function() {
-    return function(scope, elem) {
-		console.log(elem);
-		elem.popover();
-    };
-});
