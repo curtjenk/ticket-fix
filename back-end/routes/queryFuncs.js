@@ -47,7 +47,7 @@ exports.getTenantInfo = function(email) {
             console.log('getTenantInfo error occurred');
             console.log(error);
             console.log(' ------------------------ ');
-            deferrred.reject({
+            deferred.reject({
                 status: 'criticalerror',
                 data: '',
                 error: error
@@ -92,7 +92,7 @@ exports.getAllTenants = function() {
             console.log('getAllTenants error occurred');
             console.log(error);
             console.log(' ------------------------ ');
-            deferrred.reject({
+            deferred.reject({
                 status: 'criticalerror',
                 data: '',
                 error: error
@@ -121,6 +121,7 @@ exports.getManagerInfo = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
+				con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -146,7 +147,7 @@ exports.getManagerInfo = function(email) {
             console.log('getManagerInfo error occurred');
             console.log(error);
             console.log(' ------------------------ ');
-            deferrred.reject({
+            deferred.reject({
                 status: 'criticalerror',
                 data: '',
                 error: error
@@ -175,6 +176,7 @@ exports.getManagerProperties = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
+				con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -200,7 +202,7 @@ exports.getManagerProperties = function(email) {
             console.log('getManagerInfo error occurred');
             console.log(error);
             console.log(' ------------------------ ');
-            deferrred.reject({
+            deferred.reject({
                 status: 'criticalerror',
                 data: '',
                 error: error
@@ -224,6 +226,7 @@ exports.getAllManagerTickets = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
+				con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -249,7 +252,7 @@ exports.getAllManagerTickets = function(email) {
             console.log('getAllManagerTickets error occurred');
             console.log(error);
             console.log(' ------------------------ ');
-            deferrred.reject({
+            deferred.reject({
                 status: 'criticalerror',
                 data: '',
                 error: error

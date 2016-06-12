@@ -3,27 +3,26 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
-    $scope.floorPlanOptions = ['1bed1bath', '2bed1bath', '2bed2bath', '3bed2bath', '3bed2.5bath'];
-
-    $scope.page = {};
+    $scope.formData.floorplan = {id: '1', name: '1bed1bath'};  //sets the default
+	$scope.floorPlanOptions = [{id: '1', name: '1bed1bath'},
+                               {id: '2', name: '2bed1bath'},
+                               {id: '2', name: '2bed2bath'},
+                               {id: '2', name: '3bed2bath'},
+                               {id: '2', name: '3bed2.5bath'}
+                            ];
+	$scope.page = {};
 	$scope.page.viewby = 10;
 	$scope.page.currentPage = 1;
 	$scope.page.itemsPerPage = $scope.page.viewby;
 	$scope.page.maxSize = 5; //Number of pager buttons to show
 
 	$scope.page.setPage = function (pageNo) {
-		$scope.page.currentPage = pageNo;
-	};
-
-	$scope.page.pageChanged = function () {
 		console.log('Page changed to: ' + $scope.page.currentPage);
 	};
-
 	$scope.page.setItemsPerPage = function (num) {
 		$scope.page.itemsPerPage = num;
-		$scope.page.currentPage = 1; //reset to first paghe
+		$scope.page.currentPage = 1; //reset to first page
 	};
-
 	apiAjax.getallmanagertickets(email).then(
 		function (succ) {
 			console.log(succ);
@@ -31,11 +30,11 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 			for (i = 0; i < $scope.tickets.length; i++) {
 				$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
 				var html = "<ul class='ticket-popover-contact'><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
-							"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
-							"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
-							"<li><strong>Alternate Info</strong></li>" +
-							"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
-							"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
+					"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
+					"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
+					"<li><strong>Alternate Info</strong></li>" +
+					"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
+					"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
 
 				console.log(html);
 				$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
@@ -49,7 +48,6 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	apiAjax.getallmanagerproperties(email).then(
 		function (succ) {
 			$scope.properties = succ.data.info;
-            $scope.page.totalItems = $scope.properties.length;
 			console.log($scope.properties);
 		},
 		function (err) {
