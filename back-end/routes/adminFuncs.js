@@ -227,6 +227,7 @@ var saveproperty = function (property) {
 	return deferred.promise;
 };
 
+
 var savecontractor = function (contractor) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)

@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Manage Properties</h1>
 
-  <form novalidate disable-btn ng-submit="propertyFunc()" name="propertyForm">
+  <form novalidate disable-btn ng-submit="savePropertyFunc()" name="propertyForm">
     <div class="row">
       <div class="form-group col-sm-4 col-xs-12 " ng-class="{ 'has-error': propertyForm.formData.address1.$touched && propertyForm.formData.address1.$invalid }">
         <!-- <label>Address Line 1</label> -->

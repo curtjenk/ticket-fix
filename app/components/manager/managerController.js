@@ -3,12 +3,30 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
-    $scope.formData.floorplan = {id: '1', name: '1bed1bath'};  //sets the default
-	$scope.floorPlanOptions = [{id: '1', name: '1bed1bath'},
-                               {id: '2', name: '2bed1bath'},
-                               {id: '2', name: '2bed2bath'},
-                               {id: '2', name: '3bed2bath'},
-                               {id: '2', name: '3bed2.5bath'}
+	$scope.formData.floorplan = {
+		id: '1',
+		name: '1bed1bath'
+	}; //sets the default
+	$scope.floorPlanOptions = [{
+			id: '1',
+			name: '1bed1bath'
+		},
+		{
+			id: '2',
+			name: '2bed1bath'
+		},
+		{
+			id: '2',
+			name: '2bed2bath'
+		},
+		{
+			id: '2',
+			name: '3bed2bath'
+		},
+		{
+			id: '2',
+			name: '3bed2.5bath'
+		}
                             ];
 	$scope.page = {};
 	$scope.page.viewby = 10;
@@ -23,9 +41,10 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		$scope.page.itemsPerPage = num;
 		$scope.page.currentPage = 1; //reset to first page
 	};
+
 	apiAjax.getallmanagertickets(email).then(
 		function (succ) {
-			console.log(succ);
+			// console.log(succ);
 			$scope.tickets = succ.data.info;
 			for (i = 0; i < $scope.tickets.length; i++) {
 				$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
@@ -36,7 +55,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 					"<li>Email:" + $scope.tickets[i].alt_email + "</li>" +
 					"<li>Phone:" + $scope.tickets[i].alt_phone + "</li></ul>";
 
-				console.log(html);
+				// console.log(html);
 				$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
 
 			}
@@ -44,6 +63,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		function (err) {
 			console.log(err);
 		});
+
 
 	apiAjax.getallmanagerproperties(email).then(
 		function (succ) {
@@ -53,6 +73,26 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		function (err) {
 			console.log(err);
 		});
+
+	$scope.savePropertyFunc = function () {
+        var property = {
+            address1: $scope.formData.address1,
+            address2: $scope.formData.address2 || "",
+            city: $scope.formData.city,
+            state: $scope.formData.state,
+            zip: $scope.formData.zip,
+            isManaged: 1,
+            floor_plan_code: $scope.formData.floorplan.name
+        };
+        apiAjax.savemanagerproperty(user.email, property).then(
+            function(succ){
+                console.log(succ);
+            },
+            function(err){
+                console.log(err);
+            });
+        //console.log(property);
+	};
 
 	$scope.zipLookup = function () {
 		if ($scope.formData.zip && $scope.formData.zip.length === 5 && is_int($scope.formData.zip.length)) {

@@ -508,7 +508,7 @@ router.get('/api/allmanagertickets', function (req, res) {
 		api: 'api/allmanagertickets'
 	});
 	query.getAllManagerTickets(email).then(function (succ) {
-		console.log(succ);
+		//console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
 			apiRes.info = succ.data;
@@ -526,6 +526,27 @@ router.get('/api/allmanagertickets', function (req, res) {
 	});
 
 });
+router.post('/api/savemanagerproperty', function (req, res) {
+	console.log(req.body);
+	var property = new Property(req.body.property);
+	var mgrEmail = req.body.email;
+	var apiRes = new ApiResponse({
+		api: 'api/savemanagerproperty'
+	});
+	register.registerManagerProperty(mgrEmail, property).then(function (succ) {
+		console.log(succ);
+		apiRes.success = true;
+		apiRes.info = succ.data;
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Save Manger property failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
+//----------------
 
 router.post('/upload', type, function (req, res, next) {
 

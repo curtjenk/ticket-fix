@@ -1,3 +1,10 @@
+//--- constants
+const USER_TYPE_MANAGER = 4;
+const USER_TYPE_CONTRACTOR = 1;
+const USER_TYPE_TENANT = 3;
+const USER_TYPE_STAFF = 5;
+const USER_TYPE_NAMES = ['n/a', 'Contractor', 'Admin', 'Tenant', 'Manager', 'Staff'];
+
 function is_int(value) {
 	if ((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
 		return true;
@@ -98,6 +105,8 @@ var Ticket = function (data) {
 
 
 function formatDateTime(string){
+	if (!string) return "";
+	if (string.length < 15) return "";
 	var yyyy = string.substring(0, 4);
 	var mm = string.substring(4, 6);
 	var dd = string.substring(6, 8);
@@ -121,5 +130,3 @@ $(document).ready(function () {
 		});
 	})(jQuery);
 });
-
-
