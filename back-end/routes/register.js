@@ -131,6 +131,7 @@ var registertenant = function (user, property) {
 						error: err
 					});
 				} else if (rows.length > 0){
+					console.log("  Found the propert.  The id = " + rows[0].id);
 					property_id = rows[0].id;
 					deferred.resolve(user_id);  //forward on the results from the previous insert
 				} else {
@@ -159,7 +160,7 @@ var registertenant = function (user, property) {
 		.then(function (res) {
 			var tenant = new Tenant({
 				user_id: user_id,
-				property_id: res.insertId
+				property_id: property_id
 			});
 			return connection.query("INSERT INTO tenant SET ?", [tenant]);
 		})

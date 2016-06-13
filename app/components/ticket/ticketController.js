@@ -77,21 +77,21 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		ticket.property_id = $scope.property_id;
 		ticket.client_datetime_string = d.yyyymmdd() + '-' + d.hhmmss();
 
-		ticket.contact_first_name = $scope.formData.firstname;
-		ticket.contact_last_name = $scope.formData.lastname;
-		ticket.contact_email = $scope.formData.email;
-		ticket.contact_phone = $scope.formData.phone;
-		ticket.contact_mobile = $scope.formData.mobile;
+		ticket.contact_first_name = $scope.formData.firstname || "";
+		ticket.contact_last_name = $scope.formData.lastname || "";
+		ticket.contact_email = $scope.formData.email || "";
+		ticket.contact_phone = $scope.formData.phone || "";
+		ticket.contact_mobile = $scope.formData.mobile || "";
 		ticket.pet = $scope.formData.pet;
-		ticket.entry_point = $scope.formData.entryPoint;
+		ticket.entry_point = $scope.formData.entryPoint || "";
 
-		ticket.alt_phone = $scope.formData.altphone;
-		ticket.alt_first_name = $scope.formData.firstname;
-		ticket.alt_last_name = $scope.formData.lastname;
-		ticket.alt_email = $scope.formData.altemail;
-		ticket.issue_description = $scope.formData.desc;
-		ticket.notify_preference = $scope.formData.notifyPreference;
-		ticket.enter_if_absent = $scope.formData.enterIfAbsent;
+		ticket.alt_phone = $scope.formData.altphone || "";
+		ticket.alt_first_name = $scope.formData.firstname || "";
+		ticket.alt_last_name = $scope.formData.lastname || "";
+		ticket.alt_email = $scope.formData.altemail || "";
+		ticket.issue_description = $scope.formData.desc || "";
+		ticket.notify_preference = $scope.formData.notifyPreference || "";
+		ticket.enter_if_absent = $scope.formData.enterIfAbsent || "";
 		ticket.agree = $scope.formData.agree;
 
 		var details = new TicketDetails();
@@ -129,28 +129,33 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 			function (suc) {
 				console.log(suc);
 				$location.path('/');
+
 				var emailHtml =
 					"<div><h1>Location</h1>" +
-					"    <p>" + tenantinfo.address1 + tenantinfo.addres2 + "</p>" +
+					"    <p>" + tenantinfo.address1 + tenantinfo.address2 + "</p>" +
+                    "    <p>" + tenantinfo.city + "," + tenantinfo.state + " " + tenantinf.zip + "</p>" +
 					"</div>" +
 					"<div><h1>Description Of Issue and Special Instructions</h1>" +
 					"    <p>" + ticket.issue_description + "</p>" +
 					"    <p>" + ticket.entry_point + "</p>" +
-					"    <p> Pet(s)? " + ticket.pet + "</p>" +
-					"    <p> Contact " + ticket.contact_first_name + " " + ticket.contact_last_name + "</p>" +
-					"    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + ticket.contact_phone + " " + ticket.contact_mobile + ticket.contact_email + "</p>" +
-					"    <p> Alt&nbsp;&nbsp;&nbsp;&nbsp;" + ticket.alt_first_name + " " + ticket.alt_last_name + "</p>" +
-					"    <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; " + ticket.alt_phone + " " + ticket.alt_emai + "</p>" +
+					"    <p> <h4>Pet(s)? :</h4>" + ticket.pet  + "</p>" +
+					"    <p> <h4>Contact :</h4> " +
+                    "    <p>" + ticket.contact_first_name + " " + ticket.contact_last_name + "</p>" +
+					"    <p>" + ticket.contact_phone + " " + ticket.contact_mobile + ticket.contact_email + "</p>" +
+					"    <p> <h4>Alternate Contact :</h4>" +
+                    "    <p>" + ticket.alt_first_name + " " + ticket.alt_last_name + "</p>" +
+					"    <p>" + ticket.alt_phone + " " + ticket.alt_emai + "</p>" +
 					"</div>";
+                var emailText = emailHtml;
 
 				var sendMailOptions = {
-					from: user,
+					from: user.email,
 					to: 'hello@ticketfixme.com',
 					subject: "Tenant requires attention",
-					text: "",
+					text: emailText,
 					html: emailHtml
 				};
-				apiAjax.sendmail(sendMailOptions).then(
+				apiAjax.sendmail(user.email, sendMailOptions).then(
 					function (succ) {
 						console.log(succ);
 					},

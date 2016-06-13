@@ -104,6 +104,11 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
         apiAjax.savemanagerproperty(user.email, property).then(
             function(succ) {
                 console.log(succ);
+                $scope.formData.address1 = "";
+                $scope.formData.address2 = "";
+                $scope.formData.city = "";
+                $scope.formData.state = "";
+                $scope.formData.zip = "";
                 //refresh the Properties Table
                 runGetMgrProperties(email);
             },
