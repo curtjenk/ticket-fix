@@ -16,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="tenant in tenants">
+                    <tr dir-paginate="tenant in tenants | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
                         <td>{{tenant.first_name}}</td>
                         <td>{{tenant.last_name}}</td>
                         <td>{{tenant.email}}</td>
@@ -26,5 +26,8 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
 </div>
