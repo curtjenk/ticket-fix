@@ -1,14 +1,12 @@
 <div class="manager-wrapper wrapper">
-
-  <div class="row">
-    <div class="error-text text-center">
-      {{errorMessage}}
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
+        </div>
     </div>
-  </div>
-
-  <div class="container">
-
-      <div id="mgr-views" ui-view></div>
-
-  </div>
+    <div class="container">
+        <form novalidate disable-btn ng-submit="saveTicketFunc()" name="mgrTicketForm">
+            <div id="mgr-views" ui-view></div>
+        </form>
+    </div>
 </div>
