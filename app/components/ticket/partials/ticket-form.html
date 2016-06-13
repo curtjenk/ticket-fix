@@ -1,14 +1,9 @@
 <div class="wrapper" id="tenant-wrapper">
-    <div class="row">
-        <div class="error-text text-center">
-            {{errorMessage}}
-        </div>
-    </div>
     <!-- Ticket Creation Process -->
     <div class="container">
         <h1 class="text-center" style="margin-top: 50px;">Ticket History</h1>
         <div class="form-section ticket-section">
-            <p class="form-header custom-header-five">
+            <p class="form-header custom-header-six">
                 History
             </p>
             <div class="table-responsive">
@@ -17,30 +12,29 @@
                         <tr>
                             <th>Name</th>
                             <th>Contact</th>
-                            <th>Address</th>
-                            <th>Unit #</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zip</th>
+                            <th>Description</th>
                             <th>Date Created</th>
                             <th>Status</th>
+                            <th>Date Resolved</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="ticket in tickets" class="text-center">
                             <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
                             <td class="text-center"><a uib-popover-html="ticket.popoverContact" popover-title="Contact" type="button"><span class="fa fa-user"></span></a></td>
-                            <td>{{ticket.address1}}</td>
-                            <td>{{ticket.address2}}</td>
-                            <td>{{ticket.city}}</td>
-                            <td>{{ticket.state}}</td>
-                            <td>{{ticket.zip}}</td>
+                            <td>{{ticket.issue_description}}</td>
                             <td>{{ticket.formattedDate}}</td>
                             <td>{{ticket.ticket_status}}</td>
+                            <td>{{ticket.date_resolved}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
         </div>
     </div>
     <div class="container">

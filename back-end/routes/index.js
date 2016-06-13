@@ -526,6 +526,35 @@ router.get('/api/allmanagertickets', function (req, res) {
 	});
 
 });
+
+router.get('/api/alltenanttickets', function (req, res) {
+	//req.query.id  should contain the user id
+	//query User, Tenant & Property and return all info except password
+	var email = req.query.email;
+	var apiRes = new ApiResponse({
+		api: 'api/alltenanttickets'
+	});
+	query.getAllTenantTickets(email).then(function (succ) {
+		//console.log(succ);
+		if (succ.status == 'found') {
+			apiRes.success = true;
+			apiRes.info = succ.data;
+		} else {
+			apiRes.success = false;
+			apiRes.message = succ.status;
+			apiRes.info = succ.error;
+		}
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Get all tenant tickets failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
+
+
 router.post('/api/savemanagerproperty', function (req, res) {
 	console.log(req.body);
 	var property = new Property(req.body.property);

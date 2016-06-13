@@ -261,3 +261,55 @@ exports.getAllManagerTickets = function(email) {
         .done();
     return deferred.promise;
 };
+
+exports.getAllTenantTickets = function(email) {
+    var deferred = Q.defer();
+    var queryString = "select ticket.id as ticket_id, property.*, ticket.*, type_status.code as ticket_status" +
+        " from user " +
+        " left join tenant on tenant.user_id = user.id " +
+        " left join property on property.id = tenant.property_id " +
+        " left join ticket on ticket.property_id = property.id " +
+        " left join type_status on type_status.id = ticket.status_id " +
+        " where user.email = ?";
+
+    Q.fcall(db.con)
+        .then(function(con) {
+            console.log('---------------- HERE -----1 ------');
+            con.query(queryString, [email], function(err, rows) {
+                con.release();
+                if (err) {
+                    deferred.reject({
+                        status: 'error',
+                        data: '',
+                        error: err
+                    });
+                } else if (rows.length > 0) {
+                    console.log('---------------- HERE ---- 2--------');
+                    console.log(rows.length);
+                    deferred.resolve({
+                        status: 'found',
+                        data: rows,
+                        error: ''
+                    });
+                } else {
+                    deferred.resolve({
+                        status: 'notfound',
+                        data: '',
+                        error: ''
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log('getAllTenantTickets error occurred');
+            console.log(error);
+            console.log(' ------------------------ ');
+            deferred.reject({
+                status: 'criticalerror',
+                data: '',
+                error: error
+            });
+        })
+        .done();
+    return deferred.promise;
+};
