@@ -47,17 +47,19 @@ var registerManagerProperty = function (email, property) {
 			var mhp = new ManagerHasProperty();
 			mhp.property_id = property_id;
 			mhp.manager_id = user_id;
-			return connection.query('INSERT INTO manager_has_property SET ?', [mhp], function(err, result){
+			var deferred = Q.defer();
+			connection.query('INSERT INTO manager_has_property SET ?', [mhp], function(err, result){
 				if (err) {
 					console.log(err);
-					finalDeferred.reject({
+					deferred.reject({
 						status: 'duplicate',
 						message: 'error inserting manager_has_property.'
 					});
 				} else {
-					finalDeferred.resolve({});
+					deferred.resolve({});
 				}
 			});
+			return deferred.promise;
 		})
 		.then(function (res) {
 			console.log("committing work!");
