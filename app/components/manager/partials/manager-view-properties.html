@@ -1,7 +1,11 @@
 <div class="container">
-    <h1>Manage Properties</h1>
+    <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">Manage Properties</h1>
     <form novalidate disable-btn ng-submit="savePropertyFunc()" name="propertyForm">
-        <div class="row">
+        <div class="form-section ticket-section">
+        <p class="form-header custom-header-eight">
+            Add Properties
+        </p>
+        <div>
             <div class="form-group col-sm-4 col-xs-12 " ng-class="{ 'has-error': propertyForm.formData.address1.$touched && propertyForm.formData.address1.$invalid }">
                 <!-- <label>Address Line 1</label> -->
                 <input name="address1" ng-model="formData.address1" required placeholder="Address" type="text" class="form-control">
@@ -45,78 +49,79 @@
             </div>
         </div>
     </form>
-    <div class="row">
-        <div style="display:float-left:">
-            View
-            <select ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)">
-                <option>3</option>
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-                <option>40</option>
-                <option>50</option>
-            </select>
-            records at a time.
-        </div>
-        <div style="display:float-left;">
-            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    <div class="container">
+        <div class=" row container" style="margin-bottom:10px;">
+            <div style="float:right; padding-right: 30px;">
+                View
+                <select class="form-control" ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)">
+                    <option>3</option>
+                    <option>5</option>
+                    <option>10</option>
+                </select>
+                records at a time.
+            </div>
         </div>
     </div>
     <div style="clear:both;">
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        <a href="" ng-click="sortType = 'address1'; sortReverse = !sortReverse">Address Line 1
+    </div>
+    <div class="form-section ticket-section">
+        <p class="form-header custom-header-seven">
+            Properties
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="" ng-click="sortType = 'address1'; sortReverse = !sortReverse">Address Line 1
             <span ng-show="sortType == 'address1' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'address1' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-                    </th>
-                    <th>
-                        <a href="" ng-click="sortType = 'address2'; sortReverse = !sortReverse">Unit
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'address2'; sortReverse = !sortReverse">Unit
             <span ng-show="sortType == 'address2' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'address2' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-                    </th>
-                    <th>
-                        <a href="" ng-click="sortType = 'zip'; sortReverse = !sortReverse">Zip
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'zip'; sortReverse = !sortReverse">Zip
             <span ng-show="sortType == 'zip' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'zip' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-                    </th>
-                    <th>
-                        <a href="" ng-click="sortType = 'city'; sortReverse = !sortReverse">City
+                        </th>
+                        <th>
+                            <a href="" ng-click="sortType = 'city'; sortReverse = !sortReverse">City
             <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-                    </th>
-                    <th>State</th>
-                    <th>Action</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- .slice(((page.currentPage-1)*page.itemsPerPage), ((page.currentPage)*page.itemsPerPage)) -->
-                <!-- <tr class="text-center popover-btn" ng-repeat="p in properties | orderBy:orderByFunction:sortReverse | filter:paginate"> -->
-                <tr class="text-center popover-btn" dir-paginate="item in items | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
-                    <td>{{item.address1}}</td>
-                    <td>{{item.address2}}</td>
-                    <td>{{item.zip}}</td>
-                    <td>{{item.city}}</td>
-                    <td>{{item.state}}</td>
-                    <td>
-                        <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
-                            <span class="fa fa-ticket"></span>
-                        </button>
-                        <button class="btn btn-default ticket-btn" uib-popover="Delete Property" popover-title="Action" popover-trigger="mouseenter">
-                            <span class="fa fa-trash"></span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </th>
+                        <th>State</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center popover-btn" dir-paginate="item in items | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
+                        <td>{{item.address1}}</td>
+                        <td>{{item.address2}}</td>
+                        <td>{{item.zip}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.state}}</td>
+                        <td>
+                            <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-ticket"></span>
+                            </button>
+                            <button class="btn btn-default ticket-btn" uib-popover="Delete Property" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
 </div>

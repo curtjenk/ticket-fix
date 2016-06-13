@@ -26,7 +26,6 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
     }];
     $scope.page = {};
 
-    // $scope.page.viewby = 10;
     $scope.page.currentPage = 1;
     $scope.page.pageSize = 5; //$scope.page.viewby || 5;
     //$scope.page.itemsPerPage = $scope.page.viewby;
