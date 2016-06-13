@@ -82,7 +82,7 @@
         </div>
         <div class="form-group" ng-class="{ 'has-error': ticketForm.entry.$touched && ticketForm.entry.$invalid }">
             <label>Entry Point</label>
-            <textarea name="entry" ng-model="formData.entryPoint" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
+            <textarea name="entry" ng-model="formData.entryPoint" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entering the property?" type="text" class="form-control" maxlength="240"></textarea>
             <small>{{countTwo}} characters left</small>
             <div ng-messages="ticketForm.entry.$error" ng-if="ticketForm.entry.$touched" role="alert">
                 <p ng-message="required">Entry point description required</p>

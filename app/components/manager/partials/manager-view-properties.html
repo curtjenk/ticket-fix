@@ -108,10 +108,10 @@
                     <td>{{item.city}}</td>
                     <td>{{item.state}}</td>
                     <td>
-                        <button class="btn btn-default ticket-btn" ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
+                        <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
                             <span class="fa fa-ticket"></span>
                         </button>
-                        <button class="btn btn-default ticket-btn" ui-sref="manager.tickets" uib-popover="Delete Property" popover-title="Action" popover-trigger="mouseenter">
+                        <button class="btn btn-default ticket-btn" uib-popover="Delete Property" popover-title="Action" popover-trigger="mouseenter">
                             <span class="fa fa-trash"></span>
                         </button>
                     </td>

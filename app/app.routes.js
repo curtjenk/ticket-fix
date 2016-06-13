@@ -77,9 +77,9 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '',
             templateUrl: 'app/components/manager/partials/manager-view-properties.html'
         })
-        .state('manager.ticket', {
+        .state('manager.createticket', {
             parent: 'manager',
-            url: '/ticket',
+            url: '/mgrticket',
             templateUrl: 'app/components/manager/partials/manager-ticket.html'
         })
         .state('manager.tickets', {

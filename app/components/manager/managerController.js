@@ -1,5 +1,6 @@
 ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
+    $scope.ticketData = {};
 	var user = $rootScope.user;
 	console.log($rootScope.user);
 	var email = user.email;
@@ -50,9 +51,30 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 
 	$scope.transitionToTicket = function (item) {
         console.log("transition to ticket");
-		$state.transitionTo('manager.ticket');
+		$state.transitionTo('manager.createticket');
         console.log("--------- it worked?.  Clicked on ... --------------------");
         console.log(item);
+        $scope.ticketData.address1 = item.address1;
+        $scope.ticketData.address2 = item.address2;
+        $scope.ticketData.city = item.city;
+        $scope.ticketData.state = item.state;
+        $scope.ticketData.zip = item.zip;
+        //now go get the tenant;
+        apiAjax.gettenantinfo(user.email).then(function (res) {
+            console.log(res);
+
+            if (res.data.success === true) {
+                $scope.user_id = res.data.info.user_id;
+                $scope.property_id = res.data.info.property_id;
+                $scope.ticketData.firstname = res.data.info.first_name;
+                $scope.ticketData.lastname = res.data.info.last_name;
+                $scope.ticketData.email = res.data.info.email;
+                $scope.ticketData.phone = res.data.info.home_phone;
+                $scope.ticketData.mobile = res.data.info.mobile_phone;
+            }
+        }, function (err) {
+
+        });
 	};
 
 	$scope.savePropertyFunc = function () {
@@ -128,7 +150,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 
 					// console.log(html);
 					$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
-					
+
 				}
 			},
 			function (err) {
