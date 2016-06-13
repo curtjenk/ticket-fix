@@ -11,6 +11,7 @@ var Contractor = require('./models/contractor');
 var Property = require('./models/property');
 var Tenant = require('./models/tenant');
 var Ticket = require('./models/ticket');
+var SendMailOptions = require('./models/sendmailoptions');
 
 var ufuncs = require('./userFuncs');
 var admin = require('./adminFuncs');
@@ -609,15 +610,17 @@ router.post('/upload', type, function (req, res, next) {
 // 	res.json(req.body.token + " " + req.decoded);
 // });
 router.post('/api/sendmail', function (req, res) {
+	var smo = req.body.sendMailOptions;
+
 	var apiRes = new ApiResponse({
 		api: 'api/sendmail'
 	});
 	console.log(req.body);
-	mailer.sendMail(req.body.from,
-			req.body.to,
-			req.body.subject,
-			req.body.text,
-			req.body.html)
+	mailer.sendMail(smo.from,
+			smo.to,
+			smo.subject,
+			smo.text,
+			smo.html)
 		.then(function (succ) {
 			console.log(succ);
 			apiRes.success = true;
