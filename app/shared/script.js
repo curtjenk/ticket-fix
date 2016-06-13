@@ -116,6 +116,27 @@ function formatDateTime(string){
 	return mm+ "-" + dd + "-" + yyyy + " " + hour + ":" + min + ":" + sec;
 }
 
+function formatPhone(string){
+	if (!string) return "";
+	if (string.length < 10) return "";
+	var output = "";
+	for (var i=0; i < string.length; i++) {
+		if (i === 0){
+			output += '(';
+		}
+		if (i===2) {
+			output += ') ';
+		}
+		if (i===6) {
+			output += '-';
+		}
+
+		output += string[i];
+	}
+
+	return output;
+}
+
 $(document).ready(function () {
 
 	(function ($) {

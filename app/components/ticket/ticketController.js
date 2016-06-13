@@ -82,7 +82,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		ticket.contact_email = $scope.formData.email || "";
 		ticket.contact_phone = $scope.formData.phone || "";
 		ticket.contact_mobile = $scope.formData.mobile || "";
-		ticket.pet = $scope.formData.pet;
+		ticket.pet = $scope.formData.pet || "";
 		ticket.entry_point = $scope.formData.entryPoint || "";
 
 		ticket.alt_phone = $scope.formData.altphone || "";
@@ -133,7 +133,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 				var emailHtml =
 					"<div><h1>Location</h1>" +
 					"    <p>" + tenantinfo.address1 + tenantinfo.address2 + "</p>" +
-                    "    <p>" + tenantinfo.city + "," + tenantinfo.state + " " + tenantinf.zip + "</p>" +
+                    "    <p>" + tenantinfo.city + "," + tenantinfo.state + " " + tenantinfo.zip + "</p>" +
 					"</div>" +
 					"<div><h1>Description Of Issue and Special Instructions</h1>" +
 					"    <p>" + ticket.issue_description + "</p>" +
@@ -141,10 +141,10 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 					"    <p> <h4>Pet(s)? :</h4>" + ticket.pet  + "</p>" +
 					"    <p> <h4>Contact :</h4> " +
                     "    <p>" + ticket.contact_first_name + " " + ticket.contact_last_name + "</p>" +
-					"    <p>" + ticket.contact_phone + " " + ticket.contact_mobile + ticket.contact_email + "</p>" +
+					"    <p>" + formatPhone(ticket.contact_phone) + " " + ticket.contact_mobile + ticket.contact_email + "</p>" +
 					"    <p> <h4>Alternate Contact :</h4>" +
                     "    <p>" + ticket.alt_first_name + " " + ticket.alt_last_name + "</p>" +
-					"    <p>" + ticket.alt_phone + " " + ticket.alt_emai + "</p>" +
+					"    <p>" + formatPhone(ticket.alt_phone) + " " + ticket.alt_email + "</p>" +
 					"</div>";
                 var emailText = emailHtml;
 
