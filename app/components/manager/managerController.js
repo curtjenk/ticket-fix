@@ -128,7 +128,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 
 					// console.log(html);
 					$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
-
+					
 				}
 			},
 			function (err) {
