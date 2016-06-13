@@ -1,5 +1,12 @@
 var baseUrl = 'http://localhost:3000';
-
+var SendMailOptions = function(data){
+    data = data || {};
+    this.from = data.from;
+    this.to = data.to;
+    this.subject = data.subject;
+    this.text = data.text;
+    this.html = data.html;
+};
 ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var apiAjax = {};
     var login = baseUrl + "/login";
@@ -19,6 +26,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
     var allmanagerproperties = baseUrl + "/api/allmanagerproperties";
     var savemanagerproperty = baseUrl + "/api/savemanagerproperty";
+    var sendmail = baseUrl + "/api/sendmail";
 
 
     var ApiResponse = function(res) {
@@ -85,6 +93,14 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
             url: encodeURI(whereTo + qa)
         });
     };
+    apiAjax.sendmail = function(userEmail, sendMailOptions) {
+        console.log("apiAjax sendmail");
+        return makeThePostApiCall('sendmail', userEmail, sendmail, {
+            sendMailOptions: sendMailOptions
+        });
+
+    };
+
     apiAjax.createticket = function(ticket, email) {
         console.log("apiAjax createticket");
         return makeThePostApiCall('createticket', email, createticket, {
