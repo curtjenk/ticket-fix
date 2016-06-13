@@ -1,4 +1,4 @@
-ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $location, apiAjax, zipLookup) {
+ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, apiAjax, zipLookup) {
 	$scope.formData = {};
 	var user = $rootScope.user;
 	console.log($rootScope.user);
@@ -32,7 +32,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 
 	// $scope.page.viewby = 10;
 	$scope.page.currentPage = 1;
-    $scope.page.pageSize = 5; //$scope.page.viewby || 5;
+	$scope.page.pageSize = 5; //$scope.page.viewby || 5;
 	//$scope.page.itemsPerPage = $scope.page.viewby;
 	//$scope.page.maxSize = 5; //Number of pager buttons to show
 
@@ -48,6 +48,13 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 
 	runGetMgrProperties(email);
 
+	$scope.transitionToTicket = function (item) {
+        console.log("transition to ticket");
+		$state.transitionTo('manager.ticket');
+        console.log("--------- it worked?.  Clicked on ... --------------------");
+        console.log(item);
+	};
+
 	$scope.savePropertyFunc = function () {
 		var property = {
 			address1: $scope.formData.address1,
@@ -61,8 +68,8 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		apiAjax.savemanagerproperty(user.email, property).then(
 			function (succ) {
 				console.log(succ);
-                //refresh the Properties Table
-                runGetMgrProperties(email);
+				//refresh the Properties Table
+				runGetMgrProperties(email);
 			},
 			function (err) {
 				console.log(err);
@@ -85,25 +92,25 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	};
 
 	//helper functions below ----------
-    //   Custom orderby function for applying a different sort rule for the click_count column
-        //without this function the "click count" would be sorted as string instead of a number
-        //have to know which column is being sorted
-        // returns a closure of the orignal function
-    $scope.orderByFunction = function(sortType) {
-        return function(item) {
+	//   Custom orderby function for applying a different sort rule for the click_count column
+	//without this function the "click count" would be sorted as string instead of a number
+	//have to know which column is being sorted
+	// returns a closure of the orignal function
+	$scope.orderByFunction = function (sortType) {
+		return function (item) {
 
-            if (sortType === 'zip') { //sorting on the click_count. force integer comparison versus default string compare
-                console.log(sortType);
-                return parseInt(item.zip);
-            } else if (sortType === 'address1'){
-                return item.address1;
-            } else if (sortType === 'address2'){
-                return item.address2;
-            } else {
-                return item.city;
-            }
-        };
-    };
+			if (sortType === 'zip') { //sorting on the click_count. force integer comparison versus default string compare
+				console.log(sortType);
+				return parseInt(item.zip);
+			} else if (sortType === 'address1') {
+				return item.address1;
+			} else if (sortType === 'address2') {
+				return item.address2;
+			} else {
+				return item.city;
+			}
+		};
+	};
 
 	function runGetMgrTickets(email) {
 		apiAjax.getallmanagertickets(email).then(
@@ -134,8 +141,8 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		apiAjax.getallmanagerproperties(email).then(
 			function (succ) {
 				//$scope.properties = succ.data.info;
-                $scope.items = succ.data.info;
-                //$scope.page.totalItems = $scope.properties.length;
+				$scope.items = succ.data.info;
+				//$scope.page.totalItems = $scope.properties.length;
 				console.log($scope.items);
 			},
 			function (err) {

@@ -1,0 +1,263 @@
+<div class="form-section ticket-section">
+    <p class="form-header custom-header-four">
+        Ticket Info
+    </p>
+    <div class="col-sm-6">
+        <div class="user-info">
+            <label>Date: <span class="date-created">{{formData.date}}</span></label>
+            <br>
+            <h4>Tenant Info</h4>
+            <div class="tenant-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
+                <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
+                <p>Email: {{formData.email}}</p>
+            </div>
+            <div class="tenant-info-two col-sm-6 col-sm-6 left-bar right-bar col-xs-12">
+                <p>Phone: {{formData.phone}}</p>
+                <p>Mobile: {{formData.mobile}}</p>
+            </div>
+            <h4>Contact Info</h4>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two">
+                <label>First Name</label>
+                <input name="firstname" ng-model="formData.firstname" placeholder="John" type="text" class="form-control" />
+            </div>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12">
+                <label>Last Name</label>
+                <input name="lastname" ng-model="formData.lastname" placeholder="Doe" type="text" class="form-control" />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': ticketForm.email.$touched && ticketForm.email.$invalid }">
+                <label>Email</label>
+                <input name="email" ng-model="formData.email" placeholder="example@example.com" type="email" class="form-control">
+                <div ng-messages="ticketForm.email.$error" ng-if="ticketForm.email.$touched" role="alert">
+                    <p ng-message="email">Enter a valid email</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.phone.$touched && ticketForm.phone.$invalid }">
+                <label>Phone</label>
+                <input name="phone" ng-model="formData.phone" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                <div ng-messages="ticketForm.phone.$error" ng-if="ticketForm.phone.$touched" role="alert">
+                    <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                </div>
+            </div>
+            <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.mobile.$touched && ticketForm.mobile.$invalid }">
+                <label>Mobile</label>
+                <input name="mobile" ng-model="formData.mobile" placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                <div ng-messages="ticketForm.mobile.$error" ng-if="ticketForm.mobile.$touched" role="alert">
+                    <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 left-bar col-xs-12 left-bar-two" ng-class="{ 'has-error': ticketForm.altphone.$touched && ticketForm.altphone.$invalid }">
+            <label>Alternate Phone</label>
+            <input name="altphone" ng-model="formData.altphone" placeholder="555-555-1234" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+            <div ng-messages="ticketForm.altphone.$error" ng-if="ticketForm.altphone.$touched" role="alert">
+                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+            </div>
+        </div>
+        <div class="form-group col-sm-6 left-bar right-bar col-xs-12" ng-class="{ 'has-error': ticketForm.altemail.$touched && ticketForm.altemail.$invalid }">
+            <label>Alternate email</label>
+            <input name="altemail" ng-model="formData.altemail" placeholder="altexample@example.com" type="altemail" class="form-control">
+            <div ng-messages="ticketForm.altemail.$error" ng-if="ticketForm.altemail.$touched" role="alert">
+                <p ng-message="altemail">Enter a valid email</p>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': ticketForm.desc.$touched && ticketForm.desc.$invalid }">
+            <label>Description</label>
+            <textarea name="desc" ng-model="formData.desc" ng-change="textFunc()" required placeholder="Describe your problem..." type="text" class="form-control desc-area" maxlength="1000"></textarea>
+            <small>{{count}} characters left</small>
+            <div ng-messages="ticketForm.desc.$error" ng-if="ticketForm.desc.$touched" role="alert">
+                <p ng-message="required">Enter a description for the ticket</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Do you have a pet?</label>
+            <md-radio-group ng-model="formData.pet">
+                <md-radio-button value="yes" aria-label="yes">
+                    <p>Yes</p>
+                </md-radio-button>
+                <md-radio-button value="no" aria-label="no">
+                    <p>No</p>
+                </md-radio-button>
+            </md-radio-group>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': ticketForm.entry.$touched && ticketForm.entry.$invalid }">
+            <label>Entry Point</label>
+            <textarea name="entry" ng-model="formData.entryPoint" ng-change="textFuncTwo()" required placeholder="Something we need to know about before entrying your property?" type="text" class="form-control" maxlength="240"></textarea>
+            <small>{{countTwo}} characters left</small>
+            <div ng-messages="ticketForm.entry.$error" ng-if="ticketForm.entry.$touched" role="alert">
+                <p ng-message="required">Entry point description required</p>
+            </div>
+        </div>
+    </div>
+    <div id="tab-wrapper" class="col-sm-6">
+        <div ng-cloak>
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Kitchen">
+                        <md-content class="md-padding">
+                            <h4>Kitchen</h4>
+                            <ul class="ticket-checkbox">
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.sink" aria-label="formData.sink"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.stove" aria-label="formData.stove"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.oven" aria-label="formData.oven"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.fridge" aria-label="formData.fridge"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.kitchen.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
+                                </li>
+                            </ul>
+                            <ul class="ticket-list">
+                                <li>Sink</li>
+                                <li>Dishwasher</li>
+                                <li>Stove</li>
+                                <li>Oven</li>
+                                <li>Refrigerator</li>
+                                <li>Garbage Disposal</li>
+                            </ul>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Bathroom">
+                        <md-content class="md-padding">
+                            <h4>Bathroom</h4>
+                            <ul class="ticket-checkbox">
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.sink" aria-label="formData.bathsink"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.toilet" aria-label="formData.toilet"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.tub" aria-label="formData.tub"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.shower" aria-label="formData.shower"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.mirror" aria-label="formData.mirror"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bathroom.fan" aria-label="formData.fan"></md-checkbox>
+                                </li>
+                            </ul>
+                            <ul class="ticket-list">
+                                <li>Sink</li>
+                                <li>Toilet</li>
+                                <li>Tub</li>
+                                <li>Shower</li>
+                                <li>Mirror</li>
+                                <li>Fan</li>
+                            </ul>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Bedroom">
+                        <md-content class="md-padding">
+                            <h4>Bedroom</h4>
+                            <ul class="ticket-checkbox">
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.ceilingfan" aria-label="formData.ceilingfan"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.outlet" aria-label="formData.outlet"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.closet" aria-label="formData.closet"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.door" aria-label="formData.door"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.acvent" aria-label="formData.acvent"></md-checkbox>
+                                </li>
+                                <li>
+                                    <md-checkbox ng-model="formData.bedroom.carpet" aria-label="formData.carpet"></md-checkbox>
+                                </li>
+                            </ul>
+                            <ul class="ticket-list">
+                                <li>Ceiling Fan</li>
+                                <li>Outlet</li>
+                                <li>Closet</li>
+                                <li>Door</li>
+                                <li>AC Vent</li>
+                                <li>Carpet</li>
+                            </ul>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+            </md-content>
+            <label class="control-label" style="margin-top: 20px;">Select File</label>
+            <small>Upload images of your problem</small>
+            <input id="input-2" name="input2[]" type="file" class="file" multiple data-show-upload="false" data-show-caption="true">
+            <label style="margin-top: 30px;">Notification preference: </label>
+            <small>How would you like to be updated on the progress of your ticket?</small>
+            <md-radio-group ng-model="formData.notifyPreference">
+                <md-radio-button value="email" aria-label="email">
+                    <p>Email</p>
+                </md-radio-button>
+                <md-radio-button value="text" aria-label="text">
+                    <p>Text Message</p>
+                </md-radio-button>
+                <md-radio-button value="phone" aria-label="phone">
+                    <p>Phone</p>
+                </md-radio-button>
+                <md-radio-button value="nocontact" aria-label="nocontact">
+                    <p>Don't contact me</p>
+                </md-radio-button>
+            </md-radio-group>
+            <label>Permission:</label>
+            <small>Do you need to be present for the maintenance to be repair?</small>
+            <md-radio-group ng-model="formData.enterIfAbsent">
+                <md-radio-button value="yes" aria-label="yes">
+                    <p>Yes <small>(Don't fix the issue if I'm not present)</small></p>
+                </md-radio-button>
+                <md-radio-button value="no" aria-label="no">
+                    <p>No</p>
+                </md-radio-button>
+            </md-radio-group>
+            <small>If "Yes", you must fill out info below to let us know what time is good for you.</small>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+<div class="form-section ticket-section">
+    <p class="form-header custom-header-five">
+        Floor Plan
+    </p>
+    <div class="col-sm-6">
+        <small>Click on the problem area</small>
+        <div id="marker-area" ng-click="addMarker($event)"  ng-style="{'background-image':'url(' + formData.planUrl + ')'}">
+            <div class="marker-container" ng-bind-html="newMarker">
+
+                <!-- <img src="assets/img/floor-plans/1bed1bath.jpg"> -->
+            </div>
+        </div>
+        <button ng-click="removeMarkers()" type="button" class="btn btn-danger remove-btn">Remove Markers</button>
+    </div>
+    <div class="col-sm-6">
+        <h4>Set Appointment Time &amp; Date</h4>
+        <small>Required if Tenant need's to be present for the repairs</small>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 permission-form">
+            <label>Agreement:</label>
+            <md-checkbox ng-model="formData.agree" aria-label="formData.agree"></md-checkbox>
+            <small>I agree to let the property staff enter my unit to work on this maintenance issue</small>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+<div class="form-group button-holder text-center">
+<!--     <button ui-sref="ticket.approval" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp; -->
+        <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp;
+    <a href="#/">
+        <button type="button" class="btn btn-default">Cancel</button>
+    </a>
+</div>

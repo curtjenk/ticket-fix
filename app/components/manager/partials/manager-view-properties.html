@@ -36,37 +36,37 @@
           <p ng-message="required">State is required.</p>
         </div>
       </div>
-      <div class="form-group col-sm-2 left-bar right-bar col-xs-12" ng-class="{ 'has-error': propertyForm.floorplan.$touched && propertyForm.floorplan.$invalid }">
-        <!-- <label>State</label> -->
-        <!-- <input name="floorplan" required ng-model="formData.floorplan" placeholder="Plan" type="text" class="form-control"/> -->
-        <select name="floorplan" id="floorplanSelect" ng-model="formData.floorplan" class="form-control" ng-options="option.name for option in floorPlanOptions track by option.id"></select>
-      </div>
-      <div class="form-group col-xs-1">
-        <button type="submit" class="btn btn-primary">Add</button>&nbsp;
+      <div class="row">
+        <div class="form-group col-sm-2" ng-class="{ 'has-error': propertyForm.floorplan.$touched && propertyForm.floorplan.$invalid }">
+          <!-- <label>State</label> -->
+          <!-- <input name="floorplan" required ng-model="formData.floorplan" placeholder="Plan" type="text" class="form-control"/> -->
+          <select name="floorplan" id="floorplanSelect" ng-model="formData.floorplan" class="form-control" ng-options="option.name for option in floorPlanOptions track by option.id"></select>
+        </div>
+        <div class="form-group col-xs-1">
+          <button type="submit" class="btn btn-primary">Add</button>&nbsp;
+        </div>
+
+        <div class="col-sm-2" style="line-height: 5;">
+          View
+          <select ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)">
+            <option>3</option>
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>40</option>
+            <option>50</option>
+          </select>
+          rows
+        </div>
+        <div class="col-sm-9">
+          <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
       </div>
     </div>
   </form>
-  <div class="row">
-    <div style="display:float-left:">
-      View
-      <select ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)">
-        <option>3</option>
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-        <option>30</option>
-        <option>40</option>
-        <option>50</option>
-      </select>
-      records at a time.
-    </div>
-    <div style="display:float-left;">
-      <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
-    </div>
-  </div>
-  <div style="clear:both;">
 
-  </div>
+  <div style="clear:both;"></div>
   <table class="table table-striped table-hover table-bordered">
     <thead>
       <tr>
@@ -110,7 +110,7 @@
         <td>{{item.city}}</td>
         <td>{{item.state}}</td>
         <td>
-          <button class="btn btn-default ticket-btn" ui-sref="manager.tickets" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
+          <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Create Ticket" popover-title="Action" popover-trigger="mouseenter">
             <span class="fa fa-ticket"></span>
           </button>
           <button class="btn btn-default ticket-btn" ui-sref="manager.tickets" uib-popover="Delete Property" popover-title="Action" popover-trigger="mouseenter">

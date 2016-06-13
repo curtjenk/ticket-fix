@@ -88,45 +88,6 @@ var registerManagerProperty = function (email, property) {
 
 	return finalDeferred.promise;
 };
-/*
-	Q.fcall(db.con)
-		.then(function (con) {
-			//console.log(account);
-			property.genKey();
-			property.genCode();
-			con.query("INSERT INTO property SET ?", [property], function (err, result) {
-				con.release();
-				if (!err) {
-					deferred.resolve({
-						status: 'complete',
-						data: {
-							id: result.insertId
-						},
-						message: ''
-					});
-
-				} else {
-					console.log(property);
-					console.log(err);
-					deferred.reject({
-						status: 'error',
-						data: {},
-						message: "sql error",
-						error: err
-					});
-				}
-			});
-		})
-		.catch(function (error) {
-			console.log('saveproperty error occurred');
-			console.log(error);
-			console.log(' ------------------------ ');
-			deferrred.reject(error);
-		})
-		.done();
-	return deferred.promise;
-};
-*/
 
 var registertenant = function (user, property) {
 	console.log("tenant flow - new");
@@ -157,11 +118,44 @@ var registertenant = function (user, property) {
 		.then(function (res) {
 			return connection.query("INSERT INTO user SET ?", [user]);
 		})
-		.then(function (res) {
+		.then(function (res){
 			user_id = res.insertId;
-			console.log("insert id = " + user_id);
-			return connection.query("INSERT INTO property SET ?", property);
+			//check if property exists.
+			var deferred = Q.defer();
+			connection.query('SELECT id FROM property WHERE prop_key = ?', property.prop_key, function (err, rows){
+				if (err) {
+					console.log(err);
+					deferred.reject({
+						status: 'criticalerror',
+						message: 'could not query the property table',
+						error: err
+					});
+				} else if (rows.length > 0){
+					property_id = rows[0].id;
+					deferred.resolve(user_id);  //forward on the results from the previous insert
+				} else {
+					connection.query("INSERT INTO property SET ?", property, function (err, result){
+						if (err) {
+							console.log(err);
+							deferred.reject({
+								status: 'criticalerror',
+								message: 'could not INSERT the property table',
+								error: err
+							});
+						} else {
+							property_id = result.insertId;
+							deferred.resolve(property_id);
+						}
+					});
+				}
+			});
+			return deferred.promise;
 		})
+		// .then(function (res) {
+		// 	user_id = res.insertId;
+		// 	console.log("insert id = " + user_id);
+		// 	return connection.query("INSERT INTO property SET ?", property);
+		// })
 		.then(function (res) {
 			var tenant = new Tenant({
 				user_id: user_id,

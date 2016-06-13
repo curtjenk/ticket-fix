@@ -77,6 +77,11 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '',
             templateUrl: 'app/components/manager/partials/manager-view-properties.html'
         })
+        .state('manager.ticket', {
+            parent: 'manager',
+            url: '/ticket',
+            templateUrl: 'app/components/manager/partials/manager-ticket.html'
+        })
         .state('manager.tickets', {
             parent: 'manager',
             url: '/tickets',
@@ -106,42 +111,3 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
     // send users to the form page
     $urlRouterProvider.otherwise('/');
 });
-
-// ticketFixApp.config(function($routeProvider) {
-//     $routeProvider.when('/', {
-//         templateUrl: function($routeParams) {
-//             // console.log("routing to home");
-//             return 'app/components/home/homeView.html';
-//         }
-//     });
-//     $routeProvider.when('/register', {
-//         templateUrl: function($routeParams) {
-//             // console.log("routing to register");
-//             // return 'app/components/registration/registrationView.html';
-//             return 'app/components/registration/reg-form.html';
-//         }
-//     });
-//     $routeProvider.when('/registertwo', {
-//         templateUrl: function($routeParams) {
-//             // console.log("routing to register");
-//             // return 'app/components/registration/registrationView.html';
-//             return 'app/components/registration/reg-form-companyinfo.html';
-//         }
-//     });
-//     $routeProvider.when('/registerthree', {
-//         templateUrl: function($routeParams) {
-//             // console.log("routing to register");
-//             // return 'app/components/registration/registrationView.html';
-//             return 'app/components/registration/reg-form-stepthree.html';
-//         }
-//     });
-//     $routeProvider.when('/login', {
-//         templateUrl: function($routeParams) {
-//             // console.log("routing to login");
-//             return 'app/components/login/loginView.html';
-//         }
-//     });
-//     $routeProvider.otherwise({
-//         redirectTo: '/'
-//     });
-// });
