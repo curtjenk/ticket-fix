@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="ticket in tickets" class="text-center">
+                        <tr dir-paginate="ticket in tickets | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" class="text-center">
                             <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
                             <td class="text-center"><a uib-popover-html="ticket.popoverContact" popover-title="Contact" type="button"><span class="fa fa-user"></span></a></td>
                             <td>{{ticket.issue_description}}</td>
@@ -30,6 +30,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+        <div class="text-center">
+            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
         </div>
     </div>
     <div class="row">

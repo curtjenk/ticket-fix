@@ -5,6 +5,9 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
     var counter = 0;
     var totalMarkers = "";
     var markerArray = [];
+    $scope.page = {};
+	$scope.page.currentPage = 1;
+	$scope.page.pageSize = 5;
 
     $scope.addMarker = function($event) {
         counter++;
@@ -188,7 +191,7 @@ ticketFixApp.controller('ticketController', function($rootScope, $scope, $http, 
         //console.log(localData);
 
         runGetTenantTickets(user.email);
-        
+
         if (localData.userType == 3) {
             /* returns
             email, first_name, last_name, home_phone, mobile_phone,
