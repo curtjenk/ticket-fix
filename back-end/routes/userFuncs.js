@@ -1,6 +1,7 @@
 var db = require('./mysqlUtil');
 var User = require('./models/user');
-var bcrypt = require('bcrypt');
+//var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 
 var getUser = function (email) {
@@ -113,8 +114,9 @@ var authenticateUser = function (email, password) {
 			if (rtn.status == 'found') {
 				var user = new User(rtn.data); //mapUser(row);
 				user.passwordMatch(password).then(function (res) {
+					//console.log("passwords match ? after check " +  res);
 					if (res) {
-						// console.log("passwords match");
+						//console.log("passwords match");
 						deferred.resolve({
 							status: 'ok',
 							data: user,

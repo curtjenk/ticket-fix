@@ -1,4 +1,5 @@
-var baseUrl = 'http://localhost:3000';
+//var baseUrl = 'http://localhost:3000';
+//var baseUrl = Config.ticketFixMeApi;
 var SendMailOptions = function(data){
     data = data || {};
     this.from = data.from;
@@ -8,6 +9,7 @@ var SendMailOptions = function(data){
     this.html = data.html;
 };
 ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
+    var baseUrl = Config.ticketFixMeApi;
     var apiAjax = {};
     var login = baseUrl + "/login";
     var register = baseUrl + "/register";

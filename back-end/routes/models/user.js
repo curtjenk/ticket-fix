@@ -1,5 +1,5 @@
 var Q = require('q');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var bcryptSaltRounds = 8;
 
 var User = function (data) {
@@ -22,15 +22,17 @@ var User = function (data) {
 User.prototype.hashPassword = function () {
 	// console.log('hashpassword');
 	var deferred = Q.defer();
-	var promise = bcrypt.hash(this.password, bcryptSaltRounds, function (err, hash) {
-		if (err) {
-			deferred.reject({lowermsg: 'Cant create password hash', error: JSON.stringify(err)});
-		} else {
-			this.password = hash;
-			// console.log(this.password);
-			deferred.resolve(hash);
-		}
-	});
+	this.password = bcrypt.hashSync(this.password);
+	deferred.resolve(this.password);
+	// var promise = bcrypt.hash(this.password, bcryptSaltRounds, function (err, hash) {
+	// 	if (err) {
+	// 		deferred.reject({lowermsg: 'Cant create password hash', error: JSON.stringify(err)});
+	// 	} else {
+	// 		this.password = hash;
+	// 		// console.log(this.password);
+	// 		deferred.resolve(hash);
+	// 	}
+	// });
 	return deferred.promise;
 };
 User.prototype.passwordMatch = function (password) {
@@ -38,14 +40,21 @@ User.prototype.passwordMatch = function (password) {
 	// console.log(this.password);
 	// console.log(password);
 	var deferred = Q.defer();
-	var promise = bcrypt.compare(password, this.password, function (err, res) {
-		if (err) {
-			deferred.reject(err);
-		} else {
-			//console.log("passwords match = " + res);
-			deferred.resolve(res);
-		}
-	});
+  	var passwordsMatch = bcrypt.compareSync(password, this.password); //returns boolean
+	//console.log("passwords match ? = " + passwordsMatch);
+	if (passwordsMatch) {
+		deferred.resolve(true);
+	} else {
+		deferred.resove(false);
+	}
+	// var promise = bcrypt.compare(password, this.password, function (err, res) {
+	// 	if (err) {
+	// 		deferred.reject(err);
+	// 	} else {
+	// 		//console.log("passwords match = " + res);
+	// 		deferred.resolve(res);
+	// 	}
+	// });
 	return deferred.promise;
 };
 
