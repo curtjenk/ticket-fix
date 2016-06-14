@@ -1,7 +1,4 @@
 ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http, $location, $sce, apiAjax, localStore) {
-
-
-
 	var counter = 0;
 	var totalMarkers = "";
 	var markerArray = [];
@@ -128,40 +125,13 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		apiAjax.createticket(ticket, user.email).then(
 			function (suc) {
 				console.log(suc);
-				$location.path('/');
+				if (suc.data.success === true) {
+					$location.path('/');
+					doSendEmail();
+				} else {
+					$scope.errorMessage = suc.data.message + " : " + suc.data.info.code || "";
+				}
 
-				var emailHtml =
-					"<div><h1>Location</h1>" +
-					"    <p>" + tenantinfo.address1 + tenantinfo.address2 + "</p>" +
-                    "    <p>" + tenantinfo.city + "," + tenantinfo.state + " " + tenantinfo.zip + "</p>" +
-					"</div>" +
-					"<div><h1>Description Of Issue and Special Instructions</h1>" +
-					"    <p>" + ticket.issue_description + "</p>" +
-					"    <p>" + ticket.entry_point + "</p>" +
-					"    <p> <h4>Pet(s)? :" + ticket.pet  + "</h4></p>" +
-					"    <p> <h4>Contact :</h4> " +
-                    "    <p>" + ticket.contact_first_name + " " + ticket.contact_last_name + "</p>" +
-					"    <p>" + formatPhone(ticket.contact_phone) + " " + formatPhone(ticket.contact_mobile) + " " + ticket.contact_email + "</p>" +
-					"    <p> <h4>Alternate Contact :</h4>" +
-                    "    <p>" + ticket.alt_first_name + " " + ticket.alt_last_name + "</p>" +
-					"    <p>" + formatPhone(ticket.alt_phone) + " " + ticket.alt_email + "</p>" +
-					"</div>";
-                var emailText = emailHtml;
-
-				var sendMailOptions = {
-					from: user.email,
-					to: 'hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com',
-					subject: "Tenant requires attention",
-					text: emailText,
-					html: emailHtml
-				};
-				apiAjax.sendmail(user.email, sendMailOptions).then(
-					function (succ) {
-						console.log(succ);
-					},
-					function (err) {
-						console.log(err);
-					});
 			},
 			function (err) {
 				console.log(err);
@@ -170,24 +140,58 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 
 	// ---- helper functions below ----
 
+	//   moved to script.js
+	//
+	// Date.prototype.yyyymmdd = function () {
+	// 	var yyyy = this.getFullYear().toString();
+	// 	var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+	// 	var dd = this.getDate().toString();
+	// 	var hh = this.getHours().toString();
+	// 	var mi = this.getMinutes().toString();
+	// 	var ss = this.getSeconds().toString();
+	// 	return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
+	// };
+	//
+	// Date.prototype.hhmmss = function () {
+	// 	var hh = this.getHours().toString();
+	// 	var mi = this.getMinutes().toString();
+	// 	var ss = this.getSeconds().toString();
+	// 	return (hh[1] ? hh : "0" + hh[0]) + (mi[1] ? mi : "0" + mi[0]) + (ss[1] ? ss : "0" + ss[0]); // padding
+	// };
+	function doSendEmai() {
+		var emailHtml =
+			"<div><h1>Location</h1>" +
+			"    <p>" + tenantinfo.address1 + tenantinfo.address2 + "</p>" +
+			"    <p>" + tenantinfo.city + "," + tenantinfo.state + " " + tenantinfo.zip + "</p>" +
+			"</div>" +
+			"<div><h1>Description Of Issue and Special Instructions</h1>" +
+			"    <p>" + ticket.issue_description + "</p>" +
+			"    <p>" + ticket.entry_point + "</p>" +
+			"    <p> <h4>Pet(s)? :" + ticket.pet  + "</h4></p>" +
+			"    <p> <h4>Contact :</h4> " +
+			"    <p>" + ticket.contact_first_name + " " + ticket.contact_last_name + "</p>" +
+			"    <p>" + formatPhone(ticket.contact_phone) + " " + formatPhone(ticket.contact_mobile) + " " + ticket.contact_email + "</p>" +
+			"    <p> <h4>Alternate Contact :</h4>" +
+			"    <p>" + ticket.alt_first_name + " " + ticket.alt_last_name + "</p>" +
+			"    <p>" + formatPhone(ticket.alt_phone) + " " + ticket.alt_email + "</p>" +
+			"</div>";
+		var emailText = emailHtml;
 
-
-	Date.prototype.yyyymmdd = function () {
-		var yyyy = this.getFullYear().toString();
-		var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
-		var dd = this.getDate().toString();
-		var hh = this.getHours().toString();
-		var mi = this.getMinutes().toString();
-		var ss = this.getSeconds().toString();
-		return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
-	};
-
-	Date.prototype.hhmmss = function () {
-		var hh = this.getHours().toString();
-		var mi = this.getMinutes().toString();
-		var ss = this.getSeconds().toString();
-		return (hh[1] ? hh : "0" + hh[0]) + (mi[1] ? mi : "0" + mi[0]) + (ss[1] ? ss : "0" + ss[0]); // padding
-	};
+		var sendMailOptions = {
+			from: user.email,
+			to: 'hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com',
+			subject: "Tenant requires attention",
+			text: emailText,
+			html: emailHtml
+		};
+		apiAjax.sendmail(user.email, sendMailOptions).then(
+			function (succ) {
+				console.log(succ);
+			},
+			function (err) {
+				console.log(err);
+			});
+	}
 
 	function runGetTenantTickets(email) {
 		apiAjax.getalltenanttickets(email).then(

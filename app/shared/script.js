@@ -21,40 +21,40 @@ var Marker = function (data) {
 };
 
 
-var KeyValue = function(key, value) {
+var KeyValue = function (key, value) {
 	this.key = key;
 	this.value = value;
 };
 var kitchenCheckboxes = [];
 var bedroomCheckboxes = [];
 var bathroomCheckboxes = [];
-var TicketDetails = function(data) {
+var TicketDetails = function (data) {
 	data = data || {};
 	this.kitchen = data.kitchen || [];
 	this.bedroom = data.bedroom || [];
 	this.bathroom = data.bathroom || [];
 };
 
-kitchenCheckboxes.push(new KeyValue("Sink",0));
-kitchenCheckboxes.push(new KeyValue("Dishwasher",0));
+kitchenCheckboxes.push(new KeyValue("Sink", 0));
+kitchenCheckboxes.push(new KeyValue("Dishwasher", 0));
 kitchenCheckboxes.push(new KeyValue("Stove", 0));
-kitchenCheckboxes.push(new KeyValue("Oven",0));
-kitchenCheckboxes.push(new KeyValue("Refrigerator",0));
-kitchenCheckboxes.push(new KeyValue("Garbage Disposal",0));
+kitchenCheckboxes.push(new KeyValue("Oven", 0));
+kitchenCheckboxes.push(new KeyValue("Refrigerator", 0));
+kitchenCheckboxes.push(new KeyValue("Garbage Disposal", 0));
 
-bathroomCheckboxes.push(new KeyValue("Sink",0));
-bathroomCheckboxes.push(new KeyValue("Toilet",0));
-bathroomCheckboxes.push(new KeyValue("Tub",0));
-bathroomCheckboxes.push(new KeyValue("Shower",0));
-bathroomCheckboxes.push(new KeyValue("Mirror",0));
-bathroomCheckboxes.push(new KeyValue("Fan",0));
+bathroomCheckboxes.push(new KeyValue("Sink", 0));
+bathroomCheckboxes.push(new KeyValue("Toilet", 0));
+bathroomCheckboxes.push(new KeyValue("Tub", 0));
+bathroomCheckboxes.push(new KeyValue("Shower", 0));
+bathroomCheckboxes.push(new KeyValue("Mirror", 0));
+bathroomCheckboxes.push(new KeyValue("Fan", 0));
 
-bedroomCheckboxes.push(new KeyValue("Fan",0));
-bedroomCheckboxes.push(new KeyValue("Outlet",0));
-bedroomCheckboxes.push(new KeyValue("Closet",0));
-bedroomCheckboxes.push(new KeyValue("Door",0));
-bedroomCheckboxes.push(new KeyValue("AC Vent",0));
-bedroomCheckboxes.push(new KeyValue("Carpet",0));
+bedroomCheckboxes.push(new KeyValue("Fan", 0));
+bedroomCheckboxes.push(new KeyValue("Outlet", 0));
+bedroomCheckboxes.push(new KeyValue("Closet", 0));
+bedroomCheckboxes.push(new KeyValue("Door", 0));
+bedroomCheckboxes.push(new KeyValue("AC Vent", 0));
+bedroomCheckboxes.push(new KeyValue("Carpet", 0));
 
 var ticketDetails = new TicketDetails({
 	kitchen: kitchenCheckboxes,
@@ -104,7 +104,7 @@ var Ticket = function (data) {
 };
 
 
-function formatDateTime(string){
+function formatDateTime(string) {
 	if (!string) return "";
 	if (string.length < 15) return "";
 	var yyyy = string.substring(0, 4);
@@ -113,21 +113,21 @@ function formatDateTime(string){
 	var hour = string.substring(9, 11);
 	var min = string.substring(11, 13);
 	var sec = string.substring(13, 15);
-	return mm+ "-" + dd + "-" + yyyy + " " + hour + ":" + min + ":" + sec;
+	return mm + "-" + dd + "-" + yyyy + " " + hour + ":" + min + ":" + sec;
 }
 
-function formatPhone(string){
+function formatPhone(string) {
 	if (!string) return "";
 	if (string.length < 10) return "";
 	var output = "";
-	for (var i=0; i < string.length; i++) {
-		if (i === 0){
+	for (var i = 0; i < string.length; i++) {
+		if (i === 0) {
 			output += '(';
 		}
-		if (i===3) {
+		if (i === 3) {
 			output += ') ';
 		}
-		if (i===6) {
+		if (i === 6) {
 			output += '-';
 		}
 
@@ -136,6 +136,26 @@ function formatPhone(string){
 
 	return output;
 }
+
+//Begin our custom prototypes
+
+Date.prototype.yyyymmdd = function () {
+	var yyyy = this.getFullYear().toString();
+	var mm = (this.getMonth() + 1).toString(); // getMonth() is zero-based
+	var dd = this.getDate().toString();
+	var hh = this.getHours().toString();
+	var mi = this.getMinutes().toString();
+	var ss = this.getSeconds().toString();
+	return yyyy + (mm[1] ? mm : "0" + mm[0]) + (dd[1] ? dd : "0" + dd[0]); // padding
+};
+
+Date.prototype.hhmmss = function () {
+	var hh = this.getHours().toString();
+	var mi = this.getMinutes().toString();
+	var ss = this.getSeconds().toString();
+	return (hh[1] ? hh : "0" + hh[0]) + (mi[1] ? mi : "0" + mi[0]) + (ss[1] ? ss : "0" + ss[0]); // padding
+};
+//------------- END Custom Prototypes
 
 $(document).ready(function () {
 

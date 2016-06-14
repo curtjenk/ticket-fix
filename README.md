@@ -7,7 +7,7 @@ Ticket Fix provides a convienient way for apartment dwellers to request maintena
 - Curtis
 
 The app has the following features
-- Registration
+- Roles and Permissions around 4 "actors"
 - Login
 -
 -

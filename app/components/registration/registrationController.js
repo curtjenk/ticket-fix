@@ -142,11 +142,12 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 				if (res.data.success === true) {
 					$location.path('/login');
 				} else if (res.data.success === false) {
-					if (res.data.error == 'found') {
-						$scope.errorMessage = "User Profile Already Exists";
-					} else {
-						$scope.errorMessage = "blah";
-					}
+					$scope.errorMessage = res.data.message;
+					// if (res.data.error == 'found' || res.data.error == 'rollback') {
+					// 	$scope.errorMessage = "User Profile Already Exists";
+					// } else {
+					// 	$scope.errorMessage = "blah";
+					// }
 				} else {
 					$scope.errorMessage = "Error encountered.  Please contact ticketfixme";
 				}

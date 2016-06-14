@@ -15,7 +15,7 @@ exports.getTenantInfo = function(email) {
     var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
         " tenant.property_id as property_id, property.code, address1, address2, city, state, zip, floor_plan_code, image " +
         " from user " +
-        " left join tenant on user.id = tenant.user_id " +
+        " INNER JOIN tenant on user.id = tenant.user_id " +
         " left join property on tenant.property_id = property.id " +
         " left join type_floorplan on property.floor_plan_code = type_floorplan.code " +
         " where user.email = ?";
@@ -115,7 +115,7 @@ exports.getManagerInfo = function(email) {
     var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
         " account_address, account_city, account_state, account_zip " +
         " from user " +
-        " left join manager on user.id = manager.user_id " +
+        " INNER JOIN manager on user.id = manager.user_id " +
         " left join account on manager.account_id = account.id " +
         " where user.email = ?";
     Q.fcall(db.con)
@@ -169,10 +169,10 @@ exports.getManagerProperties = function(email) {
     var deferred = Q.defer();
     var queryString = "select  property.* " +
         " from user " +
-        " left join manager on user.id = manager.user_id " +
+        " INNER JOIN manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id  " +
 		" left join property on property.id = manager_has_property.property_id " +
-        " where user.email = ?";
+        " where user.email = ?  ORDER BY property.id desc";
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
@@ -216,12 +216,12 @@ exports.getAllManagerTickets = function(email) {
     var deferred = Q.defer();
     var queryString = "select ticket.id as ticket_id, property.*, ticket.*, type_status.code as ticket_status" +
         " from user " +
-        " left join manager on user.id = manager.user_id " +
+        " INNER JOIN manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id " +
         " left join property on property.id = manager_has_property.property_id " +
         " left join ticket on ticket.property_id = property.id " +
         " left join type_status on type_status.id = ticket.status_id " +
-        " where user.email = ?";
+        " where user.email = ? ORDER BY ticket.id DESC";
 
     Q.fcall(db.con)
         .then(function(con) {
