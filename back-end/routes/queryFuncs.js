@@ -22,6 +22,7 @@ exports.getTenantInfo = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
+                con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -302,6 +303,70 @@ exports.getAllTenantTickets = function(email) {
         })
         .catch(function(error) {
             console.log('getAllTenantTickets error occurred');
+            console.log(error);
+            console.log(' ------------------------ ');
+            deferred.reject({
+                status: 'criticalerror',
+                data: '',
+                error: error
+            });
+        })
+        .done();
+    return deferred.promise;
+};
+
+exports.getTicketsInContractorRegions = function(email) {
+    var deferred = Q.defer();
+    var queryString ="select tick.*" +
+        " from user, contractor, " +
+        "   (select property.zip, property.id as property_id, address1, address2, city, " +
+        "       state, ticket.id as ticket_id, ticket.issue_description, ticket.client_datetime_string, type_status.code AS ticket_status," +
+        "       manager.id as prop_manager_id, " +
+        "       user.email AS manager_email, user.first_name AS manager_first_name, " +
+        "       user.last_name AS manager_last_name, user.home_phone AS manager_phone " +
+        "     from ticket " +
+        "     inner join type_status on type_status.id = ticket.status_id "+
+        "     inner join property on property.id = ticket.property_id " +
+        "     inner join manager_has_property mhp on mhp.property_id = property.id " +
+        "     inner join manager on manager.id = mhp.manager_id " +
+        "     INNER join user on user.id = manager.user_id) tick "  +
+        "  where user.email = ? " +
+        "  and contractor.user_id = user.id " +
+        "  and (tick.zip = contractor.region_1_zip " +
+        "   or tick.zip = contractor.region_2_zip " +
+        "   or tick.zip = contractor.region_3_zip)";
+
+    Q.fcall(db.con)
+        .then(function(con) {
+            console.log('------------- getTicketsInContractorRegions-----1 ------');
+            con.query(queryString, [email], function(err, rows) {
+                con.release();
+                if (err) {
+                    console.log(err);
+                    deferred.reject({
+                        status: 'error',
+                        data: '',
+                        error: err
+                    });
+                } else if (rows.length > 0) {
+                    console.log('----------getTicketsInContractorRegions ---- 2--------');
+                    console.log(rows.length);
+                    deferred.resolve({
+                        status: 'found',
+                        data: rows,
+                        error: ''
+                    });
+                } else {
+                    deferred.resolve({
+                        status: 'notfound',
+                        data: '',
+                        error: ''
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log('getTicketsInContractorRegions error occurred');
             console.log(error);
             console.log(' ------------------------ ');
             deferred.reject({

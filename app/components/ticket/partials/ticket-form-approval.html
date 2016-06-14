@@ -31,7 +31,7 @@
                     <p>Mobile: {{formData.mobile}}</p>
                     <p>Alt Phone: {{formData.altphone}}</p>
                 </div>
-                <label class="col-sm-12 left-bar">Maintenance information</label>
+                <label class="col-sm-12 left-bar">Detail Information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-three col-sm-12 left-bar right-bar col-xs-12">
@@ -64,7 +64,6 @@
         <div style="clear:both;"></div>
     </div>
     <div class="button-holder text-center">
-        <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Confirm Ticket</button>&nbsp;
-        <button ui-sref="ticket.create" class="btn btn-default">Update Info</button>
+        <button ui-sref="{{returnState}}" class="btn btn-default">Go Back</button>
     </div>
 </div>

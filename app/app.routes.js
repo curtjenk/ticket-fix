@@ -86,6 +86,17 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             parent: 'manager',
             url: '/tickets',
             templateUrl: 'app/components/manager/partials/manager-view-tickets.html'
+        })
+        .state('contractor', {
+            url: '/contractor',
+            abstract: true,
+            templateUrl: 'app/components/manager/partials/manager-view.html',
+            controller: 'contractorController'
+        })
+        .state('contractor.tickets', {
+            parent: 'contractor',
+            url: '',
+            templateUrl: 'app/components/contractor/partials/contractor-view-tickets.html'
         });
     // nested states
     // each of these sections will have their own view

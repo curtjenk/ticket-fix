@@ -28,8 +28,8 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
     var allmanagerproperties = baseUrl + "/api/allmanagerproperties";
     var savemanagerproperty = baseUrl + "/api/savemanagerproperty";
+    var contractorticketsUrl = baseUrl + "/api/contractor/tickets";  //get a list of tickets in the contractor's service regions.
     var sendmailUrl = baseUrl + "/api/sendmail";
-
 
     var ApiResponse = function(res) {
         res = res || {};
@@ -109,7 +109,11 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
             ticket: ticket
         });
     };
-
+    apiAjax.getContractorTickets = function(email) {
+        var queryParms = 'email=' + email;
+        console.log('apiAjax getContractorTickets');
+        return makeTheGetApiCall('getContractorTickets', email, contractorticketsUrl, queryParms);
+    };
     apiAjax.gettenantinfo = function(email) {
         var queryParms = 'email=' + email;
         console.log('apiAjax gettenantinfo');

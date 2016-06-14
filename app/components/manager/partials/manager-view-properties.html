@@ -53,10 +53,10 @@
         <div class=" row container" style="margin-bottom:10px;">
             <div style="float:right; padding-right: 30px;">
                 View
-                <select class="form-control" ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)">
-                    <option>3</option>
-                    <option>5</option>
-                    <option>10</option>
+                <select ng-init="page.viewby = page.viewByOptions[1]"
+                        ng-model="page.viewby"
+                        ng-change="page.setItemsPerPage(page.viewby)"
+                        ng-options="option for option in page.viewByOptions">
                 </select>
                 records at a time.
             </div>

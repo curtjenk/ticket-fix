@@ -26,15 +26,11 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		name: '3bed2.5bath'
     }];
 	$scope.page = {};
-
+	$scope.page.viewByOptions = [3, 5, 10];
 	$scope.page.currentPage = 1;
-	$scope.page.pageSize = 5; //$scope.page.viewby || 5;
-	//$scope.page.itemsPerPage = $scope.page.viewby;
-	//$scope.page.maxSize = 5; //Number of pager buttons to show
+	$scope.page.pageSize = 5;
+	$scope.page.viewby = 5;
 
-	// $scope.page.setPage = function (pageNo) {
-	// 	console.log('Page changed to: ' + $scope.page.currentPage);
-	// };
 	$scope.page.setItemsPerPage = function (num) {
 		$scope.page.pageSize = num;
 		$scope.page.currentPage = 1; //reset to first page
