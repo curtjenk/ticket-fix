@@ -1,56 +1,56 @@
 <div id="ticket-approval" class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 ticket-approval-form">
     <div class="form-section ticket-section">
         <p class="form-header custom-header">
-            Your Ticket Info
+            Ticket Info
         </p>
         <div class="col-sm-12">
             <div class="user-info">
-                <label>Date: <span class="date-created">{{formData.date}}</span></label>
+                <label>Date: <span class="date-created">{{date}}</span></label>
                 <br>
                 <label class="col-sm-12 left-bar">Tenant information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="tenant-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
-                    <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
-                    <p>Email: {{formData.email}}</p>
+                    <p>Name: {{firstname}} {{lastname}}</p>
+                    <p>Email: {{email}}</p>
                 </div>
                 <div class="tenant-info-two col-sm-6  left-bar right-bar col-xs-12">
-                    <p>Phone: {{formData.phone}}</p>
-                    <p>Mobile: {{formData.mobile}}</p>
+                    <p>Phone: {{phone}}</p>
+                    <p>Mobile: {{mobile}}</p>
                 </div>
                 <label class="col-sm-12 left-bar">Contact information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
-                    <p>Name: {{formData.firstname}} {{formData.lastname}}</p>
-                    <p>Email: {{formData.email}}</p>
-                    <p>Alt Email: {{formData.altemail}}</p>
+                    <p>Name: {{firstname}} {{lastname}}</p>
+                    <p>Email: {{email}}</p>
+                    <p>Alt Email: {{altemail}}</p>
                 </div>
                 <div class="contact-info-two col-sm-6 left-bar right-bar col-xs-12">
-                    <p>Phone: {{formData.phone}}</p>
-                    <p>Mobile: {{formData.mobile}}</p>
-                    <p>Alt Phone: {{formData.altphone}}</p>
+                    <p>Phone: {{phone}}</p>
+                    <p>Mobile: {{mobile}}</p>
+                    <p>Alt Phone: {{altphone}}</p>
                 </div>
                 <label class="col-sm-12 left-bar">Detail Information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-three col-sm-12 left-bar right-bar col-xs-12">
-                    <p class="text-info-area">Description: {{formData.desc}}</p>
+                    <p class="text-info-area">Description: {{desc}}</p>
                 </div>
                 <div class="contact-info-five col-sm-12 left-bar right-bar col-xs-12">
-                    <p class="text-info-area">Entry Point: {{formData.entryPoint}}</p>
+                    <p class="text-info-area">Entry Point: {{entryPoint}}</p>
                 </div>
                 <div class="contact-info-four col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Pet: {{formData.pet}}</p>
+                    <p>Pet: {{pet}}</p>
                 </div>
                 <div class="contact-info-six col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Notification preference: {{formData.notifyPreference}}</p>
+                    <p>Notification preference: {{notifyPreference}}</p>
                 </div>
                 <div class="contact-info-seven col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Permission: {{formData.enterIfAbsent}}</p>
+                    <p>Permission: {{enterIfAbsent}}</p>
                 </div>
                 <div class="contact-info-eight col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Agreement: {{formData.agree}}</p>
+                    <p>Agreement: {{agree}}</p>
                 </div>
                 <div class="col-sm-6 left-bar">
                     <small>Marked locations</small>
@@ -64,6 +64,6 @@
         <div style="clear:both;"></div>
     </div>
     <div class="button-holder text-center">
-        <button ui-sref="{{returnState}}" class="btn btn-default">Go Back</button>
+        <button ng-click="goBack(next_state);" class="btn btn-default">Go Back</button>
     </div>
 </div>

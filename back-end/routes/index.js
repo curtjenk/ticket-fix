@@ -576,6 +576,25 @@ router.post('/api/savemanagerproperty', function (req, res) {
 
 });
 
+router.get('/api/ticketinfo', function (req, res) {
+	console.log(req.query);
+	var ticket_id = req.query.ticket_id;
+	var apiRes = new ApiResponse({
+		api: 'api/ticketinfo'
+	});
+	query.getTicketInfo(contEmail).then(function (succ) {
+		console.log(succ);
+		apiRes.success = true;
+		apiRes.info = succ.data;
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Get Ticket Info for id = ' + ticket_id + ' failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+});
+
 router.get('/api/contractor/tickets', function (req, res) {
 	console.log(req.query);
 	var contEmail = req.query.email;

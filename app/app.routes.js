@@ -9,6 +9,15 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/components/home/homeView.html'
                 // controller: 'registrationController'
         })
+        .state('view-ticket', {
+            url: '/view/ticket',
+            templateUrl: 'app/components/ticket/partials/ticket-form-viewOnly.html',
+            controller: 'ticketViewerController'
+        })
+        // .state('view-property', {
+        //     url: '/view/property',
+        //     templateUrl: 'app/components/ticket/partials/ticket-form-viewOnly.html'
+        // })
         .state('login', {
             url: '/login',
             templateUrl: 'app/components/login/loginView.html'
@@ -61,11 +70,7 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '',
             templateUrl: 'app/components/ticket/partials/ticket-form-create.html'
         })
-        .state('ticket.approval', {
-            parent: 'ticket',
-            url: '/approval',
-            templateUrl: 'app/components/ticket/partials/ticket-form-approval.html'
-        })
+
         .state('manager', {
             url: '/manager',
             abstract: true,

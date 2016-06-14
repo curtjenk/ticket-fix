@@ -378,3 +378,49 @@ exports.getTicketsInContractorRegions = function(email) {
         .done();
     return deferred.promise;
 };
+
+exports.getTicketInfo = function(ticket_id) {
+    var deferred = Q.defer();
+    var queryString = "SELECT * FROM ticket" +
+        " where ticket.id = ?";
+    Q.fcall(db.con)
+        .then(function(con) {
+            console.log('---------------- getTicketInfo -----1 ------');
+            con.query(queryString, [ticket_id], function(err, rows) {
+                con.release();
+                if (err) {
+                    deferred.reject({
+                        status: 'error',
+                        data: '',
+                        error: err
+                    });
+                } else if (rows.length > 0) {
+                    console.log('---------------- getTicketInfo ---- 2--------');
+                    console.log(rows.length);
+                    deferred.resolve({
+                        status: 'found',
+                        data: rows,
+                        error: ''
+                    });
+                } else {
+                    deferred.resolve({
+                        status: 'notfound',
+                        data: '',
+                        error: ''
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log('getTicketInfo error occurred');
+            console.log(error);
+            console.log(' ------------------------ ');
+            deferred.reject({
+                status: 'criticalerror',
+                data: '',
+                error: error
+            });
+        })
+        .done();
+    return deferred.promise;
+};

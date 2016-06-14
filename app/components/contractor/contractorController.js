@@ -17,7 +17,11 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 
 	$scope.transitionToTicket = function (item) {
 		console.log(item);
-		alert("Show ticket details");
+		//alert("Show ticket details");
+		$rootScope.ticket_id = item.ticket_id;
+		$rootScope.next_state = 'contractor.tickets';
+		$state.transitionTo('view-ticket');
+
 	};
 
 	//   Custom orderby function for applying a different sort rule for the click_count column

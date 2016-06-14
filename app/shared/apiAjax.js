@@ -20,6 +20,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var saveTenant = baseUrl + "/savetenant";
     var saveContractor = baseUrl + "/savecontractor";
     var saveContRegions = baseUrl + "/savecontregions";
+    var ticketinfoUrl = baseUrl + "/api/ticketinfo";
     var tenantinfo = baseUrl + "/api/tenantinfo";
     var managerinfo = baseUrl + "/api/managerinfo";
     var alltenantsinfo = baseUrl + "/api/alltenantsinfo";
@@ -102,7 +103,6 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         });
 
     };
-
     apiAjax.createticket = function(ticket, email) {
         console.log("apiAjax createticket");
         return makeThePostApiCall('createticket', email, createticket, {
@@ -113,6 +113,11 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         var queryParms = 'email=' + email;
         console.log('apiAjax getContractorTickets');
         return makeTheGetApiCall('getContractorTickets', email, contractorticketsUrl, queryParms);
+    };
+    apiAjax.getTicketInfo = function(email, ticket_id) {
+        var queryParms = 'email=' + email + '&ticket_id=' + ticket_id;
+        console.log('apiAjax getContractorTickets');
+        return makeTheGetApiCall('getTicketInfo', email, ticketinfoUrl, queryParms);
     };
     apiAjax.gettenantinfo = function(email) {
         var queryParms = 'email=' + email;
