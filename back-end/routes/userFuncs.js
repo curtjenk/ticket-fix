@@ -11,6 +11,7 @@ var getUser = function (email) {
 			con.query("SELECT * FROM user WHERE email = ?", [email], function (err, rows) {
 				con.release();
 				if (err) {
+					console.log(err);
 					deferred.reject({
 						status: 'error',
 						error: err
@@ -28,9 +29,9 @@ var getUser = function (email) {
 			});
 		})
 		.catch(function (error) {
-			// console.log('getUser error occurred');
-			// console.log(error);
-			// console.log(' ------------------------ ');
+			console.log('getUser error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
 			deferrred.reject({
 				status: 'error',
 				error: error
@@ -112,9 +113,10 @@ var authenticateUser = function (email, password) {
 	var promise = getUser(email).then(
 		function (rtn) {
 			if (rtn.status == 'found') {
+				console.log("found user now checking if password matches");
 				var user = new User(rtn.data); //mapUser(row);
 				user.passwordMatch(password).then(function (res) {
-					//console.log("passwords match ? after check " +  res);
+					console.log("passwords match ? after check " +  res);
 					if (res) {
 						//console.log("passwords match");
 						deferred.resolve({

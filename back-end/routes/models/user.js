@@ -40,12 +40,13 @@ User.prototype.passwordMatch = function (password) {
 	// console.log(this.password);
 	// console.log(password);
 	var deferred = Q.defer();
+	console.log("inside User.prototype.passwordMatch.  before bcrypt.compareSync");
   	var passwordsMatch = bcrypt.compareSync(password, this.password); //returns boolean
-	//console.log("passwords match ? = " + passwordsMatch);
+	console.log("inside User.prototype.passwordMatch.  After call " + passwordsMatch);
 	if (passwordsMatch) {
 		deferred.resolve(true);
 	} else {
-		deferred.resove(false);
+		deferred.resolve(false);
 	}
 	// var promise = bcrypt.compare(password, this.password, function (err, res) {
 	// 	if (err) {
