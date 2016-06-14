@@ -849,6 +849,14 @@ md-tabs .md-tab {
     height: 500px;
 }
 
+.carousel-caption {
+    height: 300px;
+    width: 300px;
+    background-color: green;
+    margin-bottom: 100px;
+    border: 1px solid black;
+}
+
 md-radio-button.md-default-theme ._md-on,
 md-radio-button ._md-on {
     background-color: #007ecc;
