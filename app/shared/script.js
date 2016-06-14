@@ -124,7 +124,7 @@ function formatPhone(string){
 		if (i === 0){
 			output += '(';
 		}
-		if (i===2) {
+		if (i===3) {
 			output += ') ';
 		}
 		if (i===6) {
