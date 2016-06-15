@@ -1,17 +1,25 @@
 //do not change the name of "items" and you must pass an object
 ticketFixApp.controller('ModalEmailMgrInstanceCtrl', function ($scope, $uibModalInstance, items) {
 
-	$scope.emailAddr = items;
-	$scope.emailSubject = "Contractor requests additional information on this ticket";
-	$scope.sendMailOptions = {
-		from: $scope.emailAddr,
-		to: 'hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com',
-		subject: $scope.emailSubject,
-		text: $scope.emailBody,
-		html: "<div>" + $scope.emailBody + "</div>"
-	};
+	$scope.address1 = items.address1;
+	$scope.address2 = items.address2;
+	$scope.city = items.city;
+	$scope.state = items.state;
+	$scope.zip = items.zip;
+	$scope.issue_description = items.issue_description;
+	$scope.emailAddr = items.user_email;
+	$scope.emailSubject = "Contractor requests additional information regarding ticket #" + items.ticket_id;
+	var emailTo = items.manager_email + ',hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com';
+
 	$scope.ok = function () {
 		//capture data from the modal
+		$scope.sendMailOptions = {
+			from: $scope.emailAddr,
+			to: emailTo,
+			subject: $scope.emailSubject,
+			text: $scope.emailBody,
+			html: "<div>" + $scope.emailBody + "</div>"
+		};
 		$uibModalInstance.close($scope.sendMailOptions);
 	};
 
@@ -25,7 +33,7 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 	var tenantinfo = {};
 	var user = $rootScope.user; // this is the logged-in user
 	var email = user.email;
-    $scope.contractor_email = $rootScope.user.email;
+	$scope.contractor_email = $rootScope.user.email;
 	$scope.page = {};
 	$scope.page.viewByOptions = [3, 5, 10];
 	$scope.page.currentPage = 1;
@@ -48,27 +56,35 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 
 	};
 
-	$scope.items = user.email;
-	 // $scope.open = function (size) {
-	$scope.activateEmailModal = function (size) {
+	//$scope.items = user.email;
+	// $scope.open = function (size) {
+	$scope.activateEmailModal = function (item) {
+		//add the contractor's email address to the item object.
+		item.user_email = user.email;
+		var modalInstance = $uibModal.open({
+			animation: true,
+			templateUrl: 'ModalEmailManager.html',
+			controller: 'ModalEmailMgrInstanceCtrl',
+			size: 'lg',
+			resolve: {
+				items: function () {
+					return item;
+				}
+			}
+		});
 
-	  var modalInstance = $uibModal.open({
-		animation: true,
-		templateUrl: 'ModalEmailManager.html',
-		controller: 'ModalEmailMgrInstanceCtrl',
-		size: size,
-		resolve: {
-		  items: function () {
-			return user.email;
-		  }
-		}
-	  });
-
-	  modalInstance.result.then(function (selectedItem) {
-		$scope.selected = selectedItem;
-	  }, function () {
-		$log.info('Modal dismissed at: ' + new Date());
-	  });
+		modalInstance.result.then(function (emailOptions) {
+			console.log(emailOptions);
+			apiAjax.sendmail(user.email, emailOptions).then(
+				function (succ) {
+					console.log(succ);
+				},
+				function (err) {
+					console.log(err);
+				});
+		}, function () {
+			$log.info('Modal dismissed at: ' + new Date());
+		});
 	};
 
 

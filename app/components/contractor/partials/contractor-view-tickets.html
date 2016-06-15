@@ -1,12 +1,33 @@
 <script type="text/ng-template" id="ModalEmailManager.html">
     <div class="modal-header">
         <div class="modal-title">
-            <h3>Contact the property manager</h3>
+            <h3>Contact the property manager for</h3>
+            <div class="row">
+                <div class="col-sm-offset-1">
+                    <p>
+                        {{address1}}&nbsp;
+                        {{address2}}
+                    </p>
+                    <p>
+                        {{city}},&nbsp;
+                        {{state}}&nbsp;
+                        {{zip}}
+                    </p>
+                    <h5>
+                        <strong>Issue Description</strong>
+                    </h5>
+                </div>
+                <div class="col-sm-offset-2">
+                    <p>
+                        <em>{{issue_description}}</em>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal-body">
         <div class="">
-            <label>Email</label>
+            <label>From</label>
             <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
         </div>
         <div class="">
@@ -15,7 +36,7 @@
         </div>
         <div class="">
             <label>Message</label>
-            <textarea rows="10" name="emailBody" ng-model="emailBody"></textarea>
+            <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
         </div>
     </div>
 </div>
