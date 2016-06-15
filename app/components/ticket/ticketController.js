@@ -74,18 +74,16 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		ticket.property_id = $scope.property_id;
 		ticket.client_datetime_string = d.yyyymmdd() + '-' + d.hhmmss();
 
-		ticket.contact_first_name = $scope.formData.firstname || "";
-		ticket.contact_last_name = $scope.formData.lastname || "";
+		ticket.contact_first_name = $scope.formData.contact_firstname || "";
+		ticket.contact_last_name = $scope.formData.contact_lastname || "";
 		ticket.contact_email = $scope.formData.email || "";
 		ticket.contact_phone = $scope.formData.phone || "";
 		ticket.contact_mobile = $scope.formData.mobile || "";
 		ticket.pet = $scope.formData.pet || "";
 		ticket.entry_point = $scope.formData.entryPoint || "";
 
-		ticket.alt_phone = $scope.formData.altphone || "";
-		ticket.alt_first_name = $scope.formData.firstname || "";
-		ticket.alt_last_name = $scope.formData.lastname || "";
-		ticket.alt_email = $scope.formData.altemail || "";
+		ticket.alt_phone = $scope.formData.contact_altphone || "";
+		ticket.alt_email = $scope.formData.contact_altemail || "";
 		ticket.issue_description = $scope.formData.desc || "";
 		ticket.notify_preference = $scope.formData.notifyPreference || "";
 		ticket.enter_if_absent = $scope.formData.enterIfAbsent || "";
@@ -250,6 +248,14 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 
 					$scope.formData.planUrl = "../assets/img/floor-plans/" + tenantinfo.image;
 					console.log($scope.formData.planUrl);
+
+					$scope.formData.contact_firstname = tenantinfo.first_name;
+					$scope.formData.contact_lastname = tenantinfo.first_name;
+					$scope.formData.contact_email = tenantinfo.email;
+					$scope.formData.contact_phone = tenantinfo.home_phone;
+					$scope.formData.contact_mobile  = tenantinfo.mobile_phone;
+					$scope.formData.alt_phone = "";
+					$scope.formData.alt_email = "";
 
 				}
 			}, function (err) {

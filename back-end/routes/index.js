@@ -582,7 +582,7 @@ router.get('/api/ticketinfo', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/ticketinfo'
 	});
-	query.getTicketInfo(contEmail).then(function (succ) {
+	query.getTicketInfo(ticket_id).then(function (succ) {
 		console.log(succ);
 		apiRes.success = true;
 		apiRes.info = succ.data;

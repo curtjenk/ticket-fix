@@ -7,55 +7,36 @@
             <div class="user-info">
                 <label>Date: <span class="date-created">{{date}}</span></label>
                 <br>
-                <label class="col-sm-12 left-bar">Tenant information</label>
-                <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
-                <br>
-                <div class="tenant-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
-                    <p>Name: {{firstname}} {{lastname}}</p>
-                    <p>Email: {{email}}</p>
-                </div>
-                <div class="tenant-info-two col-sm-6  left-bar right-bar col-xs-12">
-                    <p>Phone: {{phone}}</p>
-                    <p>Mobile: {{mobile}}</p>
-                </div>
                 <label class="col-sm-12 left-bar">Contact information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-one col-sm-6 left-bar col-xs-12 left-bar-two">
-                    <p>Name: {{firstname}} {{lastname}}</p>
-                    <p>Email: {{email}}</p>
-                    <p>Alt Email: {{altemail}}</p>
+                    <p>Name: {{contact_firstname}} {{contact_lastname}}</p>
+                    <p>Email: {{contact_email}}</p>
+                    <p>Alt Email: {{contact_altemail}}</p>
                 </div>
                 <div class="contact-info-two col-sm-6 left-bar right-bar col-xs-12">
-                    <p>Phone: {{phone}}</p>
-                    <p>Mobile: {{mobile}}</p>
-                    <p>Alt Phone: {{altphone}}</p>
+                    <p>Phone: {{contact_phone}}</p>
+                    <p>Mobile: {{contact_mobile}}</p>
+                    <p>Alt Phone: {{contact_altphone}}</p>
                 </div>
                 <label class="col-sm-12 left-bar">Detail Information</label>
                 <hr style="border-bottom: 1px solid black; padding: 0px; margin: 0px; margin-top: -8px; background-color: transparent;" class="col-sm-12">
                 <br>
                 <div class="contact-info-three col-sm-12 left-bar right-bar col-xs-12">
-                    <p class="text-info-area">Description: {{desc}}</p>
+                    <p class="text-info-area">Description: {{issue_description}}</p>
                 </div>
                 <div class="contact-info-five col-sm-12 left-bar right-bar col-xs-12">
-                    <p class="text-info-area">Entry Point: {{entryPoint}}</p>
+                    <p class="text-info-area">Entry Point: {{entry_point}}</p>
                 </div>
                 <div class="contact-info-four col-sm-12 left-bar right-bar col-xs-12">
                     <p>Pet: {{pet}}</p>
                 </div>
-                <div class="contact-info-six col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Notification preference: {{notifyPreference}}</p>
-                </div>
-                <div class="contact-info-seven col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Permission: {{enterIfAbsent}}</p>
-                </div>
-                <div class="contact-info-eight col-sm-12 left-bar right-bar col-xs-12">
-                    <p>Agreement: {{agree}}</p>
-                </div>
                 <div class="col-sm-6 left-bar">
                     <small>Marked locations</small>
-                    <div id="marker-area">
+                    <div id="marker-area" ng-style="{'background-image':'url(' + floorplan_image + ')'}">
                         <div class="marker-container" ng-bind-html="newMarker">
+
                         </div>
                     </div>
                 </div>

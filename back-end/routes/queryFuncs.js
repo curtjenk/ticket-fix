@@ -381,8 +381,8 @@ exports.getTicketsInContractorRegions = function(email) {
 
 exports.getTicketInfo = function(ticket_id) {
     var deferred = Q.defer();
-    var queryString = "SELECT * FROM ticket" +
-        " where ticket.id = ?";
+    var queryString = "SELECT ticket.*, type_floorplan.image AS floorplan_image FROM ticket, property, type_floorplan" +
+        " where ticket.id = ? and ticket.property_id = property.id and type_floorplan.code = property.floor_plan_code";
     Q.fcall(db.con)
         .then(function(con) {
             console.log('---------------- getTicketInfo -----1 ------');
