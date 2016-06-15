@@ -1,4 +1,4 @@
-var ticketFixApp = angular.module('ticketFixApp', ['ui.router', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'ngMessages', 'LocalStorageModule', 'ngMaterial', 'ngSanitize']);
+var ticketFixApp = angular.module('ticketFixApp', ['ui.router', 'ui.bootstrap', 'angularUtils.directives.dirPagination', 'ngMessages', 'LocalStorageModule', 'ngMaterial', 'ngSanitize', 'chart.js']);
 
 // ticketFixApp.config(['$compileProvider', function ($compileProvider) {
 //   $compileProvider.debugInfoEnabled(false);

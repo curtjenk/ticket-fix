@@ -16,7 +16,7 @@ var Q = require('q');
 
 exports.getTicketsPerDay = function() {
 	var deferred = Q.defer();
-	var queryString ="SELECT DATE(date_create) DateOnly, count(*) " +
+	var queryString ="SELECT DATE(date_create) DateOnly, count(*) AS num" +
 		"   FROM ticket where date_create is not null group by DateOnly";
 	Q.fcall(db.con)
 		.then(function(con) {
