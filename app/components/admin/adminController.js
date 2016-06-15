@@ -1,3 +1,16 @@
+ticketFixApp.config(['ChartJsProvider', function (ChartJsProvider) {
+	// Configure all charts
+	// ChartJsProvider.setOptions({
+	// 	colours: ['#FF5252', '#FF8A80'],
+	// 	responsive: true,
+	// 	tooltips: true
+	// });
+	// // Configure all line charts
+	// ChartJsProvider.setOptions('Line', {
+	// 	datasetFill: true
+	// });
+}]);
+
 ticketFixApp.controller('adminController', function ($rootScope, $scope, $http, apiAjax) {
 
 	$scope.page = {};
@@ -21,38 +34,34 @@ ticketFixApp.controller('adminController', function ($rootScope, $scope, $http, 
 		});
 
 
-    $scope.refresh = function() {
-        getTicketsPerDay();
-    };
+	$scope.refresh = function () {
+		getTicketsPerDay();
+	};
 
-    function getTicketsPerDay() {
-        $scope.labels = [];
-        $scope.data =[];
-        apiAjax.getTicketsPerDay(email).then(
-            function (succ) {
-                var ticksPerDay = succ.data.info;
-                console.log(succ);
-                $scope.series = ['Tickets'];
-
-                for (var i = 0; i < ticksPerDay.length; i++) {
-                    var d = moment(ticksPerDay[i].DateOnly);
-                    console.log(d.format('YYYY-MM-DD'));
-                    $scope.labels.push(d.format('YYYY-MM-DD'));
-                    $scope.data.push(ticksPerDay[i].num);
-                    // $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-                    // $scope.series = ['Tickets'];
-                    // $scope.data = [
-                    //                                [65, 59, 80, 81, 56, 55, 40],
-                    //                                [28, 48, 40, 19, 86, 27, 90]
-                    //                            ];
-                }
-                $scope.onClick = function (points, evt) {
-                    console.log(points, evt);
-                };
-
-            },
-            function (err) {
-                console.log(err);
-            });
-    }
+	function getTicketsPerDay() {
+		$scope.chartContent = {};
+		labels = [];
+		data = [];
+		series = ['Tickets'];
+		apiAjax.getTicketsPerDay(email).then(
+			function (succ) {
+				var ticksPerDay = succ.data.info;
+				console.log(succ);
+				for (var i = 0; i < ticksPerDay.length; i++) {
+					var d = moment(ticksPerDay[i].DateOnly);
+					console.log(d.format('YYYY-MM-DD'));
+					labels.push(d.format('YYYY-MM-DD'));
+					data.push(ticksPerDay[i].num);
+				}
+				var json = {
+			           "series": ["Tickets"],
+			           "data": data,
+			           "labels": labels
+			         };
+				$scope.chartContent = json;
+			},
+			function (err) {
+				console.log(err);
+			});
+	}
 });

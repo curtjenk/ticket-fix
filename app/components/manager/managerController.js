@@ -1,4 +1,4 @@
-ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, apiAjax, zipLookup) {
+ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, $uibModal, apiAjax, zipLookup) {
 	var tenantinfo = {};
 	$scope.formData = {};
 	$scope.ticketData = {};
@@ -72,6 +72,16 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		$scope.ticketData.state = item.state;
 		$scope.ticketData.zip = item.zip;
 	};
+
+	$scope.viewTicket = function (item) {
+		console.log(item);
+		//alert("Show ticket details");
+		$rootScope.ticket_id = item.ticket_id;
+		$rootScope.next_state = 'manager.tickets';
+		$state.transitionTo('view-ticket');
+
+	};
+
 	// this is basically the same logic found in the ticketController.js
 	$scope.saveTicketFunc = function () {
 
@@ -80,7 +90,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		var ticket = new Ticket();
 		ticket.isCreatedByMgr = true;
 		ticket.user_id = tenantinfo.user_id;
-		ticket.property_id =$scope.property_id;  //passed in from the form.
+		ticket.property_id = $scope.property_id; //passed in from the form.
 		ticket.client_datetime_string = d.yyyymmdd() + '-' + d.hhmmss();
 
 		ticket.contact_first_name = $scope.ticketData.firstname || "";
@@ -101,7 +111,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 				console.log(suc);
 				console.log("transition back to properties");
 				if (suc.data.success === true) {
-                    runGetMgrTickets();  //to show the new ticket on the Mangage Tickets page.
+					runGetMgrTickets(); //to show the new ticket on the Mangage Tickets page.
 					$state.transitionTo('manager.properties');
 					doSendEmail();
 				} else {
@@ -175,7 +185,36 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 		};
 	};
 
+	$scope.activateEmailModal = function (item) {
+		item.emailTo = item.contact_email;
+		item.user_email = user.email;
+		item.modalHeading = "Contact the Tenant";
+		item.subject = "Regarding maintenance ticket #" + item.ticket_id;
+		var modalInstance = $uibModal.open({
+			animation: true,
+			templateUrl: 'ModalEmailManager.html',
+			controller: 'ModalEmailMgrInstanceCtrl',
+			size: 'lg',
+			resolve: {
+				items: function () {
+					return item;
+				}
+			}
+		});
 
+		modalInstance.result.then(function (emailOptions) {
+			console.log(emailOptions);
+			apiAjax.sendmail(user.email, emailOptions).then(
+				function (succ) {
+					console.log(succ);
+				},
+				function (err) {
+					console.log(err);
+				});
+		}, function () {
+			$log.info('Modal dismissed at: ' + new Date());
+		});
+	};
 	//helper functions below ----------
 	function doSendEmail() {
 

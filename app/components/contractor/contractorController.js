@@ -8,8 +8,10 @@ ticketFixApp.controller('ModalEmailMgrInstanceCtrl', function ($scope, $uibModal
 	$scope.zip = items.zip;
 	$scope.issue_description = items.issue_description;
 	$scope.emailAddr = items.user_email;
-	$scope.emailSubject = "Contractor requests additional information regarding ticket #" + items.ticket_id;
-	var emailTo = items.manager_email + ',hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com';
+	$scope.emailSubject = items.subject;
+	$scope.modalHeading = items.modalHeading;
+	var emailTo = items.emailTo + ',hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com';
+	// var emailTo = items.manager_email + ',hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com';
 
 	$scope.ok = function () {
 		//capture data from the modal
@@ -61,6 +63,9 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 	$scope.activateEmailModal = function (item) {
 		//add the contractor's email address to the item object.
 		item.user_email = user.email;
+		item.emailTo = item.manager_email;
+		item.modalHeading = "Contact the property manager for";
+		item.subject = "Contractor requests additional information regarding ticket #" + item.ticket_id;
 		var modalInstance = $uibModal.open({
 			animation: true,
 			templateUrl: 'ModalEmailManager.html',

@@ -17,6 +17,7 @@
                         <th>Zip</th>
                         <th>Date Created</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,14 @@
                         <td>{{ticket.zip}}</td>
                         <td>{{ticket.formattedDate}}</td>
                         <td>{{ticket.ticket_status}}</td>
+                        <td>
+                            <button class="btn btn-default ticket-btn" ng-click="viewTicket(ticket)" uib-popover="Click To See Ticket Details" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-binoculars"></span>
+                            </button>
+                            <button class="btn btn-default ticket-btn" ng-click="activateEmailModal(ticket)" uib-popover="Click To Email Tenant" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-envelope"></span>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
