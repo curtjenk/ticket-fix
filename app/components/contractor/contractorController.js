@@ -1,7 +1,47 @@
-ticketFixApp.controller('contractorController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, apiAjax, zipLookup) {
+ticketFixApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+
+	$scope.emailAddr = items;
+	$scope.emailSubject = "Contractor requests additional information on this ticket";
+	$scope.sendMailOptions = {
+		from: $scope.emailAddr,
+		to: 'hello@ticketfixme.com,josh@ticketfixme.com,curtis@ticketfixme.com',
+		subject: $scope.emailSubject,
+		text: $scope.emailBody,
+		html: "<div>" + $scope.emailBody + "</div>"
+	};
+	$scope.ok = function () {
+		//capture data from the modal
+		$uibModalInstance.close($scope.sendMailOptions);
+	};
+
+	$scope.cancel = function () {
+		$uibModalInstance.dismiss('cancel');
+	};
+});
+// ticketFixApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+//
+// 	$scope.items = abc;
+//   // $scope.items = items;
+//   // $scope.selected = {
+//   //   item: $scope.items[0]
+//   // };
+// 	console.log($scope.items);
+//   $scope.ok = function () {
+//     // $uibModalInstance.close($scope.selected.item);
+//     $uibModalInstance.close('Made It');
+//   };
+//
+//   $scope.cancel = function () {
+//     $uibModalInstance.dismiss('cancel');
+//   };
+// });
+
+ticketFixApp.controller('contractorController', function ($rootScope, $scope, $http, $sce, $q, $state, $uibModal, $log, apiAjax, zipLookup) {
+
 	var tenantinfo = {};
 	var user = $rootScope.user; // this is the logged-in user
 	var email = user.email;
+    $scope.contractor_email = $rootScope.user.email;
 	$scope.page = {};
 	$scope.page.viewByOptions = [3, 5, 10];
 	$scope.page.currentPage = 1;
@@ -23,6 +63,32 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 		$state.transitionTo('view-ticket');
 
 	};
+
+	$scope.items = user.email;
+	 // $scope.open = function (size) {
+	$scope.activateEmailModal = function (size) {
+
+	  var modalInstance = $uibModal.open({
+		animation: true,
+		templateUrl: 'myModalContent.html',
+		controller: 'ModalInstanceCtrl',
+		size: size,
+		resolve: {
+		  items: function () {
+			return user.email;
+		  }
+		}
+	  });
+
+	  modalInstance.result.then(function (selectedItem) {
+		$scope.selected = selectedItem;
+	  }, function () {
+		$log.info('Modal dismissed at: ' + new Date());
+	  });
+	};
+
+
+
 
 	//   Custom orderby function for applying a different sort rule for the click_count column
 	//without this function the "click count" would be sorted as string instead of a number
