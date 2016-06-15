@@ -75,7 +75,7 @@
                         <li ng-if="loggedIn"><a href="#/profile"><span class="fa fa-user"></span>Profile</a></li>
                         <li ng-if="loggedIn"><a href="">Welcome, {{email}}</a></li>
                         <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li ng-if="!loggedIn"><a href="https://twitter.com/ticket_fix" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         <!-- <li><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
                         <li ng-if="!loggedIn" ng-click="toggleSearch()"><a href="" title=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
                     </ul>
@@ -113,7 +113,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--                       ***********  Only shows when not logged in *********** -->
-                        <li ng-if="!loggedIn && !registrationInProgress"><a href="#/login">Login</a></li>
+                        <li ng-if="!loggedIn && !registrationInProgress"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                         <!--                       ***********  Tenants Only See *********** -->
                         <li ng-if="loggedIn && userType == 1" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
@@ -144,7 +144,7 @@
                             </ul>
                         </li>
                         <li ng-if="!loggedIn && !registrationInProgress" class="dropdown">
-                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(3)">Tenant</a></li>
                                 <li role="separator" class="divider"></li>

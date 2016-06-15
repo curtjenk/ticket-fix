@@ -1,5 +1,5 @@
 <div class="register-wrapper wrapper">
-  <div id="steps-nav" class="container-fluid">
+      <div id="steps-nav" class="container-fluid">
     <div class="container">
       <div class="row">
         <div class="col-sm-3">
@@ -30,19 +30,16 @@
       </div>
     </div>
   </div>
-  <div class="row profile-row">
-  </div>
-  <div class="row">
-    <div class="error-text text-center">
-      {{errorMessage}}
+    <div class="row profile-row">
     </div>
-  </div>
-
-  <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
-    <form novalidate disable-btn ng-submit="registerFunc()" name="registerForm">
-
-      <div id="form-views" ui-view></div>
-
-    </form>
-  </div>
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
+        </div>
+    </div>
+    <div class="row col-lg-4 col-lg-offset-4 col-sm-7 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+        <form novalidate disable-btn ng-submit="registerFunc()" name="registerForm">
+            <div id="form-views" ui-view></div>
+        </form>
+    </div>
 </div>

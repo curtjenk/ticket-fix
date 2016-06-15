@@ -5,26 +5,31 @@
                 <h1>Why choose ticket fix me?</h1>
             </div>
             <div class="container">
-            <div class="col-lg-3 col-md-4  col-xs-6">
-                <div class="tenant-steps">
-                    <img class="img-responsive how-img" src="assets/img/tenant1.png" alt="">
-                    <h4>For the Tenant</h4>
-                    <p></p>
+                <div class="col-lg-3 col-md-4  col-xs-6 why-ticket-wrapper">
+                    <div class="tenant-why">
+                        <img class="img-responsive how-img" src="assets/img/tenant1.png" alt="">
+                        <h4>For the Tenant</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4  col-xs-6 why-ticket-wrapper">
+                    <div class="manager-why">
+                        <img class="img-responsive how-img" src="assets/img/manager1.png" alt="">
+                        <h4>For the Property Manager</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4  col-xs-6 why-ticket-wrapper">
+                    <div class="contractor-why">
+                        <img class="img-responsive how-img" src="assets/img/contractor1.png" alt="">
+                        <h4>For the Contractor</h4>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4  col-xs-6 why-ticket-wrapper">
+                    <div class="organized-why">
+                        <img class="img-responsive how-img" src="assets/img/organized1.png" alt="">
+                        <h4>Keep organized</h4>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4  col-xs-6">
-                <img class="img-responsive how-img" src="assets/img/manager1.png" alt="">
-                <h4>For the Property Manager</h4>
-            </div>
-            <div class="col-lg-3 col-md-4  col-xs-6">
-                <img class="img-responsive how-img" src="assets/img/contractor1.png" alt="">
-                <h4>For the Contractor</h4>
-            </div>
-            <div class="col-lg-3 col-md-4  col-xs-6">
-                <img class="img-responsive how-img" src="assets/img/organized1.png" alt="">
-                <h4>Keep everything organized & effection</h4>
-            </div>
-        </div>
         </div>
         <div class="my-carousel">
             <uib-carousel active="0" interval="5000" no-wrap="false">
@@ -94,45 +99,153 @@
             <div class="container">
                 <div class="text-center">
                     <div class="how-btn-container active col-sm-4 col-xs-4">
-                        <span class="fa fa-user"></span>
-                        <p>Tenant</p>
+                        <a href="" ng-click="changeSteps(1)">
+                            <span ng-class="{ 'active-step': tenantStep }" class="fa fa-user"></span>
+                            <p ng-class="{ 'active-step': tenantStep }">Tenant</p>
+                        </a>
                     </div>
                     <div class="how-btn-container col-sm-4 col-xs-4">
-                        <span class="fa fa-home"></span>
-                        <p>Property Owner</p>
+                        <a href="" ng-click="changeSteps(2)">
+                            <span ng-class="{ 'active-step': managerStep }" class="fa fa-home"></span>
+                            <p ng-class="{ 'active-step': managerStep }">Property Owner</p>
+                        </a>
                     </div>
                     <div class="how-btn-container col-sm-4 col-xs-4">
-                        <span class="fa fa-wrench"></span>
-                        <p>Contractor</p>
+                        <a href="" ng-click="changeSteps(3)" ng-class="{ 'active-step': managerStep }">
+                            <span ng-class="{ 'active-step': contractorStep }" class="fa fa-wrench"></span>
+                            <p ng-class="{ 'active-step': contractorStep }">Contractor</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div id="how-info" class="container text-center">
+        <!--         <h1 class="steps-title">{{stepsMessage}}</h1> -->
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <div class="tenant-steps">
+            <div ng-show="tenantStep" class="tenant-steps steps-space">
                 <img class="img-responsive how-img" src="assets/img/howtoicons.png" alt="">
-                <h3>Sign Up! <br>with <br>Ticket Fix Me!</h3>
+                <h4>Sign up with Ticket Fix Me!</h4>
+            </div>
+            <div ng-show="managerStep" class="manager-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons1acc.png" alt="">
+                <h4>Create an account with Ticket Fix Me!</h4>
+            </div>
+            <div ng-show="contractorStep" class="contrator-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons1acc.png" alt="">
+                <h4>Create an account with Ticket Fix Me!</h4>
             </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <img class="img-responsive how-img" src="assets/img/howtoicons2.png" alt="">
-            <h3>Create a ticket!</h3>
+            <div ng-show="tenantStep" class="tenant-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons2.png" alt="">
+                <h4>Create a ticket!</h4>
+            </div>
+            <div ng-show="managerStep" class="manager-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons2regprop.png" alt="">
+                <h4>Register your properties!</h4>
+            </div>
+            <div ng-show="contractorStep" class="contrator-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons.png" alt="">
+                <h4>Register your service regions!</h4>
+            </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <img class="img-responsive how-img" src="assets/img/howtoicons3.png" alt="">
-            <h3>Notify You!</h3>
-            <small>The Property Manager or the Contractor</small>
+            <div ng-show="tenantStep" class="tenant-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons3.png" alt="">
+                <h4>Notify You!</h4>
+                <small>The Property Manager or the Contractor!</small>
+            </div>
+            <div ng-show="managerStep" class="manager-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons3manage.png" alt="">
+                <h4>Manage your tickets</h4>
+            </div>
+            <div ng-show="contractorStep" class="contrator-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons.png" alt="">
+                <h4>Ticket Fix Me will notify you with jobs!</h4>
+            </div>
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
-            <img class="img-responsive how-img" src="assets/img/howtoicons4.png" alt="">
-            <h3>Track your ticket!</h3>
+            <div ng-show="tenantStep" class="tenant-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons4.png" alt="">
+                <h4>Track your ticket!</h4>
+            </div>
+            <div ng-show="managerStep" class="manager-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons4hire.png" alt="">
+                <h4>Hire Contractor or source internally!</h4>
+            </div>
+            <div ng-show="contractorStep" class="contrator-steps steps-space">
+                <img class="img-responsive how-img" src="assets/img/howtoicons4hire.png" alt="">
+                <h4>Do the work & get paid!</h4>
+            </div>
         </div>
     </div>
     <div id="contact" class="container-fluid">
         <h1 class="text-center">Contact Us</h1>
         <div class="down-arrow-three"></div>
     </div>
-    <div id="contact-wrapper" class="container-fluid"></div>
+    <div id="contact-wrapper" class="container-fluid">
+        <div id="contact-section" class="container">
+            <div class="row">
+                <div id="information" class="col-md-3">
+                    <h3>Contact</h3>
+                    <p><strong>Ticket Fix Me Inc</strong></p>
+                    <p><span class="fa fa-globe"></span> Atlanta, GA</p>
+                    <p><a href="tel:16781235555"><span class="fa fa-phone"></span>+1-678-123-5555</a></p>
+                    <p><a href="mailto:hello@ticketfixme.com"><span style="color: #333;" class="fa fa-envelope"></span> hello@ticketfixme.com</a></p>
+                </div>
+                <div id="my-tweets" class="col-md-3">
+                    <h3>Tweets</h3>
+                </div>
+                <div class="col-md-3">
+                    <h3>Message Us</h3>
+                    <!--  <div class="row"> -->
+                    <form novalidate disable-btn ng-submit="contactFunc()" name="contactForm" role="form">
+                        <div class="form-group" ng-class="{ 'has-error': contactForm.firstname.$touched && contactForm.firstname.$invalid }">
+                            <label>Name</label>
+                            <input name="name" ng-model="message.name" required placeholder="John" type="text" class="form-control" />
+                            <div ng-messages="contactForm.name.$error" ng-if="contactForm.name.$touched" role="alert">
+                                <p ng-message="required">Name is required.</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactForm.email.$touched && contactForm.email.$invalid }">
+                            <label>Email</label>
+                            <input name="email" ng-model="message.email" required multiple placeholder="hello@ticketfixme.com" type="email" class="form-control">
+                            <div ng-messages="contactForm.email.$error" ng-if="contactForm.email.$touched" role="alert">
+                                <p ng-message="required">Email is required.</p>
+                                <p ng-message="email">Enter a valid email</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactForm.phone.$touched && contactForm.phone.$invalid }">
+                            <label>Phone</label>
+                            <input name="phone" ng-model="message.phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
+                            <div ng-messages="contactForm.phone.$error" ng-if="contactForm.phone.$touched" role="alert">
+                                <p ng-message="required">Phone is required.</p>
+                                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-class="{ 'has-error': contactForm.message.$touched && contactForm.message.$invalid }">
+                            <label>Message</label>
+                            <textarea name="message" ng-model="message.message" ng-change="textFunc()" required placeholder="Message..." type="text" class="form-control desc-area" maxlength="1000"></textarea>
+                            <div ng-messages="contactForm.message.$error" ng-if="contactForm.message.$touched" role="alert">
+                                <p ng-message="required">Enter a message</p>
+                            </div>
+                            <small>{{count}} characters left</small>
+                        </div>
+                        <div class="button-holder text-right">
+                            <button type="submit" class="btn btn-default contact-btn">Submit</button>&nbsp;
+                        </div>
+                    </form>
+                    <!--   </div> -->
+                </div>
+                <div id="social" class="col-md-3">
+                    <h3>Social Network</h3>
+                    <a href="https://twitter.com/ticket_fix"><span class="fa fa-twitter"></span></a>
+                    <a href="https://twitter.com/ticket_fix"><span class="fa fa-facebook"></span></a>
+                    <a href="https://twitter.com/ticket_fix"><span class="fa fa-instagram"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
