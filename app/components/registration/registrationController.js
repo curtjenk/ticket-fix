@@ -94,7 +94,11 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			zipLookup.get(zip, ok, error);
 		}
 	};
-
+	$scope.cancelRegistration = function () {
+		$rootScope.$broadcast('registration-complete');
+		$location.path('/');
+	};
+	
 	$scope.registerFunc = function () {
 		$scope.errorMessage = "";
 
@@ -140,6 +144,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			function (res) {
 				console.log(res);
 				if (res.data.success === true) {
+					$rootScope.$broadcast('registration-complete');
 					$location.path('/login');
 				} else if (res.data.success === false) {
 					$scope.errorMessage = res.data.message;

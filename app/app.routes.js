@@ -1,5 +1,11 @@
 // configuring our routes for registration nested views (wizard)
 // =============================================================================
+
+///http://stackoverflow.com/questions/22102815/how-to-delete-sign-in-angular-ui-router-urls
+// ticketFixApp.config(["$locationProvider", function($locationProvider) {
+//   $locationProvider.html5Mode({enabled:true, requireBase:false});
+// }]);
+
 ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider

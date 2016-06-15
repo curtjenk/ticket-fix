@@ -99,7 +99,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a ng-click="showLeftNavBtns = true;" class="navbar-brand" href="#/"><img class="ticket-img" src="assets/img/ticketfixlogodraft3.png"><span class="my-brand">icket Fix Me</span></a>
+                    <a ng-click="showLeftNavBtns = true; registrationInProgress=false;" class="navbar-brand" href="#/"><img class="ticket-img" src="assets/img/ticketfixlogodraft3.png"><span class="my-brand">icket Fix Me</span></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -110,7 +110,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--                       ***********  Only shows when not logged in *********** -->
-                        <li ng-if="!loggedIn"><a href="#/login">Login</a></li>
+                        <li ng-if="!loggedIn && !registrationInProgress"><a href="#/login">Login</a></li>
                         <!--                       ***********  Tenants Only See *********** -->
                         <li ng-if="loggedIn && userType == 1" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
@@ -144,7 +144,7 @@
                                 <li><a href="#/manager"><span class="fa fa-home"></span>Properties</a></li>
                             </ul>
                         </li>
-                        <li ng-if="!loggedIn" class="dropdown">
+                        <li ng-if="!registrationInProgress" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(3)">Tenant</a></li>
