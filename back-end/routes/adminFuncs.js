@@ -14,6 +14,53 @@ var query = require('./queryFuncs');
 
 var Q = require('q');
 
+exports.getTicketsPerDay = function() {
+	var deferred = Q.defer();
+	var queryString ="SELECT DATE(date_create) DateOnly, count(*) " +
+		"   FROM ticket where date_create is not null group by DateOnly";
+	Q.fcall(db.con)
+		.then(function(con) {
+			console.log('------------- getTicketsPerDay-----1 ------');
+			con.query(queryString, function(err, rows) {
+				con.release();
+				if (err) {
+					console.log(err);
+					deferred.reject({
+						status: 'error',
+						data: '',
+						error: err
+					});
+				} else if (rows.length > 0) {
+					console.log('----------getTicketsPerDay ---- 2--------');
+					console.log(rows.length);
+					deferred.resolve({
+						status: 'found',
+						data: rows,
+						error: ''
+					});
+				} else {
+					deferred.resolve({
+						status: 'notfound',
+						data: '',
+						error: ''
+					});
+				}
+			});
+		})
+		.catch(function(error) {
+			console.log('getTicketsPerDay error occurred');
+			console.log(error);
+			console.log(' ------------------------ ');
+			deferred.reject({
+				status: 'criticalerror',
+				data: '',
+				error: error
+			});
+		})
+		.done();
+	return deferred.promise;
+};
+
 exports.getproperty = function (key) {
 	var deferred = Q.defer();
 	Q.fcall(db.con)

@@ -614,6 +614,25 @@ router.get('/api/contractor/tickets', function (req, res) {
 	});
 
 });
+
+router.get('/api/admin/ticketsperday', function (req, res) {
+	console.log(req.query);
+	var apiRes = new ApiResponse({
+		api: '/api/admin/ticketsperday'
+	});
+	admin.getTicketsPerDay().then(function (succ) {
+		console.log(succ);
+		apiRes.success = true;
+		apiRes.info = succ.data;
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Get Summary of tickets per day failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
 //----------------
 
 router.post('/upload', type, function (req, res, next) {

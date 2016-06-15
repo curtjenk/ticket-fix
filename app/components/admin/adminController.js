@@ -1,4 +1,4 @@
-ticketFixApp.controller('tenantController', function($rootScope, $scope, $http, apiAjax) {
+ticketFixApp.controller('adminController', function($rootScope, $scope, $http, apiAjax) {
 
     $scope.page = {};
 
@@ -17,5 +17,13 @@ ticketFixApp.controller('tenantController', function($rootScope, $scope, $http, 
         function(err) {
             console.log(err);
         });
+
+    apiAjax.getTicketsPerDay(email).then(
+        function(succ){
+            $scope.ticksPerDay = succ.data.info;
+            console.log(succ);
+    }, function(err){
+        console.log(err);
+    });
 
 });

@@ -29,10 +29,17 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/components/login/loginView.html'
                 // controller: 'registrationController'
         })
-        .state('tenant', {
-            url: '/viewtenants',
-            templateUrl: 'app/components/admin/view-tenant.html',
-            controller: 'tenantController'
+        .state('admin', {
+            url: '/admin',
+            abstract: true,
+            templateUrl: 'app/components/admin/partials/admin.html',
+            controller: 'adminController'
+        })
+        .state('admin.viewtenant', {
+            parent: 'admin',
+            url: '',
+            templateUrl: 'app/components/admin/partials/admin-view-tenant.html'
+
         })
         .state('register', {
             url: '/register',

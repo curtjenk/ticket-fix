@@ -11,6 +11,7 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/angular-utils-pagination/dirPagination.js"></script>
     <script src="node_modules/moment/moment.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
     <script src="https://code.angularjs.org/1.5.6/angular-sanitize.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
@@ -28,7 +29,7 @@
     <script type="text/javascript" src="app/components/login/loginController.js"></script>
     <script type="text/javascript" src="app/components/ticket/ticketController.js"></script>
     <script type="text/javascript" src="app/components/ticket/ticketViewerController.js"></script>
-    <script type="text/javascript" src="app/components/admin/tenantController.js"></script>
+    <script type="text/javascript" src="app/components/admin/adminController.js"></script>
     <script type="text/javascript" src="app/components/manager/managerController.js"></script>
     <script type="text/javascript" src="app/components/contractor/contractorController.js"></script>
     <script type="text/javascript" src="app/shared/factory.js"></script>
@@ -40,6 +41,7 @@
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
     <link href="node_modules/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet">
     <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="node_modules/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600|Montserrat:400,700">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/ticketfixme.ico" />
@@ -121,13 +123,9 @@
                         <li ng-if="loggedIn && userType == 2" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">View/Update Tickets</a></li>
+                                <li><a href="#/activity">Activity</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/viewmanagers">View Managers</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#/viewcontractors">View Contractors</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#/viewtenants">View Tenants</a></li>
+                                <li><a href="#/admin">Tenants</a></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
