@@ -9,7 +9,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 	// console.log($scope.registerForm.$dirty);
 
 	var apiUrl = "http://localhost:3000";
-	var userType = $rootScope.userType;
+	$scope.userType = $rootScope.userType;
 	var userTypeManager = 4;
 	var userTypeContractor = 1;
 	var userTypeTenant = 3;
@@ -106,7 +106,7 @@ ticketFixApp.controller('registrationController', function ($rootScope, $scope, 
 			return;
 		}
 		var user = {
-			type_user_id: userType,
+			type_user_id: $scope.userType,
 			email: $scope.formData.email,
 			first_name: $scope.formData.firstname,
 			last_name: $scope.formData.lastname,

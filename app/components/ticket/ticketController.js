@@ -156,7 +156,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 	// 	var ss = this.getSeconds().toString();
 	// 	return (hh[1] ? hh : "0" + hh[0]) + (mi[1] ? mi : "0" + mi[0]) + (ss[1] ? ss : "0" + ss[0]); // padding
 	// };
-	function doSendEmai() {
+	function doSendEmail() {
 		var emailHtml =
 			"<div><h1>Location</h1>" +
 			"    <p>" + tenantinfo.address1 + tenantinfo.address2 + "</p>" +

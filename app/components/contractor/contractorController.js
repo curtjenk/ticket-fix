@@ -1,4 +1,5 @@
-ticketFixApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
+//do not change the name of "items" and you must pass an object
+ticketFixApp.controller('ModalEmailMgrInstanceCtrl', function ($scope, $uibModalInstance, items) {
 
 	$scope.emailAddr = items;
 	$scope.emailSubject = "Contractor requests additional information on this ticket";
@@ -18,23 +19,6 @@ ticketFixApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance
 		$uibModalInstance.dismiss('cancel');
 	};
 });
-// ticketFixApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
-//
-// 	$scope.items = abc;
-//   // $scope.items = items;
-//   // $scope.selected = {
-//   //   item: $scope.items[0]
-//   // };
-// 	console.log($scope.items);
-//   $scope.ok = function () {
-//     // $uibModalInstance.close($scope.selected.item);
-//     $uibModalInstance.close('Made It');
-//   };
-//
-//   $scope.cancel = function () {
-//     $uibModalInstance.dismiss('cancel');
-//   };
-// });
 
 ticketFixApp.controller('contractorController', function ($rootScope, $scope, $http, $sce, $q, $state, $uibModal, $log, apiAjax, zipLookup) {
 
@@ -70,8 +54,8 @@ ticketFixApp.controller('contractorController', function ($rootScope, $scope, $h
 
 	  var modalInstance = $uibModal.open({
 		animation: true,
-		templateUrl: 'myModalContent.html',
-		controller: 'ModalInstanceCtrl',
+		templateUrl: 'ModalEmailManager.html',
+		controller: 'ModalEmailMgrInstanceCtrl',
 		size: size,
 		resolve: {
 		  items: function () {
