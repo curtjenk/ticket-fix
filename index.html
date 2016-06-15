@@ -144,7 +144,7 @@
                                 <li><a href="#/manager"><span class="fa fa-home"></span>Properties</a></li>
                             </ul>
                         </li>
-                        <li ng-if="!registrationInProgress" class="dropdown">
+                        <li ng-if="!loggedIn && !registrationInProgress" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(3)">Tenant</a></li>
