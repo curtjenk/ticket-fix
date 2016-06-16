@@ -1,4 +1,44 @@
 ticketFixApp.controller('managerController', function ($rootScope, $scope, $http, $sce, $q, $state, $location, $uibModal, apiAjax, zipLookup) {
+	$scope.ticketsWorking = [];
+	$scope.ticketsCompleted = [];
+	//called when moved to another status
+	$scope.moved = function(list, ndx, item) {
+		console.log("-----moved item");
+		console.log(item);
+		console.log(" --- ndx -- actual --");
+		console.log(ndx);
+		//list.splice(ndx, 1);
+		var afCount = list.length;
+		//
+		for (var i=0; i<list.length; i++) {
+			if (list[i].ticket_id == item.ticket_id) {
+				list.splice(i, 1);
+				console.log(i);
+				break;
+			
+			}
+		}
+		//console.log("after move");console.log(list.length);
+	};
+	$scope.dragStart = function(fromStatus, fromList, item, event) {
+		console.log('dragStart from ');
+		//console.log(fromStatus);
+		//console.log(item);
+	};
+	$scope.dragEnd = function(toStatus, toList, item, event) {
+		console.log('dragEnd to ');
+		//console.log(toStatus);
+		//console.log(item);
+	};
+	$scope.dragOver = function() {
+		console.log("dragOver");
+		return true;
+	};
+	$scope.drop = function() {
+			console.log("item dropped");
+			return true;
+	};
+
 	var tenantinfo = {};
 	$scope.formData = {};
 	$scope.ticketData = {};
@@ -30,6 +70,18 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	$scope.page.currentPage = 1;
 	$scope.page.pageSize = 5;
 	$scope.page.viewby = 5;
+
+	$scope.page2 = {};
+	$scope.page2.viewByOptions = [3, 5, 10];
+	$scope.page2.currentPage = 1;
+	$scope.page2.pageSize = 5;
+	$scope.page2.viewby = 5;
+
+	$scope.page3 = {};
+	$scope.page3.viewByOptions = [3, 5, 10];
+	$scope.page3.currentPage = 1;
+	$scope.page3.pageSize = 5;
+	$scope.page3.viewby = 5;
 
 	$scope.page.setItemsPerPage = function (num) {
 		$scope.page.pageSize = num;
@@ -254,43 +306,43 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	/*
 		Drap and drop code BEGIN
 	*/
-	function popDrapAndDropModels() {
-		$scope.models = {
-			selected: null,
-			lists: {
-				"New/Unassigned": [],
-				"In Progress": [],
-				"Completed": []
-			}
-		};
-		// Generate initial model
-		for (var i = 0; i < $scope.tickets.length; i++) {
-			var a = $scope.tickets[i];
-			if (!a.ticket_id) continue;
-			a.address2 = a.address2 || "";
-			$scope.models.lists["New/Unassigned"].push({
-				label: "(#" + a.ticket_id + ") " + a.address1 + " " + a.address2 + " " + a.city + ", " + a.state + " " + a.zip,
-				id: a.property_id
-			});
-		}
-		// for (var i = 1; i <= 3; ++i) {
-		// 	$scope.models.lists.New.push({
-		// 		label: "Item A" + i
-		// 	});
-		// $scope.models.lists.Working.push({
-		// 	label: "Item B" + i
-		// });
-		// $scope.models.lists.Complete.push({
-		// 	label: "Item C" + i
-		// });
-		// }
-
-		// Model to JSON for demo purpose
-		$scope.$watch('models', function (model) {
-			$scope.modelAsJson = angular.toJson(model, true);
-		}, true);
-
-	}
+	// function popDrapAndDropModels() {
+	// 	$scope.models = {
+	// 		selected: null,
+	// 		lists: {
+	// 			"New/Unassigned": [],
+	// 			"In Progress": [],
+	// 			"Completed": []
+	// 		}
+	// 	};
+	// 	// Generate initial model
+	// 	for (var i = 0; i < $scope.tickets.length; i++) {
+	// 		var a = $scope.tickets[i];
+	// 		if (!a.ticket_id) continue;
+	// 		a.address2 = a.address2 || "";
+	// 		$scope.models.lists["New/Unassigned"].push({
+	// 			label: "(#" + a.ticket_id + ") " + a.address1 + " " + a.address2 + " " + a.city + ", " + a.state + " " + a.zip,
+	// 			id: a.property_id
+	// 		});
+	// 	}
+	// 	// for (var i = 1; i <= 3; ++i) {
+	// 	// 	$scope.models.lists.New.push({
+	// 	// 		label: "Item A" + i
+	// 	// 	});
+	// 	// $scope.models.lists.Working.push({
+	// 	// 	label: "Item B" + i
+	// 	// });
+	// 	// $scope.models.lists.Complete.push({
+	// 	// 	label: "Item C" + i
+	// 	// });
+	// 	// }
+	//
+	// 	// Model to JSON for demo purpose
+	// 	$scope.$watch('models', function (model) {
+	// 		$scope.modelAsJson = angular.toJson(model, true);
+	// 	}, true);
+	//
+	// }
 	/*
 		Drap and drop code END above
 	*/
@@ -298,7 +350,8 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 	function runGetMgrTickets(email) {
 		apiAjax.getallmanagertickets(email).then(
 			function (succ) {
-				console.log(succ);
+				//console.log(succ);
+
 				$scope.tickets = succ.data.info;
 				for (i = 0; i < $scope.tickets.length; i++) {
 					$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
@@ -312,7 +365,9 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 					// console.log(html);
 					$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
 				}
-				popDrapAndDropModels();
+				//console.log("NUmber of manager tickets =" + $scope.tickets.length);
+				// popDrapAndDropModels();
+
 			},
 			function (err) {
 				console.log(err);

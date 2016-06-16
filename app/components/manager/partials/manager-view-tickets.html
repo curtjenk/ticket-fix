@@ -2,12 +2,13 @@
     <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">View Tickets</h1>
     <div class="form-section ticket-section">
         <p class="form-header custom-header">
-            Property Tickets
+            New / Unassigned
         </p>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered">
+            <table class="table table-striped table-hover table-bordered" dnd-list="tickets">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Tenant</th>
                         <th>Contact</th>
                         <th>Address</th>
@@ -16,21 +17,27 @@
                         <th>State</th>
                         <th>Zip</th>
                         <th>Date Created</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dir-paginate="ticket in tickets | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage" class="text-center">
-                        <td>{{ticket.contact_first_name}} {{ticket.contact_last_name}}</td>
-                        <td class="text-center"><a uib-popover-html="ticket.popoverContact" popover-title="Contact" type="button"><span class="fa fa-user"></span></a></td>
+                    <tr dnd-draggable="ticket" dnd-effect-allowed="move"
+                        pagination-id="pag1" dir-paginate="ticket in tickets | itemsPerPage: page.pageSize"
+                        dnd-moved="moved(tickets, $index, ticket);" current-page="page.currentPage" class="text-center">
+                        <td>{{ticket.ticket_id}}</td>
+                        <td>{{ticket.contact_first_name}}
+                            {{ticket.contact_last_name}}</td>
+                        <td class="text-center">
+                            <a uib-popover-html="ticket.popoverContact" popover-title="Contact" type="button">
+                                <span class="fa fa-user"></span>
+                            </a>
+                        </td>
                         <td>{{ticket.address1}}</td>
                         <td>{{ticket.address2}}</td>
                         <td>{{ticket.city}}</td>
                         <td>{{ticket.state}}</td>
                         <td>{{ticket.zip}}</td>
                         <td>{{ticket.formattedDate}}</td>
-                        <td>{{ticket.ticket_status}}</td>
                         <td>
                             <button class="btn btn-default ticket-btn" ng-click="viewTicket(ticket)" uib-popover="Click To See Ticket Details" popover-title="Action" popover-trigger="mouseenter">
                                 <span class="fa fa-binoculars"></span>
@@ -43,8 +50,114 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="text-center">
-        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        <div class="text-center">
+            <dir-pagination-controls pagination-id="pag1" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+</div>
+<div class="form-section ticket-section">
+    <p class="form-header custom-header">
+        In Progress
+    </p>
+        <div class="table-responsive" style="margin-top:10px;">
+            <table class="table table-striped table-hover table-bordered" dnd-list="ticketsWorking" >
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tenant</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Unit #</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dnd-draggable="tick2" dnd-effect-allowed="move" dnd-moved="moved(ticketsWorking, $index, tick2)" pagination-id="pag2" dir-paginate="tick2 in ticketsWorking | itemsPerPage: page2.pageSize" current-page="page2.currentPage"  class="text-center">
+                        <td>{{tick2.ticket_id}}</td>
+                        <td>{{tick2.contact_first_name}}
+                            {{tick2.contact_last_name}}</td>
+                        <td class="text-center">
+                            <a uib-popover-html="tick2.popoverContact" popover-title="Contact" type="button">
+                                <span class="fa fa-user"></span>
+                            </a>
+                        </td>
+                        <td>{{tick2.address1}}</td>
+                        <td>{{tick2.address2}}</td>
+                        <td>{{tick2.city}}</td>
+                        <td>{{tick2.state}}</td>
+                        <td>{{tick2.zip}}</td>
+                        <td>{{tick2.formattedDate}}</td>
+                        <td>
+                            <button class="btn btn-default ticket-btn" ng-click="viewTicket(tick2)" uib-popover="Click To See Ticket Details" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-binoculars"></span>
+                            </button>
+                            <button class="btn btn-default ticket-btn" ng-click="activateEmailModal(tick2)" uib-popover="Click To Email Tenant" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-envelope"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <dir-pagination-controls pagination-id="pag2" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+</div>
+<div class="form-section ticket-section">
+    <p class="form-header custom-header">
+        Completed
+    </p>
+        <div class="table-responsive" style="margin-top:10px;">
+            <table class="table table-striped table-hover table-bordered" dnd-list="ticketsCompleted">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tenant</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Unit #</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dnd-draggable="tick3" dnd-effect-allowed="move" dnd-moved="moved(ticketsCompleted, $index, tick3)" pagination-id="pag3" dir-paginate="tick3 in ticketsCompleted | itemsPerPage: page3.pageSize" current-page="page3.currentPage" class="text-center">
+                        <td>{{tick3.ticket_id}}</td>
+                        <td>{{tick3.contact_first_name}}
+                            {{tick3.contact_last_name}}</td>
+                        <td class="text-center">
+                            <a uib-popover-html="tick3.popoverContact" popover-title="Contact" type="button">
+                                <span class="fa fa-user"></span>
+                            </a>
+                        </td>
+                        <td>{{tick3.address1}}</td>
+                        <td>{{tick3.address2}}</td>
+                        <td>{{tick3.city}}</td>
+                        <td>{{tick3.state}}</td>
+                        <td>{{tick3.zip}}</td>
+                        <td>{{tick3.formattedDate}}</td>
+                        <td>
+                            <button class="btn btn-default ticket-btn" ng-click="viewTicket(tick3)" uib-popover="Click To See Ticket Details" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-binoculars"></span>
+                            </button>
+                            <button class="btn btn-default ticket-btn" ng-click="activateEmailModal(tick3)" uib-popover="Click To Email Tenant" popover-title="Action" popover-trigger="mouseenter">
+                                <span class="fa fa-envelope"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center">
+            <dir-pagination-controls pagination-id="pag3" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
     </div>
 </div>

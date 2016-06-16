@@ -222,7 +222,7 @@ exports.getAllManagerTickets = function(email) {
         " INNER JOIN property on property.id = manager_has_property.property_id " +
         " INNER JOIN ticket on ticket.property_id = property.id " +
         " INNER JOIN type_status on type_status.id = ticket.status_id " +
-        " where user.email = ? ORDER BY ticket.id DESC";
+        " where user.email = ? ORDER BY ticket.client_datetime_string DESC";
 
     Q.fcall(db.con)
         .then(function(con) {
