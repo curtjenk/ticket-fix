@@ -251,11 +251,54 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 				console.log(err);
 			});
 	}
+	/*
+		Drap and drop code BEGIN
+	*/
+	function popDrapAndDropModels() {
+		$scope.models = {
+			selected: null,
+			lists: {
+				"New/Unassigned": [],
+				"In Progress": [],
+				"Completed": []
+			}
+		};
+		// Generate initial model
+		for (var i = 0; i < $scope.tickets.length; i++) {
+			var a = $scope.tickets[i];
+			if (!a.ticket_id) continue;
+			a.address2 = a.address2 || "";
+			$scope.models.lists["New/Unassigned"].push({
+				label: "(#" + a.ticket_id + ") " + a.address1 + " " + a.address2 + " " + a.city + ", " + a.state + " " + a.zip,
+				id: a.property_id
+			});
+		}
+		// for (var i = 1; i <= 3; ++i) {
+		// 	$scope.models.lists.New.push({
+		// 		label: "Item A" + i
+		// 	});
+		// $scope.models.lists.Working.push({
+		// 	label: "Item B" + i
+		// });
+		// $scope.models.lists.Complete.push({
+		// 	label: "Item C" + i
+		// });
+		// }
+
+		// Model to JSON for demo purpose
+		$scope.$watch('models', function (model) {
+			$scope.modelAsJson = angular.toJson(model, true);
+		}, true);
+
+	}
+	/*
+		Drap and drop code END above
+	*/
 
 	function runGetMgrTickets(email) {
 		apiAjax.getallmanagertickets(email).then(
 			function (succ) {
-				// console.log(succ);
+				console.log(succ);
 				$scope.tickets = succ.data.info;
 				for (i = 0; i < $scope.tickets.length; i++) {
 					$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
@@ -269,6 +312,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 					// console.log(html);
 					$scope.tickets[i].popoverContact = $sce.trustAsHtml(html);
 				}
+				popDrapAndDropModels();
 			},
 			function (err) {
 				console.log(err);
@@ -281,6 +325,7 @@ ticketFixApp.controller('managerController', function ($rootScope, $scope, $http
 			function (succ) {
 				//$scope.properties = succ.data.info;
 				$scope.items = succ.data.info;
+
 				//$scope.page.totalItems = $scope.properties.length;
 				console.log($scope.items);
 			},

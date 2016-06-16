@@ -1,0 +1,135 @@
+<style>
+    /**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+    .simpleDemo ul[dnd-list],
+    .simpleDemo ul[dnd-list] > li {
+        position: relative;
+    }
+
+    /**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+    .simpleDemo ul[dnd-list] {
+        min-height: 42px;
+        padding-left: 0;
+    }
+
+    /**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+    .simpleDemo ul[dnd-list] .dndDraggingSource {
+        display: none;
+    }
+
+    /**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+    .simpleDemo ul[dnd-list] .dndPlaceholder {
+        display: block;
+        background-color: #ddd;
+        min-height: 42px;
+    }
+
+    /**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+    .simpleDemo ul[dnd-list] li {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-top-right-radius: 4px;
+        border-top-left-radius: 4px;
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: -1px;
+    }
+
+    /**
+ * Show selected elements in green
+ */
+    .simpleDemo ul[dnd-list] li.selected {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+
+</style>
+<!-- Markup for lists inside the dropzone. It's inside a seperate template
+     because it will be used recursively. The dnd-list directive enables
+     to drop elements into the referenced array. The dnd-draggable directive
+     makes an element draggable and will transfer the object that was
+     assigned to it. If an element was dragged away, you have to remove
+     it from the original list yourself using the dnd-moved attribute -->
+<script type="text/ng-template" id="list.html">
+    <ul dnd-list="list">
+        <li ng-repeat="item in list" dnd-draggable="item" dnd-effect-allowed="move" dnd-moved="list.splice($index, 1)" dnd-selected="models.selected = item" ng-class="{selected: models.selected === item}" ng-include="item.type + '.html'"></li>
+    </ul>
+</script>
+
+<!-- This template is responsible for rendering a container element. It uses
+     the above list template to render each container column -->
+<script type="text/ng-template" id="container.html">
+    <div class="container-element box box-blue">
+        <h3>Container
+            {{item.id}}</h3>
+        <div class="column" ng-repeat="list in item.columns" ng-include="'list.html'"></div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+
+<!-- Template for a normal list item -->
+<script type="text/ng-template" id="item.html">
+    <div class="item">Item
+        {{item.id}}</div>
+</script>
+<div class="container">
+    <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">Manage Tickets</h1>
+    <div class="form-section ticket-section">
+        <p class="form-header custom-header">
+            Drap And Drop To Change Status
+        </p>
+
+        <div class="simpleDemo row">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div ng-repeat="(listName, list) in models.lists" class="col-sm-4">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center">{{listName}}</h3>
+                            </div>
+                            <div class="panel-body">
+                                <!-- The dnd-list directive allows to drop elements into it.
+                             The dropped data will be added to the referenced list -->
+                                <ul dnd-list="list">
+                                    <!-- The dnd-draggable directive makes an element draggable and will
+                                 transfer the object that was assigned to it. If an element was
+                                 dragged away, you have to remove it from the original list
+                                 yourself using the dnd-moved attribute -->
+                                    <li ng-repeat="item in list" dnd-draggable="item" dnd-moved="list.splice($index, 1)" dnd-effect-allowed="move" dnd-selected="models.selected = item" ng-class="{'selected': models.selected === item}">
+                                        {{item.label}}
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

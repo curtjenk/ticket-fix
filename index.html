@@ -22,6 +22,7 @@
     <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
     <script src="node_modules/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script src="node_modules/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
     <script type="text/javascript" src="app/app.module.js"></script>
     <script type="text/javascript" src="app/app.routes.js"></script>
     <script type="text/javascript" src="indexcontroller.js"></script>
@@ -138,7 +139,9 @@
                         <li ng-if="loggedIn && userType == 4" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Management <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span>Tickets</a></li>
+                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span>View Tickets</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#/manager/managetickets"><span class="fa fa-ticket"></span>Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#/manager"><span class="fa fa-home"></span>Properties</a></li>
                             </ul>
