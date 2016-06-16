@@ -70,6 +70,22 @@ ul.ticket-popover-contact {
     }
 }
 
+#founders {
+    .fa {
+        color: #0070b8;
+        text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        &:hover {
+            color: #ffd700;
+        }
+    }
+    a {
+        &:hover {
+            color: #ffd700;
+            text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
 #steps-nav {
     background-color: #66c4ff;
     width: 100%;
@@ -91,6 +107,9 @@ ul.ticket-popover-contact {
     .active-step {
         color: #ffd700;
     }
+    .active-step-two {
+        color: #333;
+    }
     span.fa.fa-user.active-step-btn {
         color: green;
     }
@@ -102,6 +121,9 @@ ul.ticket-popover-contact {
         }
         .active-step {
             color: #ffd700;
+        }
+        .active-step-two {
+            color: #333;
         }
     }
     a,
@@ -140,6 +162,9 @@ ul.ticket-popover-contact {
         }
         .active-step {
             color: #ffd700;
+        }
+        .active-step-two {
+            color: lightgrey;
         }
     }
     a,
@@ -183,7 +208,8 @@ ul.ticket-popover-contact {
 }
 
 #register-wrapper {
-    min-height: 600px;
+    min-height: 100%;
+    position: relative;
 }
 
 .form-section {
@@ -297,6 +323,8 @@ body {
 
 .wrapper {
     background-color: #DDD;
+    position: relative;
+    min-height: 100%;
 }
 
 .account-section,
@@ -588,6 +616,10 @@ html {
     }
 }
 
+span.fa.fa-envelope.text-center {
+    padding-right: 0px;
+}
+
 .how-btn-container.active {}
 
 .how-icon-container {
@@ -604,9 +636,7 @@ img.img-responsive.how-img {
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1199px) {
-
-}
+@media screen and (max-width: 1199px) {}
 
 #how-it-works .down-arrow-two {
     width: 0;
@@ -621,7 +651,7 @@ img.img-responsive.how-img {
 }
 
 .textarea-style {
-  min-height: 100px;
+    min-height: 100px;
 }
 
 @media screen and (max-width: 2560px) {
@@ -659,13 +689,10 @@ img.img-responsive.how-img {
     }
 }
 
-
 @media screen and (max-width: 768px) {
-
     .why-ticket-wrapper {
         h4 {
             font-size: 16px;
-
         }
     }
 }
@@ -677,10 +704,8 @@ img.img-responsive.how-img {
     .why-ticket-wrapper {
         h4 {
             font-size: 14px;
-
         }
     }
-
 }
 
 @media screen and (max-width: 376px) {
@@ -747,6 +772,14 @@ i.fa.fa-twitter {
     font-size: 25px;
 }
 
+i.fa.fa-linkedin-square {
+    font-size: 25px;
+}
+
+i.fa.fa-github {
+    font-size: 25px;
+}
+
 i.fa.fa-facebook {
     font-size: 22px;
     padding-top: 1px;
@@ -803,11 +836,33 @@ form.navbar-form {
     background-color: transparent;
     color: black;
     .fa {
-        color: black;
+        color: #0070b8;
+        text-shadow: none;
+        &:hover {
+            text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        }
     }
     a {
         color: black;
     }
+}
+
+#information {
+    .fa {
+        color: #333;
+        &:hover {
+            text-shadow: none;
+        }
+    }
+}
+
+.founders-info {
+    margin-bottom: 20px;
+    padding-left: 0px;
+}
+
+.image-founders {
+    padding-left: 0px;
 }
 
 .navbar-right .dropdown-menu {
@@ -846,16 +901,6 @@ form.navbar-form {
     }
 }
 
-#footer-wrapper {
-    min-height: 100px;
-    background-color: gray;
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-    h3 {
-        line-height: 100px;
-    }
-}
 
 #site-wrapper {
     position: relative;
@@ -1038,3 +1083,49 @@ md-checkbox.md-checked ._md-icon {
     border-top: 2px solid #007ecc;
     border-radius: 5px;
 }
+
+body {
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+}
+
+#site-wrapper:after {
+    content: "";
+    display: block;
+}
+
+#site-wrapper {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -100px;
+}
+
+#footer,
+#site-wrapper:after {
+    height: 100px;
+}
+
+#footer {
+    height: 100px;
+    /* set line-height to height */
+    background-color: #0070b8;
+    text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+    line-height: 100px;
+    color: #ffd700;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+
+#footer span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin-right: 10px;
+}
+
+

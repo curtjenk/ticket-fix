@@ -100,20 +100,20 @@
                 <div class="text-center">
                     <div class="how-btn-container active col-sm-4 col-xs-4">
                         <a href="" ng-click="changeSteps(1)">
-                            <span ng-class="{ 'active-step': tenantStep }" class="fa fa-user"></span>
-                            <p ng-class="{ 'active-step': tenantStep }">Tenant</p>
+                            <span ng-class="{ 'active-step-two': tenantStep }" class="fa fa-user"></span>
+                            <p ng-class="{ 'active-step-two': tenantStep }">Tenant</p>
                         </a>
                     </div>
                     <div class="how-btn-container col-sm-4 col-xs-4">
                         <a href="" ng-click="changeSteps(2)">
-                            <span ng-class="{ 'active-step': managerStep }" class="fa fa-home"></span>
-                            <p ng-class="{ 'active-step': managerStep }">Property Owner</p>
+                            <span ng-class="{ 'active-step-two': managerStep }" class="fa fa-home"></span>
+                            <p ng-class="{ 'active-step-two': managerStep }">Property Owner</p>
                         </a>
                     </div>
                     <div class="how-btn-container col-sm-4 col-xs-4">
                         <a href="" ng-click="changeSteps(3)" ng-class="{ 'active-step': managerStep }">
-                            <span ng-class="{ 'active-step': contractorStep }" class="fa fa-wrench"></span>
-                            <p ng-class="{ 'active-step': contractorStep }">Contractor</p>
+                            <span ng-class="{ 'active-step-two': contractorStep }" class="fa fa-wrench"></span>
+                            <p ng-class="{ 'active-step-two': contractorStep }">Contractor</p>
                         </a>
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                 <h4>Register your properties!</h4>
             </div>
             <div ng-show="contractorStep" class="contrator-steps steps-space">
-                <img class="img-responsive how-img" src="assets/img/howtoicons.png" alt="">
+                <img class="img-responsive how-img" src="assets/img/howtoicons2regservice.png" alt="">
                 <h4>Register your service regions!</h4>
             </div>
         </div>
@@ -161,7 +161,7 @@
                 <h4>Manage your tickets</h4>
             </div>
             <div ng-show="contractorStep" class="contrator-steps steps-space">
-                <img class="img-responsive how-img" src="assets/img/howtoicons.png" alt="">
+                <img class="img-responsive how-img" src="assets/img/howtoicons3contractor.png" alt="">
                 <h4>Ticket Fix Me will notify you with jobs!</h4>
             </div>
         </div>
@@ -175,74 +175,62 @@
                 <h4>Hire Contractor or source internally!</h4>
             </div>
             <div ng-show="contractorStep" class="contrator-steps steps-space">
-                <img class="img-responsive how-img" src="assets/img/howtoicons4hire.png" alt="">
+                <img class="img-responsive how-img" src="assets/img/howtoicons4pay.png" alt="">
                 <h4>Do the work & get paid!</h4>
             </div>
         </div>
     </div>
     <div id="contact" class="container-fluid">
-        <h1 class="text-center">Contact Us</h1>
+        <h1 class="text-center">Contact & About</h1>
         <div class="down-arrow-three"></div>
     </div>
     <div id="contact-wrapper" class="container-fluid">
         <div id="contact-section" class="container">
             <div class="row">
                 <div id="information" class="col-md-3">
-                    <h3>Contact</h3>
+                    <h3>Contact Info</h3>
                     <p><strong>Ticket Fix Me Inc</strong></p>
                     <p><span class="fa fa-globe"></span> Atlanta, GA</p>
                     <p><a href="tel:16781235555"><span class="fa fa-phone"></span>+1-678-123-5555</a></p>
                     <p><a href="mailto:hello@ticketfixme.com"><span style="color: #333;" class="fa fa-envelope"></span> hello@ticketfixme.com</a></p>
+                    <h3>Contact Us</h3>
+                    <button ng-click="activateEmailModal()" style="width:100px;" type="button" class="btn btn-default"><span style="color: #333;" class="fa fa-envelope text-center"></span></button>
                 </div>
-                <div id="my-tweets" class="col-md-3">
-                    <h3>Tweets</h3>
+                <div id="founders" class="col-md-3">
+                    <h3>Founders</h3>
+                    <div class="col-md-8 image-founders">
+                        <img class="img-responsive img-thumbnail" src="assets/img/curtis.jpg" alt="">
+                    </div>
+                    <div class="col-md-8 text-center founders-info">
+                        <small>Founder: Curtis Jenkins</small>
+                        <br>
+                        <small>Website: <a href="http://curtisjenkins.net/" title="">curtisjenkins.net</a></small>
+                        <br>
+                         <small><a href="https://www.linkedin.com/in/curtisljenkins"><i class="fa fa-linkedin-square"></i></a></small>
+                        <small><a href="https://github.com/curtjenk"><i class="fa fa-github"></i></a></small>
+                    </div>
+                    <div class="col-md-8 image-founders">
+                        <img class="img-responsive img-thumbnail" src="assets/img/josh.jpg" alt="">
+                    </div>
+                    <div class="col-md-8 text-center">
+                        <small>Founder: Joshua Ciaralli</small>
+                        <br>
+                        <small>Website: <a href="http://www.ciaralli.com/#/" title="">ciaralli.com</a></small>
+                        <br>
+                        <small><a href="https://www.linkedin.com/in/jciaralli"><i class="fa fa-linkedin-square"></i></a></small>
+                        <small><a href="https://twitter.com/jciarallij"><i class="fa fa-twitter"></i></a></small>
+                        <small><a href="https://github.com/jciarallij"><i class="fa fa-github"></i></a></small>
+                    </div>
+                    
                 </div>
-                <div class="col-md-3">
-                    <h3>Message Us</h3>
-                    <!--  <div class="row"> -->
-                    <form novalidate disable-btn ng-submit="contactFunc()" name="contactForm" role="form">
-                        <div class="form-group" ng-class="{ 'has-error': contactForm.firstname.$touched && contactForm.firstname.$invalid }">
-                            <label>Name</label>
-                            <input name="name" ng-model="message.name" required placeholder="John" type="text" class="form-control" />
-                            <div ng-messages="contactForm.name.$error" ng-if="contactForm.name.$touched" role="alert">
-                                <p ng-message="required">Name is required.</p>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error': contactForm.email.$touched && contactForm.email.$invalid }">
-                            <label>Email</label>
-                            <input name="email" ng-model="message.email" required multiple placeholder="hello@ticketfixme.com" type="email" class="form-control">
-                            <div ng-messages="contactForm.email.$error" ng-if="contactForm.email.$touched" role="alert">
-                                <p ng-message="required">Email is required.</p>
-                                <p ng-message="email">Enter a valid email</p>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error': contactForm.phone.$touched && contactForm.phone.$invalid }">
-                            <label>Phone</label>
-                            <input name="phone" ng-model="message.phone" required placeholder="555-555-5555" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/" type="tel" class="form-control" />
-                            <div ng-messages="contactForm.phone.$error" ng-if="contactForm.phone.$touched" role="alert">
-                                <p ng-message="required">Phone is required.</p>
-                                <p ng-message="pattern">Must be a valid 10 digit phone number</p>
-                            </div>
-                        </div>
-                        <div class="form-group" ng-class="{ 'has-error': contactForm.message.$touched && contactForm.message.$invalid }">
-                            <label>Message</label>
-                            <textarea name="message" ng-model="message.message" ng-change="textFunc()" required placeholder="Message..." type="text" class="form-control desc-area" maxlength="1000"></textarea>
-                            <div ng-messages="contactForm.message.$error" ng-if="contactForm.message.$touched" role="alert">
-                                <p ng-message="required">Enter a message</p>
-                            </div>
-                            <small>{{count}} characters left</small>
-                        </div>
-                        <div class="button-holder text-right">
-                            <button type="submit" class="btn btn-default contact-btn">Submit</button>&nbsp;
-                        </div>
-                    </form>
-                    <!--   </div> -->
+                <div id="about-us" class="col-md-3">
+                    <h3>About Us</h3>
                 </div>
                 <div id="social" class="col-md-3">
                     <h3>Social Network</h3>
                     <a href="https://twitter.com/ticket_fix"><span class="fa fa-twitter"></span></a>
-                    <a href="https://twitter.com/ticket_fix"><span class="fa fa-facebook"></span></a>
-                    <a href="https://twitter.com/ticket_fix"><span class="fa fa-instagram"></span></a>
+                    <a href=""><span class="fa fa-facebook"></span></a>
+                    <a href=""><span class="fa fa-instagram"></span></a>
                 </div>
             </div>
         </div>

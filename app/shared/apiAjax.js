@@ -1,6 +1,6 @@
 //var baseUrl = 'http://localhost:3000';
 //var baseUrl = Config.ticketFixMeApi;
-var SendMailOptions = function(data){
+var SendMailOptions = function(data) {
     data = data || {};
     this.from = data.from;
     this.to = data.to;
@@ -29,9 +29,10 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
     var allmanagerproperties = baseUrl + "/api/allmanagerproperties";
     var savemanagerproperty = baseUrl + "/api/savemanagerproperty";
-    var contractorticketsUrl = baseUrl + "/api/contractor/tickets";  //get a list of tickets in the contractor's service regions.
+    var contractorticketsUrl = baseUrl + "/api/contractor/tickets"; //get a list of tickets in the contractor's service regions.
     var adminTicketsPerDayUrl = baseUrl + "/api/admin/ticketsperday";
     var sendmailUrl = baseUrl + "/api/sendmail";
+    var sendmailContactUrl = baseUrl + "/sendmailcontactus";
 
     var ApiResponse = function(res) {
         res = res || {};
@@ -103,6 +104,12 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
             sendMailOptions: sendMailOptions
         });
 
+    };
+    apiAjax.sendmailContactUs = function(sendMailOptions) {
+        console.log("apiAjax sendmailContactUs");
+        return makeTheCall(sendmailContactUrl, {
+            sendMailOptions: sendMailOptions
+        });
     };
     apiAjax.createticket = function(ticket, email) {
         console.log("apiAjax createticket");

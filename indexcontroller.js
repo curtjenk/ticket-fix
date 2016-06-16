@@ -33,9 +33,18 @@ ticketFixApp.controller('indexController', function ($rootScope, $scope, $http, 
 		$location.path('/register');
 	};
 
+	$scope.$on("nothome", function (event, args) {
+		$scope.home = false;
+	});
+
+	$scope.$on("home", function (event, args) {
+		$scope.home = true;
+	});
+
 	$scope.$on("registration-complete", function (event, args) {
 		$scope.registrationInProgress = false;
 	});
+
 	$scope.$on("userLoggedIn", function (event, args) {
 		$scope.loggedIn = true;
 		$scope.userType = args.userType;

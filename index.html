@@ -47,7 +47,6 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600|Montserrat:400,700">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/ticketfixme.ico" />
-
 </head>
 
 <body ng-controller="indexController">
@@ -78,7 +77,7 @@
                         <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li ng-if="!loggedIn"><a href="https://twitter.com/ticket_fix" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         <!-- <li><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
-                        <li ng-if="!loggedIn" ng-click="toggleSearch()"><a href="" title=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                        <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                     </ul>
                     <!-- <div class="search-bar" ng-show="showSearchBar">
                         <form class="navbar-form navbar-right" role="search">
@@ -107,9 +106,9 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul ng-show="showLeftNavBtns" class="nav navbar-nav">
+                    <ul ng-if="home = true" class="nav navbar-nav">
                         <li class=""><a ng-click="gotoElement('how-it-works')">How it works <span class="sr-only">(current)</span></a></li>
-                       <!--  <li><a ng-click="gotoElement('benefits')">Benefits</a></li> -->
+                         <li><a ng-click="gotoElement('services')">Services</a></li>
                         <li><a ng-click="gotoElement('contact')">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -166,22 +165,25 @@
         </nav>
         <div ui-view></div>
         <!-- <div ng-view></div> -->
+        <div id="footer">
+        <span>
+          Ticket Fix Me | All Rights Reserved | &copy; Copyright 2016
+        </span>
+      </div>
     </div>
 
     <script type="text/ng-template" id="ModalEmailManager.html">
         <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
             <div class="modal-title">
                 <h3>{{modalHeading}}</h3>
                 <div class="row">
                     <div class="col-sm-offset-1">
                         <p>
-                            {{address1}}&nbsp;
-                            {{address2}}
+                            {{address1}}&nbsp; {{address2}}
                         </p>
                         <p>
-                            {{city}},&nbsp;
-                            {{state}}&nbsp;
-                            {{zip}}
+                            {{city}},&nbsp; {{state}}&nbsp; {{zip}}
                         </p>
                         <h5>
                             <strong>Issue Description</strong>
@@ -209,11 +211,44 @@
                 <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary" type="button" ng-click="ok()">Send Email</button>
-        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-    </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Send Email</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <script type="text/ng-template" id="ModalMessage.html">
+        <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+            <div class="modal-title">
+                <h3>{{modalHeading}}</h3>
+                <div class="row">
+
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <label>Name</label>
+                    <input type="text" name="emailName" ng-model="emailName" placeholder="John Doe" class="form-control shorten">
+                </div>
+                <div class="">
+                    <label>From</label>
+                    <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
+                </div>
+                <div class="">
+                    <label>Subject</label>
+                    <input type="text" name="emailSubject" ng-model="emailSubject" placeholder="Email Subject" class="form-control shorten">
+                </div>
+                <div class="">
+                    <label>Message</label>
+                    <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">Send Email</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
     </script>
 </body>
 

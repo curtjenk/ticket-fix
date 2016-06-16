@@ -692,4 +692,30 @@ router.post('/api/sendmail', function (req, res) {
 		});
 });
 
+router.post('/sendmailcontactus', function (req, res) {
+	var smo = req.body.sendMailOptions;
+
+	var apiRes = new ApiResponse({
+		api: '/sendmailcontactus'
+	});
+	console.log(req.body);
+	mailer.sendMail(smo.from,
+			smo.to,
+			smo.subject,
+			smo.text,
+			smo.html)
+		.then(function (succ) {
+			console.log(succ);
+			apiRes.success = true;
+			apiRes.message = succ;
+			res.json(apiRes);
+		}, function (err) {
+			console.log(err);
+			apiRes.success = false;
+			apiRes.message = err.message;
+			apiRes.info = err.error;
+			res.json(apiRes);
+		});
+});
+
 module.exports = router;

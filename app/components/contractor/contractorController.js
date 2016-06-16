@@ -20,7 +20,7 @@ ticketFixApp.controller('ModalEmailMgrInstanceCtrl', function ($scope, $uibModal
 			to: emailTo,
 			subject: $scope.emailSubject,
 			text: $scope.emailBody,
-			html: "<div>" + $scope.emailBody + "</div>"
+			html: "<div>" + $scope.emailName + "</div>" + "<div>" + $scope.emailBody + "</div>"
 		};
 		$uibModalInstance.close($scope.sendMailOptions);
 	};

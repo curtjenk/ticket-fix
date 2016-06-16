@@ -1,6 +1,8 @@
-ticketFixApp.controller('homeController', function($rootScope, $scope, $http, $location) {
+ticketFixApp.controller('homeController', function($rootScope, $scope, $http, $location, $uibModal, apiAjax) {
 
-
+    // var user = $rootScope.user; // this is the logged-in user
+    // console.log($rootScope.user);
+    // var email = user.email;
     $scope.register = function(type) {
 
         $rootScope.userType = type;
@@ -45,6 +47,39 @@ ticketFixApp.controller('homeController', function($rootScope, $scope, $http, $l
         } else {
             $scope.count = messageMax;
         }
+    };
+
+    
+    $scope.activateEmailModal = function () {
+        var item = {};
+        item.emailTo = "";
+        // item.user_email = user.email;
+        item.modalHeading = "Your Message";
+        // item.subject = "What's on your mind?";
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'ModalMessage.html',
+            controller: 'ModalEmailMgrInstanceCtrl',
+            size: 'lg',
+            resolve: {
+                items: function () {
+                    return item;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (emailOptions) {
+            console.log(emailOptions);
+            apiAjax.sendmailContactUs(emailOptions).then(
+                function (succ) {
+                    console.log(succ);
+                },
+                function (err) {
+                    console.log(err);
+                });
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     };
 
 });
