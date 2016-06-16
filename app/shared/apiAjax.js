@@ -31,6 +31,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var savemanagerproperty = baseUrl + "/api/savemanagerproperty";
     var contractorticketsUrl = baseUrl + "/api/contractor/tickets"; //get a list of tickets in the contractor's service regions.
     var adminTicketsPerDayUrl = baseUrl + "/api/admin/ticketsperday";
+    var updateTicketStatusUrl = baseUrl + "/api/update/ticketstatus";
     var sendmailUrl = baseUrl + "/api/sendmail";
     var sendmailContactUrl = baseUrl + "/sendmailcontactus";
 
@@ -102,6 +103,14 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         console.log("apiAjax sendmail for " + userEmail);
         return makeThePostApiCall('sendmail', userEmail, sendmailUrl, {
             sendMailOptions: sendMailOptions
+        });
+
+    };
+     apiAjax.updateTicketStatus = function(userEmail, ticket_id, status_id) {
+        console.log("apiAjax updateTicketStatus for " + userEmail);
+        return makeThePostApiCall('updateTicketStatus', userEmail, updateTicketStatusUrl, {
+            ticket_id: ticket_id,
+            status_id: status_id
         });
 
     };

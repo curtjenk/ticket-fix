@@ -576,6 +576,27 @@ router.post('/api/savemanagerproperty', function (req, res) {
 
 });
 
+router.post('/api/update/ticketstatus', function (req, res) {
+	console.log(req.body);
+	var ticket_id = req.body.ticket_id;
+	var status_id = req.body.status_id;
+	var apiRes = new ApiResponse({
+		api: 'api/update/ticketstatus'
+	});
+	admin.updateTicketStatus(ticket_id, status_id).then(function (succ) {
+		console.log(succ);
+		apiRes.success = true;
+		apiRes.info = succ.data;
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Update Ticket Status failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
+
 router.get('/api/ticketinfo', function (req, res) {
 	console.log(req.query);
 	var ticket_id = req.query.ticket_id;

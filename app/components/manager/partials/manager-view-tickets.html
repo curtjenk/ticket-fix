@@ -1,11 +1,11 @@
 <div class="container">
-    <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">View Tickets</h1>
+    <h1 class="text-center" style="margin-top: 40px; margin-bottom: 50px;">Manage Tickets</h1>
     <div class="form-section ticket-section">
         <p class="form-header custom-header">
             New / Unassigned
         </p>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered" dnd-list="tickets">
+            <table class="table table-striped table-hover table-bordered" dnd-type="'new'" dnd-list="tickets" dnd-inserted="insertedCallback(event, index, item, type, external, 'new', 'target=new');">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -21,9 +21,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dnd-draggable="ticket" dnd-effect-allowed="move"
-                        pagination-id="pag1" dir-paginate="ticket in tickets | itemsPerPage: page.pageSize"
-                        dnd-moved="moved(tickets, $index, ticket);" current-page="page.currentPage" class="text-center">
+                    <tr  pagination-id="pag1" dir-paginate="ticket in tickets | itemsPerPage: page.pageSize" current-page="page.currentPage" class="text-center"
+                         dnd-draggable="ticket"
+                         dnd-effect-allowed="move"
+                         dnd-moved="tickets.splice($index, 1);updateStatus('tickets', tickets, ticket);"
+                         dnd-effect-allowed="move">
                         <td>{{ticket.ticket_id}}</td>
                         <td>{{ticket.contact_first_name}}
                             {{ticket.contact_last_name}}</td>
@@ -59,9 +61,8 @@
         In Progress
     </p>
         <div class="table-responsive" style="margin-top:10px;">
-            <table class="table table-striped table-hover table-bordered" dnd-list="ticketsWorking" >
-                <thead>
-                    <tr>
+            <table class="table table-striped table-hover table-bordered" dnd-type="'working'" dnd-type="inp" dnd-list="ticketsWorking" dnd-inserted="insertedCallback(event, index, item, type, external, 'inp', 'target=inp');">
+                 <tr>
                         <th>ID</th>
                         <th>Tenant</th>
                         <th>Contact</th>
@@ -75,7 +76,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dnd-draggable="tick2" dnd-effect-allowed="move" dnd-moved="moved(ticketsWorking, $index, tick2)" pagination-id="pag2" dir-paginate="tick2 in ticketsWorking | itemsPerPage: page2.pageSize" current-page="page2.currentPage"  class="text-center">
+                    <tr pagination-id="pag2" dir-paginate="tick2 in ticketsWorking | itemsPerPage: page2.pageSize" current-page="page2.currentPage"
+                    dnd-draggable="tick2"
+                    dnd-moved="ticketsWorking.splice($index, 1)"
+                    dnd-effect-allowed="move">
                         <td>{{tick2.ticket_id}}</td>
                         <td>{{tick2.contact_first_name}}
                             {{tick2.contact_last_name}}</td>
@@ -112,7 +116,7 @@
         Completed
     </p>
         <div class="table-responsive" style="margin-top:10px;">
-            <table class="table table-striped table-hover table-bordered" dnd-list="ticketsCompleted">
+            <table class="table table-striped table-hover table-bordered" dnd-type="'complete'" dnd-list="ticketsCompleted" dnd-inserted="insertedCallback(event, index, item, type, external, 'complete', 'target=complete');">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -128,7 +132,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr dnd-draggable="tick3" dnd-effect-allowed="move" dnd-moved="moved(ticketsCompleted, $index, tick3)" pagination-id="pag3" dir-paginate="tick3 in ticketsCompleted | itemsPerPage: page3.pageSize" current-page="page3.currentPage" class="text-center">
+                    <tr pagination-id="pag3" dir-paginate="tick3 in ticketsCompleted | itemsPerPage: page3.pageSize" current-page="page3.currentPage" class="text-center" dnd-draggable="tick3"
+                    dnd-moved="ticketsCompleted.splice($index, 1)"
+                    dnd-effect-allowed="move">
                         <td>{{tick3.ticket_id}}</td>
                         <td>{{tick3.contact_first_name}}
                             {{tick3.contact_last_name}}</td>
