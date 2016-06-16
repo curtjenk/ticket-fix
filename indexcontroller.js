@@ -1,5 +1,6 @@
 ticketFixApp.controller('indexController', function ($rootScope, $scope, $http, $location, localStore, anchorSmoothScroll) {
 
+	$scope.home = true;
 	$scope.showSearchBar = false;
 	$scope.arrowUp = false;
 	$scope.arrowDown = true;
