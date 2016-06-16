@@ -325,6 +325,7 @@ body {
     background-color: #DDD;
     position: relative;
     min-height: 100%;
+    overflow: hidden;
 }
 
 .account-section,
@@ -636,7 +637,22 @@ img.img-responsive.how-img {
     margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1199px) {}
+@media screen and (max-width: 1199px) and (min-width: 450px){
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 18px;
+        }
+        img {
+            width: 65%;
+        }
+    }
+
+
+}
+
+table[dnd-list], table[dnd-list] > tr {
+   position: relative;
+}
 
 #how-it-works .down-arrow-two {
     width: 0;
@@ -1099,6 +1115,10 @@ body {
     min-height: 100%;
     /* equal to footer height */
     margin-bottom: -100px;
+}
+
+.icon {
+    font-size: 15px;
 }
 
 #footer,
