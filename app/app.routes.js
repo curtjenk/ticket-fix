@@ -40,6 +40,21 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '',
             templateUrl: 'app/components/admin/partials/admin-view-tenant.html'
         })
+        .state('admin.viewmanager', {
+            parent: 'admin',
+            url: '/viewmanager',
+            templateUrl: 'app/components/admin/partials/admin-view-manager.html'
+        })
+        .state('admin.viewcontractor', {
+            parent: 'admin',
+            url: '/viewcontractor',
+            templateUrl: 'app/components/admin/partials/admin-view-contractor.html'
+        })
+        .state('admin.viewproperties', {
+            parent: 'admin',
+            url: '/viewproperties',
+            templateUrl: 'app/components/admin/partials/admin-view-properties.html'
+        })
         .state('admin.activity', {
             parent: 'admin',
             url: '/activity',
@@ -89,7 +104,7 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             templateUrl: 'app/components/ticket/partials/ticket-form-create.html'
         })
 
-        .state('manager', {
+    .state('manager', {
             url: '/manager',
             abstract: true,
             templateUrl: 'app/components/manager/partials/manager-view.html',

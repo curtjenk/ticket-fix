@@ -1,0 +1,33 @@
+<div class="container">
+    <h1 style="margin-top: 50px; margin-bottom: 50px;">MANAGERS</h1>
+    <div class="form-section ticket-section">
+        <p class="form-header custom-header-four">
+            All Property Managers
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Mobile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="manager in managers | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
+                        <td>{{manager.first_name}}</td>
+                        <td>{{manager.last_name}}</td>
+                        <td>{{manager.email}}</td>
+                        <td>{{manager.home_phone}}</td>
+                        <td>{{manager.mobile_phone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>

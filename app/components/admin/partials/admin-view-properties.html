@@ -1,0 +1,37 @@
+<div class="container">
+    <h1 style="margin-top: 50px; margin-bottom: 50px;">PROPERTIES</h1>
+    <div class="form-section ticket-section">
+        <p class="form-header custom-header-four">
+            All Properties
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Property Manager</th>
+                        <th>Manager Email</th>
+                        <th>Address</th>
+                        <th>Unit #</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr dir-paginate="property in properties | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
+                        <td>{{property.first_name}} {{property.last_name}}</td>
+                        <td>{{property.email}}</td>
+                        <td>{{property.address1}}</td>
+                        <td>{{property.address2}}</td>
+                        <td>{{property.city}}</td>
+                        <td>{{property.state}}</td>
+                        <td>{{property.zip}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>
