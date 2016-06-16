@@ -16,12 +16,12 @@ ticketFixApp.run(function ($rootScope, $location, $urlRouter) {
 	});
 
 	function isThisTransitionValid(newUrl, oldUrl) {
-		if ($location.path() != '/') {
+		if ($location.path() == '/') {
 			$rootScope.$broadcast('home');
 		} else {
 			$rootScope.$broadcast('nothome');
 		}
-		
+
 		if (!$rootScope.user && $location.path() != '/') {
 			console.log(" new = " + newUrl + " old = " + oldUrl);
 			console.log("url changed + not trying to go home and not logged in");
