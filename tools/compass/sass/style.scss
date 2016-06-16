@@ -17,10 +17,19 @@ a:visited {
     }
 }
 
+.steps-space {
+    margin-bottom: 10px;
+}
+
 .popover-btn {
     .popover-content {
         padding: 9px 5px;
     }
+}
+
+.steps-title {
+    position: relative;
+    top: -70px;
 }
 
 .text-info-area {
@@ -44,15 +53,34 @@ ul.ticket-popover-contact {
     text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
 }
 
+#social {
+    font-size: 40px;
+    .fa {
+        color: #0070b8;
+        text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        &:hover {
+            color: #ffd700;
+        }
+    }
+    .fa-twitter {
+        padding-right: 35px;
+    }
+    .fa-facebook {
+        padding-right: 35px;
+    }
+}
+
 #steps-nav {
     background-color: #66c4ff;
-    height: 40px;
     width: 100%;
     color: white;
     text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
     box-shadow: 0 0 0.5rem rgba(83, 78, 76, 0.5);
     border-radius: none;
     border: none;
+    .row {
+        padding-bottom: 10px;
+    }
     .fa {
         padding-top: 13px;
     }
@@ -62,6 +90,9 @@ ul.ticket-popover-contact {
     }
     .active-step {
         color: #ffd700;
+    }
+    span.fa.fa-user.active-step-btn {
+        color: green;
     }
     a {
         color: white;
@@ -383,7 +414,7 @@ html {
     text-align: center;
     position: absolute;
     z-index: 100;
-    min-height: 500px;
+    height: 600px;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
     width: 100%;
@@ -394,13 +425,16 @@ html {
     margin-top: 50px;
 }
 
-.carousel-control .icon-prev, .carousel-control .icon-next, .carousel-control .glyphicon-chevron-left, .carousel-control .glyphicon-chevron-right {
+.carousel-control .icon-prev,
+.carousel-control .icon-next,
+.carousel-control .glyphicon-chevron-left,
+.carousel-control .glyphicon-chevron-right {
     display: none;
 }
 
-.carousel-control.left,.carousel-control.right {
+.carousel-control.left,
+.carousel-control.right {
     background-image: none;
-
 }
 
 .carousel-indicators li {
@@ -435,6 +469,7 @@ html {
     border-radius: 4px;
     background-color: #f8f8f8;
     text-align: left;
+    margin-bottom: 25px;
     img {
         vertical-align: middle;
         margin-top: 15px;
@@ -553,9 +588,7 @@ html {
     }
 }
 
-.how-btn-container.active {
-    
-}
+.how-btn-container.active {}
 
 .how-icon-container {
     width: 200px;
@@ -571,6 +604,9 @@ img.img-responsive.how-img {
     margin-bottom: 20px;
 }
 
+@media screen and (max-width: 1199px) {
+
+}
 
 #how-it-works .down-arrow-two {
     width: 0;
@@ -582,6 +618,10 @@ img.img-responsive.how-img {
     left: 48.7%;
     bottom: -15px;
     z-index: 2;
+}
+
+.textarea-style {
+  min-height: 100px;
 }
 
 @media screen and (max-width: 2560px) {
@@ -612,26 +652,58 @@ img.img-responsive.how-img {
     #how-it-works .down-arrow-two {
         left: 47.7%;
     }
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 18px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 16px;
+
+        }
+    }
 }
 
 @media screen and (max-width: 425px) {
     #how-it-works .down-arrow-two {
         left: 44.7%;
     }
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 14px;
+
+        }
+    }
+
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 376px) {
     #how-it-works .down-arrow-two {
         left: 43.7%;
     }
-}
-
-@media screen and (max-width: 375px) {
-    #how-it-works .down-arrow-two {
-        left: 42.7%;
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 12px;
+        }
     }
 }
 
+@media screen and (max-width: 320px) {
+    #how-it-works .down-arrow-two {
+        left: 42.7%;
+    }
+    .why-ticket-wrapper {
+        h4 {
+            font-size: 10px;
+        }
+    }
+}
 
 #contact {
     position: relative;
@@ -661,14 +733,6 @@ img.img-responsive.how-img {
     border-color: transparent;
 }
 
-// .navbar-default {
-//     li {
-//           border-right: 1px solid #E2E6E7;
-//     }
-//     li:first-child {
-//     border-left: 1px solid #E2E6E7;
-// }
-// }
 .navbar-toggle.top-toggle {
     float: left;
     left: 48%;
@@ -715,9 +779,12 @@ form.navbar-form {
     margin-left: auto;
 }
 
-#how-info,
 #services-wrapper {
-    min-height: 800px;
+    min-height: 600px;
+}
+
+#how-info {
+    min-height: 550px;
 }
 
 #how-info {
@@ -733,7 +800,14 @@ form.navbar-form {
 
 #contact-wrapper {
     min-height: 300px;
-    background-color: white;
+    background-color: transparent;
+    color: black;
+    .fa {
+        color: black;
+    }
+    a {
+        color: black;
+    }
 }
 
 .navbar-right .dropdown-menu {
@@ -854,7 +928,7 @@ md-tabs .md-tab {
 }
 
 .carousel-inner .item {
-    height: 500px;
+    height: 600px;
 }
 
 .carousel-caption {
@@ -864,8 +938,6 @@ md-tabs .md-tab {
     margin-bottom: 100px;
     border: 1px solid black;
 }
-
-
 
 md-radio-button.md-default-theme ._md-on,
 md-radio-button ._md-on {
@@ -939,7 +1011,6 @@ md-checkbox.md-checked ._md-icon {
     position: relative;
     width: 300px;
     height: 300px;
-    // background-image: url("../img/floor-plans/1bed1bath.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     border: 2px solid black;
