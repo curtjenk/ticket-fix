@@ -14,6 +14,15 @@ ticketfix uses a number of open source projects to work properly:
 * [Bootstrap] - layout, etc.
 * [Angular-UI-Bootstrap] - image carousel
 * [Angular Messages] - form validation
+* [Angular Materials] - for animated tabs/checkbox/radio buttons
+* [Angular-UI-Router] - The de-facto solution to flexible routing with nested views
+* [Angular-local-storage] - An AngularJS module that gives you access to the browsers local storage
+* [Angular-Aria] - Angular's default accessibility by enabling common ARIA attributes
+* [Angular-Sanitize] - The ngSanitize module provides functionality to sanitize HTML
+* [Angular-Animate] - The ngAnimate module provides support for CSS-based animations & JS based animations
+* [Angular-drag-and-drop-lists] - Angular directives that allow you to build sortable lists with the native HTML5 drag & drop API
+* [Angular-utils-pagination] - Pagination Directive, easy plug and play to add pagination to your project 
+* [Angular-chart] - Reactive, responsive, beautiful charts for AngularJS based on Chart.js
 * [Apache] - webserver
 * [Node.js] - Server side javascript
 * [Express] - 
@@ -24,6 +33,8 @@ ticketfix uses a number of open source projects to work properly:
 * [morgan] -
 * [Q] - A library from promises
 * [BCrypt] - Encryption
+* [FontAwesome] - icons that are svg format used as fonts
+* [Fontastic] - Created custom fontastic font
 
 ### Installation
   - Requires MySql installation.  
@@ -87,9 +98,18 @@ MIT
    [Bootstrap]: <http://twitter.github.com/bootstrap/>
    [AngularJS]: <http://angularjs.org>
    [jQuery]: <http://jquery.com>
+   [Angular-UI-Router]: <https://angular-ui.github.io/ui-router/>
    [Angular-UI-Bootstrap]: <https://angular-ui.github.io/bootstrap/>
-   [Angular-Messages]: <>
+   [Angular-local-storage]:<https://github.com/grevory/angular-local-storage>
+   [Angular-Messages]: <https://docs.angularjs.org/api/ngMessages>
+   [Angular-Aria]:https://docs.angularjs.org/guide/accessibility
+   [Angular-Sanitize]: <https://docs.angularjs.org/api/ngSanitize>
+   [Angular-Animate]: <https://docs.angularjs.org/api/ngAnimate>
+   [Angular-drag-and-drop-lists]: <https://github.com/marceljuenemann/angular-drag-and-drop-lists>
+   [Angular-utils-pagination]: <https://github.com/michaelbromley/angularUtils/tree/master/src/directives/pagination>
+   [Angular-chart]: <http://jtblin.github.io/angular-chart.js/>
    [Passport]: <http://passportjs.org/>
    [BCrypt]: <https://github.com/ncb000gt/node.bcrypt.js/>
    [zippopotam.us]: <http://www.zippopotam.us/>
-   [ZipCodeAPI.com]: <https://www.zipcodeapi.com/>
+   [FontAwesome]: <http://fontawesome.io/>
+   [Fontastic]: <http://fontastic.me/>
