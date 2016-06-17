@@ -52,6 +52,7 @@ ticketFixApp.controller('homeController', function($rootScope, $scope, $http, $l
     
     $scope.activateEmailModal = function () {
         var item = {};
+        item.emailName = "";
         item.emailTo = "";
         // item.user_email = user.email;
         item.modalHeading = "Your Message";

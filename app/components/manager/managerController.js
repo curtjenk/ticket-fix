@@ -227,6 +227,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
     };
 
     $scope.activateEmailModal = function(item) {
+    		item.emailName = "";
         item.emailTo = item.contact_email;
         item.user_email = user.email;
         item.modalHeading = "Contact the Tenant";
