@@ -452,7 +452,7 @@ router.get('/api/allmanagersinfo', function (req, res) {
 	var apiRes = new ApiResponse({
 		api: 'api/allmanagersinfo'
 	});
-	query.getAllTenants().then(function (succ) {
+	query.getAllManagers().then(function (succ) {
 		console.log(succ);
 		if (succ.status == 'found') {
 			apiRes.success = true;
@@ -654,6 +654,30 @@ router.get('/api/contractor/tickets', function (req, res) {
 	}, function (err) {
 		apiRes.success = false;
 		apiRes.message = 'Get Potential Jobs for Contractor ' + contEmail + ' failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
+
+router.get('/api/allcontractorsinfo', function (req, res) {
+	var apiRes = new ApiResponse({
+		api: 'api/allcontractorsinfo'
+	});
+	query.getAllContractors().then(function (succ) {
+		console.log(succ);
+		if (succ.status == 'found') {
+			apiRes.success = true;
+			apiRes.info = succ.data;
+		} else {
+			apiRes.success = false;
+			apiRes.message = succ.status;
+			apiRes.info = succ.error;
+		}
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Getting all contractor info failed';
 		apiRes.info = err;
 		res.json(apiRes);
 	});

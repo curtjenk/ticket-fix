@@ -478,3 +478,54 @@ exports.getTicketInfo = function(ticket_id) {
         .done();
     return deferred.promise;
 };
+
+
+exports.getAllContractors = function(email) {
+    var deferred = Q.defer();
+    var queryString = " select email, first_name, last_name, home_phone, mobile_phone, account_name " +
+       " from contractor " +
+       " left join user on user.id = contractor.user_id " +
+       " left join account on account.id = contractor.account_id";
+
+
+    Q.fcall(db.con)
+        .then(function(con) {
+            console.log('---------------- HERE -----1 ------');
+            con.query(queryString, [email], function(err, rows) {
+                con.release();
+                if (err) {
+                    deferred.reject({
+                        status: 'error',
+                        data: '',
+                        error: err
+                    });
+                } else if (rows.length > 0) {
+                    console.log('---------------- HERE ---- 2--------');
+                    console.log(rows.length);
+                    deferred.resolve({
+                        status: 'found',
+                        data: rows,
+                        error: ''
+                    });
+                } else {
+                    deferred.resolve({
+                        status: 'notfound',
+                        data: '',
+                        error: ''
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log('getAllContractors error occurred');
+            console.log(error);
+            console.log(' ------------------------ ');
+            deferred.reject({
+                status: 'criticalerror',
+                data: '',
+                error: error
+            });
+        })
+        .done();
+    return deferred.promise;
+};

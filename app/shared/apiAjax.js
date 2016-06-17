@@ -25,6 +25,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var managerinfo = baseUrl + "/api/managerinfo";
     var alltenantsinfo = baseUrl + "/api/alltenantsinfo";
     var allmanagersinfo = baseUrl + "/api/allmanagersinfo";
+    var allcontractorsinfo = baseUrl + "/api/allcontractorsinfo";
     var createticket = baseUrl + "/api/createticket";
     var allmanagertickets = baseUrl + "/api/allmanagertickets";
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
@@ -132,6 +133,11 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         console.log('apiAjax getContractorTickets');
         return makeTheGetApiCall('getContractorTickets', email, contractorticketsUrl, queryParms);
     };
+    apiAjax.getallcontractorsinfo = function(email) {
+        var queryParms = '';
+        console.log('apiAjax getallcontractorsinfo');
+        return makeTheGetApiCall('getallcontractorsinfo', email, allcontractorsinfo, queryParms);
+    };
     apiAjax.getTicketsPerDay = function(email) {
         var queryParms = 'email=' + email;
         console.log('apiAjax getTicketsPerDay');
@@ -152,12 +158,13 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         console.log('apiAjax getalltenantsinfo');
         return makeTheGetApiCall('getalltenantsinfo', email, alltenantsinfo, queryParms);
     };
+    //Begin manager stuff
     apiAjax.getallmanagersinfo = function(email) {
         var queryParms = '';
         console.log('apiAjax getallmanagersinfo');
         return makeTheGetApiCall('getallmanagersinfo', email, allmanagersinfo, queryParms);
     };
-    //Begin manager stuff
+    
     apiAjax.getmanagerinfo = function(email) {
         var queryParms = 'email=' + email;
         console.log('apiAjax managerinfo');
