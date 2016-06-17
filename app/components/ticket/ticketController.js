@@ -258,7 +258,7 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 					console.log($scope.formData.planUrl);
 
 					$scope.formData.contact_firstname = tenantinfo.first_name;
-					$scope.formData.contact_lastname = tenantinfo.first_name;
+					$scope.formData.contact_lastname = tenantinfo.last_name;
 					$scope.formData.contact_email = tenantinfo.email;
 					$scope.formData.contact_phone = tenantinfo.home_phone;
 					$scope.formData.contact_mobile  = tenantinfo.mobile_phone;
