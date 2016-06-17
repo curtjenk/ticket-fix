@@ -212,6 +212,12 @@ ul.ticket-popover-contact {
     position: relative;
 }
 
+#ticket-approval {
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
 .form-section {
     border: 1px solid black;
     margin-top: 15px;

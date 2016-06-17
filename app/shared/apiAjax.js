@@ -24,6 +24,8 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var tenantinfo = baseUrl + "/api/tenantinfo";
     var managerinfo = baseUrl + "/api/managerinfo";
     var alltenantsinfo = baseUrl + "/api/alltenantsinfo";
+    var allmanagersinfo = baseUrl + "/api/allmanagersinfo";
+    var allcontractorsinfo = baseUrl + "/api/allcontractorsinfo";
     var createticket = baseUrl + "/api/createticket";
     var allmanagertickets = baseUrl + "/api/allmanagertickets";
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
@@ -106,7 +108,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         });
 
     };
-     apiAjax.updateTicketStatus = function(userEmail, ticket_id, status_id) {
+    apiAjax.updateTicketStatus = function(userEmail, ticket_id, status_id) {
         console.log("apiAjax updateTicketStatus for " + userEmail);
         return makeThePostApiCall('updateTicketStatus', userEmail, updateTicketStatusUrl, {
             ticket_id: ticket_id,
@@ -131,6 +133,11 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         console.log('apiAjax getContractorTickets');
         return makeTheGetApiCall('getContractorTickets', email, contractorticketsUrl, queryParms);
     };
+    apiAjax.getallcontractorsinfo = function(email) {
+        var queryParms = '';
+        console.log('apiAjax getallcontractorsinfo');
+        return makeTheGetApiCall('getallcontractorsinfo', email, allcontractorsinfo, queryParms);
+    };
     apiAjax.getTicketsPerDay = function(email) {
         var queryParms = 'email=' + email;
         console.log('apiAjax getTicketsPerDay');
@@ -152,6 +159,12 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         return makeTheGetApiCall('getalltenantsinfo', email, alltenantsinfo, queryParms);
     };
     //Begin manager stuff
+    apiAjax.getallmanagersinfo = function(email) {
+        var queryParms = '';
+        console.log('apiAjax getallmanagersinfo');
+        return makeTheGetApiCall('getallmanagersinfo', email, allmanagersinfo, queryParms);
+    };
+    
     apiAjax.getmanagerinfo = function(email) {
         var queryParms = 'email=' + email;
         console.log('apiAjax managerinfo');

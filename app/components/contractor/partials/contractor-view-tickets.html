@@ -1,137 +1,88 @@
-<!-- <script type="text/ng-template" id="ModalEmailManager.html">
-    <div class="modal-header">
-        <div class="modal-title">
-            <h3>Contact the property manager for</h3>
-            <div class="row">
-                <div class="col-sm-offset-1">
-                    <p>
-                        {{address1}}&nbsp;
-                        {{address2}}
-                    </p>
-                    <p>
-                        {{city}},&nbsp;
-                        {{state}}&nbsp;
-                        {{zip}}
-                    </p>
-                    <h5>
-                        <strong>Issue Description</strong>
-                    </h5>
-                </div>
-                <div class="col-sm-offset-2">
-                    <p>
-                        <em>{{issue_description}}</em>
-                    </p>
-                </div>
+<div class="container">
+    <h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">Potential Jobs</h1>
+    <div class="container">
+        <div class=" row container" style="margin-bottom:10px;">
+            <div style="float:right; padding-right: 30px;">
+                View
+                <select ng-init="page.viewby = page.viewByOptions[1]" ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)" ng-options="option for option in page.viewByOptions"></select>
+                records at a time.
             </div>
         </div>
     </div>
-    <div class="modal-body">
-        <div class="">
-            <label>From</label>
-            <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
-        </div>
-        <div class="">
-            <label>Subject</label>
-            <input type="text" name="emailSubject" ng-model="emailSubject" placeholder="Email Subject" class="form-control shorten">
-        </div>
-        <div class="">
-            <label>Message</label>
-            <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
-        </div>
-    </div>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok()">Send Email</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-</div>
-</script>  -->
-
-<div class="container">
-<h1 class="text-center" style="margin-top: 50px; margin-bottom: 50px;">Potential Jobs</h1>
-<div class="container">
-    <div class=" row container" style="margin-bottom:10px;">
-        <div style="float:right; padding-right: 30px;">
-            View
-            <select ng-init="page.viewby = page.viewByOptions[1]" ng-model="page.viewby" ng-change="page.setItemsPerPage(page.viewby)" ng-options="option for option in page.viewByOptions"></select>
-            records at a time.
-        </div>
-    </div>
-</div>
-<div style="clear:both;"></div>
+    <div style="clear:both;"></div>
 </div>
 <div class="form-section ticket-section">
-<p class="form-header custom-header-seven">
-    Jobs
-</p>
-<div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered">
-        <thead class="text-center">
-            <tr>
-                <th>
-                    <a href="" ng-click="sortType = 'zip'; sortReverse = !sortReverse">Zip
+    <p class="form-header custom-header-seven">
+        Jobs
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortType = 'zip'; sortReverse = !sortReverse">Zip
                         <span ng-show="sortType == 'zip' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'zip' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-                <th>
-                    <a href="" ng-click="sortType = 'date'; sortReverse = !sortReverse">Date Created
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'date'; sortReverse = !sortReverse">Date Created
                         <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-                <th>
-                    <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">Status
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'status'; sortReverse = !sortReverse">Status
                         <span ng-show="sortType == 'status' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'status' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-                <th>Description</th>
-                <th>
-                    <a href="" ng-click="sortType = 'address1'; sortReverse = !sortReverse">Address
+                    </th>
+                    <th>Description</th>
+                    <th>
+                        <a href="" ng-click="sortType = 'address1'; sortReverse = !sortReverse">Address
                         <span ng-show="sortType == 'address1' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'address1' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-                <th>
-                    <a href="" ng-click="sortType = 'address2'; sortReverse = !sortReverse">Unit
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'address2'; sortReverse = !sortReverse">Unit
                         <span ng-show="sortType == 'address2' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'address2' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-
-                <th>
-                    <a href="" ng-click="sortType = 'city'; sortReverse = !sortReverse">City
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortType = 'city'; sortReverse = !sortReverse">City
                         <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
-                </th>
-                <th>State</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="text-center popover-btn" dir-paginate="item in tickets | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
-                <td>{{item.zip}}</td>
-                <td>{{item.ticket_date}}</td>
-                <td>{{item.ticket_status}}</td>
-                <td>{{item.issue_description}}</td>
-                <td>{{item.address1}}</td>
-                <td>{{item.address2}}</td>
-                <td>{{item.city}}</td>
-                <td>{{item.state}}</td>
-                <td>
-                    <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Click To See Details" popover-title="Action" popover-trigger="mouseenter">
-                        <span class="fa fa-binoculars"></span>
-                    </button>
-                    <button class="btn btn-default ticket-btn" ng-click="activateEmailModal(item)" uib-popover="Click To Contact Manager" popover-title="Action" popover-trigger="mouseenter">
-                        <span class="fa fa-envelope"></span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+                    </th>
+                    <th>State</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center popover-btn" dir-paginate="item in tickets | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
+                    <td>{{item.zip}}</td>
+                    <td>{{item.ticket_date}}</td>
+                    <td>{{item.ticket_status}}</td>
+                    <td>{{item.issue_description}}</td>
+                    <td>{{item.address1}}</td>
+                    <td>{{item.address2}}</td>
+                    <td>{{item.city}}</td>
+                    <td>{{item.state}}</td>
+                    <td>
+                        <button class="btn btn-default ticket-btn" ng-click="transitionToTicket(item)" uib-popover="Click To See Details" popover-title="Action" popover-trigger="mouseenter">
+                            <span class="fa fa-binoculars"></span>
+                        </button>
+                        <button class="btn btn-default ticket-btn" ng-click="activateEmailModal(item)" uib-popover="Click To Contact Manager" popover-title="Action" popover-trigger="mouseenter">
+                            <span class="fa fa-envelope"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="text-center">
-<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="node_modules/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
 </div>

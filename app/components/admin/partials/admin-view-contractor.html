@@ -8,8 +8,8 @@
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
+                        <th>Company Name</th>
+                        <th>Name</th>
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Mobile</th>
@@ -17,11 +17,11 @@
                 </thead>
                 <tbody>
                     <tr dir-paginate="contractor in contractors | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
-                        <td>{{contractor.first_name}}</td>
-                        <td>{{contractor.last_name}}</td>
-                        <td>{{contractor.email}}</td>
-                        <td>{{contractor.home_phone}}</td>
-                        <td>{{contractor.mobile_phone}}</td>
+                        <td>{{contractor.account_name}}</td>
+                        <td>{{contractor.first_name}} {{contractor.last_name}}</td>
+                        <td><a href="mailto:'{{contractor.email}}'">{{contractor.email}}</a></td>
+                        <td><a href="tel:1{{contractor.home_phone}}">{{contractor.home_phone}}</a></td>
+                        <td><a href="tel:1{{contractor.mobile_phone}}">{{contractor.mobile_phone}}</a></td>
                     </tr>
                 </tbody>
             </table>
