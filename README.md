@@ -1,17 +1,10 @@
 # Ticket Fix
 
-Ticket Fix provides a convienient way for apartment dwellers to request maintenance for their apartment.
+Ticket Fix Me is a maintenance request and tracking system focused on tenants (renters) and brings together the tenant, property owner and independent contractor/handyman. The platform will make reporting issues easier for the tenant.  For the property owner, it can help to increase tenant loyalty, help develop a network of handyman to quickly resolve problems (this is particularly attractive to the small business property owner that does not have a maintenance staff).  Lastly for the contractor, their network is expanded with the potential of increased revenue.
 
 ### Authors
-- Josh
 - Curtis
-
-The app has the following features
-- Roles and Permissions around 4 "actors"
-- Login
--
--
-- Credit Card payment processing (sorta!)
+- Josh
 
 ### Tech
 
@@ -23,18 +16,53 @@ ticketfix uses a number of open source projects to work properly:
 * [Angular Messages] - form validation
 * [Apache] - webserver
 * [Node.js] - Server side javascript
+* [Express] - 
 * [jQuery] - javascript library
 * [MySQL] - relational database
 * [zippopotam.us] - Get city & state using zip code
 * [jwt] - JSON web tokens
 * [morgan] -
 * [Q] - A library from promises
-* [BCrypt] -
+* [BCrypt] - Encryption
 
 ### Installation
-  - cd to the "back-end" directory
+  - Requires MySql installation.  
+  - NodesJs Configuration parameters are stored in "config.js" located in the routes folder.  Sample contents.
+
+    var Config = {};
+    Config.mysql = {};
+    Config.mysql.pool = {};
+    Config.mysql.pool.connectionLimit = 100;
+    Config.mysql.pool.debug = false;
+    Config.mysql.host = <your MySql host name>
+    Config.mysql.database = <database name>;
+    Config.mysql.username = <your username>;
+    Config.mysql.password = <your password>;
+    Config.secret = <secret string for Json Web Tokens>
+    //configuration for you mail server .. below is example only
+    Config.smtpConfig =  {
+      host: 'smtp.comcast.net',
+      port: 587,  
+      secure: false, // use SSL
+      auth: {
+          user: 'xxxxxxxx',
+          pass: 'ppppppppppp'
+      }
+  };
+
+  module.exports = Config;
+ 
+- There are also client side parameters needed.  Create a file called "front-config.js" in the "/assets/js" directory.  Here is a sample configuration;
+
+    //Point ajax calls to the proper nodejs instance
+    var Config = {
+       //ticketFixMeApi: 'http://ticketfixme.com:4000'
+      ticketFixMeApi: 'http://localhost:4000'
+      }
+
+- cd to the "back-end" directory
     * run npm install
-    * Note: uses port 3200
+    * Note: uses port 4000
 
 ### Demo
 

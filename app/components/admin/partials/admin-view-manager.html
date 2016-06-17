@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 style="margin-top: 50px; margin-bottom: 50px;">MANAGERS</h1>
+    <h1 style="margin-top: 50px; margin-bottom: 50px;">Property Managers</h1>
     <div class="form-section ticket-section">
         <p class="form-header custom-header-four">
             Property Managers
@@ -8,6 +8,7 @@
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
+                        <th># Properties</th>
                         <th>Company Name</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -17,11 +18,12 @@
                 </thead>
                 <tbody>
                     <tr dir-paginate="manager in managers | orderBy:orderByFunction(sortType):sortReverse | itemsPerPage: page.pageSize" current-page="page.currentPage">
+                        <td>{{manager.property_count}}</td>
                         <td>{{manager.account_name}}</td>
                         <td>{{manager.first_name}} {{manager.last_name}}</td>
-                        <td><a href="mailto:'{{manager.email}}'">{{manager.email}}</a></td>
-                        <td><a href="tel:1{{manager.home_phone}}">{{manager.home_phone}}</a></td>
-                        <td><a href="tel:1{{manager.mobile_phone}}">{{manager.mobile_phone}}</a></td>
+                        <td>{{manager.email}}</td>
+                        <td>{{manager.home_phone}}</td>
+                        <td>{{manager.mobile_phone}}</td>
                     </tr>
                 </tbody>
             </table>

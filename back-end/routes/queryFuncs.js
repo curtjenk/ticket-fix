@@ -162,10 +162,11 @@ exports.getManagerInfo = function(email) {
 exports.getAllManagers = function() {
     var deferred = Q.defer();
     var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
-        " account_name, account_address, account_city, account_state, account_zip " +
+        " account_name, account_address, account_city, account_state, account_zip, manager.id,  coalesce(theCount,0) AS property_count " +
         " from user " +
         " INNER JOIN manager on  manager.user_id = user.id" +
-        " INNER JOIN account on manager.account_id = account.id";
+        " INNER JOIN account on manager.account_id = account.id " +
+        " LEFT JOIN (select manager_id, count(*) as theCount from manager_has_property group by manager_id) a on a.manager_id = manager.id  ";
 
     // select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone,
     //     account_address, account_city, account_state, account_zip
