@@ -16,11 +16,17 @@ var Q = require('q');
 
 exports.updateTicketStatus = function(ticket_id, new_status) {
     var deferred = Q.defer();
-    var queryString = "UPDATE ticket SET status_id = ? WHERE id = ?" ;
+    var d;
+    if (new_status === 5) {  //resolved
+        d = new Date();
+    } else {
+        d = null;
+    }
+    var queryString = "UPDATE ticket SET status_id = ?, date_resolved = ? WHERE id = ?" ;
     Q.fcall(db.con)
         .then(function(con) {
             console.log('------------- update ticket status -----------');
-            con.query(queryString, [new_status, ticket_id], function(err, rows) {
+            con.query(queryString, [new_status, d, ticket_id], function(err, rows) {
                 con.release();
                 if (err) {
                     console.log(err);

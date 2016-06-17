@@ -326,7 +326,8 @@ exports.getAllTenantTickets = function(email) {
         " left join property on property.id = tenant.property_id " +
         " left join ticket on ticket.property_id = property.id " +
         " left join type_status on type_status.id = ticket.status_id " +
-        " where user.email = ?";
+        " where user.email = ?" +
+        " order by client_datetime_string DESC";
 
     Q.fcall(db.con)
         .then(function(con) {

@@ -195,10 +195,18 @@ ticketFixApp.controller('ticketController', function ($rootScope, $scope, $http,
 		apiAjax.getalltenanttickets(email).then(
 			function (succ) {
 				console.log(succ);
+				var d ;
 				$scope.tickets = succ.data.info;
-				// console.log($scope.tickets);
+				// console.log($scope.tickets);formatDateYYYYMMDD
 				for (i = 0; i < $scope.tickets.length; i++) {
+					
+					if ($scope.tickets[i].date_resolved) {
+						d = new Date($scope.tickets[i].date_resolved);
+						$scope.tickets[i].date_resolved = formatDateTime(d.yyyymmdd() + '-' + d.hhmmss());
+					}
+
 					$scope.tickets[i].formattedDate = formatDateTime($scope.tickets[i].client_datetime_string);
+					
 					var html = "<ul class='ticket-popover-contact'><li>Phone:" + $scope.tickets[i].contact_phone + "</li>" +
 						"<li>Mobile:" + $scope.tickets[i].contact_mobile + "</li>" +
 						"<li>Email:" + $scope.tickets[i].contact_email + "</li>" +
