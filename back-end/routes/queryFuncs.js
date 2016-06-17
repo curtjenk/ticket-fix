@@ -162,10 +162,10 @@ exports.getManagerInfo = function(email) {
 exports.getAllManagers = function() {
     var deferred = Q.defer();
     var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
-        " account_address, account_city, account_state, account_zip " +
+        " account_name, account_address, account_city, account_state, account_zip " +
         " from user " +
-        " INNER JOIN manager on user.id = manager.user_id " +
-        " left join account on manager.account_id = account.id";
+        " INNER JOIN manager on  manager.user_id = user.id" +
+        " INNER JOIN account on manager.account_id = account.id";
 
     // select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone,
     //     account_address, account_city, account_state, account_zip
