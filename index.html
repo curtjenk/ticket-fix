@@ -96,7 +96,7 @@
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed main-nav" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" collapsed="navBarCollapse">
+                    <button type="button" class="navbar-toggle main-nav" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -105,7 +105,7 @@
                     <a ng-click="showLeftNavBtns = true; registrationInProgress=false;" class="navbar-brand" href="#/"><img class="ticket-img" src="assets/img/ticketfixlogodraft3.png"><span class="my-brand">icket Fix Me</span></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-class="!navCollapsed && 'in'">
                     <ul ng-if="home" class="nav navbar-nav">
                         <li class=""><a ng-click="gotoElement('how-it-works')">How it works <span class="sr-only">(current)</span></a></li>
                          <li><a ng-click="gotoElement('services')">Services</a></li>
@@ -118,49 +118,49 @@
                         <li ng-if="loggedIn && userType == 1" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/contractor"><span class="fa fa-wrench"></span> Jobs In My Region</a></li>
+                                <li ng-click="collapseMenu()"><a href="#/contractor"><span class="fa fa-wrench"></span> Jobs In My Region</a></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 2" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/admin/activity"><span class="fa fa-area-chart"></span>  Activity</a></li>
+                                <li ng-click="collapseMenu()" ><a href="#/admin/activity"><span class="fa fa-area-chart"></span>  Activity</a></li>
                                 <li role="separator" class="divider"></li>
 <!--                                 <li><a href="#/admin/viewtickets">Tickets</a></li>
                                 <li role="separator" class="divider"></li> -->
-                                <li><a href="#/admin"><span class="icon icon-tenant"></span>  Tenants</a></li>
+                                <li  ng-click="collapseMenu()" ><a href="#/admin"><span class="icon icon-tenant"></span>  Tenants</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewmanager"><span class="icon icon-manager"></span>  Property Managers</a></li>
+                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewmanager"><span class="icon icon-manager"></span>  Property Managers</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
+                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
 <!--                                  <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> --></li>
+                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> --></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tenant <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/ticket"><span class="fa fa-ticket"></span> Tickets</a></li>
+                                <li ng-click="collapseMenu()" ><a href="#/ticket"><span class="fa fa-ticket"></span> Tickets</a></li>
                             </ul>
                         </li>
-                        <li ng-if="loggedIn && userType == 4" class="dropdown">
+                        <li  ng-if="loggedIn && userType == 4" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manager <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span> Manage Tickets</a></li>
+                                <li ng-click="collapseMenu()" ><a href="#/manager/tickets"><span class="fa fa-ticket"></span> Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li>
                                 <!-- <li><a href="#/manager/managetickets"><span class="fa fa-ticket"></span>Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li> -->
-                                <li><a href="#/manager"><span class="fa fa-home"></span> Properties</a></li>
+                                <li ng-click="collapseMenu()" ><a href="#/manager"><span class="fa fa-home"></span> Properties</a></li>
                             </ul>
                         </li>
-                        <li ng-if="!loggedIn && !registrationInProgress" class="dropdown">
+                        <li  ng-if="!loggedIn && !registrationInProgress" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(3)"><span class="icon icon-tenant"></span> Tenant</a></li>
+                                <li ng-click="showLeftNavBtns = false;collapseMenu();"><a href="" ng-click="register(3)"><span class="icon icon-tenant"></span> Tenant</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(4)"><span class="icon icon-manager"></span> Property Manager</a></li>
+                                <li ng-click="showLeftNavBtns = false;collapseMenu();"><a href="" ng-click="register(4)"><span class="icon icon-manager"></span> Property Manager</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(1)"><span class="icon icon-contractor"></span> Contractor</a></li>
+                                <li ng-click="showLeftNavBtns = false;collapseMenu();"><a href="" ng-click="register(1)"><span class="icon icon-contractor"></span> Contractor</a></li>
                             </ul>
                         </li>
                         <!--                       ***********  All users see when logged in *********** -->

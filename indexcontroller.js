@@ -33,10 +33,15 @@ ticketFixApp.controller('indexController', function ($rootScope, $scope, $http, 
 		$scope.userType = type;
 		$location.path('/register');
 	};
-
-	$scope.on('nav-item-clicked', function(event, arges) {
-		$scope.navBarCollapse = true;
-	});
+	$scope.collapseMenu = function() {
+		if ($(window).width() <= 768) {
+			console.log('hiding');
+		    $scope.navCollapsed = true;
+		}
+	};
+	// $scope.on('nav-item-clicked', function(event, arges) {
+	// 	$scope.navBarCollapse = true;
+	// });
 
 	$scope.$on("nothome", function (event, args) {
 		$scope.home = false;
