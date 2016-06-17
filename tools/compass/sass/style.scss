@@ -84,6 +84,11 @@ a:visited {
     }
 }
 
+.bullet {
+    color: #ffd700;
+    text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+
 .steps-title {
     position: relative;
     top: -70px;
@@ -702,8 +707,8 @@ img.img-responsive.how-img {
 
 @media screen and (max-width: 1199px) and (min-width: 450px) {
     .why-ticket-wrapper {
-        h4 {
-            font-size: 18px;
+        h5 {
+            font-size: 16px;
         }
         img {
             width: 65%;
@@ -761,27 +766,27 @@ table[dnd-list] > tr {
         left: 47.7%;
     }
     .why-ticket-wrapper {
-        h4 {
+        h5 {
             font-size: 18px;
         }
     }
 }
 
-@media screen and (max-width: 768px) {
-    .why-ticket-wrapper {
-        h4 {
-            font-size: 16px;
-        }
-    }
-}
+// @media screen and (max-width: 768px) {
+//     .why-ticket-wrapper {
+//         h5 {
+//             font-size: 16px;
+//         }
+//     }
+// }
 
 @media screen and (max-width: 425px) {
     #how-it-works .down-arrow-two {
         left: 44.7%;
     }
     .why-ticket-wrapper {
-        h4 {
-            font-size: 14px;
+        h5 {
+            font-size: 12px;
         }
     }
 }
@@ -791,8 +796,8 @@ table[dnd-list] > tr {
         left: 43.7%;
     }
     .why-ticket-wrapper {
-        h4 {
-            font-size: 12px;
+        h5 {
+            font-size: 10px;
         }
     }
 }
@@ -802,7 +807,7 @@ table[dnd-list] > tr {
         left: 42.7%;
     }
     .why-ticket-wrapper {
-        h4 {
+        h5 {
             font-size: 10px;
         }
     }
@@ -820,7 +825,31 @@ table[dnd-list] > tr {
     }
 }
 
+#about {
+    position: relative;
+    background-color: #0070b8;
+    box-shadow: 0 0 0.5rem rgba(83, 78, 76, 0.5);
+    min-height: 100px;
+    color: #ffd700;
+    text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+    h1 {
+        padding-top: 10px;
+    }
+}
+
 #contact .down-arrow-three {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #0070b8;
+    position: absolute;
+    left: 48%;
+    bottom: -20px;
+    z-index: 3;
+}
+
+#about .down-arrow-four {
     width: 0;
     height: 0;
     border-left: 20px solid transparent;
@@ -923,6 +952,32 @@ form.navbar-form {
     a {
         color: black;
     }
+}
+
+.why {
+    position: relative;
+    top: -35px;
+}
+
+#about-wrapper {
+    min-height: 500px;
+    background-color: transparent;
+    color: black;
+    .fa {
+        color: #0070b8;
+        text-shadow: none;
+        &:hover {
+            text-shadow: 0 2px 3px rgba(51, 51, 51, 0.71), 0 -1px 2px rgba(0, 0, 0, 0.2);
+        }
+    }
+    a {
+        color: black;
+    }
+}
+
+#about-section {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #information {
