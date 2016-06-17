@@ -154,7 +154,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
                 console.log(suc);
                 console.log("transition back to properties");
                 if (suc.data.success === true) {
-                    runGetMgrTickets(); //to show the new ticket on the Mangage Tickets page.
+                    runGetMgrTickets(email); //to show the new ticket on the Mangage Tickets page.
                     $state.transitionTo('manager.properties');
                     doSendEmail();
                 } else {
