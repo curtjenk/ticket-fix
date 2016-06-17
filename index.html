@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600|Montserrat:400,700">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/ticketfixme.ico" />
-    <link href="https://file.myfontastic.com/J4RrDmaaovdKwnawzZbb7e/icons.css" rel="stylesheet">
+<!--     <link href="https://file.myfontastic.com/J4RrDmaaovdKwnawzZbb7e/icons.css" rel="stylesheet"> -->
 </head>
 
 <body ng-controller="indexController">
@@ -73,7 +73,7 @@
                         <li><a href=""><span class="fa fa-clock-o"></span>Mon-Fri: 9am-6pm</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li ng-if="loggedIn"><a href="#/profile"><span class="fa fa-user"></span>Profile</a></li>
+                      <!--   <li ng-if="loggedIn"><a href="#/profile"><span class="fa fa-user"></span>Profile</a></li> -->
                         <li ng-if="loggedIn"><a href="">Welcome, {{email}}</a></li>
                         <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li ng-if="!loggedIn"><a href="https://twitter.com/ticket_fix" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -119,39 +119,39 @@
                         <li ng-if="loggedIn && userType == 1" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/contractor">Jobs In My Region</a></li>
+                                <li><a href="#/contractor"><span class="fa fa-wrench"></span> Jobs In My Region</a></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 2" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/admin/activity">Activity</a></li>
+                                <li><a href="#/admin/activity"><span class="fa fa-area-chart"></span>  Activity</a></li>
                                 <li role="separator" class="divider"></li>
 <!--                                 <li><a href="#/admin/viewtickets">Tickets</a></li>
                                 <li role="separator" class="divider"></li> -->
-                                <li><a href="#/admin">Tenants</a></li>
+                                <li><a href="#/admin"><span class="icon icon-tenant"></span>  Tenants</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewmanager">Property Managers</a></li>
+                                <li><a href="#/admin/viewmanager"><span class="icon icon-manager"></span>  Property Managers</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewcontractor">Contractors</a></li>
-                                 <li role="separator" class="divider"></li>
-                                <li><a href="#/admin/viewproperties">Properties</a></li>
+                                <li><a href="#/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
+<!--                                  <li role="separator" class="divider"></li>
+                                <li><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> --></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tenant <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/ticket"><span class="fa fa-ticket"></span>Tickets</a></li>
+                                <li><a href="#/ticket"><span class="fa fa-ticket"></span> Tickets</a></li>
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 4" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manager <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span>Manage Tickets</a></li>
+                                <li><a href="#/manager/tickets"><span class="fa fa-ticket"></span> Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li>
                                 <!-- <li><a href="#/manager/managetickets"><span class="fa fa-ticket"></span>Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li> -->
-                                <li><a href="#/manager"><span class="fa fa-home"></span>Properties</a></li>
+                                <li><a href="#/manager"><span class="fa fa-home"></span> Properties</a></li>
                             </ul>
                         </li>
                         <li ng-if="!loggedIn && !registrationInProgress" class="dropdown">
@@ -161,7 +161,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(4)"><span class="icon icon-manager"></span> Property Manager</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(1)"><span class="icon icon-converted-file-4415a1c9"></span> Contractor</a></li>
+                                <li ng-click="showLeftNavBtns = false;"><a href="" ng-click="register(1)"><span class="icon icon-contractor"></span> Contractor</a></li>
                             </ul>
                         </li>
                         <!--                       ***********  All users see when logged in *********** -->
