@@ -448,6 +448,30 @@ router.get('/api/alltenantsinfo', function (req, res) {
 
 });
 
+router.get('/api/allmanagersinfo', function (req, res) {
+	var apiRes = new ApiResponse({
+		api: 'api/allmanagersinfo'
+	});
+	query.getAllTenants().then(function (succ) {
+		console.log(succ);
+		if (succ.status == 'found') {
+			apiRes.success = true;
+			apiRes.info = succ.data;
+		} else {
+			apiRes.success = false;
+			apiRes.message = succ.status;
+			apiRes.info = succ.error;
+		}
+		res.json(apiRes);
+	}, function (err) {
+		apiRes.success = false;
+		apiRes.message = 'Getting all managers info failed';
+		apiRes.info = err;
+		res.json(apiRes);
+	});
+
+});
+
 router.get('/api/managerinfo', function (req, res) {
 	//req.query.id  should contain the user id
 	//query User, Tenant & Property and return all info except password

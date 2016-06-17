@@ -24,6 +24,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
     var tenantinfo = baseUrl + "/api/tenantinfo";
     var managerinfo = baseUrl + "/api/managerinfo";
     var alltenantsinfo = baseUrl + "/api/alltenantsinfo";
+    var allmanagersinfo = baseUrl + "/api/allmanagersinfo";
     var createticket = baseUrl + "/api/createticket";
     var allmanagertickets = baseUrl + "/api/allmanagertickets";
     var alltenanttickets = baseUrl + "/api/alltenanttickets";
@@ -106,7 +107,7 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         });
 
     };
-     apiAjax.updateTicketStatus = function(userEmail, ticket_id, status_id) {
+    apiAjax.updateTicketStatus = function(userEmail, ticket_id, status_id) {
         console.log("apiAjax updateTicketStatus for " + userEmail);
         return makeThePostApiCall('updateTicketStatus', userEmail, updateTicketStatusUrl, {
             ticket_id: ticket_id,
@@ -150,6 +151,11 @@ ticketFixApp.factory('apiAjax', function($http, $q, localStore) {
         var queryParms = '';
         console.log('apiAjax getalltenantsinfo');
         return makeTheGetApiCall('getalltenantsinfo', email, alltenantsinfo, queryParms);
+    };
+    apiAjax.getallmanagersinfo = function(email) {
+        var queryParms = '';
+        console.log('apiAjax getallmanagersinfo');
+        return makeTheGetApiCall('getallmanagersinfo', email, allmanagersinfo, queryParms);
     };
     //Begin manager stuff
     apiAjax.getmanagerinfo = function(email) {

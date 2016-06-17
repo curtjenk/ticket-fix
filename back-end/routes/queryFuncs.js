@@ -122,7 +122,7 @@ exports.getManagerInfo = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
-				con.release();
+                con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -157,6 +157,60 @@ exports.getManagerInfo = function(email) {
         .done();
     return deferred.promise;
 };
+
+
+exports.getAllManagers = function() {
+    var deferred = Q.defer();
+    var queryString = "select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone, " +
+        " account_address, account_city, account_state, account_zip " +
+        " from user " +
+        " INNER JOIN manager on user.id = manager.user_id " +
+        " left join account on manager.account_id = account.id";
+
+    // select user.id as user_id, email, first_name, last_name, home_phone, mobile_phone,
+    //     account_address, account_city, account_state, account_zip
+    // from user
+    // INNER JOIN manager on user.id = manager.user_id
+    // left join account on manager.account_id = account.id
+
+    Q.fcall(db.con)
+        .then(function(con) {
+            con.query(queryString, function(err, rows) {
+                con.release();
+                if (err) {
+                    deferred.reject({
+                        status: 'error',
+                        data: '',
+                        error: err
+                    });
+                } else if (rows.length > 0) {
+                    deferred.resolve({
+                        status: 'found',
+                        data: rows,
+                        error: ''
+                    });
+                } else {
+                    deferred.resolve({
+                        status: 'notfound',
+                        data: '',
+                        error: ''
+                    });
+                }
+            });
+        })
+        .catch(function(error) {
+            console.log('getAllManagers error occurred');
+            console.log(error);
+            console.log(' ------------------------ ');
+            deferred.reject({
+                status: 'criticalerror',
+                data: '',
+                error: error
+            });
+        })
+        .done();
+    return deferred.promise;
+};
 /*
 select property.*
 from user
@@ -172,12 +226,12 @@ exports.getManagerProperties = function(email) {
         " from user " +
         " INNER JOIN manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id  " +
-		" left join property on property.id = manager_has_property.property_id " +
+        " left join property on property.id = manager_has_property.property_id " +
         " where user.email = ?  ORDER BY property.id desc";
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
-				con.release();
+                con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -227,7 +281,7 @@ exports.getAllManagerTickets = function(email) {
     Q.fcall(db.con)
         .then(function(con) {
             con.query(queryString, [email], function(err, rows) {
-				con.release();
+                con.release();
                 if (err) {
                     deferred.reject({
                         status: 'error',
@@ -317,7 +371,7 @@ exports.getAllTenantTickets = function(email) {
 
 exports.getTicketsInContractorRegions = function(email) {
     var deferred = Q.defer();
-    var queryString ="select tick.*" +
+    var queryString = "select tick.*" +
         " from user, contractor, " +
         "   (select property.zip, property.id as property_id, address1, address2, city, " +
         "       state, ticket.id as ticket_id, ticket.issue_description, ticket.client_datetime_string, type_status.code AS ticket_status," +
@@ -325,11 +379,11 @@ exports.getTicketsInContractorRegions = function(email) {
         "       user.email AS manager_email, user.first_name AS manager_first_name, " +
         "       user.last_name AS manager_last_name, user.home_phone AS manager_phone " +
         "     from ticket " +
-        "     inner join type_status on type_status.id = ticket.status_id "+
+        "     inner join type_status on type_status.id = ticket.status_id " +
         "     inner join property on property.id = ticket.property_id " +
         "     inner join manager_has_property mhp on mhp.property_id = property.id " +
         "     inner join manager on manager.id = mhp.manager_id " +
-        "     INNER join user on user.id = manager.user_id) tick "  +
+        "     INNER join user on user.id = manager.user_id) tick " +
         "  where user.email = ? " +
         "  and contractor.user_id = user.id " +
         "  and (tick.zip = contractor.region_1_zip " +
