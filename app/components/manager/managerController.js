@@ -7,7 +7,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
     $scope.tickets = [];
     $scope.ticketsWorking = [];
     $scope.ticketsCompleted = [];
-   
+
     var tenantinfo = {};
     $scope.formData = {};
     $scope.ticketData = {};
@@ -107,6 +107,8 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
         $state.transitionTo('manager.createticket');
         console.log("--------- it worked?.  Clicked on ... --------------------");
         console.log(item);
+        $scope.property_id = item.id;
+        $scope.manager_user_id = item.user_id;
         $scope.ticketData.address1 = item.address1;
         $scope.ticketData.address2 = item.address2;
         $scope.ticketData.city = item.city;
@@ -130,7 +132,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
         var d = new Date();
         var ticket = new Ticket();
         ticket.isCreatedByMgr = true;
-        ticket.user_id = tenantinfo.user_id;
+        ticket.user_id = $scope.manager_user_id;
         ticket.property_id = $scope.property_id; //passed in from the form.
         ticket.client_datetime_string = d.yyyymmdd() + '-' + d.hhmmss();
 
@@ -293,7 +295,7 @@ ticketFixApp.controller('managerController', function($rootScope, $scope, $http,
                 console.log(err);
             });
     }
-    
+
 
     function runGetMgrTickets(email) {
         apiAjax.getallmanagertickets(email).then(

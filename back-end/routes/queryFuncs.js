@@ -223,7 +223,7 @@ where user.email =  'test2@ticketfixme.com'
 */
 exports.getManagerProperties = function(email) {
     var deferred = Q.defer();
-    var queryString = "select  property.* " +
+    var queryString = "select  property.*, manager.* " +
         " from user " +
         " INNER JOIN manager on user.id = manager.user_id " +
         " left join manager_has_property on manager.id = manager_has_property.manager_id  " +
