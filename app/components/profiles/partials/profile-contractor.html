@@ -1,0 +1,124 @@
+<h1 class="text-center" style="margin-top: 100px;">Contractor Services</h1>
+<p>
+    {{errorMessage}}
+</p>
+<div class="form-section ticket-section">
+    <p class="form-header custom-header-four">
+        Profile</p>
+<div id="tab-wrapper" class="col-sm-6">
+    <div ng-cloak>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Kitchen">
+                    <md-content class="md-padding">
+                        <h4>Kitchen</h4>
+                        <ul class="ticket-checkbox">
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.sink" aria-label="formData.sink"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.dishwasher" aria-label="formData.dishwasher"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.stove" aria-label="formData.stove"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.oven" aria-label="formData.oven"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.fridge" aria-label="formData.fridge"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.kitchen.garbagedisposal" aria-label="formData.garbagedisposal"></md-checkbox>
+                            </li>
+                        </ul>
+                        <ul class="ticket-list">
+                            <li>Sink</li>
+                            <li>Dishwasher</li>
+                            <li>Stove</li>
+                            <li>Oven</li>
+                            <li>Refrigerator</li>
+                            <li>Garbage Disposal</li>
+                        </ul>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Bathroom">
+                    <md-content class="md-padding">
+                        <h4>Bathroom</h4>
+                        <ul class="ticket-checkbox">
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.sink" aria-label="formData.bathsink"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.toilet" aria-label="formData.toilet"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.tub" aria-label="formData.tub"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.shower" aria-label="formData.shower"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.mirror" aria-label="formData.mirror"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bathroom.fan" aria-label="formData.fan"></md-checkbox>
+                            </li>
+                        </ul>
+                        <ul class="ticket-list">
+                            <li>Sink</li>
+                            <li>Toilet</li>
+                            <li>Tub</li>
+                            <li>Shower</li>
+                            <li>Mirror</li>
+                            <li>Fan</li>
+                        </ul>
+                    </md-content>
+                </md-tab>
+                <md-tab label="Bedroom">
+                    <md-content class="md-padding">
+                        <h4>Bedroom</h4>
+                        <ul class="ticket-checkbox">
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.ceilingfan" aria-label="formData.ceilingfan"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.outlet" aria-label="formData.outlet"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.closet" aria-label="formData.closet"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.door" aria-label="formData.door"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.acvent" aria-label="formData.acvent"></md-checkbox>
+                            </li>
+                            <li>
+                                <md-checkbox ng-model="formData.bedroom.carpet" aria-label="formData.carpet"></md-checkbox>
+                            </li>
+                        </ul>
+                        <ul class="ticket-list">
+                            <li>Ceiling Fan</li>
+                            <li>Outlet</li>
+                            <li>Closet</li>
+                            <li>Door</li>
+                            <li>AC Vent</li>
+                            <li>Carpet</li>
+                        </ul>
+                    </md-content>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+    </div>
+</div>
+<div style="clear:both;"></div>
+</div>
+<div class="form-group button-holder text-center">
+    <!--     <button ui-sref="ticket.approval" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Ticket</button>&nbsp; -->
+    <button type="submit" class="btn btn-default" ng-disabled="ticketForm.$invalid" ng-click="ticketForm.$valid && !ticketForm.$pristine">Submit Profile</button>&nbs
+p;
+    <a href="#/">
+        <button type="button" class="btn btn-default">Cancel</button>
+    </a>
+</div>

@@ -1,0 +1,12 @@
+<div class="profile-wrapper wrapper">
+    <div class="row">
+        <div class="error-text text-center">
+            {{errorMessage}}
+        </div>
+    </div>
+    <div class="container">
+        <form id="profileForm" ng-submit="profileFunc()" name="profileForm" role="form" novalidate>
+            <div d="profile-views" ui-view></div>
+        </form>
+    </div>
+</div>
