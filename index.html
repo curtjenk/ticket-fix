@@ -135,7 +135,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li  ng-click="collapseMenu()" ><a href="#/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
 <!--                                  <li role="separator" class="divider"></li>
-                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> --></li>
+                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> </li>-->
                             </ul>
                         </li>
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
@@ -210,6 +210,11 @@
             <div class="">
                 <label>From</label>
                 <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
+                <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" required multiple class="form-control">
+                <div ng-messages="emailAddr.$error" ng-if="emailAddr.$touched" role="alert">
+                  <p ng-message="required">Email is required.</p>
+                  <p ng-message="email">Enter a valid email</p>
+                </div>
             </div>
             <div class="">
                 <label>Subject</label>
