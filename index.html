@@ -209,7 +209,6 @@
         <div class="modal-body">
             <div class="">
                 <label>From</label>
-                <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
                 <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" required multiple class="form-control">
                 <div ng-messages="emailAddr.$error" ng-if="emailAddr.$touched" role="alert">
                   <p ng-message="required">Email is required.</p>
@@ -241,26 +240,32 @@
                 </div>
             </div>
             <div class="modal-body">
-                <div class="">
-                    <label>Your Name</label>
-                    <input type="text" name="emailName" ng-model="emailName" placeholder="John Doe" class="form-control shorten">
-                </div>
-                <div class="">
-                    <label>Your Email</label>
-                    <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" class="form-control shorten">
-                </div>
-                <div class="">
-                    <label>Subject</label>
-                    <input type="text" name="emailSubject" ng-model="emailSubject" placeholder="Email Subject" class="form-control shorten">
-                </div>
-                <div class="">
-                    <label>Message</label>
-                    <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
-                </div>
+                <form novalidate disable-btn name="contactForm">
+                    <div class="">
+                        <label>Your Name</label>
+                        <input type="text" name="emailName" ng-model="emailName" placeholder="John Doe" class="form-control shorten">
+                    </div>
+                    <div class="" ng-class="{ 'has-error': contactForm.emailAddr.$touched && contactForm.emailAddr.$invalid }">
+                        <label>Your Email</label>
+                        <input type="email" name="emailAddr" ng-model="emailAddr" placeholder="Email Address" required multiple class="form-control">
+                        <div ng-messages="contactForm.emailAddr.$error" ng-if="contactForm.emailAddr.$touched" role="alert">
+                          <p ng-message="required">Email is required.</p>
+                          <p ng-message="email">Enter a valid email</p>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label>Subject</label>
+                        <input type="text" name="emailSubject" ng-model="emailSubject" placeholder="Email Subject" class="form-control shorten">
+                    </div>
+                    <div class="">
+                        <label>Message</label>
+                        <textarea rows="10" name="emailBody" ng-model="emailBody" class="form-control"></textarea>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">Send Email</button>
+            <button class="btn btn-primary" type="button" ng-disabled="contactForm.$invalid" ng-click="contactForm.$valid && !contactForm.$pristine; ok();">Send Email</button>
             <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
         </div>
     </script>
