@@ -1,10 +1,10 @@
-# Ticket Fix
+# Ticket Fix Me
 
 Ticket Fix Me is a maintenance request and tracking system focused on tenants (renters) and brings together the tenant, property owner and independent contractor/handyman. The platform will make reporting issues easier for the tenant.  For the property owner, it can help to increase tenant loyalty, help develop a network of handyman to quickly resolve problems (this is particularly attractive to the small business property owner that does not have a maintenance staff).  Lastly for the contractor, their network is expanded with the potential of increased revenue.
 
 ### Authors
-- Curtis
-- Josh
+- Curtis Jenkins
+- Joshua Ciaralli
 
 ### Tech
 
@@ -77,7 +77,7 @@ ticketfix uses a number of open source projects to work properly:
 
 ### Demo
 
-http://www.ticketfix.com
+http://www.ticketfixme.com
 
 ### Todos
 
