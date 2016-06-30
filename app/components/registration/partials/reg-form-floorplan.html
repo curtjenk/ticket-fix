@@ -30,7 +30,7 @@
   <div class="col-sm-6 col-xs-10 col-xs-offset-1">
       <div class="form-group">
           <div class="button-holder text-center">
-              <button type="submit" class="btn btn-default">Sign Up</button>&nbsp;
+              <button type="submit" class="btn btn-default" ng-disabled="registerForm.$invalid" ng-click="registerForm.$valid && !registerForm.$pristine">Sign Up</button>&nbsp;
               <a ng-click="cancelRegistration()">
                 <button type="button" class="btn btn-default">Cancel</button>
               </a>
