@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Ticket Fix Me</title>
+    <base href="/" />
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
@@ -72,21 +73,12 @@
                         <li><a href=""><span class="fa fa-clock-o"></span>Mon-Fri: 9am-6pm</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      <!--   <li ng-if="loggedIn"><a href="#/profile"><span class="fa fa-user"></span>Profile</a></li> -->
                         <li ng-if="loggedIn"><a href="">Welcome, {{email}}</a></li>
                         <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                         <li ng-if="!loggedIn"><a href="https://twitter.com/ticket_fix" title=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         <!-- <li><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li> -->
                         <li ng-if="!loggedIn"><a href="" title=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
                     </ul>
-                    <!-- <div class="search-bar" ng-show="showSearchBar">
-                        <form class="navbar-form navbar-right" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search..">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span class="fa fa-search" aria-hidden="true"></span></button>
-                        </form>
-                    </div> -->
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
@@ -102,7 +94,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a ng-click="showLeftNavBtns = true; registrationInProgress=false;" class="navbar-brand" href="#/"><img class="ticket-img" src="assets/img/ticketfixlogodraft3.png"><span class="my-brand">icket Fix Me</span></a>
+                    <a ng-click="showLeftNavBtns = true; registrationInProgress=false;" class="navbar-brand" href="/"><img class="ticket-img" src="assets/img/ticketfixlogodraft3.png"><span class="my-brand">icket Fix Me</span></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-class="!navCollapsed && 'in'">
@@ -114,46 +106,44 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--                       ***********  Only shows when not logged in *********** -->
-                        <li ng-if="!loggedIn && !registrationInProgress"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        <!--                       ***********  Tenants Only See *********** -->
+                        <li ng-if="!loggedIn && !registrationInProgress"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <!--                       ***********  Contractor Only See *********** -->
                         <li ng-if="loggedIn && userType == 1" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contractor <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="collapseMenu()"><a href="#/contractor"><span class="fa fa-wrench"></span> Jobs In My Region</a></li>
+                                <li ng-click="collapseMenu()"><a href="/contractor"><span class="fa fa-wrench"></span> Jobs In My Region</a></li>
                             </ul>
                         </li>
+                        <!--                       *********** Ticketfixme Admin *********** -->
                         <li ng-if="loggedIn && userType == 2" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="collapseMenu()" ><a href="#/admin/activity"><span class="fa fa-area-chart"></span>  Activity</a></li>
+                                <li ng-click="collapseMenu()" ><a href="/admin/activity"><span class="fa fa-area-chart"></span>  Activity</a></li>
                                 <li role="separator" class="divider"></li>
-<!--                                 <li><a href="#/admin/viewtickets">Tickets</a></li>
-                                <li role="separator" class="divider"></li> -->
-                                <li  ng-click="collapseMenu()" ><a href="#/admin"><span class="icon icon-tenant"></span>  Tenants</a></li>
+                                <li  ng-click="collapseMenu()" ><a href="/admin"><span class="icon icon-tenant"></span>  Tenants</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewmanager"><span class="icon icon-manager"></span>  Property Managers</a></li>
+                                <li  ng-click="collapseMenu()" ><a href="/admin/viewmanager"><span class="icon icon-manager"></span>  Property Managers</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
-<!--                                  <li role="separator" class="divider"></li>
-                                <li  ng-click="collapseMenu()" ><a href="#/admin/viewproperties"><span class="fa fa-home"></span> Properties</a> </li>-->
+                                <li  ng-click="collapseMenu()" ><a href="/admin/viewcontractor"><span class="icon icon-contractor"></span> Contractors</a></li>
                             </ul>
                         </li>
+                        <!--                       *********** Tenant menu selections *********** -->
                         <li ng-if="loggedIn && userType == 3" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tenant <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="collapseMenu()" ><a href="#/ticket"><span class="fa fa-ticket"></span> Tickets</a></li>
+                                <li ng-click="collapseMenu()" ><a href="/ticket"><span class="fa fa-ticket"></span> Tickets</a></li>
                             </ul>
                         </li>
+                        <!--                       *********** Manager menu selections *********** -->
                         <li  ng-if="loggedIn && userType == 4" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manager <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li ng-click="collapseMenu()" ><a href="#/manager/tickets"><span class="fa fa-ticket"></span> Manage Tickets</a></li>
+                                <li ng-click="collapseMenu()" ><a  href="/manager/tickets"><span class="fa fa-ticket"></span> Manage Tickets</a></li>
                                 <li role="separator" class="divider"></li>
-                                <!-- <li><a href="#/manager/managetickets"><span class="fa fa-ticket"></span>Manage Tickets</a></li>
-                                <li role="separator" class="divider"></li> -->
-                                <li ng-click="collapseMenu()" ><a href="#/manager"><span class="fa fa-home"></span> Properties</a></li>
+                                <li ng-click="collapseMenu()" ><a  href="/manager/properties"><span class="fa fa-home"></span> Properties</a></li>
                             </ul>
                         </li>
+                        <!--                       *********** Registration *********** -->
                         <li  ng-if="!loggedIn && !registrationInProgress" class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Register <span class="caret"></span></a>
                             <ul class="dropdown-menu">

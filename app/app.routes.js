@@ -2,9 +2,11 @@
 // =============================================================================
 
 ///http://stackoverflow.com/questions/22102815/how-to-delete-sign-in-angular-ui-router-urls
-// ticketFixApp.config(["$locationProvider", function($locationProvider) {
-//   $locationProvider.html5Mode({enabled:true, requireBase:false});
-// }]);
+// config to remove the hash sign (#) from urls
+//   also added <base href="/" /> in index.html
+ticketFixApp.config(["$locationProvider", function($locationProvider) {
+   $locationProvider.html5Mode({enabled:true, requireBase:false});
+}]);
 
 ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -112,7 +114,7 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('manager.properties', {
             parent: 'manager',
-            url: '',
+            url: '/properties',
             templateUrl: 'app/components/manager/partials/manager-view-properties.html'
         })
         .state('manager.createticket', {
@@ -125,11 +127,12 @@ ticketFixApp.config(function($stateProvider, $urlRouterProvider) {
             url: '/tickets',
             templateUrl: 'app/components/manager/partials/manager-view-tickets.html'
         })
-        .state('manager.managetickets', {
-            parent: 'manager',
-            url: '/managetickets',
-            templateUrl: 'app/components/manager/partials/manager-manage-tickets.html'
-        })
+        //TODO remove manger-manage-tickets-html file
+        // .state('manager.managetickets', {
+        //     parent: 'manager',
+        //     url: '/managetickets',
+        //     templateUrl: 'app/components/manager/partials/manager-manage-tickets.html'
+        // })
         .state('contractor', {
             url: '/contractor',
             abstract: true,
